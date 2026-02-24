@@ -8,3 +8,5 @@ TD/Logs
 *.sln
 *.user
 *.booproj
+TD/UserSettings
+TD/ProjectSettings/EditorBuildSettings.asset
