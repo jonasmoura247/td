@@ -1,0 +1,10 @@
+﻿TD/Temp
+TD/Library
+TD/Logs
+.vs/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.user
+*.booproj
