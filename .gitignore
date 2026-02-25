@@ -1,10 +1,23 @@
-﻿TD/Temp
-TD/Library
-TD/Logs
+﻿# Arquivos temporários e de biblioteca da Unity
+/[Tt][Dd]/Library/
+/[Tt][Dd]/Temp/
+/[Tt][Dd]/Obj/
+/[Tt][Dd]/Logs/
+/[Tt][Dd]/UserSettings/
+
+# Arquivos de log de upgrade
+/[Tt][Dd]/UpgradeLog.htm
+
+# Arquivos do Visual Studio / IDEs
 .vs/
 .idea/
 *.csproj
 *.unityproj
 *.sln
 *.user
+*.userprefs
+*.pidb
 *.booproj
+
+# Build de saída (opcional, mas recomendado)
+/[Tt][Dd]/Builds/
