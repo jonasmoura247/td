@@ -21,3 +21,8 @@
 
 # Build de saída (opcional, mas recomendado)
 /[Tt][Dd]/Builds/
+=======
+*.booproj
+TD/UserSettings
+TD/ProjectSettings/EditorBuildSettings.asset
+
