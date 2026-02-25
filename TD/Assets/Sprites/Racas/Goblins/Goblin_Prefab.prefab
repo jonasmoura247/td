@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 342240210359356404}
   - component: {fileID: 3400605008139129513}
   - component: {fileID: 2361323068034890134}
-  m_Layer: 0
+  - component: {fileID: 3830198093425398724}
+  m_Layer: 3
   m_Name: Goblin_Prefab
   m_TagString: NpcGoblin
   m_Icon: {fileID: 0}
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovNpcGoblin
-  velocidade: 10
+  velocidade: 40
 --- !u!50 &3400605008139129513
 Rigidbody2D:
   serializedVersion: 5
@@ -171,3 +172,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.25000086}
   m_Size: {x: 18.917244, y: 27.780863}
   m_Direction: 0
+--- !u!114 &3830198093425398724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180006139801302925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ede3501c95e2e4baa7993c1e636221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoblinController
+  vidaMaxima: 3
+  danoBase: 1
+  tempoInvulnerabilidade: 0

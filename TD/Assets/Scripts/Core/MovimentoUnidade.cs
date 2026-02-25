@@ -12,14 +12,6 @@ public class MovimentoUnidade : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log($"=== DIAGNÓSTICO DO MOVIMENTO ===");
-        Debug.Log($"Rigidbody2D: {(rb != null ? "OK" : "NÃO TEM")}");
-        if (rb != null)
-        {
-            Debug.Log($"  - Body Type: {rb.bodyType}");
-            Debug.Log($"  - Simulated: {rb.simulated}");
-            Debug.Log($"  - Gravity Scale: {rb.gravityScale}");
-        }
     }
 
     public void DefinirRota(Transform rota)
@@ -34,6 +26,7 @@ public class MovimentoUnidade : MonoBehaviour
 
         rb.position = pontos[0].position;
         movimentando = true;
+        pontoAtual = 0;
     }
 
     void FixedUpdate()
@@ -43,11 +36,13 @@ public class MovimentoUnidade : MonoBehaviour
 
         Transform destino = pontos[pontoAtual];
 
-        rb.MovePosition(Vector2.MoveTowards(
+        Vector2 novaPosicao = Vector2.MoveTowards(
             rb.position,
             destino.position,
             velocidade * Time.fixedDeltaTime
-        ));
+        );
+
+        rb.MovePosition(novaPosicao);
 
         if (Vector2.Distance(rb.position, destino.position) < 0.05f)
         {
