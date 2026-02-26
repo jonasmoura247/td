@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class SpawnGoblin : MonoBehaviour
 {
-    public GameObject goblinPrefab; 
-    public float spawnRate = 7f;
+    public GameObject[] goblinsPrefabs;
+    public float spawnRate = 5f;
     public Transform rotasPai;
 
     private float nextSpawnTime;
-
-    void Start()
-    {
-        var rb = goblinPrefab.GetComponent<Rigidbody2D>();
-    }
 
     void Update()
     {
@@ -19,15 +14,22 @@ public class SpawnGoblin : MonoBehaviour
         {
             nextSpawnTime = Time.time + spawnRate;
 
-            int index = Random.Range(0, rotasPai.childCount);
-            Transform rotaEscolhida = rotasPai.GetChild(index);
+            if (rotasPai.childCount == 0) return;
 
-            GameObject goblin = Instantiate(goblinPrefab);
+            int indexRota = Random.Range(0, rotasPai.childCount);
+            Transform rotaEscolhida = rotasPai.GetChild(indexRota);
 
-            // dar um nome único para cada goblin "goblin_uuid"
-            goblin.name = $"Goblin_{System.DateTime.Now.Ticks}";
+            if (rotaEscolhida.childCount == 0) return;
+
+            Transform primeiroPonto = rotaEscolhida.GetChild(0);
+
+            int indexGoblin = Random.Range(0, goblinsPrefabs.Length);
+            GameObject prefabEscolhido = goblinsPrefabs[indexGoblin];
+
+            GameObject goblin = Instantiate(prefabEscolhido, primeiroPonto.position, Quaternion.identity);
 
             MovimentoUnidade movimento = goblin.GetComponent<MovimentoUnidade>();
+
             if (movimento != null)
             {
                 movimento.DefinirRota(rotaEscolhida);

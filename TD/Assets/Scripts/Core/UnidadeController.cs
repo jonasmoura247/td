@@ -1,12 +1,17 @@
 using UnityEngine;
 
-public class UnidadeController : MonoBehaviour
+public class UnidadeController : MonoBehaviour, IDanificavel
 {
     [Header("Status Base")]
     public int vidaMaxima = 3;
     protected int vidaAtual;
     public int danoBase = 1;
     protected bool estaVivo = true;
+
+    [Header("Fac��o")]
+    public Faccao faccao;
+
+    public bool EstaVivo => estaVivo;
 
     protected Rigidbody2D rb;
     protected Collider2D col;
@@ -29,7 +34,9 @@ public class UnidadeController : MonoBehaviour
         if (!estaVivo) return;
 
         vidaAtual -= quantidade;
-        if (vidaAtual <= 0) Morrer();
+
+        if (vidaAtual <= 0)
+            Morrer();
     }
 
     protected virtual void Morrer()
@@ -42,8 +49,11 @@ public class UnidadeController : MonoBehaviour
             rb.simulated = false;
         }
 
-        if (movimento != null) movimento.PararMovimento();
-        if (col != null) col.enabled = false;
+        if (movimento != null)
+            movimento.PararMovimento();
+
+        if (col != null)
+            col.enabled = false;
 
         Destroy(gameObject, 0.1f);
     }

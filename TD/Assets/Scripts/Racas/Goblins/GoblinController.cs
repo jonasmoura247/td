@@ -2,25 +2,21 @@ using UnityEngine;
 
 public class GoblinController : UnidadeController
 {
-    [Header("Atributos Raciais Goblin")]
+    [Header("Configurações Base do Goblin")]
     [SerializeField] protected float multiplicadorDanoRacial = 1f;
 
     [Header("Configurações de Recuo")]
-    public float tempoInvulnerabilidade = 0f;
-    private float proximoTempoDano = 0f;
+    public float tempoInvulnerabilidade = 0.2f;
+    public float forcaRecuo = 5f;
 
-    protected override void Start()
+    protected float proximoTempoDano = 0f;
+
+    public virtual void AplicarRecuo(Vector2 direcao, float forca)
     {
-        vidaMaxima = 3;
-        danoBase = 1;
-        base.Start();
-    }
+        if (rb == null || !estaVivo) return;
 
-    public void AplicarRecuo(Vector2 direcao, float forca)
-    {
-        if (rb == null) return;
-
-        if (movimento != null) movimento.PararMovimento();
+        if (movimento != null)
+            movimento.PararMovimento();
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(direcao * forca, ForceMode2D.Impulse);
@@ -31,7 +27,7 @@ public class GoblinController : UnidadeController
         Invoke(nameof(ReativarMovimento), 0.3f);
     }
 
-    private void ReativarMovimento()
+    protected virtual void ReativarMovimento()
     {
         if (movimento != null && estaVivo)
         {
@@ -41,5 +37,16 @@ public class GoblinController : UnidadeController
 
     public float GetProximoTempoDano() => proximoTempoDano;
 
-    public int GetDanoFinal() => Mathf.RoundToInt(danoBase * multiplicadorDanoRacial);
+    public virtual int GetDanoFinal() => Mathf.RoundToInt(danoBase * multiplicadorDanoRacial);
+
+    public override void ReceberDano(int quantidade)
+    {
+        if (Time.time < proximoTempoDano)
+        {
+            Debug.Log($"{name} está invulnerável!");
+            return;
+        }
+
+        base.ReceberDano(quantidade);
+    }
 }
