@@ -921,6 +921,7 @@ GameObject:
   - component: {fileID: 1379065075}
   - component: {fileID: 1379065076}
   - component: {fileID: 1379065077}
+  - component: {fileID: 1379065078}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Respawn
@@ -972,8 +973,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnOuro
   prefabMinerio: {fileID: 2947673057475326901, guid: 5339ced3c345c5648a4e948fefaae660, type: 3}
   quantidadeParaGerar: 5
+  intervaloSpawn: 5
   areaMin: {x: -50, y: -25}
   areaMax: {x: 50, y: 25}
+--- !u!114 &1379065078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379065074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05fbb39aa27cde4f81c1b7038875aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnHumanoMineiro
+  humanoMineiroPrefab: {fileID: 2579156320764190982, guid: 59aa198ebb57e6d40b43656246314d79, type: 3}
+  spawnRate: 7
+  rotasPai: {fileID: 0}
 --- !u!1 &1416623791
 GameObject:
   m_ObjectHideFlags: 0
