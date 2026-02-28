@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NpcGoblin
   - Castelo
+  - MinerioDeOuro
   layers:
   - Default
   - TransparentFX
