@@ -7,7 +7,7 @@ public class EstruturasController : MonoBehaviour, IDanificavel
     protected int vidaAtual;
     protected bool destruida = false;
 
-    [Header("Facção")]
+    [Header("Faccao")]
     public Faccao faccao;
 
     public bool EstaVivo => !destruida;
@@ -15,7 +15,9 @@ public class EstruturasController : MonoBehaviour, IDanificavel
 
     protected virtual void Start()
     {
-        if (vidaMaxima <= 0) vidaMaxima = 1;
+        if (vidaMaxima <= 0)
+            vidaMaxima = 1;
+
         vidaAtual = vidaMaxima;
     }
 
@@ -32,6 +34,10 @@ public class EstruturasController : MonoBehaviour, IDanificavel
     protected virtual void DestruirEstrutura()
     {
         destruida = true;
+
+        if (faccao == Faccao.Jogador)
+            GameManager.Instance.GameOver();
+
         Destroy(gameObject);
     }
 

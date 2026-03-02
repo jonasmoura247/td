@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GoblinLanceiro : UnidadeController
+public class GoblinLanceiro : GoblinController
 {
     [Header("Configuração de Ataque")]
     public float distanciaDeAtaque = 3f;
@@ -34,22 +34,25 @@ public class GoblinLanceiro : UnidadeController
 
         float distancia = Vector2.Distance(transform.position, alvo.position);
 
-        if (!estaParadoParaAtacar && distancia <= distanciaDeAtaque)
+        if (distancia <= distanciaDeAtaque)
         {
-            estaParadoParaAtacar = true;
-
             if (movimento != null)
                 movimento.PararMovimento();
 
-            if (rb != null)
-                rb.linearVelocity = Vector2.zero;
-        }
-
-        if (estaParadoParaAtacar)
-        {
             Atacar();
         }
+        else
+        {
+            if (movimento != null)
+                movimento.ContinuarMovimento();
+        }
     }
+
+    //private void AjustarPosicaoLateral()
+    //{
+    //    Vector2 lateral = Random.insideUnitCircle.normalized * 0.5f;
+    //    transform.position += (Vector3)lateral * Time.deltaTime;
+    //}
 
     private void Atacar()
     {

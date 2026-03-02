@@ -18,8 +18,8 @@ public class GoblinController : UnidadeController
         if (movimento != null)
             movimento.PararMovimento();
 
-        rb.linearVelocity = Vector2.zero;
-        rb.AddForce(direcao * forca, ForceMode2D.Impulse);
+        Vector2 novaPos = rb.position + direcao.normalized * forca * 0.2f;
+        rb.MovePosition(novaPos);
 
         proximoTempoDano = Time.time + tempoInvulnerabilidade;
 
