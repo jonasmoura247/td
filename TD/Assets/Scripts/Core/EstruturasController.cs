@@ -1,15 +1,22 @@
 using UnityEngine;
 
-public class EstruturasController : MonoBehaviour
+public class EstruturasController : MonoBehaviour, IDanificavel
 {
     [Header("Configurações de Estrutura")]
-    public int vidaMaxima = 15; 
+    public int vidaMaxima = 15;
     protected int vidaAtual;
     protected bool destruida = false;
 
+    [Header("Faccao")]
+    public Faccao faccao;
+
+    public bool EstaVivo => !destruida;
+    public bool EstaDestruida => destruida;
+
     protected virtual void Start()
     {
-        if (vidaMaxima <= 0) vidaMaxima = 1;
+        if (vidaMaxima <= 0)
+            vidaMaxima = 1;
 
         vidaAtual = vidaMaxima;
     }
@@ -17,13 +24,20 @@ public class EstruturasController : MonoBehaviour
     public virtual void ReceberDano(int quantidade)
     {
         if (destruida) return;
+
         vidaAtual -= quantidade;
-        if (vidaAtual <= 0) DestruirEstrutura();
+
+        if (vidaAtual <= 0)
+            DestruirEstrutura();
     }
 
     protected virtual void DestruirEstrutura()
     {
         destruida = true;
+
+        if (faccao == Faccao.Jogador)
+            GameManager.Instance.GameOver();
+
         Destroy(gameObject);
     }
 

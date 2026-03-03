@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2361323068034890134}
   - component: {fileID: 3830198093425398724}
   m_Layer: 3
-  m_Name: Goblin_Prefab
+  m_Name: GoblinGuerreiro_Prefab
   m_TagString: NpcGoblin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,58 +1,144 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class MovimentoUnidade : MonoBehaviour
 {
-    public float velocidade = 3f;
+    [Header("Movimento")]
+    public float velocidade = 10f;
+    public float distanciaParada = 0.3f;
+
+    [Header("Espaco Físico Virtual")]
+    public float raioUnidade = 1.5f;
+    public float forcaSeparacao = 25f;
+    public LayerMask layerUnidades;
 
     private Transform[] pontos;
     private int pontoAtual = 0;
+
     private Rigidbody2D rb;
     private bool movimentando = true;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        rb.freezeRotation = true;
+    }
+
+    void Start()
+    {
+        ResolverSobreposicaoInicial();
     }
 
     public void DefinirRota(Transform rota)
     {
-        int quantidade = rota.childCount;
-        pontos = new Transform[quantidade];
+        pontos = new Transform[rota.childCount];
 
-        for (int i = 0; i < quantidade; i++)
-        {
+        for (int i = 0; i < rota.childCount; i++)
             pontos[i] = rota.GetChild(i);
-        }
 
-        rb.position = pontos[0].position;
-        movimentando = true;
         pontoAtual = 0;
+        movimentando = true;
     }
 
     void FixedUpdate()
     {
         if (!movimentando || pontos == null || pontoAtual >= pontos.Length)
+        {
+            rb.linearVelocity = Vector2.zero;
             return;
+        }
 
-        Transform destino = pontos[pontoAtual];
+        Vector2 posicaoAtual = rb.position;
+        Vector2 destino = pontos[pontoAtual].position;
 
-        Vector2 novaPosicao = Vector2.MoveTowards(
-            rb.position,
-            destino.position,
-            velocidade * Time.fixedDeltaTime
-        );
+        float distancia = Vector2.Distance(posicaoAtual, destino);
 
-        rb.MovePosition(novaPosicao);
-
-        if (Vector2.Distance(rb.position, destino.position) < 0.05f)
+        if (distancia <= distanciaParada)
         {
             pontoAtual++;
+            return;
+        }
+
+        Vector2 direcao = (destino - posicaoAtual).normalized;
+
+        Vector2 repulsao = CalcularSeparacao();
+
+        Vector2 velocidadeFinal = (direcao * velocidade) + repulsao;
+
+        rb.linearVelocity = velocidadeFinal;
+    }
+
+    private Vector2 CalcularSeparacao()
+    {
+        Collider2D[] proximos = Physics2D.OverlapCircleAll(
+            transform.position,
+            raioUnidade * 2f,
+            layerUnidades
+        );
+
+        Vector2 repulsao = Vector2.zero;
+
+        foreach (var col in proximos)
+        {
+            if (col.gameObject == gameObject) continue;
+
+            Vector2 diff = (Vector2)(transform.position - col.transform.position);
+            float dist = diff.magnitude;
+
+            if (dist <= 0.001f)
+            {
+                diff = Random.insideUnitCircle.normalized;
+                dist = 0.01f;
+            }
+
+            float distanciaMinima = raioUnidade * 2f;
+
+            if (dist < distanciaMinima)
+            {
+                float forca = (distanciaMinima - dist) / distanciaMinima;
+                repulsao += diff.normalized * forca;
+            }
+        }
+
+        return repulsao * forcaSeparacao;
+    }
+
+    private void ResolverSobreposicaoInicial()
+    {
+        Collider2D[] proximos = Physics2D.OverlapCircleAll(
+            transform.position,
+            raioUnidade * 2f,
+            layerUnidades
+        );
+
+        foreach (var col in proximos)
+        {
+            if (col.gameObject == gameObject) continue;
+
+            Vector2 diff = (Vector2)(transform.position - col.transform.position);
+            float dist = diff.magnitude;
+
+            if (dist == 0)
+            {
+                diff = Random.insideUnitCircle.normalized;
+                dist = 0.01f;
+            }
+
+            float distanciaMinima = raioUnidade * 2f;
+
+            if (dist < distanciaMinima)
+            {
+                float ajuste = distanciaMinima - dist;
+                transform.position += (Vector3)(diff.normalized * ajuste * 0.5f);
+            }
         }
     }
 
     public void PararMovimento()
     {
         movimentando = false;
+        rb.linearVelocity = Vector2.zero;
     }
 
     public void ContinuarMovimento()
@@ -60,9 +146,14 @@ public class MovimentoUnidade : MonoBehaviour
         movimentando = true;
     }
 
-    public void ResetarMovimento()
+    public bool EstaMovimentando()
     {
-        pontoAtual = 0;
-        movimentando = true;
+        return movimentando;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, raioUnidade);
     }
 }
