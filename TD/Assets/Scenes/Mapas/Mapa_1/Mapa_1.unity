@@ -1153,7 +1153,7 @@ GameObject:
   - component: {fileID: 1000134700}
   - component: {fileID: 1000134702}
   - component: {fileID: 1000134703}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Castelo
   m_TagString: Castelo
   m_Icon: {fileID: 0}
@@ -1749,6 +1749,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1344325413}
+  - component: {fileID: 1379065077}
+  - component: {fileID: 1379065078}
   - component: {fileID: 1344325415}
   - component: {fileID: 1344325414}
   m_Layer: 0
@@ -1877,6 +1879,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344325412}
   m_CullTransparentMesh: 1
+--- !u!114 &1379065077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344325412}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421a2ba6154f7004cb0fc9f2526cec2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnOuro
+  prefabMinerio: {fileID: 2947673057475326901, guid: 5339ced3c345c5648a4e948fefaae660, type: 3}
+  quantidadeParaGerar: 5
+  intervaloSpawn: 5
+  areaMin: {x: -50, y: -25}
+  areaMax: {x: 50, y: 25}
+--- !u!114 &1379065078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344325412}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05fbb39aa27cde4f81c1b7038875aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnHumanoMineiro
+  humanoMineiroPrefab: {fileID: 2579156320764190982, guid: 59aa198ebb57e6d40b43656246314d79, type: 3}
+  spawnRate: 7
+  rotasPai: {fileID: 0}
 --- !u!1 &1416623791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,7 +2087,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480736174}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9305171da7a42da4a813f06673bc9a0d, type: 3}
   m_Name: 
@@ -2065,7 +2099,7 @@ MonoBehaviour:
   intervaloEntreSpawns: 2
   offsetSpawn: 0.2
   rotasPai: {fileID: 1534522645}
-  goblinGuerreiro: {fileID: 0}
+  goblinGuerreiro: {fileID: 6061939319945825289, guid: 2f80a04dceaa6674d97f4d7edd8ef04d, type: 3}
   goblinLanceiro: {fileID: 1966196205}
   elfoMago: {fileID: 4281921711109955258}
   goblinBase: 1
@@ -3210,7 +3244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3518856063253832190, guid: 189dccab99fd98d45a0be33ac8193279, type: 3}
       propertyPath: layerUnidades.m_Bits
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3854835396798461238, guid: 189dccab99fd98d45a0be33ac8193279, type: 3}
       propertyPath: m_Enabled
