@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ElfoMago : UnidadeController
 {
-    [Header("Configuracao de Ataque")]
+    [Header("Configuração de Ataque")]
     public float distanciaAtaque = 4f;
     public float intervaloAtaque = 2f;
     public GameObject magiaPrefab;

@@ -7,7 +7,7 @@ public class MovimentoUnidade : MonoBehaviour
     public float velocidade = 10f;
     public float distanciaParada = 0.3f;
 
-    [Header("Espaco Físico Virtual")]
+    [Header("Espaço Físico Virtual")]
     public float raioUnidade = 1.5f;
     public float forcaSeparacao = 25f;
     public LayerMask layerUnidades;

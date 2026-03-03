@@ -12,6 +12,8 @@ public class WaveManager : MonoBehaviour
     private float tempoAtual;
 
     [SerializeField] private TextMeshProUGUI textoTimer;
+    [SerializeField] private TextMeshProUGUI textoProximaWave;
+
     [SerializeField] private Button botaoPlay;
     [SerializeField] private Button botaoReiniciar;
 
@@ -45,9 +47,13 @@ public class WaveManager : MonoBehaviour
     private int numeroWave = 0;
     private Coroutine rotinaSpawn;
 
+    private TipoRaca proximaRaca;
+
     private void Start()
     {
         tempoAtual = tempoEntreWaves;
+
+        SortearProximaWave();
 
         botaoPlay.onClick.AddListener(ForcarInicioWave);
         botaoPlay.interactable = true;
@@ -69,6 +75,26 @@ public class WaveManager : MonoBehaviour
         {
             IniciarWave();
         }
+    }
+
+    private void SortearProximaWave()
+    {
+        TipoRaca[] racas =
+        {
+            TipoRaca.Goblin,
+            TipoRaca.Elfo
+        };
+
+        int index = Random.Range(0, racas.Length);
+        proximaRaca = racas[index];
+
+        AtualizarTextoProximaWave();
+    }
+
+    private void AtualizarTextoProximaWave()
+    {
+        if (textoProximaWave != null)
+            textoProximaWave.text = "Próxima Wave: " + proximaRaca.ToString();
     }
 
     public void ForcarInicioWave()
@@ -93,11 +119,9 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator GerarWaveComDelay()
     {
-        bool waveGoblin = Random.value > 0.5f;
-
         int quantidade;
 
-        if (waveGoblin)
+        if (proximaRaca == TipoRaca.Goblin)
         {
             quantidade = usarQuantidadeFixa
                 ? quantidadeFixaTeste
@@ -105,23 +129,13 @@ public class WaveManager : MonoBehaviour
 
             for (int i = 0; i < quantidade; i++)
             {
-                GameObject prefab;
-
-                bool soMelee = Random.value < 0.33f;
-                bool soRanged = Random.value < 0.33f;
-
-                if (soMelee)
-                    prefab = goblinGuerreiro;
-                else if (soRanged)
-                    prefab = goblinLanceiro;
-                else
-                    prefab = Random.value > 0.5f ? goblinGuerreiro : goblinLanceiro;
+                GameObject prefab = Random.value > 0.5f ? goblinGuerreiro : goblinLanceiro;
 
                 Spawnar(prefab);
                 yield return new WaitForSeconds(intervaloEntreSpawns);
             }
         }
-        else
+        else if (proximaRaca == TipoRaca.Elfo)
         {
             quantidade = usarQuantidadeFixa
                 ? quantidadeFixaTeste
@@ -186,6 +200,8 @@ public class WaveManager : MonoBehaviour
         waveAtiva = false;
         tempoAtual = tempoEntreWaves;
         botaoPlay.interactable = true;
+
+        SortearProximaWave();
     }
 
     public void ReiniciarPartida()
