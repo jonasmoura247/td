@@ -5,9 +5,9 @@ public class GoblinGuerreiro : GoblinController
     [Header("Atributos do Guerreiro Goblin")]
     [SerializeField] private float multiplicadorDanoGuerreiro = 1.2f;
 
-    [Header("Efeitos Visuais")]
-    [SerializeField] private GameObject efeitoSanguePrefab;
-    [SerializeField] private Color corGuerreiro = new Color(0.8f, 0.2f, 0.2f);
+    //[Header("Efeitos Visuais")]
+    //[SerializeField] private GameObject efeitoSanguePrefab;
+    //[SerializeField] private Color corGuerreiro = new Color(0.8f, 0.2f, 0.2f);
 
     protected override void Start()
     {
@@ -16,17 +16,17 @@ public class GoblinGuerreiro : GoblinController
         danoBase = 1;
 
         base.Start();
-        AplicarVisualGuerreiro();
+       // AplicarVisualGuerreiro();
     }
 
-    private void AplicarVisualGuerreiro()
-    {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
-        {
-            sr.color = corGuerreiro;
-        }
-    }
+    //private void AplicarVisualGuerreiro()
+    //{
+    //    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+    //    if (sr != null)
+    //    {
+    //        sr.color = corGuerreiro;
+    //    }
+    //}
 
     public override int GetDanoFinal()
     {
@@ -35,10 +35,10 @@ public class GoblinGuerreiro : GoblinController
 
     protected override void Morrer()
     {
-        if (efeitoSanguePrefab != null && estaVivo)
-        {
-            Instantiate(efeitoSanguePrefab, transform.position, Quaternion.identity);
-        }
+        //if (efeitoSanguePrefab != null && estaVivo)
+        //{
+        //    Instantiate(efeitoSanguePrefab, transform.position, Quaternion.identity);
+        //}
 
         Debug.Log($"{name} (Guerreiro) morreu!");
         base.Morrer();

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ElfoMago : UnidadeController
 {
+    [Header("Configuracao de Ataque")]
     public float distanciaAtaque = 4f;
     public float intervaloAtaque = 2f;
     public GameObject magiaPrefab;
@@ -19,13 +20,17 @@ public class ElfoMago : UnidadeController
         base.Start();
 
         CasteloController castelo = FindObjectOfType<CasteloController>();
-        if (castelo != null)
+
+        if (castelo != null && castelo.faccao != this.faccao)
+        {
             alvo = castelo.transform;
+        }
     }
 
     private void Update()
     {
-        if (!estaVivo || alvo == null) return;
+        if (!estaVivo || alvo == null)
+            return;
 
         float distancia = Vector2.Distance(transform.position, alvo.position);
 
@@ -43,22 +48,33 @@ public class ElfoMago : UnidadeController
         }
     }
 
-    //private void AjustarPosicao()
-    //{
-    //    Vector2 lateral = Random.insideUnitCircle.normalized * 0.7f;
-    //    transform.position += (Vector3)lateral * Time.deltaTime;
-    //}
-
     private void Atacar()
     {
-        if (Time.time < proximoAtaque) return;
+        if (Time.time < proximoAtaque)
+            return;
 
         proximoAtaque = Time.time + intervaloAtaque;
 
-        GameObject magia = Instantiate(magiaPrefab, pontoDisparo.position, Quaternion.identity);
+        if (magiaPrefab == null || pontoDisparo == null)
+            return;
+
+        GameObject magia = Instantiate(
+            magiaPrefab,
+            pontoDisparo.position,
+            Quaternion.identity
+        );
 
         LancaProjetil proj = magia.GetComponent<LancaProjetil>();
+
         if (proj != null)
+        {
             proj.Inicializar(alvo, danoBase);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, distanciaAtaque);
     }
 }

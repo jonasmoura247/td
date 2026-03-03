@@ -1,26 +1,33 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class MovimentoUnidade : MonoBehaviour
 {
     [Header("Movimento")]
-    public float velocidade = 3f;
-    public float distanciaParada = 0.4f;
+    public float velocidade = 10f;
+    public float distanciaParada = 0.3f;
 
-    [Header("Separação")]
-    public float raioSeparacao = 0.6f;
-    public float forcaSeparacao = 2f;
+    [Header("Espaco Físico Virtual")]
+    public float raioUnidade = 1.5f;
+    public float forcaSeparacao = 25f;
+    public LayerMask layerUnidades;
 
     private Transform[] pontos;
     private int pontoAtual = 0;
+
     private Rigidbody2D rb;
     private bool movimentando = true;
-
-    private UnidadeController unidade;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        unidade = GetComponent<UnidadeController>();
+        rb.gravityScale = 0;
+        rb.freezeRotation = true;
+    }
+
+    void Start()
+    {
+        ResolverSobreposicaoInicial();
     }
 
     public void DefinirRota(Transform rota)
@@ -37,10 +44,15 @@ public class MovimentoUnidade : MonoBehaviour
     void FixedUpdate()
     {
         if (!movimentando || pontos == null || pontoAtual >= pontos.Length)
+        {
+            rb.linearVelocity = Vector2.zero;
             return;
+        }
 
+        Vector2 posicaoAtual = rb.position;
         Vector2 destino = pontos[pontoAtual].position;
-        float distancia = Vector2.Distance(rb.position, destino);
+
+        float distancia = Vector2.Distance(posicaoAtual, destino);
 
         if (distancia <= distanciaParada)
         {
@@ -48,52 +60,85 @@ public class MovimentoUnidade : MonoBehaviour
             return;
         }
 
-        Vector2 direcao = (destino - rb.position).normalized;
+        Vector2 direcao = (destino - posicaoAtual).normalized;
 
-        Collider2D[] proximos = Physics2D.OverlapCircleAll(transform.position, raioSeparacao);
+        Vector2 repulsao = CalcularSeparacao();
 
-        Vector2 separacao = Vector2.zero;
-        bool bloqueadoFrente = false;
+        Vector2 velocidadeFinal = (direcao * velocidade) + repulsao;
+
+        rb.linearVelocity = velocidadeFinal;
+    }
+
+    private Vector2 CalcularSeparacao()
+    {
+        Collider2D[] proximos = Physics2D.OverlapCircleAll(
+            transform.position,
+            raioUnidade * 2f,
+            layerUnidades
+        );
+
+        Vector2 repulsao = Vector2.zero;
 
         foreach (var col in proximos)
         {
             if (col.gameObject == gameObject) continue;
 
-            UnidadeController outra = col.GetComponent<UnidadeController>();
-            if (outra == null) continue;
+            Vector2 diff = (Vector2)(transform.position - col.transform.position);
+            float dist = diff.magnitude;
+
+            if (dist <= 0.001f)
+            {
+                diff = Random.insideUnitCircle.normalized;
+                dist = 0.01f;
+            }
+
+            float distanciaMinima = raioUnidade * 2f;
+
+            if (dist < distanciaMinima)
+            {
+                float forca = (distanciaMinima - dist) / distanciaMinima;
+                repulsao += diff.normalized * forca;
+            }
+        }
+
+        return repulsao * forcaSeparacao;
+    }
+
+    private void ResolverSobreposicaoInicial()
+    {
+        Collider2D[] proximos = Physics2D.OverlapCircleAll(
+            transform.position,
+            raioUnidade * 2f,
+            layerUnidades
+        );
+
+        foreach (var col in proximos)
+        {
+            if (col.gameObject == gameObject) continue;
 
             Vector2 diff = (Vector2)(transform.position - col.transform.position);
             float dist = diff.magnitude;
 
-            if (dist > 0.01f)
-                separacao += diff.normalized / dist;
-
-            Vector2 direcaoParaOutra = (col.transform.position - transform.position).normalized;
-            float alinhamento = Vector2.Dot(direcao, direcaoParaOutra);
-
-            if (alinhamento > 0.7f)
+            if (dist == 0)
             {
-                MovimentoUnidade movOutra = col.GetComponent<MovimentoUnidade>();
+                diff = Random.insideUnitCircle.normalized;
+                dist = 0.01f;
+            }
 
-                if (movOutra != null && movOutra.EstaMovimentando())
-                    bloqueadoFrente = true;
+            float distanciaMinima = raioUnidade * 2f;
+
+            if (dist < distanciaMinima)
+            {
+                float ajuste = distanciaMinima - dist;
+                transform.position += (Vector3)(diff.normalized * ajuste * 0.5f);
             }
         }
-
-        if (bloqueadoFrente)
-            return;
-
-        Vector2 movimentoFinal = direcao + separacao * forcaSeparacao;
-
-        if (movimentoFinal != Vector2.zero)
-            movimentoFinal.Normalize();
-
-        rb.MovePosition(rb.position + movimentoFinal * velocidade * Time.fixedDeltaTime);
     }
 
     public void PararMovimento()
     {
         movimentando = false;
+        rb.linearVelocity = Vector2.zero;
     }
 
     public void ContinuarMovimento()
@@ -104,5 +149,11 @@ public class MovimentoUnidade : MonoBehaviour
     public bool EstaMovimentando()
     {
         return movimentando;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, raioUnidade);
     }
 }
