@@ -6,14 +6,16 @@ TagManager:
   tags:
   - NpcGoblin
   - Castelo
+  - MinerioDeOuro
+  - NpcElfo
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Inimigo
   - Water
   - UI
-  - 
+  - Castelo
   - 
   - 
   - 
