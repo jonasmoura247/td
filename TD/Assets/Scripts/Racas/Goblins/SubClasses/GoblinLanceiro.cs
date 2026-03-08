@@ -10,17 +10,14 @@ public class GoblinLanceiro : GoblinController
 
     private float proximoAtaque;
     private Transform alvo;
-    private bool estaParadoParaAtacar = false;
 
     protected override void Start()
     {
-        vidaMaxima = 2;
-        danoBase = 1;
         faccao = Faccao.Inimigo;
 
         base.Start();
 
-        CasteloController castelo = FindObjectOfType<CasteloController>();
+        CasteloController castelo = FindFirstObjectByType<CasteloController>();
 
         if (castelo != null && castelo.faccao != this.faccao)
         {
@@ -48,12 +45,6 @@ public class GoblinLanceiro : GoblinController
         }
     }
 
-    //private void AjustarPosicaoLateral()
-    //{
-    //    Vector2 lateral = Random.insideUnitCircle.normalized * 0.5f;
-    //    transform.position += (Vector3)lateral * Time.deltaTime;
-    //}
-
     private void Atacar()
     {
         if (Time.time < proximoAtaque) return;
@@ -72,7 +63,7 @@ public class GoblinLanceiro : GoblinController
 
         if (p != null)
         {
-            p.Inicializar(alvo, danoBase);
+            p.Inicializar(alvo, GetDanoFinal(), gameObject.name);
         }
     }
 

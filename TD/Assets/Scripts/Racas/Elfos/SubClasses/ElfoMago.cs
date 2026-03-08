@@ -13,13 +13,11 @@ public class ElfoMago : UnidadeController
 
     protected override void Start()
     {
-        vidaMaxima = 3;
-        danoBase = 2;
         faccao = Faccao.Inimigo;
 
         base.Start();
 
-        CasteloController castelo = FindObjectOfType<CasteloController>();
+        CasteloController castelo = FindFirstObjectByType<CasteloController>();
 
         if (castelo != null && castelo.faccao != this.faccao)
         {

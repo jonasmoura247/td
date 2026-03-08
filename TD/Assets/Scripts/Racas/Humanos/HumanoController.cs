@@ -7,7 +7,7 @@ public class HumanoController : UnidadeController
 
     [Header("Configurações de Recuo")]
     public float tempoInvulnerabilidade = 0f;
-    private float proximoTempoDano = 0f;
+    //private float proximoTempoDano = 0f;
 
     protected override void Start()
     {
