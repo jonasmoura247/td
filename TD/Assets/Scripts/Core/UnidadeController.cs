@@ -12,7 +12,7 @@ public class UnidadeController : MonoBehaviour, IDanificavel
     [Header("Faccao")]
     public Faccao faccao;
 
-    [Header("Configuração de Impacto")]
+    [Header("Configuracaoo de Impacto")]
     [SerializeField] private float distanciaRecuo = 1f;
     [SerializeField] private float duracaoRecuo = 0.2f;
     [SerializeField] private AnimationCurve curvaRecuo = AnimationCurve.EaseInOut(0, 0, 1, 1);
@@ -49,19 +49,21 @@ public class UnidadeController : MonoBehaviour, IDanificavel
 
     public void ImpactarCastelo(Vector2 origemImpacto)
     {
-        if (!estaVivo || sofrendoRecuo) return;
+        if (!estaVivo || sofrendoRecuo)
+            return;
+
+        sofrendoRecuo = true;
 
         ReceberDano(1);
 
-        if (!estaVivo) return;
+        if (!estaVivo)
+            return;
 
         StartCoroutine(RecuoControlado(origemImpacto));
     }
 
     private IEnumerator RecuoControlado(Vector2 origemImpacto)
     {
-        sofrendoRecuo = true;
-
         if (movimento != null)
             movimento.PararMovimento();
 
@@ -75,6 +77,7 @@ public class UnidadeController : MonoBehaviour, IDanificavel
         while (tempo < duracaoRecuo)
         {
             tempo += Time.deltaTime;
+
             float progresso = Mathf.Clamp01(tempo / duracaoRecuo);
             float avaliacaoCurva = curvaRecuo.Evaluate(progresso);
 
@@ -109,4 +112,7 @@ public class UnidadeController : MonoBehaviour, IDanificavel
     }
 
     public int GetVidaAtual() => vidaAtual;
+
+    /// <summary>Retorna o dano que esta unidade causa ao atacar. Sobrescreva em subclasses (ex: GoblinController usa GetDanoFinal).</summary>
+    public virtual int GetDanoAtaque() => danoBase;
 }

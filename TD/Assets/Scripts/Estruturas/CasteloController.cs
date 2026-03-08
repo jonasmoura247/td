@@ -16,7 +16,13 @@ public class CasteloController : EstruturasController
         if (unidade.faccao == this.faccao) return;
         if (!unidade.EstaVivo) return;
 
-        ReceberDano(unidade.danoBase);
+        int dano = unidade.GetDanoAtaque();
+        ReceberDano(dano);
         unidade.ImpactarCastelo(transform.position);
+
+        if (unidade is GoblinController goblin)
+            Debug.Log($"[Castelo] {unidade.name} causou {dano} de dano (base: {unidade.danoBase}, buff aura: +{goblin.GetBonusDanoAura()} = total {dano})");
+        else
+            Debug.Log($"[Castelo] {unidade.name} causou {dano} de dano");
     }
 }

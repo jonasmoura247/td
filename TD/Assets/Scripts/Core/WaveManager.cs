@@ -7,6 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
+    [System.Serializable]
+    public class WaveRacaConfig
+    {
+        public TipoRaca raca;
+        public GameObject[] prefabs;
+        public int baseQtd = 1;
+        public int incrementoPorWave = 1;
+        public bool temBoss = false;
+        public GameObject bossPrefab;
+    }
+
     [Header("===== TIMER =====")]
     [SerializeField] private float tempoEntreWaves = 60f;
     private float tempoAtual;
@@ -24,30 +35,21 @@ public class WaveManager : MonoBehaviour
     [Header("===== ROTAS =====")]
     [SerializeField] private Transform rotasPai;
 
-    [Header("===== PREFABS =====")]
-    [SerializeField] private GameObject goblinGuerreiro;
-    [SerializeField] private GameObject goblinLanceiro;
-    [SerializeField] private GameObject elfoMago;
-
-    [Header("===== CONFIGURAÇÃO QUANTIDADE GOBLIN =====")]
-    [SerializeField] private int goblinBase = 3;
-    [SerializeField] private int goblinPorWave = 2;
-
-    [Header("===== CONFIGURAÇÃO QUANTIDADE ELFO =====")]
-    [SerializeField] private int elfoBase = 1;
-    [SerializeField] private int elfoPorWave = 1;
+    [Header("===== CONFIGURACOES POR RACA =====")]
+    [SerializeField] private WaveRacaConfig[] configuracoesRacas;
 
     [Header("===== MODO TESTE =====")]
     [SerializeField] private bool usarQuantidadeFixa = false;
     [SerializeField] private int quantidadeFixaTeste = 10;
 
-    private List<GameObject> inimigosVivos = new List<GameObject>();
+    private readonly List<GameObject> inimigosVivos = new List<GameObject>();
 
     private bool waveAtiva = false;
     private int numeroWave = 0;
     private Coroutine rotinaSpawn;
 
     private TipoRaca proximaRaca;
+    private WaveRacaConfig configAtual;
 
     private void Start()
     {
@@ -79,14 +81,17 @@ public class WaveManager : MonoBehaviour
 
     private void SortearProximaWave()
     {
-        TipoRaca[] racas =
+        if (configuracoesRacas == null || configuracoesRacas.Length == 0)
         {
-            TipoRaca.Goblin,
-            TipoRaca.Elfo
-        };
+            Debug.LogError("Nenhuma configuracao de raca foi atribuida ao WaveManager.");
+            proximaRaca = default;
+            AtualizarTextoProximaWave();
+            return;
+        }
 
-        int index = Random.Range(0, racas.Length);
-        proximaRaca = racas[index];
+        int index = Random.Range(0, configuracoesRacas.Length);
+        configAtual = configuracoesRacas[index];
+        proximaRaca = configAtual != null ? configAtual.raca : default;
 
         AtualizarTextoProximaWave();
     }
@@ -94,7 +99,7 @@ public class WaveManager : MonoBehaviour
     private void AtualizarTextoProximaWave()
     {
         if (textoProximaWave != null)
-            textoProximaWave.text = "Próxima Wave: " + proximaRaca.ToString();
+            textoProximaWave.text = "Proxima Wave: " + proximaRaca.ToString();
     }
 
     public void ForcarInicioWave()
@@ -119,41 +124,47 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator GerarWaveComDelay()
     {
-        int quantidade;
-
-        if (proximaRaca == TipoRaca.Goblin)
+        if (configAtual == null)
         {
-            quantidade = usarQuantidadeFixa
-                ? quantidadeFixaTeste
-                : goblinBase + (numeroWave * goblinPorWave);
-
-            for (int i = 0; i < quantidade; i++)
-            {
-                GameObject prefab = Random.value > 0.5f ? goblinGuerreiro : goblinLanceiro;
-
-                Spawnar(prefab);
-                yield return new WaitForSeconds(intervaloEntreSpawns);
-            }
+            Debug.LogError("Configuracao atual de wave esta nula. Verifique o WaveManager.");
+            yield break;
         }
-        else if (proximaRaca == TipoRaca.Elfo)
-        {
-            quantidade = usarQuantidadeFixa
-                ? quantidadeFixaTeste
-                : elfoBase + (numeroWave * elfoPorWave);
 
-            for (int i = 0; i < quantidade; i++)
-            {
-                Spawnar(elfoMago);
-                yield return new WaitForSeconds(intervaloEntreSpawns);
-            }
+        if (configAtual.prefabs == null || configAtual.prefabs.Length == 0)
+        {
+            Debug.LogError($"Configuracao da raca {configAtual.raca} nao possui prefabs atribuidos.");
+            yield break;
+        }
+
+        int quantidade = usarQuantidadeFixa
+            ? quantidadeFixaTeste
+            : configAtual.baseQtd + (numeroWave * configAtual.incrementoPorWave);
+
+        if (configAtual.temBoss && configAtual.bossPrefab != null)
+        {
+            Spawnar(configAtual.bossPrefab);
+            yield return new WaitForSeconds(intervaloEntreSpawns);
+        }
+
+        for (int i = 0; i < quantidade; i++)
+        {
+            GameObject prefab = configAtual.prefabs[Random.Range(0, configAtual.prefabs.Length)];
+            Spawnar(prefab);
+            yield return new WaitForSeconds(intervaloEntreSpawns);
         }
     }
 
     private void Spawnar(GameObject prefab)
     {
+        if (prefab == null)
+        {
+            Debug.LogWarning("Tentativa de spawnar um prefab nulo.");
+            return;
+        }
+
         if (rotasPai == null || rotasPai.childCount == 0)
         {
-            Debug.LogWarning("RotasPai não configurado!");
+            Debug.LogWarning("RotasPai nao configurado!");
             return;
         }
 

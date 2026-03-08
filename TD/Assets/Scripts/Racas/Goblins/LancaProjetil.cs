@@ -6,11 +6,13 @@ public class LancaProjetil : MonoBehaviour
 
     private Transform alvo;
     private int dano;
+    private string origemNome;
 
-    public void Inicializar(Transform novoAlvo, int novoDano)
+    public void Inicializar(Transform novoAlvo, int novoDano, string nomeOrigem = null)
     {
         alvo = novoAlvo;
         dano = novoDano;
+        origemNome = nomeOrigem;
     }
 
     private void Update()
@@ -38,6 +40,8 @@ public class LancaProjetil : MonoBehaviour
             if (danificavel != null)
             {
                 danificavel.ReceberDano(dano);
+                string origem = string.IsNullOrEmpty(origemNome) ? "Projetil" : origemNome;
+                Debug.Log($"[Castelo] {origem} (Lanceiro) causou {dano} de dano no castelo.");
             }
 
             Destroy(gameObject);
