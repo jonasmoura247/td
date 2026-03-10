@@ -94,7 +94,12 @@ public class UnidadeController : MonoBehaviour, IDanificavel
 
     protected virtual void Morrer()
     {
+        if (!estaVivo)
+            return;
+
         estaVivo = false;
+
+        NotificarMorte();
 
         if (rb != null)
         {
@@ -109,6 +114,16 @@ public class UnidadeController : MonoBehaviour, IDanificavel
             col.enabled = false;
 
         Destroy(gameObject, 0.1f);
+    }
+
+    private void NotificarMorte()
+    {
+        var componentes = GetComponents<MonoBehaviour>();
+        foreach (var componente in componentes)
+        {
+            if (componente is IMorteListener listener)
+                listener.OnMorte(this);
+        }
     }
 
     public int GetVidaAtual() => vidaAtual;

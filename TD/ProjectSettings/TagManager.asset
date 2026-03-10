@@ -8,6 +8,7 @@ TagManager:
   - Castelo
   - MinerioDeOuro
   - NpcElfo
+  - LootBoss
   layers:
   - Default
   - TransparentFX
