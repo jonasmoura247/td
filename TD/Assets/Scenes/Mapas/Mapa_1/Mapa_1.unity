@@ -1311,7 +1311,7 @@ GameObject:
   - component: {fileID: 815677977}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2110,6 +2110,50 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 505656586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1308415789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1308415791}
+  - component: {fileID: 1308415790}
+  m_Layer: 0
+  m_Name: LootManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1308415790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308415789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83166c1d59b655d42bc40a7435de8636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootClickManager
+--- !u!4 &1308415791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308415789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -26.76239, y: 17.20537, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1344325412
 GameObject:
@@ -3800,6 +3844,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd8cef672b754c84cbca3d0e437f6563, type: 3}
+--- !u!1001 &4077031717327545712
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -38.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305042910032843541, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066884760694113951, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+      propertyPath: m_Name
+      value: LootAdaga
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
 --- !u!1 &4281921711109955258 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6527514975530341288, guid: 189dccab99fd98d45a0be33ac8193279, type: 3}
@@ -3871,6 +3972,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20dc74c5043927548adfb3b635bb1e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossGoblinNivel3
+--- !u!114 &6800062039938719706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453794141590569967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49b9603da62153448452631c543527f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropLootAoMorrer
+  drops:
+  - prefabLoot: {fileID: 5066884760694113951, guid: b411f99619573f54b8541b6a5dbc257c, type: 3}
+    chance: 1
+    quantidade: 0
+    nomeLoot: Adaga Enferrujada
+  raioOffset: 0.25
+  tempoNoChaoSegundos: 40
 --- !u!1001 &7544437181867523349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3933,7 +4053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3999231413662410150, guid: 3c1d5464eac7bfb4ca8a1408fa68b18f, type: 3}
       propertyPath: vidaMaxima
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3999231413662410150, guid: 3c1d5464eac7bfb4ca8a1408fa68b18f, type: 3}
       propertyPath: bonusDanoAura
@@ -4024,7 +4144,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5472526468046132077, guid: 3c1d5464eac7bfb4ca8a1408fa68b18f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 725275447}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7786830080767764776, guid: 3c1d5464eac7bfb4ca8a1408fa68b18f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6800062039938719706}
   m_SourcePrefab: {fileID: 100100000, guid: 3c1d5464eac7bfb4ca8a1408fa68b18f, type: 3}
 --- !u!1001 &8504356467419040314
 PrefabInstance:
@@ -4355,3 +4478,5 @@ SceneRoots:
   - {fileID: 1969036611}
   - {fileID: 915572473}
   - {fileID: 1480736176}
+  - {fileID: 4077031717327545712}
+  - {fileID: 1308415791}
