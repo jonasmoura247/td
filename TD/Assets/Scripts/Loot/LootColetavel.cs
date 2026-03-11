@@ -7,6 +7,8 @@ public class LootColetavel : MonoBehaviour
     [SerializeField] private string nomeLoot = "Loot";
     [SerializeField] private int quantidade = 1;
     [SerializeField] private float tempoNoChaoSegundos = 40f;
+    [Tooltip("Se ativo, ao coletar adiciona 'quantidade' ao OuroManager.")]
+    [SerializeField] private bool adicionarComoOuro = false;
 
     [Header("Eventos")]
     [SerializeField] private UnityEvent aoColetar;
@@ -34,6 +36,9 @@ public class LootColetavel : MonoBehaviour
             return;
 
         coletado = true;
+
+        if (adicionarComoOuro && OuroManager.Instance != null)
+            OuroManager.Instance.AdicionarOuro(quantidade);
 
         Debug.Log($"[Loot] Coletado: {quantidade}x {nomeLoot}");
 
