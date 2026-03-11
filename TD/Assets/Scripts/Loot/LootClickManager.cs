@@ -13,18 +13,18 @@ public class LootClickManager : MonoBehaviour
 
     void DetectarClique()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        if (Camera.main == null) return;
 
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+        Vector2 screenPos = Mouse.current.position.ReadValue();
+        float distZ = Mathf.Abs(Camera.main.transform.position.z);
+        Vector3 worldPos3D = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, distZ));
+        Vector2 worldPos = new Vector2(worldPos3D.x, worldPos3D.y);
 
-        if (hit.collider == null)
-            return;
+        Collider2D col = Physics2D.OverlapPoint(worldPos);
+        if (col == null) return;
 
-        LootColetavel loot = hit.collider.GetComponent<LootColetavel>();
-
+        LootColetavel loot = col.GetComponent<LootColetavel>();
         if (loot != null)
-        {
             loot.Coletar();
-        }
     }
 }

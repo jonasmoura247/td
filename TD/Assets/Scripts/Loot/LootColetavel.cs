@@ -37,7 +37,22 @@ public class LootColetavel : MonoBehaviour
 
         Debug.Log($"[Loot] Coletado: {quantidade}x {nomeLoot}");
 
-        aoColetar?.Invoke();
+        Sprite spriteItem = null;
+        var sr = GetComponentInChildren<SpriteRenderer>(true);
+        if (sr != null)
+            spriteItem = sr.sprite;
+
+        if (spriteItem == null)
+            Debug.LogWarning($"[Loot] {nomeLoot} nao tem SpriteRenderer com sprite. O item sera adicionado sem icone.");
+
+        if (LootManager.Instance == null)
+        {
+            Debug.LogError("[Loot] LootManager nao encontrado! Crie um GameObject com o script Loot Manager (ex: SistemaInventario) na cena.");
+            coletado = false;
+            return;
+        }
+
+        LootManager.Instance.AdicionarItem(nomeLoot, spriteItem, quantidade);
 
         Destroy(gameObject);
     }
