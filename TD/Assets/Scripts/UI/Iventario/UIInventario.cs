@@ -30,7 +30,6 @@ public class UIInventario : MonoBehaviour
     {
         bool vaiAbrir = !painelInventario.activeSelf;
         painelInventario.SetActive(vaiAbrir);
-        // Sempre atualizar ao abrir - evita itens "sumindo" por painel inativo no Start
         if (vaiAbrir)
             AtualizarInventario();
     }
@@ -39,25 +38,23 @@ public class UIInventario : MonoBehaviour
     {
         if (gradeItens == null || prefabSlot == null || LootManager.Instance == null) return;
 
-        // Se o painel está fechado, não recriar slots (evita "piscar" e bugs de layout inativo)
         if (painelInventario != null && !painelInventario.activeSelf)
             return;
 
-        // Destroy imediato para evitar frame com slots duplicados (Destroy é deferred)
         for (int i = gradeItens.childCount - 1; i >= 0; i--)
             DestroyImmediate(gradeItens.GetChild(i).gameObject);
 
-        List<string> itens = LootManager.Instance.GetItens();
-        if (itens == null || itens.Count == 0)
+        List<ItemSlot> slotsLista = LootManager.Instance.GetSlots();
+        if (slotsLista == null || slotsLista.Count == 0)
             return;
 
-        foreach (string nomeItem in itens)
+        foreach (ItemSlot slot in slotsLista)
         {
-            Sprite sprite = LootManager.Instance.GetSpriteParaItem(nomeItem);
-            GameObject slot = Instantiate(prefabSlot, gradeItens);
-            SlotItemUI slotUI = slot.GetComponent<SlotItemUI>();
+            Sprite sprite = LootManager.Instance.GetSpriteParaItem(slot.idItem);
+            GameObject slotObj = Instantiate(prefabSlot, gradeItens);
+            SlotItemUI slotUI = slotObj.GetComponent<SlotItemUI>();
             if (slotUI != null)
-                slotUI.Configurar(sprite);
+                slotUI.Configurar(sprite, slot.idItem, slot.quantidade);
         }
 
         if (gradeItens is RectTransform rt)
@@ -67,13 +64,8 @@ public class UIInventario : MonoBehaviour
     public void AdicionarSlot(Sprite spriteItem)
     {
         GameObject slot = Instantiate(prefabSlot, gradeItens);
-
         SlotItemUI slotUI = slot.GetComponent<SlotItemUI>();
-
         if (slotUI != null)
             slotUI.Configurar(spriteItem);
     }
-
-
-
 }
