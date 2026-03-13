@@ -5,7 +5,7 @@ using TMPro;
 /// <summary>
 /// Controla o botão de spawn do mineiro humano. Ao clicar, spawna um mineiro no centro do castelo se houver ouro suficiente.
 /// </summary>
-public class BotaoUnidadesMineiroController : MonoBehaviour
+public class BotaoUnidadesMineiroHumanoController : MonoBehaviour
 {
     [Header("Configuração")]
     [SerializeField] private int custoOuro = 70;
