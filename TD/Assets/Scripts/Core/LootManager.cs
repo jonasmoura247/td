@@ -16,6 +16,8 @@ public class LootManager : MonoBehaviour
 
     void Awake()
     {
+        SaveSlotManager.GarantirExistencia();
+
         if (Instance == null)
         {
             Instance = this;

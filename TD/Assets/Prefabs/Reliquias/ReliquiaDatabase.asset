@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b037d773e0c2843ab78a6630688762, type: 3}
+  m_Name: ReliquiaDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::ReliquiaDatabase
+  entradas:
+  - {fileID: 11400000, guid: 595972a6db8179342b74f036ec0f1881, type: 2}

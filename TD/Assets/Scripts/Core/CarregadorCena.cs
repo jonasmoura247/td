@@ -34,4 +34,26 @@ public class CarregadorCena : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(cena);
     }
+
+    public void CarregarLobbyDoPerfilAtivo()
+    {
+        SaveSlotManager.GarantirExistencia();
+
+        if (SaveSlotManager.Instance == null)
+        {
+            Debug.LogError("[CarregadorCena] SaveSlotManager nao encontrado.");
+            return;
+        }
+
+        TipoRaca raca = PerfilJogadorAtivo.TemPerfilAtivo ? PerfilJogadorAtivo.Raca : TipoRaca.Goblin;
+        string cena = SaveSlotManager.Instance.ObterCenaLobby(raca);
+        if (string.IsNullOrEmpty(cena))
+        {
+            Debug.LogError("[CarregadorCena] Nome da cena do lobby vazio.");
+            return;
+        }
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(cena);
+    }
 }

@@ -6,7 +6,7 @@ public class UnidadeUI : MonoBehaviour
 {
     public UnidadeController unidade;
 
-    [Header("Referências UI")]
+    [Header("Referï¿½ncias UI")]
     public Image barraVidaFill;
     public TextMeshProUGUI textoInfo;
 
@@ -27,15 +27,7 @@ public class UnidadeUI : MonoBehaviour
 
     private void AtualizarDano()
     {
-        GoblinController goblin = unidade as GoblinController;
-
-        if (goblin != null)
-        {
-            textoInfo.text = $"HP: {unidade.GetVidaAtual()}  DMG: {goblin.GetDanoFinal()}";
-        }
-        else
-        {
-            textoInfo.text = $"HP: {unidade.GetVidaAtual()}";
-        }
+        int dano = unidade.GetDanoAtaque();
+        textoInfo.text = $"HP: {unidade.GetVidaAtual()}  DMG: {dano}";
     }
 }

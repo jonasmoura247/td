@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
+    public const int TotalOndas = 8;
+
+    private static readonly int[] InimigosComunsPorOndaDesign = { 5, 7, 10, 15, 15, 20, 25, 30 };
+
     [System.Serializable]
     public class WaveRacaConfig
     {
@@ -46,6 +50,7 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI textoTimer;
     [SerializeField] private TextMeshProUGUI textoProximaWave;
+    [SerializeField] private TextMeshProUGUI textoIndicadorOnda;
 
     [SerializeField] private Button botaoPlay;
     [SerializeField] private Button botaoReiniciar;
@@ -105,10 +110,10 @@ public class WaveManager : MonoBehaviour
 
     private void DefinirProximaWave()
     {
+        configRacaAtual = SortearConfigRacaInimiga();
         configWaveAtual = ObterConfigWave(numeroWave + 1);
-        configRacaAtual = ObterConfigRacaGoblin();
 
-        AtualizarTextoProximaWave();
+        AtualizarHudOndas();
     }
 
     private WaveConfig ObterConfigWave(int waveNumero)
@@ -125,39 +130,109 @@ public class WaveManager : MonoBehaviour
 
     private WaveConfig CriarConfigPadrao(int waveNumero)
     {
-        WaveRacaConfig raca = ObterConfigRacaGoblin();
+        WaveRacaConfig raca = configRacaAtual;
         if (raca == null)
             return new WaveConfig();
+
+        int comuns;
+        if (waveNumero >= 1 && waveNumero <= TotalOndas)
+            comuns = InimigosComunsPorOndaDesign[waveNumero - 1];
+        else
+            comuns = Mathf.Max(0, raca.baseQtd + (waveNumero * raca.incrementoPorWave));
+
+        bool ondaBoss = waveNumero == 3 || waveNumero == 6 || waveNumero == TotalOndas;
+        int bosses = ondaBoss && raca.bossPrefab != null ? 1 : 0;
 
         return new WaveConfig
         {
             modoWave = ModoWave.Aleatoria,
             ladoSpawn = (LadoSpawn)Random.Range(0, 4),
-            quantidadeBoss = raca.temBoss ? 1 : 0,
+            quantidadeBoss = bosses,
             bossPrefab = raca.bossPrefab,
-            quantidadeComuns = Mathf.Max(0, raca.baseQtd + (waveNumero * raca.incrementoPorWave)),
+            quantidadeComuns = comuns,
             prefabsComuns = null
         };
     }
 
-    private WaveRacaConfig ObterConfigRacaGoblin()
+    private WaveRacaConfig SortearConfigRacaInimiga()
     {
         if (configuracoesRacas == null || configuracoesRacas.Length == 0)
             return null;
 
-        foreach (var c in configuracoesRacas)
+        var candidatos = new List<WaveRacaConfig>();
+
+        if (!PerfilJogadorAtivo.TemPerfilAtivo)
         {
-            if (c != null && c.raca == TipoRaca.Goblin)
-                return c;
+            foreach (var c in configuracoesRacas)
+            {
+                if (c != null)
+                    candidatos.Add(c);
+            }
+        }
+        else
+        {
+            TipoRaca racaJogador = PerfilJogadorAtivo.Raca;
+            foreach (var c in configuracoesRacas)
+            {
+                if (c != null && c.raca != racaJogador)
+                    candidatos.Add(c);
+            }
         }
 
-        return configuracoesRacas[0];
+        if (candidatos.Count > 0)
+            return candidatos[Random.Range(0, candidatos.Count)];
+
+        WaveRacaConfig fallback = null;
+        foreach (var c in configuracoesRacas)
+        {
+            if (c != null)
+            {
+                fallback = c;
+                break;
+            }
+        }
+
+        if (fallback != null)
+            Debug.LogWarning("[WaveManager] Apenas configuracao da raca do jogador disponivel; usando fallback.");
+
+        return fallback;
+    }
+
+    private void AtualizarHudOndas()
+    {
+        if (textoIndicadorOnda != null)
+        {
+            if (waveAtiva)
+                textoIndicadorOnda.text = $"Wave {numeroWave}/{TotalOndas}";
+            else if (numeroWave >= TotalOndas)
+                textoIndicadorOnda.text = $"Wave {TotalOndas}/{TotalOndas}";
+            else
+                textoIndicadorOnda.text = $"Wave {numeroWave + 1}/{TotalOndas}";
+        }
+
+        AtualizarTextoProximaWave();
     }
 
     private void AtualizarTextoProximaWave()
     {
-        if (textoProximaWave != null)
-            textoProximaWave.text = "Proxima Wave: Goblin";
+        if (textoProximaWave == null)
+            return;
+        if (configRacaAtual != null)
+            textoProximaWave.text = "Proxima Wave: " + ObterNomeRacaAmigavel(configRacaAtual.raca);
+        else
+            textoProximaWave.text = "Proxima Wave: —";
+    }
+
+    private static string ObterNomeRacaAmigavel(TipoRaca raca)
+    {
+        return raca switch
+        {
+            TipoRaca.Goblin => "Goblin",
+            TipoRaca.Humano => "Humano",
+            TipoRaca.Elfo => "Elfo",
+            TipoRaca.Anao => "Anão",
+            _ => raca.ToString()
+        };
     }
 
     public void ForcarInicioWave()
@@ -177,9 +252,10 @@ public class WaveManager : MonoBehaviour
         numeroWave++;
 
         configWaveAtual = ObterConfigWave(numeroWave);
-        configRacaAtual = ObterConfigRacaGoblin();
 
         botaoPlay.interactable = false;
+
+        AtualizarHudOndas();
 
         rotinaSpawn = StartCoroutine(GerarWaveComDelay());
     }
@@ -208,14 +284,15 @@ public class WaveManager : MonoBehaviour
 
         for (int i = 0; i < qtdBoss; i++)
         {
-            if (configWaveAtual.bossPrefab != null)
+            GameObject prefabBoss = ObterPrefabBossParaSpawn();
+            if (prefabBoss != null)
             {
-                Spawnar(configWaveAtual.bossPrefab, rota);
+                Spawnar(prefabBoss, rota);
                 yield return new WaitForSeconds(intervaloEntreSpawns);
             }
             else
             {
-                Debug.LogWarning($"Wave {numeroWave}: quantidadeBoss={qtdBoss} mas bossPrefab nao atribuido.");
+                Debug.LogWarning($"Wave {numeroWave}: quantidadeBoss={qtdBoss} mas nenhum bossPrefab (wave nem raca).");
             }
         }
 
@@ -280,6 +357,15 @@ public class WaveManager : MonoBehaviour
         return rota;
     }
 
+    private GameObject ObterPrefabBossParaSpawn()
+    {
+        if (configWaveAtual != null && configWaveAtual.bossPrefab != null)
+            return configWaveAtual.bossPrefab;
+        if (configRacaAtual != null && configRacaAtual.bossPrefab != null)
+            return configRacaAtual.bossPrefab;
+        return null;
+    }
+
     private void Spawnar(GameObject prefab, Transform rota)
     {
         if (prefab == null)
@@ -302,6 +388,8 @@ public class WaveManager : MonoBehaviour
             pontoInicial.position + (Vector3)offset,
             Quaternion.identity
         );
+
+        Debug.Log($"[WaveManager] Onda {numeroWave}: spawn '{prefab.name}' -> instancia '{inimigo.name}'");
 
         MovimentoUnidade mov = inimigo.GetComponent<MovimentoUnidade>();
         if (mov != null)
@@ -342,4 +430,29 @@ public class WaveManager : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Preencher ondas 1-8 (design doc)")]
+    private void PreencherOndasDesignDoc()
+    {
+        configuracoesWaves = new WaveConfig[TotalOndas];
+        for (int i = 0; i < TotalOndas; i++)
+        {
+            int n = i + 1;
+            configuracoesWaves[i] = new WaveConfig
+            {
+                modoWave = ModoWave.Aleatoria,
+                ladoSpawn = LadoSpawn.Esquerda,
+                quantidadeComuns = InimigosComunsPorOndaDesign[i],
+                quantidadeBoss = (n == 3 || n == 6 || n == TotalOndas) ? 1 : 0,
+                bossPrefab = null,
+                prefabsComuns = null
+            };
+        }
+
+        UnityEditor.EditorUtility.SetDirty(this);
+        if (gameObject != null)
+            UnityEditor.EditorUtility.SetDirty(gameObject);
+    }
+#endif
 }

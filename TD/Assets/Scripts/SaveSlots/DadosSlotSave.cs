@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -36,11 +37,17 @@ public class DadosSlotSave
     /// <summary>Tempo total de jogo em segundos (para exibição).</summary>
     public float tempoJogoSegundos;
 
-    /// <summary>IDs das relíquias equipadas (máx 5). Cada slot tem seu próprio conjunto.</summary>
-    public System.Collections.Generic.List<string> reliquiasEquipadas = new System.Collections.Generic.List<string>();
+    /// <summary>Legado: lista linear de equipadas. Migrado para reliquiasPorSlot ao carregar.</summary>
+    public List<string> reliquiasEquipadas = new List<string>();
+
+    /// <summary>Relíquias que o jogador possui neste save (inventário). Não compartilhado entre slots.</summary>
+    public List<string> reliquiasPossuidas = new List<string>();
+
+    /// <summary>Cinco slots de equipamento (índice 0–4). String vazia = slot vazio.</summary>
+    public string[] reliquiasPorSlot = new string[5] { "", "", "", "", "" };
 
     /// <summary>IDs dos heróis contratados (máx 3). Cada slot tem seu próprio conjunto.</summary>
-    public System.Collections.Generic.List<string> heroisContratados = new System.Collections.Generic.List<string>();
+    public List<string> heroisContratados = new List<string>();
 
     public DadosSlotSave()
     {
@@ -65,6 +72,10 @@ public class DadosSlotSave
         dataUltimoJogo = dataCriacao;
         nomePerfil = ObterNomePadrao(racaEscolhida);
         tempoJogoSegundos = 0f;
+        reliquiasPossuidas = new List<string>();
+        reliquiasPorSlot = new string[5] { "", "", "", "", "" };
+        if (racaEscolhida == TipoRaca.Goblin)
+            reliquiasPossuidas.Add(ReliquiaIds.OlhoQueNadaVe);
     }
 
     /// <summary>Garante que o save tem um UUID. Usado na migração de saves antigos.</summary>
@@ -72,6 +83,28 @@ public class DadosSlotSave
     {
         if (string.IsNullOrEmpty(uuid))
             uuid = Guid.NewGuid().ToString();
+    }
+
+    /// <summary>Normaliza listas, migra legado e garante relíquia inicial do Goblin.</summary>
+    public void NormalizarReliquias()
+    {
+        if (reliquiasPossuidas == null)
+            reliquiasPossuidas = new List<string>();
+        if (reliquiasPorSlot == null || reliquiasPorSlot.Length != 5)
+            reliquiasPorSlot = new string[5] { "", "", "", "", "" };
+
+        if (reliquiasEquipadas != null && reliquiasEquipadas.Count > 0)
+        {
+            for (int i = 0; i < reliquiasEquipadas.Count && i < 5; i++)
+            {
+                if (!string.IsNullOrEmpty(reliquiasEquipadas[i]))
+                    reliquiasPorSlot[i] = reliquiasEquipadas[i];
+            }
+            reliquiasEquipadas.Clear();
+        }
+
+        if (ocupado && raca == TipoRaca.Goblin && !reliquiasPossuidas.Contains(ReliquiaIds.OlhoQueNadaVe))
+            reliquiasPossuidas.Add(ReliquiaIds.OlhoQueNadaVe);
     }
 
     private static string ObterNomePadrao(TipoRaca raca)
