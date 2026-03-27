@@ -7,6 +7,9 @@ public class HumanoArqueiroController : HumanoController
 {
     protected override void Start()
     {
+        vidaMaxima = 10;
+        danoBase = 1;
+        faccao = Faccao.Jogador;
         base.Start();
     }
 }

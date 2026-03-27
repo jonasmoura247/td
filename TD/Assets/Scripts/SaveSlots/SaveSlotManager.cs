@@ -14,6 +14,7 @@ public class SaveSlotManager : MonoBehaviour
 
     private const int QUANTIDADE_SLOTS = 4;
     private const string NOME_ARQUIVO = "slots_save.json";
+    private const string ChavePrefsUltimoSlot = "TD_UltimoSlotJogado";
 
     [Header("Lobby por raça (cena carregada conforme raça do perfil)")]
     [SerializeField] private string lobbyGoblin = "LobbyGoblin";
@@ -26,6 +27,14 @@ public class SaveSlotManager : MonoBehaviour
     private DadosSlotSave[] slots;
     private int slotAtivo = -1;
     private string caminhoSave;
+
+    public static void GarantirExistencia()
+    {
+        if (Instance != null)
+            return;
+        var go = new GameObject("SaveSlotManager");
+        go.AddComponent<SaveSlotManager>();
+    }
 
     private void Awake()
     {
@@ -49,7 +58,79 @@ public class SaveSlotManager : MonoBehaviour
                 slots[i] = new DadosSlotSave { indiceSlot = i };
         }
 
+        if (FindFirstObjectByType<ReliquiasManager>() == null)
+        {
+            var goRel = new GameObject("ReliquiasManager");
+            goRel.AddComponent<ReliquiasManager>();
+        }
+
         CarregarSlots();
+        AplicarUltimoPerfilSeNecessario();
+    }
+
+    private void AplicarUltimoPerfilSeNecessario()
+    {
+        if (PerfilJogadorAtivo.TemPerfilAtivo)
+            return;
+
+        int preferido = PlayerPrefs.GetInt(ChavePrefsUltimoSlot, -1);
+        if (preferido >= 0 && preferido < QUANTIDADE_SLOTS && slots[preferido] != null && slots[preferido].ocupado)
+        {
+            slotAtivo = preferido;
+            PerfilJogadorAtivo.DefinirPerfil(slots[preferido]);
+            return;
+        }
+
+        int melhor = EncontrarIndiceSlotOcupadoMaisRecente();
+        if (melhor < 0)
+            return;
+
+        slotAtivo = melhor;
+        PerfilJogadorAtivo.DefinirPerfil(slots[melhor]);
+        PlayerPrefs.SetInt(ChavePrefsUltimoSlot, melhor);
+        PlayerPrefs.Save();
+    }
+
+    private int EncontrarIndiceSlotOcupadoMaisRecente()
+    {
+        int melhor = -1;
+        DateTime melhorData = DateTime.MinValue;
+
+        for (int i = 0; i < QUANTIDADE_SLOTS; i++)
+        {
+            if (slots[i] == null || !slots[i].ocupado)
+                continue;
+
+            if (string.IsNullOrEmpty(slots[i].dataUltimoJogo))
+            {
+                if (melhor < 0)
+                    melhor = i;
+                continue;
+            }
+
+            if (DateTime.TryParse(slots[i].dataUltimoJogo, null, System.Globalization.DateTimeStyles.RoundtripKind, out var dt))
+            {
+                if (dt >= melhorData)
+                {
+                    melhorData = dt;
+                    melhor = i;
+                }
+            }
+            else if (melhor < 0)
+            {
+                melhor = i;
+            }
+        }
+
+        return melhor;
+    }
+
+    private static void RegistrarUltimoSlotUsado(int indiceSlot)
+    {
+        if (indiceSlot < 0 || indiceSlot >= QUANTIDADE_SLOTS)
+            return;
+        PlayerPrefs.SetInt(ChavePrefsUltimoSlot, indiceSlot);
+        PlayerPrefs.Save();
     }
 
     /// <summary>Retorna todos os slots (0 a 3).</summary>
@@ -88,8 +169,8 @@ public class SaveSlotManager : MonoBehaviour
 
         // Notifica outros sistemas sobre o perfil ativo
         PerfilJogadorAtivo.DefinirPerfil(slots[indiceSlot]);
+        RegistrarUltimoSlotUsado(indiceSlot);
 
-        // Carrega o lobby da raça escolhida
         Time.timeScale = 1f;
         SceneManager.LoadScene(ObterCenaLobby(raca));
     }
@@ -109,6 +190,7 @@ public class SaveSlotManager : MonoBehaviour
         SalvarSlots();
 
         PerfilJogadorAtivo.DefinirPerfil(dados);
+        RegistrarUltimoSlotUsado(indiceSlot);
 
         Time.timeScale = 1f;
         SceneManager.LoadScene(ObterCenaLobby(dados.raca));
@@ -131,6 +213,9 @@ public class SaveSlotManager : MonoBehaviour
         slotAtivo = -1;
         SalvarSlots();
 
+        PlayerPrefs.DeleteKey(ChavePrefsUltimoSlot);
+        PlayerPrefs.Save();
+
         OnSlotsCarregados?.Invoke(new List<DadosSlotSave>(slots));
         Debug.Log("[SaveSlotManager] Todos os slots foram limpos.");
     }
@@ -147,6 +232,12 @@ public class SaveSlotManager : MonoBehaviour
         slots[indice] = new DadosSlotSave { indiceSlot = indice };
         if (slotAtivo == indice)
             slotAtivo = -1;
+
+        if (PlayerPrefs.GetInt(ChavePrefsUltimoSlot, -1) == indice)
+        {
+            PlayerPrefs.DeleteKey(ChavePrefsUltimoSlot);
+            PlayerPrefs.Save();
+        }
 
         SalvarSlots();
         OnSlotsCarregados?.Invoke(new List<DadosSlotSave>(slots));
@@ -172,7 +263,7 @@ public class SaveSlotManager : MonoBehaviour
         SalvarSlots();
     }
 
-    private string ObterCenaLobby(TipoRaca raca)
+    public string ObterCenaLobby(TipoRaca raca)
     {
         return raca switch
         {
@@ -218,7 +309,11 @@ public class SaveSlotManager : MonoBehaviour
                     slots[i].indiceSlot = i;
                     slots[i].GarantirUuid();
                     if (slots[i].reliquiasEquipadas == null) slots[i].reliquiasEquipadas = new List<string>();
+                    if (slots[i].reliquiasPossuidas == null) slots[i].reliquiasPossuidas = new List<string>();
+                    if (slots[i].reliquiasPorSlot == null || slots[i].reliquiasPorSlot.Length != 5)
+                        slots[i].reliquiasPorSlot = new string[5] { "", "", "", "", "" };
                     if (slots[i].heroisContratados == null) slots[i].heroisContratados = new List<string>();
+                    slots[i].NormalizarReliquias();
                 }
             }
         }
@@ -226,6 +321,17 @@ public class SaveSlotManager : MonoBehaviour
         {
             Debug.LogWarning($"[SaveSlotManager] Erro ao carregar: {e.Message}");
         }
+
+        for (int i = 0; i < QUANTIDADE_SLOTS; i++)
+        {
+            if (slots[i] == null) continue;
+            if (slots[i].reliquiasPossuidas == null) slots[i].reliquiasPossuidas = new List<string>();
+            if (slots[i].reliquiasPorSlot == null || slots[i].reliquiasPorSlot.Length != 5)
+                slots[i].reliquiasPorSlot = new string[5] { "", "", "", "", "" };
+            slots[i].NormalizarReliquias();
+        }
+
+        SalvarSlots();
 
         OnSlotsCarregados?.Invoke(new List<DadosSlotSave>(slots));
     }
