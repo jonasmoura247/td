@@ -128,6 +128,13 @@ public class UnidadeController : MonoBehaviour, IDanificavel
 
     public int GetVidaAtual() => vidaAtual;
 
-    /// <summary>Retorna o dano que esta unidade causa ao atacar. Sobrescreva em subclasses (ex: GoblinController usa GetDanoFinal).</summary>
-    public virtual int GetDanoAtaque() => danoBase;
+    public virtual int GetDanoAtaque() => AplicarModificadoresTalentosDano(danoBase);
+
+    protected int AplicarModificadoresTalentosDano(int valor)
+    {
+        var m = GetComponent<UnidadeModificadores>();
+        if (m == null)
+            return valor;
+        return m.ModificarDanoFinal(valor);
+    }
 }

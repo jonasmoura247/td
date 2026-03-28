@@ -19,5 +19,5 @@ public class AnoesController : UnidadeController
         return Mathf.RoundToInt(danoBase * multiplicadorDanoRacial);
     }
 
-    public override int GetDanoAtaque() => GetDanoFinal();
+    public override int GetDanoAtaque() => AplicarModificadoresTalentosDano(GetDanoFinal());
 }

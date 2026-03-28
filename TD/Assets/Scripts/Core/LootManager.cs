@@ -14,6 +14,14 @@ public class LootManager : MonoBehaviour
     private List<ItemSlot> slots = new List<ItemSlot>();
     private string ultimoUuidCarregado;
 
+    public static void GarantirExistencia()
+    {
+        if (Instance != null)
+            return;
+        var go = new GameObject("LootManager");
+        go.AddComponent<LootManager>();
+    }
+
     void Awake()
     {
         SaveSlotManager.GarantirExistencia();
@@ -109,6 +117,14 @@ public class LootManager : MonoBehaviour
     public List<ItemSlot> GetSlots()
     {
         return slots;
+    }
+
+    public bool PossuiItem(string idItem, int quantidadeMinima = 1)
+    {
+        if (string.IsNullOrEmpty(idItem) || quantidadeMinima <= 0)
+            return false;
+        ItemSlot slot = slots.Find(s => s.idItem == idItem);
+        return slot != null && slot.quantidade >= quantidadeMinima;
     }
 
     public Sprite GetSpriteParaItem(string nomeItem)

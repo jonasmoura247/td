@@ -70,6 +70,9 @@ public class WaveManager : MonoBehaviour
     [Tooltip("Usado quando modoWave é Aleatoria. Por enquanto: apenas Goblin.")]
     [SerializeField] private WaveRacaConfig[] configuracoesRacas;
 
+    [Header("===== TALENTOS =====")]
+    [SerializeField] private TalentTreeDatabase talentTreeDatabase;
+
     private readonly List<GameObject> inimigosVivos = new List<GameObject>();
 
     private bool waveAtiva = false;
@@ -79,6 +82,17 @@ public class WaveManager : MonoBehaviour
 
     private WaveConfig configWaveAtual;
     private WaveRacaConfig configRacaAtual;
+
+    private bool partidaFinalizada;
+
+    private void Awake()
+    {
+        if (FindFirstObjectByType<RunExpPartida>(FindObjectsInactive.Include) == null)
+        {
+            var go = new GameObject("RunExpPartida");
+            go.AddComponent<RunExpPartida>();
+        }
+    }
 
     private void Start()
     {
@@ -91,10 +105,18 @@ public class WaveManager : MonoBehaviour
 
         if (botaoReiniciar != null)
             botaoReiniciar.onClick.AddListener(ReiniciarPartida);
+
+        if (PerfilJogadorAtivo.TemPerfilAtivo && PerfilJogadorAtivo.Dados != null)
+        {
+            var db = ModificadoresPartidaTalentos.CarregarDatabaseOuNull(talentTreeDatabase);
+            db?.RecalcularPontosDisponiveis(PerfilJogadorAtivo.Dados);
+        }
     }
 
     private void Update()
     {
+        if (partidaFinalizada)
+            return;
         if (waveAtiva) return;
 
         tempoAtual -= Time.deltaTime;
@@ -237,6 +259,8 @@ public class WaveManager : MonoBehaviour
 
     public void ForcarInicioWave()
     {
+        if (partidaFinalizada)
+            return;
         if (waveAtiva) return;
 
         tempoAtual = 0;
@@ -245,6 +269,8 @@ public class WaveManager : MonoBehaviour
 
     private void IniciarWave()
     {
+        if (partidaFinalizada)
+            return;
         if (waveAtiva) return;
 
         waveAtiva = true;
@@ -395,6 +421,10 @@ public class WaveManager : MonoBehaviour
         if (mov != null)
             mov.DefinirRota(rota);
 
+        UnidadeController uc = inimigo.GetComponent<UnidadeController>();
+        if (uc != null)
+            ModificadoresPartidaTalentos.Aplicar(uc, talentTreeDatabase);
+
         inimigosVivos.Add(inimigo);
         StartCoroutine(MonitorarMorte(inimigo));
     }
@@ -413,6 +443,19 @@ public class WaveManager : MonoBehaviour
     private void FinalizarWave()
     {
         waveAtiva = false;
+
+        if (numeroWave >= TotalOndas)
+        {
+            partidaFinalizada = true;
+            tempoAtual = tempoEntreWaves;
+            botaoPlay.interactable = false;
+            if (RunExpPartida.Instance != null)
+                RunExpPartida.Instance.ConcluirComVitoria();
+            if (textoIndicadorOnda != null)
+                textoIndicadorOnda.text = "Vitoria";
+            return;
+        }
+
         tempoAtual = tempoEntreWaves;
         botaoPlay.interactable = true;
 
