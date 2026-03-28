@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Divisão de Trabalho — Tower Defense</title>
+<style>
+  @page { margin: 18mm; }
+  body { font-family: Segoe UI, Arial, sans-serif; font-size: 11pt; line-height: 1.35; color: #222; max-width: 210mm; margin: 0 auto; padding: 12px; }
+  h1 { font-size: 16pt; margin: 0 0 8px 0; border-bottom: 2px solid #333; padding-bottom: 4px; }
+  h2 { font-size: 12pt; margin: 14px 0 6px 0; color: #333; }
+  p { margin: 6px 0; }
+  ul { margin: 4px 0 8px 18px; padding: 0; }
+  li { margin: 3px 0; }
+  .meta { font-size: 10pt; color: #555; margin-bottom: 12px; }
+  .box { background: #f5f5f5; padding: 8px 10px; margin: 8px 0; border-left: 4px solid #444; }
+  .nome { font-weight: bold; }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 8px 0; }
+  th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #eee; }
+  .ordem { font-weight: bold; color: #1a5f7a; }
+</style>
+</head>
+<body>
+
+<h1>Divisão de Trabalho — Tower Defense (Unity)</h1>
+<p class="meta">Projeto TD · Documento operacional · Baseado na análise do repositório (~88 scripts C#) e no <em>OrdemDesenvolvimento_TowerDefense</em> · Gerado para alinhar responsabilidades em duas frentes: <strong>inimigo + estatísticas</strong> vs <strong>aliado / defesa / economia</strong>.</p>
+
+<h2>1. Objetivo desta divisão</h2>
+<p>Separar o desenvolvimento em <strong>duas fases paralelas</strong> (não necessariamente sequenciais no tempo), cada uma com um responsável principal, para reduzir conflitos de merge e clarificar escopo: tudo que é <strong>ameaça ao jogador</strong> (ondas, criaturas, chefes, catálogos) fica com um dev; tudo que é <strong>ferramenta de defesa e economia do jogador</strong> (torres, heróis, coleta, eventos de apoio) fica com outro. Itens <strong>transversais</strong> (save, perfil, cenas, núcleo da partida) exigem acordo rápido em contratos (dados e eventos).</p>
+
+<h2>2. Panorama do código (resumo)</h2>
+<p><strong>Núcleo compartilhado:</strong> <code>WaveManager</code>, <code>GameManager</code>, <code>PerfilJogadorAtivo</code>, <code>SaveSlotManager</code> / <code>DadosSlotSave</code>, <code>OuroManager</code>, <code>LootManager</code>, rotas e spawn. <strong>Já existente:</strong> progressão de raça (EXP), relíquias (base), inventário, vitória na wave 8, filtro de raça inimiga. <strong>Ainda inexistente ou mínimo:</strong> sistema de torres, heróis em campo, eventos de contratação/comércio, bestiário/bossiário/talentos e estatísticas globais conforme design doc.</p>
+
+<h2>3. Responsável A — Parte inimiga + estatísticas (Jonas)</h2>
+<div class="box">
+<p class="nome">Escopo principal</p>
+<ul>
+  <li><strong>Ondas e ameaça:</strong> configuração e balanceamento de waves (<code>WaveManager</code>, <code>WaveRacaConfig</code>, prefabs, bosses nas ondas 3/6/8), novos inimigos e variantes por raça.</li>
+  <li><strong>Unidades inimigas:</strong> controladores em <code>Racas/</code>, projéteis, bosses (<code>Bosses/</code>), <code>UnidadeController</code> / <code>MovimentoUnidade</code>, morte e listeners (<code>IMorteListener</code>, <code>ExpAoMorrerInimigo</code>, <code>DropLootAoMorrer</code>).</li>
+  <li><strong>Bestiário:</strong> registro de espécies enfrentadas, desbloqueio progressivo, UI de consulta.</li>
+  <li><strong>Bossiário:</strong> registro e fichas de chefes (níveis/variações), separado ou integrado ao bestiário.</li>
+  <li><strong>Estatísticas:</strong> agregação de dados de partida (kills, dano recebido/causedo, tempo, etc.) e telas de resumo; integração com save se necessário.</li>
+  <li><strong>Árvore de talentos (eixo combate/meta):</strong> conforme design — talentos ligados a progresso de conta ou conhecimento de inimigos; definição de dados e UI se for desta frente.</li>
+</ul>
+<p><strong>Ordem sugerida (esta frente):</strong> <span class="ordem">1)</span> fechar catálogo mínimo de inimigos + bosses por documento · <span class="ordem">2)</span> dados de bestiário/bossiário persistidos no perfil · <span class="ordem">3)</span> estatísticas de fim de partida e/ou histórico · <span class="ordem">4)</span> árvore de talentos alinhada aos dados salvos.</p>
+</div>
+
+<h2>4. Responsável B — Parte aliada / defesa / economia (outro dev)</h2>
+<div class="box">
+<p class="nome">Escopo principal</p>
+<ul>
+  <li><strong>Torres:</strong> colocação, grid/slots, custos, ataque a inimigos, upgrades, venda (regras do design doc).</li>
+  <li><strong>Heróis:</strong> evolução de <code>HeroisManager</code>, spawn em campo, comportamento, limite de 3 por partida.</li>
+  <li><strong>Eventos:</strong> JOB HUNTER, MERCHANT e fluxos associados (UI + ouro).</li>
+  <li><strong>Coleta / minérios:</strong> <code>MinerioDeOuro</code>, <code>RecursoController</code>, <code>OuroManager</code>, integração com mapa e HUD.</li>
+  <li><strong>Unidades aliadas jogáveis</strong> (ex.: humanos no mapa), painéis existentes (<code>PainelUnidadesController</code>, botões), onde couber o design.</li>
+  <li><strong>Castelo / estrutura do jogador</strong> como defesa (HP, upgrades futuros), em coordenação com o núcleo.</li>
+</ul>
+<p><strong>Ordem sugerida (esta frente):</strong> <span class="ordem">1)</span> torre “mínima jogável” (colocar + atirar) · <span class="ordem">2)</span> economia mineiro + ouro · <span class="ordem">3)</span> heróis em campo · <span class="ordem">4)</span> eventos e refinamento de coleta.</p>
+</div>
+
+<h2>5. Zona compartilhada (combinar antes de codar)</h2>
+<ul>
+  <li><strong>Save:</strong> novos campos em <code>DadosSlotSave</code> — quem adiciona qual lista (prefixo ou módulos claros).</li>
+  <li><strong>Eventos globais:</strong> ex. <code>SaveSlotManager.OnDadosPerfilPersistidos</code>, fim de partida, vitória/derrota.</li>
+  <li><strong>Cenas e fluxo:</strong> lobby → mapa; evitar dois prefabs alterando o mesmo Canvas sem combinar.</li>
+  <li><strong>Interfaces / IDs:</strong> IDs de tipo de inimigo, torre e item — uma convenção (strings ou ScriptableObjects).</li>
+</ul>
+
+<h2>6. Matriz rápida (quem cuida do quê)</h2>
+<table>
+  <tr><th>Área</th><th>Principal A (inimigo + stats)</th><th>Principal B (aliado)</th></tr>
+  <tr><td>Waves / spawn inimigo</td><td>●</td><td>○ integração mapa</td></tr>
+  <tr><td>Prefabs inimigos / boss</td><td>●</td><td>○ alvo das torres</td></tr>
+  <tr><td>Torres</td><td>○ alvo</td><td>●</td></tr>
+  <tr><td>Heróis / eventos</td><td>○</td><td>●</td></tr>
+  <tr><td>Minérios / ouro jogador</td><td>○ drops inimigo</td><td>● coleta / HUD</td></tr>
+  <tr><td>Bestiário / bossiário / talentos</td><td>●</td><td>○</td></tr>
+  <tr><td>Estatísticas (telas)</td><td>●</td><td>○ torre/herói se compartilhar tela</td></tr>
+  <tr><td>Save / perfil</td><td colspan="2">ambos — contrato</td></tr>
+</table>
+
+<p style="margin-top:16px; font-size:10pt; color:#666;">○ = apoio ou consumidor · ● = dono principal da feature.</p>
+
+<p style="margin-top:20px; font-size:10pt;"><strong>Nota:</strong> Esta divisão não substitui o <em>OrdemDesenvolvimento_TowerDefense.pdf</em>; apenas distribui o trabalho entre duas pessoas. Ajustem nomes e ordem interna conforme sprint.</p>
+
+</body>
+</html>

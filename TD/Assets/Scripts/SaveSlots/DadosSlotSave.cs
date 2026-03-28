@@ -49,6 +49,13 @@ public class DadosSlotSave
     /// <summary>IDs dos heróis contratados (máx 3). Cada slot tem seu próprio conjunto.</summary>
     public List<string> heroisContratados = new List<string>();
 
+    public int expPermanenteGoblin;
+    public int expPermanenteElfo;
+    public int expPermanenteAnao;
+    public int expPermanenteHumano;
+
+    public DadosTalentos talentos = new DadosTalentos();
+
     public DadosSlotSave()
     {
         indiceSlot = 0;
@@ -59,6 +66,7 @@ public class DadosSlotSave
         dataUltimoJogo = "";
         nomePerfil = "";
         tempoJogoSegundos = 0f;
+        talentos = new DadosTalentos();
     }
 
     public DadosSlotSave(int slot, TipoRaca racaEscolhida, GeneroChefe genero)
@@ -76,6 +84,17 @@ public class DadosSlotSave
         reliquiasPorSlot = new string[5] { "", "", "", "", "" };
         if (racaEscolhida == TipoRaca.Goblin)
             reliquiasPossuidas.Add(ReliquiaIds.OlhoQueNadaVe);
+        talentos = new DadosTalentos();
+    }
+
+    public void NormalizarTalentos()
+    {
+        if (talentos == null)
+            talentos = new DadosTalentos();
+        if (talentos.nosDesbloqueados == null)
+            talentos.nosDesbloqueados = new List<string>();
+        if (talentos.escolhasGrupo == null)
+            talentos.escolhasGrupo = new List<TalentoGrupoEscolhaSave>();
     }
 
     /// <summary>Garante que o save tem um UUID. Usado na migração de saves antigos.</summary>
@@ -105,6 +124,44 @@ public class DadosSlotSave
 
         if (ocupado && raca == TipoRaca.Goblin && !reliquiasPossuidas.Contains(ReliquiaIds.OlhoQueNadaVe))
             reliquiasPossuidas.Add(ReliquiaIds.OlhoQueNadaVe);
+    }
+
+    public int ObterExpPermanenteRaca(TipoRaca racaAlvo)
+    {
+        return racaAlvo switch
+        {
+            TipoRaca.Goblin => expPermanenteGoblin,
+            TipoRaca.Elfo => expPermanenteElfo,
+            TipoRaca.Anao => expPermanenteAnao,
+            TipoRaca.Humano => expPermanenteHumano,
+            _ => 0
+        };
+    }
+
+    public void AdicionarExpPermanenteRaca(TipoRaca racaAlvo, int delta)
+    {
+        if (delta == 0)
+            return;
+        switch (racaAlvo)
+        {
+            case TipoRaca.Goblin:
+                expPermanenteGoblin = Mathf.Max(0, expPermanenteGoblin + delta);
+                break;
+            case TipoRaca.Elfo:
+                expPermanenteElfo = Mathf.Max(0, expPermanenteElfo + delta);
+                break;
+            case TipoRaca.Anao:
+                expPermanenteAnao = Mathf.Max(0, expPermanenteAnao + delta);
+                break;
+            case TipoRaca.Humano:
+                expPermanenteHumano = Mathf.Max(0, expPermanenteHumano + delta);
+                break;
+        }
+    }
+
+    public int ObterNivelRaca(TipoRaca racaAlvo)
+    {
+        return NivelRacaCalculadora.CalcularNivelPorExpTotal(ObterExpPermanenteRaca(racaAlvo));
     }
 
     private static string ObterNomePadrao(TipoRaca raca)

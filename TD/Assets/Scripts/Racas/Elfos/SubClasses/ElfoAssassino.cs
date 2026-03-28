@@ -9,5 +9,5 @@ public class ElfoAssassino : ElfoController
         return Mathf.RoundToInt(base.GetDanoMagicoFinal() * multiplicadorDanoAssassino);
     }
 
-    public override int GetDanoAtaque() => GetDanoMagicoFinal();
+    public override int GetDanoAtaque() => AplicarModificadoresTalentosDano(GetDanoMagicoFinal());
 }

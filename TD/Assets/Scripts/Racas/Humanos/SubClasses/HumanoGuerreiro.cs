@@ -15,5 +15,5 @@ public class HumanoGuerreiro : HumanoController
         return Mathf.RoundToInt(danoBase * multiplicadorDanoRacial * multiplicadorDanoGuerreiro);
     }
 
-    public override int GetDanoAtaque() => GetDanoFinal();
+    public override int GetDanoAtaque() => AplicarModificadoresTalentosDano(GetDanoFinal());
 }

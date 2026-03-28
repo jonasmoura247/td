@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
         jogoFinalizado = true;
         Time.timeScale = 0f;
 
+        if (RunExpPartida.Instance != null)
+            RunExpPartida.Instance.ConcluirComDerrota();
+
         if (painelGameOver != null)
             painelGameOver.SetActive(true);
     }

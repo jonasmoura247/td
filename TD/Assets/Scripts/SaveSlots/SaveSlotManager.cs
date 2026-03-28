@@ -24,6 +24,8 @@ public class SaveSlotManager : MonoBehaviour
 
     public event Action<List<DadosSlotSave>> OnSlotsCarregados;
 
+    public event Action OnDadosPerfilPersistidos;
+
     private DadosSlotSave[] slots;
     private int slotAtivo = -1;
     private string caminhoSave;
@@ -261,6 +263,7 @@ public class SaveSlotManager : MonoBehaviour
         if (slotAtivo < 0 || slotAtivo >= QUANTIDADE_SLOTS) return;
         alterar?.Invoke(slots[slotAtivo]);
         SalvarSlots();
+        OnDadosPerfilPersistidos?.Invoke();
     }
 
     public string ObterCenaLobby(TipoRaca raca)
@@ -314,6 +317,7 @@ public class SaveSlotManager : MonoBehaviour
                         slots[i].reliquiasPorSlot = new string[5] { "", "", "", "", "" };
                     if (slots[i].heroisContratados == null) slots[i].heroisContratados = new List<string>();
                     slots[i].NormalizarReliquias();
+                    slots[i].NormalizarTalentos();
                 }
             }
         }
@@ -329,6 +333,7 @@ public class SaveSlotManager : MonoBehaviour
             if (slots[i].reliquiasPorSlot == null || slots[i].reliquiasPorSlot.Length != 5)
                 slots[i].reliquiasPorSlot = new string[5] { "", "", "", "", "" };
             slots[i].NormalizarReliquias();
+            slots[i].NormalizarTalentos();
         }
 
         SalvarSlots();

@@ -63,7 +63,7 @@ public class GoblinLanceiro : GoblinController
 
         if (p != null)
         {
-            p.Inicializar(alvo, GetDanoFinal(), gameObject.name);
+            p.Inicializar(alvo, GetDanoAtaque(), gameObject.name);
         }
     }
 

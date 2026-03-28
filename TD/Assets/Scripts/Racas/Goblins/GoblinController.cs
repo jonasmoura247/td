@@ -33,7 +33,7 @@ public class GoblinController : UnidadeController
         ) + bonusDanoFixo;
     }
 
-    public override int GetDanoAtaque() => GetDanoFinal();
+    public override int GetDanoAtaque() => AplicarModificadoresTalentosDano(GetDanoFinal());
 
     /// <summary>Usado para logs de debug da aura.</summary>
     public int GetBonusDanoAura() => bonusDanoFixo;

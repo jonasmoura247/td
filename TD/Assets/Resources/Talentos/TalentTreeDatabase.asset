@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23474e62fd8d0b4d96df721e41cd052, type: 3}
+  m_Name: TalentTreeDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::TalentTreeDatabase
+  niveisPorNivelGanho: 2
+  pontosPorGanho: 1
+  arvoresPorRaca:
+  - raca: 0
+    nos:
+    - id: gob_l2_a
+      nomeExibicao: "For\xE7a do bruto"
+      descricaoTooltip: "<b>For\xE7a do bruto</b>\n\nGuerreiros goblin da sua torre
+        causam <b>+1 de dano</b> em ataques.\n\n<i>Escolha \xFAnica no n\xEDvel 2:
+        apenas uma das tr\xEAs op\xE7\xF5es desta linha.</i>"
+      coluna: 0
+      linha: 0
+      icone: {fileID: -7861830337818780202, guid: 4247823e32dd66043a8752f835b22056, type: 3}
+      custoPontos: 1
+      nivelMinimoRaca: 2
+      grupoEscolhaId: gob_lvl2
+      requisitosItemIds: []
+      efeitos:
+      - alvo: 0
+        subtipoFiltro: 1
+        racaAlvoInimigo: 0
+        stat: 0
+        valorFlat: 1
+        valorPercentual: 0
+    - id: gob_l2_b
+      nomeExibicao: Postura do lanceiro
+      descricaoTooltip: "<b>Postura do lanceiro</b>\n\nLanceiros goblin recebem <b>+1
+        de vida m\xE1xima</b>.\n\n<i>Escolha \xFAnica no n\xEDvel 2: apenas uma das
+        tr\xEAs op\xE7\xF5es desta linha.</i>"
+      coluna: 1
+      linha: 0
+      icone: {fileID: -187012383329008255, guid: 777c52babc4a5ec43a9df89737c02789, type: 3}
+      custoPontos: 1
+      nivelMinimoRaca: 2
+      grupoEscolhaId: gob_lvl2
+      requisitosItemIds: []
+      efeitos:
+      - alvo: 0
+        subtipoFiltro: 2
+        racaAlvoInimigo: 0
+        stat: 1
+        valorFlat: 1
+        valorPercentual: 0
+    - id: gob_l2_c
+      nomeExibicao: Instinto de matilha
+      descricaoTooltip: '<b>Instinto de matilha</b>
+
+
+        Todas as unidades goblin
+        aliadas ganham <b>+5% de dano</b>.
+
+
+        <i>Escolha unica no nivel 2:
+        apenas uma das tres opcoes desta linha.</i>'
+      coluna: 2
+      linha: 0
+      icone: {fileID: 6917655849208091625, guid: 38ccdec687a727d489effde2fc39a027, type: 3}
+      custoPontos: 1
+      nivelMinimoRaca: 2
+      grupoEscolhaId: gob_lvl2
+      requisitosItemIds: []
+      efeitos:
+      - alvo: 0
+        subtipoFiltro: 0
+        racaAlvoInimigo: 0
+        stat: 0
+        valorFlat: 0
+        valorPercentual: 5
+    - id: gob_l10_adaga
+      nomeExibicao: Ritual da adaga
+      descricaoTooltip: "<b>Ritual da adaga</b>\n\nExige possuir o item <b>Adaga
+        Enferrujada</b> no invent\xE1rio.\n\nAo desbloquear, todos os goblin aliados
+        recebem <b>+15 de dano</b>.\n\n<i>Custo: 2 pontos de talento. N\xEDvel m\xEDnimo
+        da ra\xE7a: 10.</i>"
+      coluna: 1
+      linha: 1
+      icone: {fileID: -2164584871658540623, guid: a65dafbd98f025b4ba550f313fec5a09, type: 3}
+      custoPontos: 2
+      nivelMinimoRaca: 6
+      grupoEscolhaId: 
+      requisitosItemIds:
+      - Adaga Enferrujada
+      efeitos:
+      - alvo: 0
+        subtipoFiltro: 0
+        racaAlvoInimigo: 0
+        stat: 0
+        valorFlat: 15
+        valorPercentual: 0
+    - id: gob_debuff_humano
+      nomeExibicao: "P\xE9rfida lembran\xE7a"
+      descricaoTooltip: "<b>P\xE9rfida lembran\xE7a</b>\n\nInimigos da ra\xE7a <b>Humano</b>
+        sofrem <b>-5% de vida m\xE1xima</b>.\n\n<i>\xDAtil para focar partidas contra
+        humanos.</i>"
+      coluna: 0
+      linha: 1
+      icone: {fileID: -8300068884957578092, guid: d90efc1adae3fab4098123556574b9e5, type: 3}
+      custoPontos: 1
+      nivelMinimoRaca: 4
+      grupoEscolhaId: 
+      requisitosItemIds: []
+      efeitos:
+      - alvo: 1
+        subtipoFiltro: 0
+        racaAlvoInimigo: 1
+        stat: 1
+        valorFlat: 0
+        valorPercentual: -5
