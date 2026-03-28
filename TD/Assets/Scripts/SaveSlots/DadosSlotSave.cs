@@ -56,6 +56,8 @@ public class DadosSlotSave
 
     public DadosTalentos talentos = new DadosTalentos();
 
+    public DadosBestiario bestiario = new DadosBestiario();
+
     public DadosSlotSave()
     {
         indiceSlot = 0;
@@ -67,6 +69,7 @@ public class DadosSlotSave
         nomePerfil = "";
         tempoJogoSegundos = 0f;
         talentos = new DadosTalentos();
+        bestiario = new DadosBestiario();
     }
 
     public DadosSlotSave(int slot, TipoRaca racaEscolhida, GeneroChefe genero)
@@ -85,6 +88,18 @@ public class DadosSlotSave
         if (racaEscolhida == TipoRaca.Goblin)
             reliquiasPossuidas.Add(ReliquiaIds.OlhoQueNadaVe);
         talentos = new DadosTalentos();
+        bestiario = new DadosBestiario();
+    }
+
+    public void NormalizarBestiario()
+    {
+        if (bestiario == null)
+            bestiario = new DadosBestiario();
+        if (bestiario.progressoPorCriatura == null)
+            bestiario.progressoPorCriatura = new List<BestiarioCriaturaProgresso>();
+        if (bestiario.runasEquipadas == null)
+            bestiario.runasEquipadas = new List<BestiarioRunaEquipada>();
+        bestiario.pontosBestiario = Mathf.Max(0, bestiario.pontosBestiario);
     }
 
     public void NormalizarTalentos()

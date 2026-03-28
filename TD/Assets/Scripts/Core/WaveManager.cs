@@ -73,6 +73,9 @@ public class WaveManager : MonoBehaviour
     [Header("===== TALENTOS =====")]
     [SerializeField] private TalentTreeDatabase talentTreeDatabase;
 
+    [Header("===== BESTIARIO =====")]
+    [SerializeField] private BestiarioDatabase bestiarioDatabase;
+
     private readonly List<GameObject> inimigosVivos = new List<GameObject>();
 
     private bool waveAtiva = false;
@@ -424,6 +427,7 @@ public class WaveManager : MonoBehaviour
         UnidadeController uc = inimigo.GetComponent<UnidadeController>();
         if (uc != null)
             ModificadoresPartidaTalentos.Aplicar(uc, talentTreeDatabase);
+        BestiarioRunasSpawnAplicador.Aplicar(inimigo, uc, bestiarioDatabase);
 
         inimigosVivos.Add(inimigo);
         StartCoroutine(MonitorarMorte(inimigo));

@@ -318,6 +318,7 @@ public class SaveSlotManager : MonoBehaviour
                     if (slots[i].heroisContratados == null) slots[i].heroisContratados = new List<string>();
                     slots[i].NormalizarReliquias();
                     slots[i].NormalizarTalentos();
+                    slots[i].NormalizarBestiario();
                 }
             }
         }
@@ -334,6 +335,7 @@ public class SaveSlotManager : MonoBehaviour
                 slots[i].reliquiasPorSlot = new string[5] { "", "", "", "", "" };
             slots[i].NormalizarReliquias();
             slots[i].NormalizarTalentos();
+            slots[i].NormalizarBestiario();
         }
 
         SalvarSlots();
