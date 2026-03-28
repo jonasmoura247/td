@@ -16,7 +16,8 @@ public class CasteloController : EstruturasController
         if (unidade.faccao == this.faccao) return;
         if (!unidade.EstaVivo) return;
 
-        int dano = unidade.GetDanoAtaque();
+        int danoBase = unidade.GetDanoAtaque();
+        int dano = BestiarioAtaqueInimigo.CalcularDanoAoCastelo(unidade, danoBase, null);
         ReceberDano(dano);
         unidade.ImpactarCastelo(transform.position);
 

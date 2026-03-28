@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 835e4fb30405c5d4dbf27113bda824dd, type: 3}
+  m_Name: BestiarioDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::BestiarioDatabase
+  chanceCriticoBase: 0.2
+  multiplicadorCriticoBase: 1.2
+  criaturas:
+  - id: gob_guerreiro
+    nomeExibicao: Goblin Guerreiro
+    descricaoTooltip: Guerreiro goblin comum das ondas.
+    icone: {fileID: -4476789289913834123, guid: eca6f52e89af3be408b1187892497691, type: 3}
+    iconeSilhueta: {fileID: -4476789289913834123, guid: eca6f52e89af3be408b1187892497691, type: 3}
+    marcosMortes: 640000002c010000f4010000
+    pontosPorEstagio: 010000000200000003000000
+  - id: gob_lanceiro
+    nomeExibicao: Goblin Lanceiro
+    descricaoTooltip: Lanceiro goblin que atira no castelo.
+    icone: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    iconeSilhueta: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    marcosMortes: 640000002c010000f4010000
+    pontosPorEstagio: 010000000200000003000000
+  runas:
+  - id: runa_eco_guerreiro
+    nomeExibicao: Eco de dor
+    descricaoTooltip: Chance de sofrer dano extra ao receber dano (fracao da vida
+      maxima).
+    criaturaAlvoId: gob_guerreiro
+    custoPontos: 2
+    estagiosMinimos: 3
+    tipoEfeito: 1
+    parametroChance: 0.15
+    parametroValor: 0.05
+  - id: runa_crit_guerreiro
+    nomeExibicao: Runa do critico brutal
+    descricaoTooltip: Criticos ao castelo usam 150% em vez de 120%.
+    criaturaAlvoId: gob_guerreiro
+    custoPontos: 3
+    estagiosMinimos: 3
+    tipoEfeito: 2
+    parametroChance: 0
+    parametroValor: 1.5

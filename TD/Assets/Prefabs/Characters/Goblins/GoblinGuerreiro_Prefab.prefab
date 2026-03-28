@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3400605008139129513}
   - component: {fileID: 2361323068034890134}
   - component: {fileID: 3830198093425398724}
+  - component: {fileID: 90000001}
+  - component: {fileID: 90000002}
   m_Layer: 3
   m_Name: GoblinGuerreiro_Prefab
   m_TagString: NpcGoblin
@@ -108,6 +110,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovNpcGoblin
   velocidade: 40
+  distanciaParada: 0.3
+  raioUnidade: 1.5
+  forcaSeparacao: 25
+  layerUnidades:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &3400605008139129513
 Rigidbody2D:
   serializedVersion: 5
@@ -186,4 +194,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GoblinController
   vidaMaxima: 3
   danoBase: 1
-  tempoInvulnerabilidade: 0
+  faccao: 0
+  distanciaRecuo: 1
+  duracaoRecuo: 0.2
+  curvaRecuo:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  multiplicadorDanoRacial: 1
+--- !u!114 &90000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180006139801302925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544155d357cae39408f917e74bba4996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdentificadorBestiarioInimigo
+  criaturaId: gob_guerreiro
+--- !u!114 &90000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180006139801302925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d39f5fce2801c448d763466b69bfd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RegistoMorteBestiario
+  database: {fileID: 0}

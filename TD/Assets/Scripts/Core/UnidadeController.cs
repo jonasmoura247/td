@@ -39,7 +39,23 @@ public class UnidadeController : MonoBehaviour, IDanificavel
 
     public virtual void ReceberDano(int quantidade)
     {
-        if (!estaVivo) return;
+        if (!estaVivo || quantidade <= 0)
+            return;
+
+        vidaAtual -= quantidade;
+
+        if (faccao == Faccao.Inimigo)
+            BestiarioDanoEcoRuna.TentarAposDanoDoJogador(this, quantidade);
+
+        if (vidaAtual <= 0)
+            Morrer();
+    }
+
+    /// <summary>Dano extra de runas (sem disparar procs encadeados).</summary>
+    public void ReceberDanoSemProcs(int quantidade)
+    {
+        if (!estaVivo || quantidade <= 0)
+            return;
 
         vidaAtual -= quantidade;
 
