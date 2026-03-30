@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 3518856063253832190}
   - component: {fileID: 7910792990342983493}
   - component: {fileID: 6495010323626366289}
+  - component: {fileID: 5678165717781879957}
+  - component: {fileID: 6937886433871883228}
   m_Layer: 0
   m_Name: ElfoMago
   m_TagString: NpcGoblin
@@ -142,6 +144,33 @@ MonoBehaviour:
   vidaMaxima: 3
   danoBase: 1
   faccao: 1
+  distanciaRecuo: 1
+  duracaoRecuo: 0.2
+  curvaRecuo:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  multiplicadorDanoRacial: 1
   distanciaDeAtaque: 50.3
   intervaloAtaque: 1.5
   projetilPrefab: {fileID: 934582073488721258, guid: 365bd8b7d613f21428c1c38256ae5467, type: 3}
@@ -159,8 +188,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
   velocidade: 40
-  raioSeparacao: 0.6
+  distanciaParada: 0.3
+  raioUnidade: 1.5
   forcaSeparacao: 2
+  layerUnidades:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &7910792990342983493
 Rigidbody2D:
   serializedVersion: 5
@@ -225,3 +258,29 @@ CapsuleCollider2D:
   m_Offset: {x: -1, y: 0}
   m_Size: {x: 3.25, y: 5.25}
   m_Direction: 0
+--- !u!114 &5678165717781879957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527514975530341288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544155d357cae39408f917e74bba4996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdentificadorBestiarioInimigo
+  criaturaId: elf_mago
+--- !u!114 &6937886433871883228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527514975530341288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d39f5fce2801c448d763466b69bfd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RegistoMorteBestiario
+  database: {fileID: 0}

@@ -22,5 +22,7 @@ public class DadosBestiario
 {
     public int pontosBestiario;
     public List<BestiarioCriaturaProgresso> progressoPorCriatura = new List<BestiarioCriaturaProgresso>();
+    /// <summary>Runas desbloqueadas uma vez com pontos; podem ser equipadas sem novo custo em pontos.</summary>
+    public List<string> runasLiberadas = new List<string>();
     public List<BestiarioRunaEquipada> runasEquipadas = new List<BestiarioRunaEquipada>();
 }

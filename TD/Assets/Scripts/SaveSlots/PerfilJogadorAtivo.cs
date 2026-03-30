@@ -28,6 +28,11 @@ public static class PerfilJogadorAtivo
     public static void DefinirPerfil(DadosSlotSave dados)
     {
         perfilAtual = dados;
+        if (dados != null)
+        {
+            dados.NormalizarBestiario();
+            OuroPerfilUtil.AplicarOuroDoPerfilAoManager(dados);
+        }
     }
 
     /// <summary>Limpa o perfil ativo (ex: ao voltar para tela de slots).</summary>

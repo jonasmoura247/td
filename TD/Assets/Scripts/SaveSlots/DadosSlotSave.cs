@@ -56,6 +56,9 @@ public class DadosSlotSave
 
     public DadosTalentos talentos = new DadosTalentos();
 
+    /// <summary>Ouro persistido no perfil (ex.: custos meta no lobby). Sincronizado com <see cref="OuroManager"/> quando aplicável.</summary>
+    public int ouro;
+
     public DadosBestiario bestiario = new DadosBestiario();
 
     public DadosSlotSave()
@@ -97,9 +100,26 @@ public class DadosSlotSave
             bestiario = new DadosBestiario();
         if (bestiario.progressoPorCriatura == null)
             bestiario.progressoPorCriatura = new List<BestiarioCriaturaProgresso>();
+        if (bestiario.runasLiberadas == null)
+            bestiario.runasLiberadas = new List<string>();
         if (bestiario.runasEquipadas == null)
             bestiario.runasEquipadas = new List<BestiarioRunaEquipada>();
         bestiario.pontosBestiario = Mathf.Max(0, bestiario.pontosBestiario);
+        NormalizarOuroMeta();
+
+        for (int i = 0; bestiario.runasEquipadas != null && i < bestiario.runasEquipadas.Count; i++)
+        {
+            var e = bestiario.runasEquipadas[i];
+            if (e == null || string.IsNullOrEmpty(e.runaId))
+                continue;
+            if (!bestiario.runasLiberadas.Contains(e.runaId))
+                bestiario.runasLiberadas.Add(e.runaId);
+        }
+    }
+
+    public void NormalizarOuroMeta()
+    {
+        ouro = Mathf.Max(0, ouro);
     }
 
     public void NormalizarTalentos()
