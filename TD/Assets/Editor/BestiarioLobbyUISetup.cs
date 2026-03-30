@@ -9,6 +9,7 @@ using TMPro;
 public static class BestiarioLobbyUISetup
 {
     private const string PathDatabase = "Assets/Resources/Bestiario/BestiarioDatabase.asset";
+    private const string PathUILayout = "Assets/Resources/Bestiario/BestiarioUILayout.asset";
 
     private static readonly string[] CenasLobby =
     {
@@ -54,6 +55,12 @@ public static class BestiarioLobbyUISetup
         ConfigurarInterno(salvarCena: false);
     }
 
+    private static void GarantirLayoutEPrefabs()
+    {
+        if (AssetDatabase.LoadAssetAtPath<BestiarioUILayout>(PathUILayout) == null)
+            BestiarioUIPrefabGenerator.GerarTudo();
+    }
+
     private static void ConfigurarInterno(bool salvarCena)
     {
         GameObject botaoGo = EncontrarPorNome("BotaoBestiario");
@@ -74,6 +81,14 @@ public static class BestiarioLobbyUISetup
         if (db == null)
         {
             EditorUtility.DisplayDialog("Bestiario", "Falta o asset em " + PathDatabase + ". Use o menu Criar database em Resources.", "OK");
+            return;
+        }
+
+        GarantirLayoutEPrefabs();
+        var layoutAsset = AssetDatabase.LoadAssetAtPath<BestiarioUILayout>(PathUILayout);
+        if (layoutAsset == null)
+        {
+            EditorUtility.DisplayDialog("Bestiario", "Falta " + PathUILayout + ". Use TD/Bestiario/Gerar prefabs UI e layout.", "OK");
             return;
         }
 
@@ -107,7 +122,7 @@ public static class BestiarioLobbyUISetup
 
         PainelBestiario painel = root.AddComponent<PainelBestiario>();
 
-        CriarBarraSuperior(root.transform, out TextMeshProUGUI tmpPontos, out Button btnFechar);
+        CriarBarraSuperior(root.transform, out TextMeshProUGUI tmpPontos, out TextMeshProUGUI tmpOuro, out Button btnFechar);
 
         GameObject main = new GameObject("Main");
         Undo.RegisterCreatedObjectUndo(main, "Main");
@@ -118,31 +133,120 @@ public static class BestiarioLobbyUISetup
         rtMain.offsetMin = new Vector2(16, 16);
         rtMain.offsetMax = new Vector2(-16, -56);
 
-        HorizontalLayoutGroup hor = main.AddComponent<HorizontalLayoutGroup>();
-        hor.spacing = 16f;
-        hor.childAlignment = TextAnchor.UpperCenter;
-        hor.childControlWidth = true;
-        hor.childControlHeight = true;
-        hor.childForceExpandWidth = true;
-        hor.childForceExpandHeight = true;
+        VerticalLayoutGroup vlMain = main.AddComponent<VerticalLayoutGroup>();
+        vlMain.spacing = 8f;
+        vlMain.childAlignment = TextAnchor.UpperCenter;
+        vlMain.childControlWidth = true;
+        vlMain.childControlHeight = true;
+        vlMain.childForceExpandWidth = true;
+        vlMain.childForceExpandHeight = false;
+        vlMain.padding = new RectOffset(0, 0, 0, 0);
 
-        GameObject scrollGo = CriarScroll(main.transform, out RectTransform contentGrid);
+        GameObject tabBar = new GameObject("TabBar");
+        Undo.RegisterCreatedObjectUndo(tabBar, "TabBar");
+        tabBar.transform.SetParent(main.transform, false);
+        tabBar.AddComponent<RectTransform>();
+        HorizontalLayoutGroup hTab = tabBar.AddComponent<HorizontalLayoutGroup>();
+        hTab.spacing = 10f;
+        hTab.childAlignment = TextAnchor.MiddleLeft;
+        hTab.childControlWidth = false;
+        // false = cada separador usa a sua altura (Layout Element no botao); evita bloquear Height no RectTransform
+        hTab.childControlHeight = false;
+        hTab.childForceExpandHeight = false;
+        // TabBar acompanha a altura do botao mais alto (sem altura fixa que esmaga os filhos)
+        var csfTab = tabBar.AddComponent<ContentSizeFitter>();
+        csfTab.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+        csfTab.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+        LayoutElement leTabBar = tabBar.AddComponent<LayoutElement>();
+        leTabBar.minHeight = 36f;
+
+        Button btnTabCriaturas = CriarBotaoTab(tabBar.transform, "TabCriaturas", "Criaturas");
+        Button btnTabRunas = CriarBotaoTab(tabBar.transform, "TabRunas", "Todas as runas");
+
+        GameObject tabBody = new GameObject("TabBody");
+        Undo.RegisterCreatedObjectUndo(tabBody, "TabBody");
+        tabBody.transform.SetParent(main.transform, false);
+        tabBody.AddComponent<RectTransform>();
+        VerticalLayoutGroup vlBody = tabBody.AddComponent<VerticalLayoutGroup>();
+        vlBody.spacing = 0f;
+        vlBody.childAlignment = TextAnchor.UpperCenter;
+        vlBody.childControlWidth = true;
+        vlBody.childControlHeight = true;
+        vlBody.childForceExpandWidth = true;
+        vlBody.childForceExpandHeight = true;
+        LayoutElement leBody = tabBody.AddComponent<LayoutElement>();
+        leBody.flexibleHeight = 1f;
+        leBody.flexibleWidth = 1f;
+        leBody.minHeight = 200f;
+
+        GameObject abaCriaturas = new GameObject("AbaCriaturas");
+        Undo.RegisterCreatedObjectUndo(abaCriaturas, "AbaCriaturas");
+        abaCriaturas.transform.SetParent(tabBody.transform, false);
+        RectTransform rtAbaC = abaCriaturas.AddComponent<RectTransform>();
+        rtAbaC.anchorMin = Vector2.zero;
+        rtAbaC.anchorMax = Vector2.one;
+        rtAbaC.sizeDelta = Vector2.zero;
+        HorizontalLayoutGroup horAbaC = abaCriaturas.AddComponent<HorizontalLayoutGroup>();
+        horAbaC.spacing = 16f;
+        horAbaC.childAlignment = TextAnchor.UpperCenter;
+        horAbaC.childControlWidth = true;
+        horAbaC.childControlHeight = true;
+        horAbaC.childForceExpandWidth = true;
+        horAbaC.childForceExpandHeight = true;
+        LayoutElement leAbaC = abaCriaturas.AddComponent<LayoutElement>();
+        leAbaC.flexibleHeight = 1f;
+        leAbaC.flexibleWidth = 1f;
+        leAbaC.minHeight = 120f;
+
+        GameObject scrollGo = CriarScrollListaCriaturas(abaCriaturas.transform, out RectTransform contentGrid);
         LayoutElement leScroll = scrollGo.AddComponent<LayoutElement>();
         leScroll.flexibleWidth = 2f;
         leScroll.minWidth = 320f;
 
-        GameObject detalheGo = CriarDetalhe(main.transform, out TextMeshProUGUI tmpTitulo, out TextMeshProUGUI tmpInfo, out RectTransform areaRunas);
+        GameObject detalheGo = CriarDetalhe(abaCriaturas.transform, out TextMeshProUGUI tmpTitulo, out TextMeshProUGUI tmpInfo, out RectTransform areaRunas);
         LayoutElement leDet = detalheGo.AddComponent<LayoutElement>();
         leDet.flexibleWidth = 1f;
         leDet.minWidth = 300f;
 
+        GameObject abaCatalogo = new GameObject("AbaCatalogoRunas");
+        Undo.RegisterCreatedObjectUndo(abaCatalogo, "AbaCatalogoRunas");
+        abaCatalogo.transform.SetParent(tabBody.transform, false);
+        RectTransform rtAbaR = abaCatalogo.AddComponent<RectTransform>();
+        rtAbaR.anchorMin = Vector2.zero;
+        rtAbaR.anchorMax = Vector2.one;
+        rtAbaR.sizeDelta = Vector2.zero;
+        LayoutElement leAbaR = abaCatalogo.AddComponent<LayoutElement>();
+        leAbaR.flexibleHeight = 1f;
+        leAbaR.flexibleWidth = 1f;
+        leAbaR.minHeight = 120f;
+        abaCatalogo.SetActive(false);
+
+        GameObject scrollCat = CriarScrollCatalogoRunas(abaCatalogo.transform, out RectTransform contentCatalogo);
+        RectTransform rtScrollCat = scrollCat.GetComponent<RectTransform>();
+        rtScrollCat.anchorMin = Vector2.zero;
+        rtScrollCat.anchorMax = Vector2.one;
+        rtScrollCat.sizeDelta = Vector2.zero;
+        LayoutElement leCat = scrollCat.AddComponent<LayoutElement>();
+        leCat.flexibleWidth = 1f;
+        leCat.flexibleHeight = 1f;
+        leCat.minHeight = 200f;
+
         SerializedObject soPainel = new SerializedObject(painel);
         soPainel.FindProperty("database").objectReferenceValue = db;
+        soPainel.FindProperty("layoutVisual").objectReferenceValue = layoutAsset;
         soPainel.FindProperty("textoPontos").objectReferenceValue = tmpPontos;
+        var pOuro = soPainel.FindProperty("textoOuro");
+        if (pOuro != null)
+            pOuro.objectReferenceValue = tmpOuro;
         soPainel.FindProperty("textoTituloDetalhe").objectReferenceValue = tmpTitulo;
         soPainel.FindProperty("textoInfoCriatura").objectReferenceValue = tmpInfo;
+        soPainel.FindProperty("botaoTabCriaturas").objectReferenceValue = btnTabCriaturas;
+        soPainel.FindProperty("botaoTabRunas").objectReferenceValue = btnTabRunas;
+        soPainel.FindProperty("painelAbaCriaturas").objectReferenceValue = abaCriaturas;
+        soPainel.FindProperty("painelAbaCatalogoRunas").objectReferenceValue = abaCatalogo;
         soPainel.FindProperty("areaListaCriaturas").objectReferenceValue = contentGrid;
         soPainel.FindProperty("areaBotoesRunas").objectReferenceValue = areaRunas;
+        soPainel.FindProperty("areaListaCatalogoRunas").objectReferenceValue = contentCatalogo;
         soPainel.ApplyModifiedPropertiesWithoutUndo();
 
         root.SetActive(false);
@@ -182,6 +286,35 @@ public static class BestiarioLobbyUISetup
         Debug.Log("[Bestiario] Painel criado e botoes ligados: " + EditorSceneManager.GetActiveScene().path);
     }
 
+    private static Button CriarBotaoTab(Transform parent, string nome, string texto)
+    {
+        GameObject go = new GameObject(nome);
+        Undo.RegisterCreatedObjectUndo(go, nome);
+        go.transform.SetParent(parent, false);
+        Image img = go.AddComponent<Image>();
+        img.color = new Color(0.22f, 0.24f, 0.32f, 1f);
+        Button btn = go.AddComponent<Button>();
+        btn.targetGraphic = img;
+        LayoutElement le = go.AddComponent<LayoutElement>();
+        le.minHeight = 28f;
+        le.preferredHeight = 40f;
+        le.preferredWidth = 160f;
+
+        GameObject lbl = new GameObject("Texto");
+        lbl.transform.SetParent(go.transform, false);
+        RectTransform rtl = lbl.AddComponent<RectTransform>();
+        rtl.anchorMin = Vector2.zero;
+        rtl.anchorMax = Vector2.one;
+        rtl.offsetMin = Vector2.zero;
+        rtl.offsetMax = Vector2.zero;
+        TextMeshProUGUI tmp = lbl.AddComponent<TextMeshProUGUI>();
+        AplicarFonteTmp(tmp);
+        tmp.text = texto;
+        tmp.fontSize = 15f;
+        tmp.alignment = TextAlignmentOptions.Midline;
+        return btn;
+    }
+
     private static GameObject EncontrarPorNome(string nome)
     {
         foreach (Transform t in Object.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None))
@@ -192,7 +325,7 @@ public static class BestiarioLobbyUISetup
         return null;
     }
 
-    private static void CriarBarraSuperior(Transform parent, out TextMeshProUGUI pontos, out Button btnFechar)
+    private static void CriarBarraSuperior(Transform parent, out TextMeshProUGUI pontos, out TextMeshProUGUI ouro, out Button btnFechar)
     {
         GameObject bar = new GameObject("BarraSuperior");
         Undo.RegisterCreatedObjectUndo(bar, "Barra");
@@ -221,6 +354,16 @@ public static class BestiarioLobbyUISetup
         leP.flexibleWidth = 1f;
         leP.minWidth = 200f;
 
+        GameObject goOuro = new GameObject("TextoOuro");
+        goOuro.transform.SetParent(bar.transform, false);
+        ouro = goOuro.AddComponent<TextMeshProUGUI>();
+        AplicarFonteTmp(ouro);
+        ouro.text = "Ouro: 0";
+        ouro.fontSize = 20f;
+        LayoutElement leO = goOuro.AddComponent<LayoutElement>();
+        leO.flexibleWidth = 1f;
+        leO.minWidth = 160f;
+
         GameObject goBtn = new GameObject("BotaoFecharBestiario");
         goBtn.transform.SetParent(bar.transform, false);
         Image imgB = goBtn.AddComponent<Image>();
@@ -245,7 +388,7 @@ public static class BestiarioLobbyUISetup
         tmpB.fontSize = 16f;
     }
 
-    private static GameObject CriarScroll(Transform parent, out RectTransform contentOut)
+    private static GameObject CriarScrollListaCriaturas(Transform parent, out RectTransform contentOut)
     {
         GameObject go = new GameObject("ScrollListaCriaturas");
         Undo.RegisterCreatedObjectUndo(go, "Scroll");
@@ -282,6 +425,50 @@ public static class BestiarioLobbyUISetup
         crt.pivot = new Vector2(0.5f, 1);
         crt.anchoredPosition = Vector2.zero;
         crt.sizeDelta = new Vector2(0, 600);
+
+        sr.viewport = vrt;
+        sr.content = crt;
+        contentOut = crt;
+        return go;
+    }
+
+    private static GameObject CriarScrollCatalogoRunas(Transform parent, out RectTransform contentOut)
+    {
+        GameObject go = new GameObject("ScrollCatalogoRunas");
+        Undo.RegisterCreatedObjectUndo(go, "ScrollCat");
+        go.transform.SetParent(parent, false);
+        RectTransform rt = go.AddComponent<RectTransform>();
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.sizeDelta = Vector2.zero;
+
+        Image img = go.AddComponent<Image>();
+        img.color = new Color(0.11f, 0.11f, 0.13f, 1f);
+
+        ScrollRect sr = go.AddComponent<ScrollRect>();
+        sr.horizontal = false;
+        sr.vertical = true;
+        sr.movementType = ScrollRect.MovementType.Clamped;
+
+        GameObject viewport = new GameObject("Viewport");
+        viewport.transform.SetParent(go.transform, false);
+        RectTransform vrt = viewport.AddComponent<RectTransform>();
+        vrt.anchorMin = Vector2.zero;
+        vrt.anchorMax = Vector2.one;
+        vrt.offsetMin = new Vector2(6, 6);
+        vrt.offsetMax = new Vector2(-6, -6);
+        viewport.AddComponent<Image>().color = new Color(1, 1, 1, 0.02f);
+        Mask mask = viewport.AddComponent<Mask>();
+        mask.showMaskGraphic = false;
+
+        GameObject content = new GameObject("ContentListaCatalogoRunas");
+        content.transform.SetParent(viewport.transform, false);
+        RectTransform crt = content.AddComponent<RectTransform>();
+        crt.anchorMin = new Vector2(0, 1);
+        crt.anchorMax = new Vector2(1, 1);
+        crt.pivot = new Vector2(0.5f, 1);
+        crt.anchoredPosition = Vector2.zero;
+        crt.sizeDelta = new Vector2(0, 800);
 
         sr.viewport = vrt;
         sr.content = crt;

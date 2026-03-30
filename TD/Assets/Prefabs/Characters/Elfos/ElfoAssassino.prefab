@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8645594868517074200}
   - component: {fileID: 6249888693920117422}
   - component: {fileID: 8328656871903305875}
+  - component: {fileID: 5376961574472911902}
+  - component: {fileID: 1675251557311133813}
   m_Layer: 3
   m_Name: ElfoAssassino
   m_TagString: NpcGoblin
@@ -227,6 +229,32 @@ CapsuleCollider2D:
   m_Offset: {x: -1, y: 0}
   m_Size: {x: 3.25, y: 5.25}
   m_Direction: 0
+--- !u!114 &5376961574472911902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617070310612995912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544155d357cae39408f917e74bba4996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdentificadorBestiarioInimigo
+  criaturaId: elf_assassino
+--- !u!114 &1675251557311133813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617070310612995912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d39f5fce2801c448d763466b69bfd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RegistoMorteBestiario
+  database: {fileID: 0}
 --- !u!1 &8639796489164306097
 GameObject:
   m_ObjectHideFlags: 0

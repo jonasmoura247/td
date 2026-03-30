@@ -32,22 +32,26 @@ public static class BestiarioCriarDatabaseMenu
             new BestiarioCriaturaDef
             {
                 id = "gob_guerreiro",
+                racaId = "Goblin",
+                nivelDificuldade = NivelDificuldadeBestiario.Facil,
                 nomeExibicao = "Goblin Guerreiro",
                 descricaoTooltip = "Guerreiro goblin comum das ondas.",
                 icone = sprGuerreiro,
                 iconeSilhueta = sprGuerreiro,
-                marcosMortes = new[] { 100, 300, 500 },
-                pontosPorEstagio = new[] { 1, 2, 3 }
+                marcosMortes = new[] { 50, 150, 300 },
+                pontosPorEstagio = new[] { 10, 10, 10 }
             },
             new BestiarioCriaturaDef
             {
                 id = "gob_lanceiro",
+                racaId = "Goblin",
+                nivelDificuldade = NivelDificuldadeBestiario.Facil,
                 nomeExibicao = "Goblin Lanceiro",
                 descricaoTooltip = "Lanceiro goblin que atira no castelo.",
                 icone = CarregarSpriteGoblinLanceiro(),
                 iconeSilhueta = CarregarSpriteGoblinLanceiro(),
-                marcosMortes = new[] { 100, 300, 500 },
-                pontosPorEstagio = new[] { 1, 2, 3 }
+                marcosMortes = new[] { 50, 150, 300 },
+                pontosPorEstagio = new[] { 10, 10, 10 }
             }
         };
 
@@ -58,8 +62,11 @@ public static class BestiarioCriarDatabaseMenu
                 id = "runa_eco_guerreiro",
                 nomeExibicao = "Eco de dor",
                 descricaoTooltip = "Chance de sofrer dano extra ao receber dano (fracao da vida maxima).",
-                criaturaAlvoId = "gob_guerreiro",
-                custoPontos = 2,
+                descricaoCatalogo = "Inimigos com esta runa podem sofrer um segundo valor de dano quando o jogador os atinge.",
+                icone = sprGuerreiro,
+                iconeSilhueta = sprGuerreiro,
+                criaturaAlvoId = "",
+                custoPontosLiberacao = 50,
                 estagiosMinimos = 3,
                 tipoEfeito = TipoEfeitoRuna.DanoEcoAoReceberDano,
                 parametroChance = 0.15f,
@@ -70,8 +77,11 @@ public static class BestiarioCriarDatabaseMenu
                 id = "runa_crit_guerreiro",
                 nomeExibicao = "Runa do critico brutal",
                 descricaoTooltip = "Criticos ao castelo usam 150% em vez de 120%.",
-                criaturaAlvoId = "gob_guerreiro",
-                custoPontos = 3,
+                descricaoCatalogo = "Aumenta o multiplicador de dano critico quando o goblin atinge o castelo.",
+                icone = sprGuerreiro,
+                iconeSilhueta = sprGuerreiro,
+                criaturaAlvoId = "",
+                custoPontosLiberacao = 60,
                 estagiosMinimos = 3,
                 tipoEfeito = TipoEfeitoRuna.CriticoMultiplicadorAtaque,
                 parametroChance = 0f,

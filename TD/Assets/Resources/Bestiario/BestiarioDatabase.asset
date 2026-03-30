@@ -16,36 +16,111 @@ MonoBehaviour:
   multiplicadorCriticoBase: 1.2
   criaturas:
   - id: gob_guerreiro
+    racaId: Goblin
+    nivelDificuldade: 0
     nomeExibicao: Goblin Guerreiro
-    descricaoTooltip: Guerreiro goblin comum das ondas.
+    descricaoTooltip: "Prefab GoblinGuerreiro_Prefab \u2014 usado como inimigo no
+      jogo."
     icone: {fileID: -4476789289913834123, guid: eca6f52e89af3be408b1187892497691, type: 3}
     iconeSilhueta: {fileID: -4476789289913834123, guid: eca6f52e89af3be408b1187892497691, type: 3}
-    marcosMortes: 640000002c010000f4010000
-    pontosPorEstagio: 010000000200000003000000
+    marcosMortes: 32000000960000002c010000
+    pontosPorEstagio: 0a0000000a0000000a000000
   - id: gob_lanceiro
+    racaId: Goblin
+    nivelDificuldade: 0
     nomeExibicao: Goblin Lanceiro
-    descricaoTooltip: Lanceiro goblin que atira no castelo.
+    descricaoTooltip: "Prefab GoblinLanceiro \u2014 presente no Mapa_1."
     icone: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
     iconeSilhueta: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
-    marcosMortes: 640000002c010000f4010000
-    pontosPorEstagio: 010000000200000003000000
+    marcosMortes: 32000000960000002c010000
+    pontosPorEstagio: 0a0000000a0000000a000000
+  - id: gob_guerreiro_n
+    racaId: Goblin
+    nivelDificuldade: 0
+    nomeExibicao: Goblin Guerreiro N
+    descricaoTooltip: "Prefab GoblinGuerreiroN \u2014 Mapa_1."
+    icone: {fileID: -4185907746492740500, guid: 44827bcad7aec5541b197834ea76375c, type: 3}
+    iconeSilhueta: {fileID: -4185907746492740500, guid: 44827bcad7aec5541b197834ea76375c, type: 3}
+    marcosMortes: 32000000960000002c010000
+    pontosPorEstagio: 0a0000000a0000000a000000
+  - id: hum_guerreiro
+    racaId: Humano
+    nivelDificuldade: 1
+    nomeExibicao: Humano Guerreiro
+    descricaoTooltip: "Prefab HumanoGuerreiro \u2014 Mapa_1."
+    icone: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    iconeSilhueta: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    marcosMortes: 64000000fa000000f4010000
+    pontosPorEstagio: 0f0000000f0000000f000000
+  - id: elf_assassino
+    racaId: Elfo
+    nivelDificuldade: 1
+    nomeExibicao: Elfo Assassino
+    descricaoTooltip: "Prefab ElfoAssassino \u2014 Mapa_1."
+    icone: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    iconeSilhueta: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    marcosMortes: 64000000fa000000f4010000
+    pontosPorEstagio: 0f0000000f0000000f000000
+  - id: elf_mago
+    racaId: Elfo
+    nivelDificuldade: 1
+    nomeExibicao: Elfo Mago
+    descricaoTooltip: "Prefab ElfoMago \u2014 Mapa_1."
+    icone: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    iconeSilhueta: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    marcosMortes: 64000000fa000000f4010000
+    pontosPorEstagio: 0f0000000f0000000f000000
+  - id: ana_guerreiro
+    racaId: Anao
+    nivelDificuldade: 2
+    nomeExibicao: Anao Guerreiro
+    descricaoTooltip: "Prefab AnaoGuerreiro \u2014 Mapa_1."
+    icone: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    iconeSilhueta: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
   runas:
   - id: runa_eco_guerreiro
     nomeExibicao: Eco de dor
     descricaoTooltip: Chance de sofrer dano extra ao receber dano (fracao da vida
       maxima).
-    criaturaAlvoId: gob_guerreiro
-    custoPontos: 2
+    descricaoCatalogo: Inimigos com esta runa podem sofrer um segundo valor de dano
+      quando o jogador os atinge.
+    icone: {fileID: -4243275058067700186, guid: 7afa256aff015fe4a9b55af9a6e3a237, type: 3}
+    iconeSilhueta: {fileID: -4243275058067700186, guid: 7afa256aff015fe4a9b55af9a6e3a237, type: 3}
+    criaturaAlvoId: 
+    custoPontosLiberacao: 50
     estagiosMinimos: 3
+    textoRequisitosCatalogo: 50 pts
     tipoEfeito: 1
     parametroChance: 0.15
     parametroValor: 0.05
   - id: runa_crit_guerreiro
     nomeExibicao: Runa do critico brutal
     descricaoTooltip: Criticos ao castelo usam 150% em vez de 120%.
-    criaturaAlvoId: gob_guerreiro
-    custoPontos: 3
+    descricaoCatalogo: Aumenta o multiplicador de dano critico quando o inimigo atinge
+      o castelo.
+    icone: {fileID: -3473050044218385976, guid: d660749af041c7b40ae28d28bc7f0523, type: 3}
+    iconeSilhueta: {fileID: -3473050044218385976, guid: d660749af041c7b40ae28d28bc7f0523, type: 3}
+    criaturaAlvoId: 
+    custoPontosLiberacao: 50
     estagiosMinimos: 3
+    textoRequisitosCatalogo: 50 pts
     tipoEfeito: 2
+    parametroChance: 0
+    parametroValor: 1.5
+  - id: toque_venenoso
+    nomeExibicao: Toque Venenoso
+    descricaoTooltip: Quando um aliado ataca uma criatura inimiga 10% de chance de
+      causar dano de veneno
+    descricaoCatalogo: Quando um aliado ataca uma criatura inimiga 10% de chance
+      de causar dano de veneno
+    icone: {fileID: 7724256273548432313, guid: fa4a3bc2cbb1aa545884b79f09d45197, type: 3}
+    iconeSilhueta: {fileID: 7724256273548432313, guid: fa4a3bc2cbb1aa545884b79f09d45197, type: 3}
+    criaturaAlvoId: 
+    custoPontosLiberacao: 50
+    estagiosMinimos: 3
+    textoRequisitosCatalogo: 50 pts
+    tipoEfeito: 0
     parametroChance: 0
     parametroValor: 1.5

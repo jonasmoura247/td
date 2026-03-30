@@ -3,6 +3,8 @@ using UnityEngine;
 
 public static class BestiarioRegras
 {
+    public const int OuroRemocaoRunaPorNivelJogador = 100;
+
     public static void RegistrarMorte(string criaturaId, BestiarioDatabase database, DadosSlotSave dados)
     {
         database = BestiarioCatalogoUtil.CarregarOuNull(database);
@@ -77,6 +79,71 @@ public static class BestiarioRegras
         }
     }
 
+    public static bool RunaEstaLiberada(DadosBestiario b, string runaId)
+    {
+        return b?.runasLiberadas != null && !string.IsNullOrEmpty(runaId) && b.runasLiberadas.Contains(runaId);
+    }
+
+    public static int CalcularCustoOuroRemocaoRuna(DadosSlotSave dados)
+    {
+        if (dados == null)
+            return 0;
+        int nv = dados.ObterNivelRaca(dados.raca);
+        return Mathf.Max(0, OuroRemocaoRunaPorNivelJogador * nv);
+    }
+
+    public static bool PodeLiberarRuna(
+        string runaId,
+        BestiarioDatabase database,
+        DadosSlotSave dados,
+        out string motivoFalha)
+    {
+        motivoFalha = "";
+        database = BestiarioCatalogoUtil.CarregarOuNull(database);
+        if (database == null || dados == null || string.IsNullOrEmpty(runaId))
+        {
+            motivoFalha = "Dados invalidos.";
+            return false;
+        }
+        dados.NormalizarBestiario();
+        var runa = database.ObterRuna(runaId);
+        if (runa == null)
+        {
+            motivoFalha = "Runa desconhecida.";
+            return false;
+        }
+        if (RunaEstaLiberada(dados.bestiario, runaId))
+        {
+            motivoFalha = "Runa ja liberada.";
+            return false;
+        }
+        if (BestiarioModoTeste.Ativo)
+            return true;
+        if (dados.bestiario.pontosBestiario < runa.custoPontosLiberacao)
+        {
+            motivoFalha = "Pontos de bestiario insuficientes.";
+            return false;
+        }
+        return true;
+    }
+
+    public static bool TentarLiberarRuna(string runaId, BestiarioDatabase database, DadosSlotSave dados)
+    {
+        if (!PodeLiberarRuna(runaId, database, dados, out _))
+            return false;
+        database = BestiarioCatalogoUtil.CarregarOuNull(database);
+        var runa = database.ObterRuna(runaId);
+        dados.NormalizarBestiario();
+        if (!BestiarioModoTeste.Ativo)
+        {
+            dados.bestiario.pontosBestiario -= runa.custoPontosLiberacao;
+            dados.bestiario.pontosBestiario = Mathf.Max(0, dados.bestiario.pontosBestiario);
+        }
+        if (!dados.bestiario.runasLiberadas.Contains(runaId))
+            dados.bestiario.runasLiberadas.Add(runaId);
+        return true;
+    }
+
     public static bool PodeEquiparRuna(
         string criaturaId,
         string runaId,
@@ -99,44 +166,39 @@ public static class BestiarioRegras
             motivoFalha = "Runa ou criatura desconhecida.";
             return false;
         }
-        if (runa.criaturaAlvoId != criaturaId)
+        if (!BestiarioModoTeste.Ativo)
         {
-            motivoFalha = "Runa nao pertence a esta criatura.";
-            return false;
-        }
+            if (!RunaEstaLiberada(dados.bestiario, runaId))
+            {
+                motivoFalha = "Libere a runa com pontos antes de equipar.";
+                return false;
+            }
 
-        var prog = ObterOuCriarProgresso(dados.bestiario, criaturaId);
-        int estagios = ObterEstagiosCompletos(criatura, prog.mortes);
-        if (estagios < runa.estagiosMinimos)
-        {
-            motivoFalha = "Estagios insuficientes.";
-            return false;
+            var prog = ObterOuCriarProgresso(dados.bestiario, criaturaId);
+            int estagios = ObterEstagiosCompletos(criatura, prog.mortes);
+            if (estagios < runa.estagiosMinimos)
+            {
+                motivoFalha = "Estagios insuficientes nesta criatura.";
+                return false;
+            }
         }
 
         if (ObterCriaturaQueEquipaRuna(dados.bestiario, runaId, out string outra) && outra != criaturaId)
         {
-            motivoFalha = "Runa ja equipada em outra criatura.";
+            motivoFalha = "Runa ja equipada noutra criatura.";
+            return false;
+        }
+
+        string atualNaCriatura = ObterRunaEquipadaNaCriatura(dados.bestiario, criaturaId);
+        if (!string.IsNullOrEmpty(atualNaCriatura) && atualNaCriatura != runaId)
+        {
+            motivoFalha = "Remova a runa atual (custo em ouro) antes de equipar outra.";
             return false;
         }
 
         if (ObterRunaEquipadaNaCriatura(dados.bestiario, criaturaId) == runaId)
         {
             motivoFalha = "Ja equipada aqui.";
-            return false;
-        }
-
-        int pontosDisponiveis = dados.bestiario.pontosBestiario;
-        string runaAtualCriatura = ObterRunaEquipadaNaCriatura(dados.bestiario, criaturaId);
-        if (!string.IsNullOrEmpty(runaAtualCriatura) && runaAtualCriatura != runaId)
-        {
-            var defAtual = database.ObterRuna(runaAtualCriatura);
-            if (defAtual != null)
-                pontosDisponiveis += defAtual.custoPontos;
-        }
-
-        if (pontosDisponiveis < runa.custoPontos)
-        {
-            motivoFalha = "Pontos de bestiario insuficientes.";
             return false;
         }
 
@@ -149,29 +211,63 @@ public static class BestiarioRegras
             return false;
 
         database = BestiarioCatalogoUtil.CarregarOuNull(database);
-        var runa = database.ObterRuna(runaId);
         dados.NormalizarBestiario();
 
+        if (BestiarioModoTeste.Ativo && !RunaEstaLiberada(dados.bestiario, runaId) &&
+            !string.IsNullOrEmpty(runaId) && dados.bestiario.runasLiberadas != null)
+            dados.bestiario.runasLiberadas.Add(runaId);
+
         RemoverRunaGlobal(dados.bestiario, runaId);
-
-        string existente = ObterRunaEquipadaNaCriatura(dados.bestiario, criaturaId);
-        if (!string.IsNullOrEmpty(existente) && existente != runaId)
-            TentarDesequiparRuna(criaturaId, existente, database, dados);
-
-        dados.bestiario.pontosBestiario -= runa.custoPontos;
         dados.bestiario.runasEquipadas.Add(new BestiarioRunaEquipada { runaId = runaId, criaturaId = criaturaId });
         return true;
     }
 
-    public static bool TentarDesequiparRuna(string criaturaId, string runaId, BestiarioDatabase database, DadosSlotSave dados)
+    public static bool PodeRemoverRunaComOuro(
+        string criaturaId,
+        string runaId,
+        BestiarioDatabase database,
+        DadosSlotSave dados,
+        out string motivoFalha)
     {
+        motivoFalha = "";
         database = BestiarioCatalogoUtil.CarregarOuNull(database);
         if (database == null || dados == null || string.IsNullOrEmpty(runaId))
+        {
+            motivoFalha = "Dados invalidos.";
             return false;
+        }
         dados.NormalizarBestiario();
-        var runa = database.ObterRuna(runaId);
-        if (runa == null)
+        if (database.ObterRuna(runaId) == null)
+        {
+            motivoFalha = "Runa desconhecida.";
             return false;
+        }
+        if (ObterRunaEquipadaNaCriatura(dados.bestiario, criaturaId) != runaId)
+        {
+            motivoFalha = "Runa nao esta equipada nesta criatura.";
+            return false;
+        }
+        int custo = CalcularCustoOuroRemocaoRuna(dados);
+        if (!BestiarioModoTeste.Ativo && dados.ouro < custo)
+        {
+            motivoFalha = $"Ouro insuficiente (precisa {custo}).";
+            return false;
+        }
+        return true;
+    }
+
+    public static bool TentarRemoverRunaComOuro(string criaturaId, string runaId, BestiarioDatabase database, DadosSlotSave dados)
+    {
+        if (!PodeRemoverRunaComOuro(criaturaId, runaId, database, dados, out _))
+            return false;
+
+        dados.NormalizarBestiario();
+        if (!BestiarioModoTeste.Ativo)
+        {
+            int custo = CalcularCustoOuroRemocaoRuna(dados);
+            dados.ouro -= custo;
+            dados.ouro = Mathf.Max(0, dados.ouro);
+        }
 
         for (int i = dados.bestiario.runasEquipadas.Count - 1; i >= 0; i--)
         {
@@ -179,11 +275,12 @@ public static class BestiarioRegras
             if (e != null && e.runaId == runaId && e.criaturaId == criaturaId)
             {
                 dados.bestiario.runasEquipadas.RemoveAt(i);
-                dados.bestiario.pontosBestiario += runa.custoPontos;
-                return true;
+                break;
             }
         }
-        return false;
+
+        OuroPerfilUtil.AplicarOuroDoPerfilAoManager(dados);
+        return true;
     }
 
     public static string ObterRunaEquipadaNaCriatura(DadosBestiario b, string criaturaId)
@@ -223,5 +320,36 @@ public static class BestiarioRegras
             if (b.runasEquipadas[i] != null && b.runasEquipadas[i].runaId == runaId)
                 b.runasEquipadas.RemoveAt(i);
         }
+    }
+
+    /// <summary>Catálogo: destaque se a runa está liberada, pode ser liberada agora, ou está equipada em alguma criatura.</summary>
+    public static bool RunaHabilitadaNoCatalogo(
+        string runaId,
+        BestiarioDatabase database,
+        DadosSlotSave dados,
+        out string motivoBloqueio)
+    {
+        motivoBloqueio = "";
+        database = BestiarioCatalogoUtil.CarregarOuNull(database);
+        if (database == null || dados == null || string.IsNullOrEmpty(runaId))
+        {
+            motivoBloqueio = "Dados invalidos.";
+            return false;
+        }
+        dados.NormalizarBestiario();
+        if (BestiarioModoTeste.Ativo)
+            return true;
+        if (RunaEstaLiberada(dados.bestiario, runaId))
+            return true;
+        if (ObterCriaturaQueEquipaRuna(dados.bestiario, runaId, out _))
+            return true;
+        if (PodeLiberarRuna(runaId, database, dados, out _))
+            return true;
+        var runa = database.ObterRuna(runaId);
+        if (runa != null && dados.bestiario.pontosBestiario < runa.custoPontosLiberacao)
+            motivoBloqueio = "Pontos insuficientes para liberar.";
+        else
+            motivoBloqueio = "Bloqueada.";
+        return false;
     }
 }
