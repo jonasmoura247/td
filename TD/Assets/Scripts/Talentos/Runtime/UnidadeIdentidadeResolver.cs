@@ -55,6 +55,18 @@ public static class UnidadeIdentidadeResolver
                 raca = TipoRaca.Humano;
                 sub = UnidadeSubtipo.Mineiro;
                 return;
+            case GoblinMineiroController:
+                raca = TipoRaca.Goblin;
+                sub = UnidadeSubtipo.Mineiro;
+                return;
+            case ElfoMineiroController:
+                raca = TipoRaca.Elfo;
+                sub = UnidadeSubtipo.Mineiro;
+                return;
+            case AnaoMineiroController:
+                raca = TipoRaca.Anao;
+                sub = UnidadeSubtipo.Mineiro;
+                return;
             case HumanoGuerreiro:
                 raca = TipoRaca.Humano;
                 sub = UnidadeSubtipo.Guerreiro;
