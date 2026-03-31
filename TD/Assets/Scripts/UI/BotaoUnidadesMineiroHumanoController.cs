@@ -3,13 +3,14 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
-/// Controla o botão de spawn do mineiro humano. Ao clicar, spawna um mineiro no centro do castelo se houver ouro suficiente.
+/// Spawn do mineiro no centro do castelo (mesma lógica para todas as raças: prefab com <see cref="MineiroAliadoController"/>).
 /// </summary>
 public class BotaoUnidadesMineiroHumanoController : MonoBehaviour
 {
     [Header("Configuração")]
     [SerializeField] private int custoOuro = 70;
     [SerializeField] private GameObject mineiroPrefab;
+    [SerializeField] private string nomeInstancia = "HumanoMineiro";
 
     [Header("Referências")]
     [SerializeField] private TextMeshProUGUI textoCusto;
@@ -48,8 +49,9 @@ public class BotaoUnidadesMineiroHumanoController : MonoBehaviour
             return;
 
         Vector2 posicaoSpawn = ObterCentroCastelo();
-        GameObject mineiro = Object.Instantiate(mineiroPrefab, posicaoSpawn, Quaternion.identity);
-        mineiro.name = "HumanoMineiro";
+        GameObject mineiro = GameObject.Instantiate(mineiroPrefab, posicaoSpawn, Quaternion.identity);
+        if (!string.IsNullOrEmpty(nomeInstancia))
+            mineiro.name = nomeInstancia;
     }
 
     private Vector2 ObterCentroCastelo()
