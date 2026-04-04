@@ -4,20 +4,41 @@ public class LancaProjetil : MonoBehaviour
 {
     public float velocidade = 8f;
 
+    [Tooltip("0 = sem limite. Evita projéteis presos se o alvo fugir ou for destruído de forma anómala.")]
+    public float tempoVidaMaximo = 0f;
+
+    [Tooltip("Se ativo, regista no console cada impacto com dano.")]
+    public bool registrarImpactoNoConsole = false;
+
     private Transform alvo;
     private int dano;
     private string origemNome;
+    private float tempoCriacao;
 
     public void Inicializar(Transform novoAlvo, int novoDano, string nomeOrigem = null)
     {
         alvo = novoAlvo;
         dano = novoDano;
         origemNome = nomeOrigem;
+        tempoCriacao = Time.time;
     }
 
     private void Update()
     {
+        if (tempoVidaMaximo > 0f && Time.time - tempoCriacao >= tempoVidaMaximo)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (alvo == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        IDanificavel vidaAlvo = alvo.GetComponent<IDanificavel>();
+        if (vidaAlvo != null && !vidaAlvo.EstaVivo)
         {
             Destroy(gameObject);
             return;
@@ -35,13 +56,14 @@ public class LancaProjetil : MonoBehaviour
 
         if (distancia <= 0.1f)
         {
-            IDanificavel danificavel = alvo.GetComponent<IDanificavel>();
-
-            if (danificavel != null)
+            if (vidaAlvo != null && vidaAlvo.EstaVivo)
             {
-                danificavel.ReceberDano(dano);
-                string origem = string.IsNullOrEmpty(origemNome) ? "Projetil" : origemNome;
-                Debug.Log($"[Castelo] {origem} (Lanceiro) causou {dano} de dano no castelo.");
+                vidaAlvo.ReceberDano(dano);
+                if (registrarImpactoNoConsole)
+                {
+                    string origem = string.IsNullOrEmpty(origemNome) ? "Projetil" : origemNome;
+                    Debug.Log($"[LancaProjetil] {origem} causou {dano} de dano em {alvo.name}.");
+                }
             }
 
             Destroy(gameObject);

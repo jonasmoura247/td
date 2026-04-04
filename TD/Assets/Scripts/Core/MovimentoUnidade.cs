@@ -7,7 +7,7 @@ public class MovimentoUnidade : MonoBehaviour
     public float velocidade = 10f;
     public float distanciaParada = 0.3f;
 
-    [Header("Espaço Físico Virtual")]
+    [Header("Espaï¿½o Fï¿½sico Virtual")]
     public float raioUnidade = 1.5f;
     public float forcaSeparacao = 25f;
     public LayerMask layerUnidades;
@@ -149,6 +149,35 @@ public class MovimentoUnidade : MonoBehaviour
     public bool EstaMovimentando()
     {
         return movimentando;
+    }
+
+    /// <summary>ï¿½ndice do waypoint para o qual a unidade se dirige (somente leitura).</summary>
+    public int IndiceWaypointAtual => pontoAtual;
+
+    /// <summary>Quantidade de pontos na rota atual, ou 0 se nï¿½o houver rota.</summary>
+    public int TotalPontosNaRota => pontos != null ? pontos.Length : 0;
+
+    /// <summary>
+    /// Distï¿½ncia aproximada restante ao longo da polilinha atï¿½ o ï¿½ltimo ponto.
+    /// Menor valor = unidade mais avanï¿½ada no percurso (ï¿½til para prioridade de torres TD).
+    /// </summary>
+    public float CalcularDistanciaRestanteNaRota()
+    {
+        if (pontos == null || pontos.Length == 0)
+            return float.MaxValue;
+
+        if (pontoAtual >= pontos.Length)
+            return 0f;
+
+        Vector2 pos = rb != null ? rb.position : (Vector2)transform.position;
+        float total = Vector2.Distance(pos, pontos[pontoAtual].position);
+
+        for (int i = pontoAtual; i < pontos.Length - 1; i++)
+        {
+            total += Vector2.Distance(pontos[i].position, pontos[i + 1].position);
+        }
+
+        return total;
     }
 
     private void OnDrawGizmosSelected()

@@ -141,9 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9361bde1d19846a438d55aca893c7a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LootColetavel
-  nomeLoot: Loot
+  nomeLoot: Adaga Enferrujada
   quantidade: 1
   tempoNoChaoSegundos: 40
+  adicionarComoOuro: 0
   aoColetar:
     m_PersistentCalls:
       m_Calls: []
