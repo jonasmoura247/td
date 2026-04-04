@@ -67,7 +67,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private WaveConfig[] configuracoesWaves;
 
     [Header("===== CONFIGURACOES POR RACA (para modo Aleatoria) =====")]
-    [Tooltip("Usado quando modoWave é Aleatoria. Por enquanto: apenas Goblin.")]
+    [Tooltip("Uma entrada por TipoRaca (Goblin, Humano, Elfo, Anao). Usada no modo Aleatoria e para comuns/boss quando a wave nao define prefabs proprios. Com perfil ativo, a raca do jogador e excluida do sorteio.")]
     [SerializeField] private WaveRacaConfig[] configuracoesRacas;
 
     [Header("===== TALENTOS =====")]
@@ -100,6 +100,9 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         tempoAtual = tempoEntreWaves;
+
+        if (!PerfilJogadorAtivo.TemPerfilAtivo)
+            Debug.LogWarning("[WaveManager] Perfil ativo nao encontrado: o filtro de raca inimiga esta desativado (todas as racas em configuracoesRacas podem ser sorteadas). Entre no mapa pelo fluxo de slots (criar ou carregar perfil).");
 
         DefinirProximaWave();
 
@@ -207,20 +210,29 @@ public class WaveManager : MonoBehaviour
         if (candidatos.Count > 0)
             return candidatos[Random.Range(0, candidatos.Count)];
 
-        WaveRacaConfig fallback = null;
-        foreach (var c in configuracoesRacas)
-        {
-            if (c != null)
-            {
-                fallback = c;
-                break;
-            }
-        }
+        if (PerfilJogadorAtivo.TemPerfilAtivo)
+            Debug.LogError("[WaveManager] Nenhuma raca inimiga apos excluir a raca do jogador (" + PerfilJogadorAtivo.Raca + "). Preencha configuracoesRacas com pelo menos uma raca diferente da do perfil.");
+        else
+            Debug.LogWarning("[WaveManager] Nenhuma entrada valida em configuracoesRacas.");
 
-        if (fallback != null)
-            Debug.LogWarning("[WaveManager] Apenas configuracao da raca do jogador disponivel; usando fallback.");
+        return null;
+    }
 
-        return fallback;
+    /// <summary>
+    /// Indica se a wave depende de configRacaAtual para prefabs de comuns ou boss.
+    /// </summary>
+    private static bool WavePrecisaConfigRacaParaSpawn(WaveConfig cfg)
+    {
+        if (cfg == null)
+            return false;
+
+        bool comunsVemDaRaca = cfg.modoWave == ModoWave.Aleatoria ||
+            cfg.prefabsComuns == null || cfg.prefabsComuns.Length == 0;
+
+        if (comunsVemDaRaca)
+            return true;
+
+        return cfg.quantidadeBoss > 0 && cfg.bossPrefab == null;
     }
 
     private void AtualizarHudOndas()
@@ -275,6 +287,17 @@ public class WaveManager : MonoBehaviour
         if (partidaFinalizada)
             return;
         if (waveAtiva) return;
+
+        int proximaWave = numeroWave + 1;
+        WaveConfig cfgPreview = ObterConfigWave(proximaWave);
+        if (WavePrecisaConfigRacaParaSpawn(cfgPreview) && configRacaAtual == null)
+        {
+            Debug.LogError("[WaveManager] Wave " + proximaWave + " precisa de configuracoesRacas validas (raca inimiga), mas nenhuma esta disponivel. Corrija o Inspector ou entre pelo fluxo de slots.");
+            tempoAtual = tempoEntreWaves;
+            if (botaoPlay != null)
+                botaoPlay.interactable = true;
+            return;
+        }
 
         waveAtiva = true;
         spawnDestaWaveConcluido = false;

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5679774383594413091}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PontoDisparo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,15 +41,16 @@ GameObject:
   m_Component:
   - component: {fileID: 7818727125535636053}
   - component: {fileID: 6349692951182489248}
-  - component: {fileID: 3854835396798461238}
   - component: {fileID: 3518856063253832190}
   - component: {fileID: 7910792990342983493}
   - component: {fileID: 6495010323626366289}
   - component: {fileID: 5678165717781879957}
   - component: {fileID: 6937886433871883228}
-  m_Layer: 0
+  - component: {fileID: 6950886711485292819}
+  - component: {fileID: 8800100400000001}
+  m_Layer: 3
   m_Name: ElfoMago
-  m_TagString: NpcGoblin
+  m_TagString: NpcElfo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,8 +65,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -214, y: 32, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 2}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5679774383594413091}
   m_Father: {fileID: 0}
@@ -119,7 +120,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
+  m_Sprite: {fileID: 952653498241486815, guid: 47a3078c139fc2840b1c716c92fac901, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,52 +130,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &3854835396798461238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6527514975530341288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfaf4ae76b853a247835dd1c25ca593a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoblinLanceiro
-  vidaMaxima: 3
-  danoBase: 1
-  faccao: 1
-  distanciaRecuo: 1
-  duracaoRecuo: 0.2
-  curvaRecuo:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  multiplicadorDanoRacial: 1
-  distanciaDeAtaque: 50.3
-  intervaloAtaque: 1.5
-  projetilPrefab: {fileID: 934582073488721258, guid: 365bd8b7d613f21428c1c38256ae5467, type: 3}
-  pontoDisparo: {fileID: 5679774383594413091}
 --- !u!114 &3518856063253832190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,13 +142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 40
-  distanciaParada: 0.3
-  raioUnidade: 1.5
-  forcaSeparacao: 2
+  velocidade: 10
+  distanciaParada: 1
+  raioUnidade: 2
+  forcaSeparacao: 30
   layerUnidades:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!50 &7910792990342983493
 Rigidbody2D:
   serializedVersion: 5
@@ -217,9 +172,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &6495010323626366289
 CapsuleCollider2D:
@@ -284,3 +239,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegistoMorteBestiario
   database: {fileID: 0}
+--- !u!114 &6950886711485292819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527514975530341288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7575ad4aab03448a18bf9598b1ca26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElfoMago
+  vidaMaxima: 3
+  danoBase: -4
+  faccao: 1
+  distanciaRecuo: 1
+  duracaoRecuo: 0.2
+  curvaRecuo:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  distanciaAtaque: 15
+  intervaloAtaque: 2
+  magiaPrefab: {fileID: 934582073488721258, guid: 365bd8b7d613f21428c1c38256ae5467, type: 3}
+  pontoDisparo: {fileID: 5679774383594413091}
+--- !u!114 &8800100400000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527514975530341288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3a9c2e1b8046d5a1e2f3c4b5d60789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimacaoSpritePorVelocidade2D
+  spriteRenderer: {fileID: 0}
+  rigidbody2DRef: {fileID: 0}
+  spriteParado: {fileID: 0}
+  spritesAndar: []
+  spritesAndarOeste: []
+  spritesAndarNorte: []
+  spritesAndarSul: []
+  usarDirecoesNorteSul: 1
+  multiplicadorDominanciaVertical: 1
+  velocidadeMinima: 0.15
+  limiteDirecaoX: 0.05
+  tempoPorFrame: 0.12

@@ -1,0 +1,96 @@
+﻿--- PAGE 1 ---
+Ordem de Desenvolvimento ÔÇö Tower Defense
+Documento baseado no Design Doc do projeto e no estado atual do c├│digo. Atualizado em 12/03/2025.
+Vis├úo do estado atual
+J├í implementado
+WaveManager (8 waves, timer 1 min, ModoWave Aleat├│ria/Fixa, LadoSpawn)
+Ra├ºas: Goblin (Guerreiro, Lanceiro, Boss N├¡vel 3), Elfos (Mago), Humanos (Mineiro)
+OuroManager, LootManager, invent├írio
+Castelo, dano, game over, rotas e spawn
+UI b├ísica (ouro, HP castelo, painel de unidades)
+Sistema de loot ao morrer
+Principais lacunas (vs. design doc)
+Escolha de ra├ºa no in├¡cio da partida
+Sistema de torres (constru├º├úo, venda, upgrades)
+Sele├º├úo de dificuldade antes da partida
+Exclus├úo da ra├ºa do jogador das waves inimigas
+Bosses nas waves 3, 6 e 8 conforme doc
+An├Áes pouco implementados
+Sistema de her├│is, rel├¡quias, passivas, eventos
+Besti├írio, achievements, ilhas/estrelas, c├ómera
+Fase 1 ÔÇö N├║cleo do jogo 1ÔÇô2 semanas
+Estabelecer o loop b├ísico jog├ível.
+# Sistema Descri├º├úo Depend├¬ncias
+1 Escolha de ra├ºa Menu/tela antes do jogo para escolher
+Goblin/Elfo/An├úo/Humano Nenhuma
+2 Filtro de ra├ºa
+inimiga
+Waves nunca atacam com a ra├ºa escolhida pelo
+jogador
+Escolha de
+ra├ºa
+--- PAGE 2 ---
+3 Waves no formato
+do doc 5, 7, 10+boss, 15, 15, 20+boss, 25, 30+boss WaveManager
+4 Vit├│ria ao vencer
+wave 8 Tela/estado de vit├│ria; hoje s├│ h├í derrota Nada
+5 Sistema de torres
+(base) Placeholder/script base para torres Nenhuma
+Resultado: jogador escolhe ra├ºa ÔåÆ waves v├¬m s├│ de outras ra├ºas ÔåÆ partida termina com vit├│ria ou
+derrota clara.
+--- PAGE 3 ---
+Fase 2 ÔÇö Torre Defense central 2ÔÇô3 semanas
+Fazer o jogo funcionar como tower defense de verdade.
+# Sistema Descri├º├úo
+6 Sistema de coloca├º├úo de torres Grid/slots no mapa, drag & drop ou click para posicionar
+7 Torres por ra├ºa do jogador Cada ra├ºa com suas 3 torres (flecha, catapulta, fogo, etc.)
+8 Economia de torres Custo em mineiro + gold
+9 Torres atacando inimigos Alcance, dano, velocidade de ataque, sele├º├úo de alvo
+10 Venda de torres 50% se constru├¡da, 100% se ainda n├úo colocada
+Resultado: jogo jog├ível como tower defense completo.
+Fase 3 ÔÇö Upgrade e variedade de inimigos 1ÔÇô2 semanas
+# Sistema Descri├º├úo
+11 Upgrades de torres (3 n├¡veis) Cada torre com 3 upgrades configur├íveis
+12 Completar unidades inimigas Variantes por ra├ºa (arqueiro, guerreiro, mago, etc.)
+13 Bosses por ra├ºa/n├¡vel Bosses N├¡vel 1/2/3 e varia├º├Áes (A, B, C) conforme doc
+Fase 4 ÔÇö Dificuldade e vari├íveis ~1 semana
+# Sistema Descri├º├úo
+14 Sele├º├úo de dificuldade F├ícil, Normal, Dif├¡cil, Extrema antes da partida
+15 Ajustes por dificuldade Vida, dano, quantidade de inimigos, ouro
+16 Raridade de loot Comum/Raro/├ëpico/Lend├írio conforme dificuldade
+--- PAGE 4 ---
+Fase 5 ÔÇö Her├│is, eventos e loot de boss ~2 semanas
+# Sistema Descri├º├úo
+17 Evento JOB HUNTER 3 her├│is para escolher por X gold (ra├ºa do jogador)
+18 Her├│is em campo Spawn, comportamento, at├® 3 her├│is por partida
+19 Loot de boss Bosses dropam itens espec├¡ficos
+20 Evento MERCHANT Compra do loot de boss
+Fase 6 ÔÇö Passivas e rel├¡quias ~1 semana
+# Sistema Descri├º├úo
+21 Passivas de ra├ºa (1 e
+2) Implementar passivas por ra├ºa conforme doc
+22 Rel├¡quias (at├® 5) Escolha antes da partida + efeitos (Rem├®dios demais, O olho que nada
+v├¬)
+Fase 7 ÔÇö Progress├úo e replay ~2 semanas
+# Sistema Descri├º├úo
+23 Sistema de ilhas e fases Ilhas com v├írias fases e requisitos de estrelas
+24 Sistema de estrelas At├® 3 estrelas por fase para desbloquear pr├│xima ilha
+25 Buffs/debuffs por ilha B├┤nus/penalidade de ra├ºa por tipo de ilha
+26 Drop permanente Loot de boss mantido s├│ se vencer a partida
+Fase 8 ÔÇö Polimento e extras ~1ÔÇô2 semanas
+# Sistema Descri├º├úo
+27 C├ómera Zoom in/out + zoom no boss ao morrer
+28 Besti├írio Registro de inimigos enfrentados e info progressiva
+--- PAGE 5 ---
+29 Estat├¡sticas Tela com kills, dano, ouro, etc., por unidade/torre/her├│i
+30 Achievements Conquistas conforme doc
+Pr├│ximos passos imediatos
+Recomenda├º├úo para come├ºar agora:
+1. Escolha de ra├ºa no in├¡cio ÔÇö criar RacaSelecionada (ou similar) persistente entre menu e
+gameplay
+2. Filtro de ra├ºa nas waves ÔÇö no WaveManager, ao sortear ra├ºa inimiga, excluir a ra├ºa do
+jogador
+3. Configurar waves 1ÔÇô8 ÔÇö usar configuracoesWaves no Inspector com quantidades e bosses
+do doc
+4. Condi├º├úo de vit├│ria ÔÇö ao finalizar wave 8, mostrar tela de vit├│ria
+ÔÇö Fim do documento ÔÇö

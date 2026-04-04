@@ -10,12 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6482011105239161485}
   - component: {fileID: 2449488337918558544}
-  - component: {fileID: 2454092821564914308}
   - component: {fileID: 8645594868517074200}
   - component: {fileID: 6249888693920117422}
   - component: {fileID: 8328656871903305875}
   - component: {fileID: 5013575897096238195}
   - component: {fileID: 3003248958056189182}
+  - component: {fileID: 3693361937077196446}
+  - component: {fileID: 4453326395317553046}
+  - component: {fileID: 8800100200000001}
   m_Layer: 3
   m_Name: AnaoGuerreiro
   m_TagString: NpcGoblin
@@ -100,52 +102,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2454092821564914308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2617070310612995912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfaf4ae76b853a247835dd1c25ca593a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoblinLanceiro
-  vidaMaxima: 2
-  danoBase: 1
-  faccao: 1
-  distanciaRecuo: 1
-  duracaoRecuo: 0.2
-  curvaRecuo:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  multiplicadorDanoRacial: 1
-  distanciaDeAtaque: 15
-  intervaloAtaque: 1.5
-  projetilPrefab: {fileID: 934582073488721258, guid: 365bd8b7d613f21428c1c38256ae5467, type: 3}
-  pontoDisparo: {fileID: 5019313742153380447}
 --- !u!114 &8645594868517074200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 5
+  velocidade: 25
   distanciaParada: 0.4
   raioUnidade: 1.6
   forcaSeparacao: 2
@@ -255,6 +211,87 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegistoMorteBestiario
   database: {fileID: 0}
+--- !u!114 &3693361937077196446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617070310612995912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd24598494be6446ac57ba33b932133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnaoGuerreiro
+  vidaMaxima: 3
+  danoBase: 1
+  faccao: 1
+  distanciaRecuo: 1
+  duracaoRecuo: 0.2
+  curvaRecuo:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  multiplicadorDanoRacial: 1
+  multiplicadorVelocidade: 0.88
+  multiplicadorDanoGuerreiro: 1.15
+--- !u!114 &4453326395317553046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617070310612995912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad2c9f1d91b2194389a5e30c569c3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExpAoMorrerInimigo
+  ehBoss: 0
+--- !u!114 &8800100200000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617070310612995912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3a9c2e1b8046d5a1e2f3c4b5d60789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimacaoSpritePorVelocidade2D
+  spriteRenderer: {fileID: 0}
+  rigidbody2DRef: {fileID: 0}
+  spriteParado: {fileID: 0}
+  spritesAndar: []
+  spritesAndarOeste: []
+  spritesAndarNorte: []
+  spritesAndarSul: []
+  usarDirecoesNorteSul: 1
+  multiplicadorDominanciaVertical: 1
+  velocidadeMinima: 0.15
+  limiteDirecaoX: 0.05
+  tempoPorFrame: 0.12
 --- !u!1 &8639796489164306097
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +334,7 @@ PrefabInstance:
     - target: {fileID: 4271056299508371757, guid: 1c1e157cfe86a074886e10a4a2657e55, type: 3}
       propertyPath: unidade
       value: 
-      objectReference: {fileID: 2454092821564914308}
+      objectReference: {fileID: 3693361937077196446}
     - target: {fileID: 4271056299508371757, guid: 1c1e157cfe86a074886e10a4a2657e55, type: 3}
       propertyPath: textoInfo
       value: 

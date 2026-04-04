@@ -13,6 +13,9 @@ public class LootClickManager : MonoBehaviour
 
     void DetectarClique()
     {
+        if (ServicoColocacaoTorre.Instancia != null && ServicoColocacaoTorre.Instancia.ModoColocacaoAtivo)
+            return;
+
         if (Camera.main == null) return;
 
         Vector2 screenPos = Mouse.current.position.ReadValue();
