@@ -91,7 +91,11 @@ public class TorreAtaqueCore
         if (lanca != null)
         {
             lanca.velocidade = _atributos.ObterVelocidadeProjetil();
-            lanca.Inicializar(alvo, _atributos.ObterDanoEfetivo(), _nomeOrigemLog);
+            lanca.Inicializar(
+                alvo,
+                _atributos.ObterDanoEfetivo(),
+                _nomeOrigemLog,
+                _atributos.ObterDefinicaoDot());
         }
     }
 }

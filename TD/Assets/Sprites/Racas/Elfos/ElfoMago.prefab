@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaf4ae76b853a247835dd1c25ca593a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinLanceiro
-  vidaMaxima: 3
+  vidaMaxima: 100
   danoBase: 1
   faccao: 1
   distanciaDeAtaque: 50.3
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 40
+  velocidade: 34
   raioSeparacao: 0.6
   forcaSeparacao: 2
 --- !u!50 &7910792990342983493

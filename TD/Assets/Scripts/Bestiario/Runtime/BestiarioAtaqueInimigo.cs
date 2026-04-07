@@ -5,6 +5,17 @@ public static class BestiarioAtaqueInimigo
     /// <summary>Dano base já inclui talentos (GetDanoAtaque). Aplica rolagem de crítico.</summary>
     public static int CalcularDanoAoCastelo(UnidadeController atacante, int danoBase, BestiarioDatabase database)
     {
+        return CalcularDanoAoCastelo(atacante, danoBase, database, out _);
+    }
+
+    /// <summary>Como <see cref="CalcularDanoAoCastelo(UnidadeController, int, BestiarioDatabase)"/>; expõe se o golpe foi crítico (texto flutuante).</summary>
+    public static int CalcularDanoAoCastelo(
+        UnidadeController atacante,
+        int danoBase,
+        BestiarioDatabase database,
+        out bool foiCritico)
+    {
+        foiCritico = false;
         if (atacante == null || danoBase <= 0)
             return danoBase;
 
@@ -24,7 +35,11 @@ public static class BestiarioAtaqueInimigo
         }
 
         if (Random.value < chance)
+        {
+            foiCritico = true;
             return Mathf.Max(1, Mathf.RoundToInt(danoBase * multUsado));
+        }
+
         return danoBase;
     }
 }

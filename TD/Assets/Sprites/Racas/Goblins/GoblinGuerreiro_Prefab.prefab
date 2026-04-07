@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovNpcGoblin
-  velocidade: 40
+  velocidade: 34
 --- !u!50 &3400605008139129513
 Rigidbody2D:
   serializedVersion: 5
@@ -184,6 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ede3501c95e2e4baa7993c1e636221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinController
-  vidaMaxima: 3
+  vidaMaxima: 100
   danoBase: 1
   tempoInvulnerabilidade: 0

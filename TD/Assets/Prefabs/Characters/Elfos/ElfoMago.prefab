@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 10
+  velocidade: 8
   distanciaParada: 1
   raioUnidade: 2
   forcaSeparacao: 30
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7575ad4aab03448a18bf9598b1ca26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElfoMago
-  vidaMaxima: 3
+  vidaMaxima: 100
   danoBase: -4
   faccao: 1
   distanciaRecuo: 1

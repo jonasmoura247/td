@@ -85,10 +85,10 @@ MonoBehaviour:
   definicoesSlots:
   - prefabTorre: {fileID: 1100000000000000001, guid: e9d8c7b6a59483726150493827162514, type: 3}
     dados: {fileID: 11400000, guid: f1e2d3c4b5a697887766554433221100, type: 2}
-  - prefabTorre: {fileID: 1100000000000000001, guid: e9d8c7b6a59483726150493827162514, type: 3}
-    dados: {fileID: 11400000, guid: f1e2d3c4b5a697887766554433221100, type: 2}
-  - prefabTorre: {fileID: 1100000000000000001, guid: e9d8c7b6a59483726150493827162514, type: 3}
-    dados: {fileID: 11400000, guid: f1e2d3c4b5a697887766554433221100, type: 2}
+  - prefabTorre: {fileID: 1200000000000000001, guid: 7a8b9c0d1e2f3456789012345678f003, type: 3}
+    dados: {fileID: 11400000, guid: 7a8b9c0d1e2f3456789012345678f001, type: 2}
+  - prefabTorre: {fileID: 1300000000000000001, guid: 7a8b9c0d1e2f3456789012345678f004, type: 3}
+    dados: {fileID: 11400000, guid: 7a8b9c0d1e2f3456789012345678f002, type: 2}
   - prefabTorre: {fileID: 1100000000000000001, guid: e9d8c7b6a59483726150493827162514, type: 3}
     dados: {fileID: 11400000, guid: f1e2d3c4b5a697887766554433221100, type: 2}
   - prefabTorre: {fileID: 1100000000000000001, guid: e9d8c7b6a59483726150493827162514, type: 3}
@@ -199,11 +199,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 880001001}
-  - {fileID: 880001031}
-  - {fileID: 880001061}
-  - {fileID: 880001091}
-  - {fileID: 880001121}
+  - {fileID: 880001002}
+  - {fileID: 880001032}
+  - {fileID: 880001062}
+  - {fileID: 880001092}
+  - {fileID: 880001122}
   m_Father: {fileID: 880000002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

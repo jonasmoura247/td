@@ -33,11 +33,16 @@ public class MagiaProjetil : MonoBehaviour
 
         if (distancia <= 0.1f)
         {
-            IDanificavel danificavel = alvo.GetComponent<IDanificavel>();
+            IDanificavel danificavel = alvo.GetComponentInParent<IDanificavel>();
 
-            if (danificavel != null)
+            if (danificavel != null && danificavel.EstaVivo)
             {
-                danificavel.ReceberDano(dano);
+                ServicoAplicacaoDano.Aplicar(
+                    danificavel,
+                    alvo.position,
+                    dano,
+                    PedidoDanoFlutuante.Criar(dano, TipoDanoCombate.Magico),
+                    dispararProcsRunaBestiario: true);
             }
 
             Destroy(gameObject);

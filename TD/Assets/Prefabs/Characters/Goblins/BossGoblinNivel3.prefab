@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 20
+  velocidade: 17
   distanciaParada: 0.3
   raioUnidade: 1.5
   forcaSeparacao: 25
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20dc74c5043927548adfb3b635bb1e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossGoblinNivel3
-  vidaMaxima: 1
+  vidaMaxima: 100
   danoBase: 1
   faccao: 1
   distanciaRecuo: 1
