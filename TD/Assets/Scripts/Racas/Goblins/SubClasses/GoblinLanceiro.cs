@@ -1,70 +1,82 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GoblinLanceiro : GoblinController
 {
-    [Header("Configuração de Ataque")]
-    public float distanciaDeAtaque = 3f;
-    public float intervaloAtaque = 1.5f;
+    [Header("Configuracao de Ataque")]
+    public float distanciaDeAtaque = 25f;
+    public float intervaloAtaque = 2f;
+    public int danoFlecha = 2;
     public GameObject projetilPrefab;
     public Transform pontoDisparo;
 
     private float proximoAtaque;
-    private Transform alvo;
 
     protected override void Start()
     {
         faccao = Faccao.Inimigo;
-
+        distanciaDeAtaque = 25f;
+        intervaloAtaque = 2f;
+        danoFlecha = 2;
         base.Start();
-
-        CasteloController castelo = FindFirstObjectByType<CasteloController>();
-
-        if (castelo != null && castelo.faccao != this.faccao)
-        {
-            alvo = castelo.transform;
-        }
+        CarregarFlechaSeNecessario();
     }
 
     private void Update()
     {
-        if (!estaVivo || alvo == null) return;
+        if (!estaVivo)
+            return;
 
-        float distancia = Vector2.Distance(transform.position, alvo.position);
+        UnidadeController inimigoProximo = EncontrarInimigoMaisProximo(distanciaDeAtaque);
+        if (!EhAlvoInimigoValido(inimigoProximo))
+        {
+            movimento?.ContinuarMovimento();
+            return;
+        }
 
+        float distancia = Vector2.Distance(transform.position, inimigoProximo.transform.position);
         if (distancia <= distanciaDeAtaque)
         {
-            if (movimento != null)
-                movimento.PararMovimento();
+            movimento?.PararMovimento();
+            Atacar(inimigoProximo.transform);
+            return;
+        }
 
-            Atacar();
-        }
-        else
-        {
-            if (movimento != null)
-                movimento.ContinuarMovimento();
-        }
+        movimento?.ContinuarMovimento();
     }
 
-    private void Atacar()
+    private void Atacar(Transform alvo)
     {
-        if (Time.time < proximoAtaque) return;
+        if (Time.time < proximoAtaque)
+            return;
+
+        if (alvo == null)
+            return;
 
         proximoAtaque = Time.time + intervaloAtaque;
 
-        if (projetilPrefab == null || pontoDisparo == null) return;
+        CarregarFlechaSeNecessario();
+        if (projetilPrefab == null)
+            return;
+
+        Vector3 origem = pontoDisparo != null ? pontoDisparo.position : transform.position;
 
         GameObject proj = Instantiate(
             projetilPrefab,
-            pontoDisparo.position,
+            origem,
             Quaternion.identity
         );
 
         LancaProjetil p = proj.GetComponent<LancaProjetil>();
 
         if (p != null)
-        {
-            p.Inicializar(alvo, GetDanoAtaque(), gameObject.name);
-        }
+            p.Inicializar(alvo, danoFlecha, gameObject.name);
+    }
+
+    private void CarregarFlechaSeNecessario()
+    {
+        GameObject flecha = Resources.Load<GameObject>("Projetis/Flecha");
+        if (flecha != null)
+            projetilPrefab = flecha;
     }
 
     private void OnDrawGizmosSelected()

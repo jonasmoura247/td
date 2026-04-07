@@ -182,4 +182,35 @@ public class UnidadeController : MonoBehaviour, IDanificavel
             return valor;
         return m.ModificarDanoFinal(valor);
     }
+
+    protected bool EhAlvoInimigoValido(UnidadeController alvo)
+    {
+        return alvo != null &&
+               alvo != this &&
+               alvo.EstaVivo &&
+               alvo.faccao != faccao;
+    }
+
+    protected UnidadeController EncontrarInimigoMaisProximo(float alcanceMaximo)
+    {
+        UnidadeController maisProximo = null;
+        float menorDistancia = alcanceMaximo;
+
+        var unidades = FindObjectsByType<UnidadeController>(FindObjectsSortMode.None);
+
+        foreach (var unidade in unidades)
+        {
+            if (!EhAlvoInimigoValido(unidade))
+                continue;
+
+            float distancia = Vector2.Distance(transform.position, unidade.transform.position);
+            if (distancia <= menorDistancia)
+            {
+                menorDistancia = distancia;
+                maisProximo = unidade;
+            }
+        }
+
+        return maisProximo;
+    }
 }
