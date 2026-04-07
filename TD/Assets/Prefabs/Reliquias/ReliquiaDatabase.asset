@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReliquiaDatabase
   entradas:
   - {fileID: 11400000, guid: 595972a6db8179342b74f036ec0f1881, type: 2}
+  - {fileID: 11400000, guid: e91a0b1c2d3e4f5061728394a5b6c7da, type: 2}

@@ -90,6 +90,7 @@ public class DadosSlotSave
         reliquiasPorSlot = new string[5] { "", "", "", "", "" };
         if (racaEscolhida == TipoRaca.Goblin)
             reliquiasPossuidas.Add(ReliquiaIds.OlhoQueNadaVe);
+        GarantirReliquiaTesteCarvaoSeAtivo();
         talentos = new DadosTalentos();
         bestiario = new DadosBestiario();
     }
@@ -159,6 +160,21 @@ public class DadosSlotSave
 
         if (ocupado && raca == TipoRaca.Goblin && !reliquiasPossuidas.Contains(ReliquiaIds.OlhoQueNadaVe))
             reliquiasPossuidas.Add(ReliquiaIds.OlhoQueNadaVe);
+
+        GarantirReliquiaTesteCarvaoSeAtivo();
+    }
+
+    /// <summary>Modo teste: ver <see cref="FlagsTesteReliquias.TodasRacasComecamComCarvaoEnxofreSalitre"/>.</summary>
+    private void GarantirReliquiaTesteCarvaoSeAtivo()
+    {
+        if (!FlagsTesteReliquias.TodasRacasComecamComCarvaoEnxofreSalitre || !ocupado)
+            return;
+
+        if (!reliquiasPossuidas.Contains(ReliquiaIds.CarvaoEnxofreSalitre))
+            reliquiasPossuidas.Add(ReliquiaIds.CarvaoEnxofreSalitre);
+
+        if (reliquiasPorSlot != null && reliquiasPorSlot.Length > 0 && string.IsNullOrEmpty(reliquiasPorSlot[0]))
+            reliquiasPorSlot[0] = ReliquiaIds.CarvaoEnxofreSalitre;
     }
 
     public int ObterExpPermanenteRaca(TipoRaca racaAlvo)

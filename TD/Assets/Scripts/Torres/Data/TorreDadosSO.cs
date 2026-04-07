@@ -20,6 +20,10 @@ public class TorreDadosSO : ScriptableObject
     public GameObject prefabProjetil;
     public float velocidadeProjetil = 60f;
 
+    [Header("Efeito opcional ao acertar (DoT / status)")]
+    [Tooltip("Se preenchido, o projétil aplica este efeito na unidade alvo (ex.: fogo, veneno).")]
+    public DefinicaoDanoPorTempoSO efeitoDotAoAcertar;
+
     [Header("Deteção")]
     public LayerMask layerMaskAlvos;
 

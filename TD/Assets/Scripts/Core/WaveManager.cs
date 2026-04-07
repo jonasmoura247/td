@@ -451,6 +451,8 @@ public class WaveManager : MonoBehaviour
         if (uc != null)
             ModificadoresPartidaTalentos.Aplicar(uc, talentTreeDatabase);
         BestiarioRunasSpawnAplicador.Aplicar(inimigo, uc, bestiarioDatabase);
+        if (uc != null)
+            uc.SincronizarVidaAposSpawn();
 
         inimigosVivos.Add(inimigo);
         StartCoroutine(MonitorarMorte(inimigo));

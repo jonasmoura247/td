@@ -103,9 +103,6 @@ public class ServicoColocacaoTorre : MonoBehaviour
         if (slot == null || slot.prefabTorre == null || slot.dados == null)
             return;
 
-        if (ServicoColocacaoUnidade.Instancia != null && ServicoColocacaoUnidade.Instancia.ModoColocacaoAtivo)
-            ServicoColocacaoUnidade.Instancia.CancelarColocacao();
-
         _prefabAtual = slot.prefabTorre;
         _dadosAtual = slot.dados;
         _indiceSlotSelecionado = indiceSlot;

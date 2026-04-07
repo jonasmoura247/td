@@ -47,4 +47,7 @@ public class TorreAtributosCore
     public float ObterVelocidadeProjetil() => _dados != null ? Mathf.Max(0.1f, _dados.velocidadeProjetil) : 8f;
 
     public GameObject ObterPrefabProjetil() => _dados != null ? _dados.prefabProjetil : null;
+
+    public DefinicaoDanoPorTempoSO ObterDefinicaoDot() =>
+        _dados != null ? _dados.efeitoDotAoAcertar : null;
 }

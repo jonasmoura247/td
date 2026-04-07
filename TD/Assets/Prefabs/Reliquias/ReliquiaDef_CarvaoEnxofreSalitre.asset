@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16fda15b0d7dfa4ba9be210bd2322f7, type: 3}
+  m_Name: ReliquiaDef_CarvaoEnxofreSalitre
+  m_EditorClassIdentifier: Assembly-CSharp::ReliquiaDef
+  idReliquia: reliquia_carvao_enxofre_salitre
+  nomeExibicao: Carvao, enxofre e salitre
+  descricao: Veneno e fogo combinados causam explosao alquimica.
+  icone: {fileID: 6712461688154388212, guid: 5a206656265a0904d9c1c928601e1f53, type: 3}
+  prefabEfeitoPartida: {fileID: 8829567450040073199, guid: f91a0b1c2d3e4f5061728394a5b6c7db, type: 3}

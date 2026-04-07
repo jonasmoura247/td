@@ -14,12 +14,18 @@ public class LancaProjetil : MonoBehaviour
     private int dano;
     private string origemNome;
     private float tempoCriacao;
+    private DefinicaoDanoPorTempoSO definicaoDot;
 
-    public void Inicializar(Transform novoAlvo, int novoDano, string nomeOrigem = null)
+    public void Inicializar(
+        Transform novoAlvo,
+        int novoDano,
+        string nomeOrigem = null,
+        DefinicaoDanoPorTempoSO dotAoAcertar = null)
     {
         alvo = novoAlvo;
         dano = novoDano;
         origemNome = nomeOrigem;
+        definicaoDot = dotAoAcertar;
         tempoCriacao = Time.time;
     }
 
@@ -37,7 +43,7 @@ public class LancaProjetil : MonoBehaviour
             return;
         }
 
-        IDanificavel vidaAlvo = alvo.GetComponent<IDanificavel>();
+        IDanificavel vidaAlvo = alvo.GetComponentInParent<IDanificavel>();
         if (vidaAlvo != null && !vidaAlvo.EstaVivo)
         {
             Destroy(gameObject);
@@ -58,11 +64,29 @@ public class LancaProjetil : MonoBehaviour
         {
             if (vidaAlvo != null && vidaAlvo.EstaVivo)
             {
-                vidaAlvo.ReceberDano(dano);
+                Vector3 posFeedback = alvo.position;
+                ServicoAplicacaoDano.Aplicar(
+                    vidaAlvo,
+                    posFeedback,
+                    dano,
+                    PedidoDanoFlutuante.Criar(dano, TipoDanoCombate.Fisico),
+                    dispararProcsRunaBestiario: true);
                 if (registrarImpactoNoConsole)
                 {
                     string origem = string.IsNullOrEmpty(origemNome) ? "Projetil" : origemNome;
                     Debug.Log($"[LancaProjetil] {origem} causou {dano} de dano em {alvo.name}.");
+                }
+
+                if (definicaoDot != null)
+                {
+                    var unidade = alvo.GetComponentInParent<UnidadeController>();
+                    if (unidade != null && unidade.EstaVivo)
+                    {
+                        var ctrl = unidade.GetComponent<ControladorEfeitosStatusUnidade>();
+                        if (ctrl == null)
+                            ctrl = unidade.gameObject.AddComponent<ControladorEfeitosStatusUnidade>();
+                        ctrl.AplicarOuRenovar(definicaoDot);
+                    }
                 }
             }
 

@@ -4,7 +4,7 @@ using System.Collections;
 public class UnidadeController : MonoBehaviour, IDanificavel
 {
     [Header("Status Base")]
-    public int vidaMaxima = 3;
+    public int vidaMaxima = 100;
     protected int vidaAtual;
     public int danoBase = 1;
     protected bool estaVivo = true;
@@ -51,6 +51,16 @@ public class UnidadeController : MonoBehaviour, IDanificavel
             UnidadesManager.Instancia.Desregistar(this);
     }
 
+    /// <summary>
+    /// Chamar após talentos/runas no spawn. Evita colisão física antes de <see cref="Start"/> com <c>vidaAtual</c> ainda 0.
+    /// </summary>
+    public void SincronizarVidaAposSpawn()
+    {
+        if (!estaVivo)
+            return;
+        vidaAtual = vidaMaxima;
+    }
+
     public virtual void ReceberDano(int quantidade)
     {
         if (!estaVivo || quantidade <= 0)
@@ -84,7 +94,12 @@ public class UnidadeController : MonoBehaviour, IDanificavel
 
         sofrendoRecuo = true;
 
-        ReceberDano(1);
+        ServicoAplicacaoDano.Aplicar(
+            this,
+            transform.position,
+            1,
+            PedidoDanoFlutuante.Criar(1, TipoDanoCombate.Fisico),
+            dispararProcsRunaBestiario: true);
 
         if (!estaVivo)
             return;

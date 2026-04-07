@@ -96,6 +96,19 @@ public class TorreController : MonoBehaviour, IDanificavel
 
     public virtual void ReceberDano(int quantidade)
     {
+        if (!EstaViva || quantidade <= 0)
+            return;
+
+        ServicoDanoFlutuante.Mostrar(
+            transform.position,
+            PedidoDanoFlutuante.Criar(quantidade, TipoDanoCombate.Fisico));
+
+        AplicarDanoSomenteVida(quantidade);
+    }
+
+    /// <summary>Aplica dano na vida da torre sem texto (feedback já exibido por <see cref="ServicoAplicacaoDano"/>).</summary>
+    public void AplicarDanoSomenteVida(int quantidade)
+    {
         _vida?.ReceberDano(quantidade);
     }
 

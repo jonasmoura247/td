@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EstruturasController : MonoBehaviour, IDanificavel
 {
-    [Header("Configurações de Estrutura")]
+    [Header("Configuraï¿½ï¿½es de Estrutura")]
     public int vidaMaxima = 15;
     protected int vidaAtual;
     protected bool destruida = false;
@@ -23,7 +23,21 @@ public class EstruturasController : MonoBehaviour, IDanificavel
 
     public virtual void ReceberDano(int quantidade)
     {
-        if (destruida) return;
+        if (destruida || quantidade <= 0)
+            return;
+
+        ServicoDanoFlutuante.Mostrar(
+            transform.position,
+            PedidoDanoFlutuante.Criar(quantidade, TipoDanoCombate.Fisico));
+
+        AplicarDanoSomenteVida(quantidade);
+    }
+
+    /// <summary>Aplica perda de vida sem texto (o feedback j? foi exibido por <see cref="ServicoAplicacaoDano"/>).</summary>
+    public void AplicarDanoSomenteVida(int quantidade)
+    {
+        if (destruida || quantidade <= 0)
+            return;
 
         vidaAtual -= quantidade;
 

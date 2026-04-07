@@ -1,20 +1,22 @@
 using UnityEngine;
 
 /// <summary>
-/// Projétil de fireball que se move em direção ao alvo e aplica 10 de dano a cada inimigo que acertar.
+/// Projétil de fireball que se move em direção ao alvo e aplica dano a cada inimigo que acertar.
 /// </summary>
 public class FireballProjetil : MonoBehaviour
 {
     [SerializeField] private float velocidade = 12f;
-    private const int DanoFireball = 10;
+    private const int DanoFireballPadrao = 10;
 
     private Transform alvo;
     private string origemNome;
+    private int danoAplicar = DanoFireballPadrao;
 
     public void Inicializar(Transform novoAlvo, int novoDano, string nomeOrigem = null)
     {
         alvo = novoAlvo;
         origemNome = nomeOrigem;
+        danoAplicar = novoDano > 0 ? novoDano : DanoFireballPadrao;
     }
 
     private void Update()
@@ -36,11 +38,16 @@ public class FireballProjetil : MonoBehaviour
 
         if (distancia <= 0.3f)
         {
-            IDanificavel danificavel = alvo.GetComponent<IDanificavel>();
+            IDanificavel danificavel = alvo.GetComponentInParent<IDanificavel>();
 
-            if (danificavel != null)
+            if (danificavel != null && danificavel.EstaVivo)
             {
-                danificavel.ReceberDano(DanoFireball);
+                ServicoAplicacaoDano.Aplicar(
+                    danificavel,
+                    alvo.position,
+                    danoAplicar,
+                    PedidoDanoFlutuante.Criar(danoAplicar, TipoDanoCombate.Fogo),
+                    dispararProcsRunaBestiario: true);
             }
 
             Destroy(gameObject);

@@ -17,8 +17,9 @@ public class CasteloController : EstruturasController
         if (!unidade.EstaVivo) return;
 
         int danoBase = unidade.GetDanoAtaque();
-        int dano = BestiarioAtaqueInimigo.CalcularDanoAoCastelo(unidade, danoBase, null);
-        ReceberDano(dano);
+        int dano = BestiarioAtaqueInimigo.CalcularDanoAoCastelo(unidade, danoBase, null, out bool critico);
+        var pedido = PedidoDanoFlutuante.Criar(dano, TipoDanoCombate.Fisico, critico);
+        ServicoAplicacaoDano.Aplicar(this, transform.position, dano, pedido, dispararProcsRunaBestiario: false);
         unidade.ImpactarCastelo(transform.position);
 
         if (unidade is GoblinController goblin)
