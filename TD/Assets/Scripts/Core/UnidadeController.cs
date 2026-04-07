@@ -35,6 +35,20 @@ public class UnidadeController : MonoBehaviour, IDanificavel
     protected virtual void Start()
     {
         vidaAtual = vidaMaxima;
+
+        if (faccao == Faccao.Jogador)
+        {
+            UnidadesManager mgr = UnidadesManager.Instancia;
+            if (mgr == null)
+                mgr = FindFirstObjectByType<UnidadesManager>(FindObjectsInactive.Exclude);
+            mgr?.Registar(this);
+        }
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (faccao == Faccao.Jogador && UnidadesManager.Instancia != null)
+            UnidadesManager.Instancia.Desregistar(this);
     }
 
     public virtual void ReceberDano(int quantidade)
