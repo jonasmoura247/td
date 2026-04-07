@@ -26,7 +26,10 @@ Este documento descreve a implementação do sistema escalável de torres, a **T
 |---------|---------|
 | Prefab da torre | `Assets/Prefabs/Torres/TorreGoblinLanceira.prefab` |
 | ScriptableObject de stats | `Assets/Prefabs/Torres/TorreGoblinLanceiraDados.asset` |
+| Prefab torre fogo (mesma lógica lanceira) | `Assets/Prefabs/Torres/TorreGoblinFogo.prefab` + `TorreGoblinFogoDados.asset` |
+| Prefab torre veneno (mesma lógica lanceira) | `Assets/Prefabs/Torres/TorreGoblinVeneno.prefab` + `TorreGoblinVenenoDados.asset` |
 | Sprite usado (torre goblin) | `Assets/Sprites/Torres/TorreGoblinBesta.png` (nome do asset; substitui se tiveres arte “lanceira” dedicada) |
+| Sprites fogo / veneno | `TorreGoblinFogo.png`, `TorreGoblinVeneno.png` |
 | Projétil reutilizado | `Assets/Prefabs/Characters/Goblins/LancaProjetil.prefab` |
 
 ### Cena

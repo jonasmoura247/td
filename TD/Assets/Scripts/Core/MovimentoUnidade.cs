@@ -4,7 +4,7 @@ using UnityEngine;
 public class MovimentoUnidade : MonoBehaviour
 {
     [Header("Movimento")]
-    public float velocidade = 10f;
+    public float velocidade = 8f;
     public float distanciaParada = 0.3f;
 
     [Header("Espa�o F�sico Virtual")]

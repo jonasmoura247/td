@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 25
+  velocidade: 21
   distanciaParada: 0.4
   raioUnidade: 1.6
   forcaSeparacao: 2
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42441349d916a95429a5101f4cfed67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElfoAssassino
-  vidaMaxima: 3
+  vidaMaxima: 100
   danoBase: 1
   faccao: 1
   distanciaRecuo: 1

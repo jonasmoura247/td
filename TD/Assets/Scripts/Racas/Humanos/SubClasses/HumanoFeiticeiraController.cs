@@ -16,7 +16,7 @@ public class HumanoFeiticeiraController : HumanoController
 
     protected override void Start()
     {
-        vidaMaxima = 10;
+        vidaMaxima = 100;
         danoBase = 1;
         faccao = Faccao.Jogador;
         base.Start();

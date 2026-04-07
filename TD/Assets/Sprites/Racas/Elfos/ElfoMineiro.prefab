@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c3b4a5968778695a4b3c2d1e0f1a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElfoMineiroController
-  vidaMaxima: 3
+  vidaMaxima: 100
   danoBase: 1
   faccao: 0
   distanciaRecuo: 1
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 10
+  velocidade: 8
   distanciaParada: 0.3
   raioUnidade: 1.5
   forcaSeparacao: 25

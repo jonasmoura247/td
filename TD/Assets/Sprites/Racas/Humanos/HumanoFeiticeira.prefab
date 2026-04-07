@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HumanoFeiticeiraController
-  vidaMaxima: 10
+  vidaMaxima: 100
   danoBase: 1
   faccao: 0
   distanciaRecuo: 1
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 10
+  velocidade: 8
   distanciaParada: 0.3
   raioUnidade: 1.5
   forcaSeparacao: 25

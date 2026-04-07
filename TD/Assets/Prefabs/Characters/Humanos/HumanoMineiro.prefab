@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90340d45cc713c4d9e52e1bec61b2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HumanoMineiroController
-  vidaMaxima: 3
+  vidaMaxima: 100
   danoBase: 1
   faccao: 0
   distanciaRecuo: 1
@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 10
+  velocidade: 8
   distanciaParada: 0.3
   raioUnidade: 1.5
   forcaSeparacao: 25

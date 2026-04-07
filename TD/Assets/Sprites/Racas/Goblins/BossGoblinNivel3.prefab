@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1322d417736ce9640a5856107293c60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimentoUnidade
-  velocidade: 10
+  velocidade: 8
   distanciaParada: 0.3
   raioUnidade: 1.5
   forcaSeparacao: 25
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e1abedde25ba54bb0f2ccaa43c8029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoblinGuerreiro
-  vidaMaxima: 3
+  vidaMaxima: 100
   danoBase: 1
   faccao: 1
   distanciaRecuo: 1
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20dc74c5043927548adfb3b635bb1e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossGoblinNivel3
-  vidaMaxima: 15
+  vidaMaxima: 100
   danoBase: 1
   faccao: 0
   distanciaRecuo: 1

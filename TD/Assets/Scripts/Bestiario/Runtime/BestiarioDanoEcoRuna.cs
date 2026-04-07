@@ -16,6 +16,11 @@ public static class BestiarioDanoEcoRuna
             return;
 
         int extra = Mathf.Max(1, Mathf.CeilToInt(st.fracaoVidaParaEco * alvo.vidaMaxima));
-        alvo.ReceberDanoSemProcs(extra);
+        ServicoAplicacaoDano.Aplicar(
+            alvo,
+            alvo.transform.position,
+            extra,
+            PedidoDanoFlutuante.Criar(extra, TipoDanoCombate.EcoRuna),
+            dispararProcsRunaBestiario: false);
     }
 }
