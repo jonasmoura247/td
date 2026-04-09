@@ -79,6 +79,60 @@ MonoBehaviour:
     iconeSilhueta: {fileID: -67394864285873386, guid: 16023fdb8104b954caa49ad0d53fcd8f, type: 3}
     marcosMortes: a00000009001000020030000
     pontosPorEstagio: 140000001400000014000000
+  - id: mob_espantalho
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Espantalho
+    descricaoTooltip: "Prefab AnaoGuerreiro \u2014 Mapa_1."
+    icone: {fileID: 618659022279787517, guid: 8fcdf4e7e37794046bd27c0ad587e9e9, type: 3}
+    iconeSilhueta: {fileID: 618659022279787517, guid: 8fcdf4e7e37794046bd27c0ad587e9e9, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_zumbie
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Zumbie
+    descricaoTooltip: Zumbie
+    icone: {fileID: 4159893528504270919, guid: 9efb15523182a574b878214ee553eafe, type: 3}
+    iconeSilhueta: {fileID: 4159893528504270919, guid: 9efb15523182a574b878214ee553eafe, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_esqueleto
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Esqueleto
+    descricaoTooltip: Esqueleto
+    icone: {fileID: 4939953305634260615, guid: b88c1593e309dff41947ac45676cc52e, type: 3}
+    iconeSilhueta: {fileID: 4939953305634260615, guid: b88c1593e309dff41947ac45676cc52e, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_orc
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Orc
+    descricaoTooltip: Orc
+    icone: {fileID: 1676670796149895568, guid: 1eadec19aefca0d49950da507e83b597, type: 3}
+    iconeSilhueta: {fileID: 1676670796149895568, guid: 1eadec19aefca0d49950da507e83b597, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_lobo
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Lobo
+    descricaoTooltip: Lobo
+    icone: {fileID: 9115550656368128668, guid: 4955173bed9fd7d47b3f0eb814a06654, type: 3}
+    iconeSilhueta: {fileID: -5608982469895928062, guid: 410ba01e22e073142aac33518f36d896, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_aranha
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Aranha
+    descricaoTooltip: Aranha
+    icone: {fileID: -2361700710594863181, guid: 7e759fc07578eb44d88302ac2406a76b, type: 3}
+    iconeSilhueta: {fileID: -5097292090983642242, guid: f827e9ed9dadf1e489af2656616fc032, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
   runas:
   - id: runa_eco_guerreiro
     nomeExibicao: Eco de dor
