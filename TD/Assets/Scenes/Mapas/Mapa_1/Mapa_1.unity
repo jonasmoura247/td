@@ -2427,7 +2427,6 @@ GameObject:
   - component: {fileID: 509434032}
   - component: {fileID: 509434033}
   - component: {fileID: 509434034}
-  - component: {fileID: 509434035}
   m_Layer: 0
   m_Name: BotaoUnidadesArqueiroHumano
   m_TagString: Untagged
@@ -2537,23 +2536,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &509434035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509434030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotaoUnidadesArqueiroHumanoController
-  custoOuro: 100
-  arqueiroPrefab: {fileID: 2579156320764190982, guid: 9ba24915695ea3c469282cf76d1a0544, type: 3}
-  offsetPorArqueiro: 1.5
-  textoCusto: {fileID: 509434039}
-  botao: {fileID: 509434034}
 --- !u!1 &509434036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,7 +2685,6 @@ GameObject:
   - component: {fileID: 509434042}
   - component: {fileID: 509434043}
   - component: {fileID: 509434044}
-  - component: {fileID: 509434045}
   m_Layer: 0
   m_Name: BotaoUnidadesFeiticeiroHumano
   m_TagString: Untagged
@@ -2813,23 +2794,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &509434045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509434040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotaoUnidadesFeiticeiroHumanoController
-  custoOuro: 110
-  feiticeiroPrefab: {fileID: 8000000010000000001, guid: f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2, type: 3}
-  offsetPorFeiticeira: 1.5
-  textoCusto: {fileID: 509434049}
-  botao: {fileID: 509434044}
 --- !u!1 &509434046
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,6 +4191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 888440001}
+  - component: {fileID: 920000030}
   m_Layer: 0
   m_Name: GrupoUnidadesHumano
   m_TagString: Untagged
@@ -4256,6 +4221,39 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &920000030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888440000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
+  servicoColocacao: {fileID: 920000001}
+  botoesSlots:
+  - {fileID: 509434034}
+  - {fileID: 509434044}
+  iconesSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  definicoesSlots:
+  - prefabUnidade: {fileID: 2579156320764190982, guid: 9ba24915695ea3c469282cf76d1a0544, type: 3}
+    custoOuro: 100
+    nomeInstancia: HumanoArqueiro
+    alcanceIndicadorPreview: 5
+  - prefabUnidade: {fileID: 8000000010000000001, guid: f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2, type: 3}
+    custoOuro: 110
+    nomeInstancia: HumanoFeiticeira
+    alcanceIndicadorPreview: 5.5
+  textosCustoSlots:
+  - {fileID: 509434039}
+  - {fileID: 509434049}
+  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
+  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &888440010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,6 +4263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 888440011}
+  - component: {fileID: 920000031}
   m_Layer: 0
   m_Name: GrupoUnidadesGoblin
   m_TagString: Untagged
@@ -4294,6 +4293,39 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &920000031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888440010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
+  servicoColocacao: {fileID: 920000001}
+  botoesSlots:
+  - {fileID: 888460114}
+  - {fileID: 888460124}
+  iconesSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  definicoesSlots:
+  - prefabUnidade: {fileID: 2617070310612995912, guid: 690773445d65fe440b6246a20ea19f3b, type: 3}
+    custoOuro: 100
+    nomeInstancia: GoblinLanceiro
+    alcanceIndicadorPreview: 5
+  - prefabUnidade: {fileID: 180006139801302925, guid: 4dce034506e8af14d90806486d083fd8, type: 3}
+    custoOuro: 110
+    nomeInstancia: GoblinFeiticeiro
+    alcanceIndicadorPreview: 5.5
+  textosCustoSlots:
+  - {fileID: 888460119}
+  - {fileID: 888460129}
+  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
+  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &888440020
 GameObject:
   m_ObjectHideFlags: 0
@@ -4303,6 +4335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 888440021}
+  - component: {fileID: 920000032}
   m_Layer: 0
   m_Name: GrupoUnidadesElfo
   m_TagString: Untagged
@@ -4332,6 +4365,39 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &920000032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888440020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
+  servicoColocacao: {fileID: 920000001}
+  botoesSlots:
+  - {fileID: 888460214}
+  - {fileID: 888460224}
+  iconesSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  definicoesSlots:
+  - prefabUnidade: {fileID: 2617070310612995912, guid: 67ffe26d5da7fed448647a9ec7a3ad0d, type: 3}
+    custoOuro: 100
+    nomeInstancia: ElfoArqueiro
+    alcanceIndicadorPreview: 5
+  - prefabUnidade: {fileID: 6527514975530341288, guid: 189dccab99fd98d45a0be33ac8193279, type: 3}
+    custoOuro: 110
+    nomeInstancia: ElfoMago
+    alcanceIndicadorPreview: 5.5
+  textosCustoSlots:
+  - {fileID: 888460219}
+  - {fileID: 888460229}
+  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
+  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &888440030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4341,6 +4407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 888440031}
+  - component: {fileID: 920000033}
   m_Layer: 0
   m_Name: GrupoUnidadesAnao
   m_TagString: Untagged
@@ -4370,6 +4437,39 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &920000033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888440030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
+  servicoColocacao: {fileID: 920000001}
+  botoesSlots:
+  - {fileID: 888460314}
+  - {fileID: 888460324}
+  iconesSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  definicoesSlots:
+  - prefabUnidade: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
+    custoOuro: 100
+    nomeInstancia: AnaoArqueiro
+    alcanceIndicadorPreview: 5
+  - prefabUnidade: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
+    custoOuro: 110
+    nomeInstancia: AnaoFeiticeiro
+    alcanceIndicadorPreview: 5.5
+  textosCustoSlots:
+  - {fileID: 888460319}
+  - {fileID: 888460329}
+  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
+  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &888450000
 GameObject:
   m_ObjectHideFlags: 0
@@ -5018,7 +5118,6 @@ GameObject:
   - component: {fileID: 888460112}
   - component: {fileID: 888460113}
   - component: {fileID: 888460114}
-  - component: {fileID: 888460115}
   m_Layer: 0
   m_Name: BotaoUnidadesArqueiroGoblin
   m_TagString: Untagged
@@ -5128,26 +5227,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &888460115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888460110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9d0c1a2b3c4d5e6f7a8b9c0d1e2f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotaoUnidadesSpawnLinhaController
-  custoOuro: 100
-  unidadePrefab: {fileID: 2617070310612995912, guid: 690773445d65fe440b6246a20ea19f3b, type: 3}
-  nomeInstancia: GoblinLanceiro
-  offsetPorUnidade: 1.5
-  direcaoDeslocamento: {x: -1, y: 0}
-  prefabReferenciaContagem: {fileID: 2617070310612995912, guid: 690773445d65fe440b6246a20ea19f3b, type: 3}
-  textoCusto: {fileID: 888460119}
-  botao: {fileID: 888460114}
 --- !u!1 &888460116
 GameObject:
   m_ObjectHideFlags: 0
@@ -5297,7 +5376,6 @@ GameObject:
   - component: {fileID: 888460122}
   - component: {fileID: 888460123}
   - component: {fileID: 888460124}
-  - component: {fileID: 888460125}
   m_Layer: 0
   m_Name: BotaoUnidadesFeiticeiroGoblin
   m_TagString: Untagged
@@ -5407,26 +5485,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &888460125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888460120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9d0c1a2b3c4d5e6f7a8b9c0d1e2f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotaoUnidadesSpawnLinhaController
-  custoOuro: 110
-  unidadePrefab: {fileID: 180006139801302925, guid: 4dce034506e8af14d90806486d083fd8, type: 3}
-  nomeInstancia: GoblinFeiticeiro
-  offsetPorUnidade: 1.5
-  direcaoDeslocamento: {x: 1, y: 0}
-  prefabReferenciaContagem: {fileID: 180006139801302925, guid: 4dce034506e8af14d90806486d083fd8, type: 3}
-  textoCusto: {fileID: 888460129}
-  botao: {fileID: 888460124}
 --- !u!1 &888460126
 GameObject:
   m_ObjectHideFlags: 0
@@ -5852,7 +5910,6 @@ GameObject:
   - component: {fileID: 888460212}
   - component: {fileID: 888460213}
   - component: {fileID: 888460214}
-  - component: {fileID: 888460215}
   m_Layer: 0
   m_Name: BotaoUnidadesArqueiroElfo
   m_TagString: Untagged
@@ -5962,26 +6019,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &888460215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888460210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9d0c1a2b3c4d5e6f7a8b9c0d1e2f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotaoUnidadesSpawnLinhaController
-  custoOuro: 100
-  unidadePrefab: {fileID: 2617070310612995912, guid: 67ffe26d5da7fed448647a9ec7a3ad0d, type: 3}
-  nomeInstancia: ElfoArqueiro
-  offsetPorUnidade: 1.5
-  direcaoDeslocamento: {x: -1, y: 0}
-  prefabReferenciaContagem: {fileID: 2617070310612995912, guid: 67ffe26d5da7fed448647a9ec7a3ad0d, type: 3}
-  textoCusto: {fileID: 888460219}
-  botao: {fileID: 888460214}
 --- !u!1 &888460216
 GameObject:
   m_ObjectHideFlags: 0
@@ -6131,7 +6168,6 @@ GameObject:
   - component: {fileID: 888460222}
   - component: {fileID: 888460223}
   - component: {fileID: 888460224}
-  - component: {fileID: 888460225}
   m_Layer: 0
   m_Name: BotaoUnidadesFeiticeiroElfo
   m_TagString: Untagged
@@ -6241,26 +6277,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &888460225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888460220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9d0c1a2b3c4d5e6f7a8b9c0d1e2f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotaoUnidadesSpawnLinhaController
-  custoOuro: 110
-  unidadePrefab: {fileID: 6527514975530341288, guid: 189dccab99fd98d45a0be33ac8193279, type: 3}
-  nomeInstancia: ElfoMago
-  offsetPorUnidade: 1.5
-  direcaoDeslocamento: {x: 1, y: 0}
-  prefabReferenciaContagem: {fileID: 6527514975530341288, guid: 189dccab99fd98d45a0be33ac8193279, type: 3}
-  textoCusto: {fileID: 888460229}
-  botao: {fileID: 888460224}
 --- !u!1 &888460226
 GameObject:
   m_ObjectHideFlags: 0
@@ -6686,7 +6702,6 @@ GameObject:
   - component: {fileID: 888460312}
   - component: {fileID: 888460313}
   - component: {fileID: 888460314}
-  - component: {fileID: 888460315}
   m_Layer: 0
   m_Name: BotaoUnidadesArqueiroAnao
   m_TagString: Untagged
@@ -6796,26 +6811,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &888460315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888460310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9d0c1a2b3c4d5e6f7a8b9c0d1e2f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotaoUnidadesSpawnLinhaController
-  custoOuro: 100
-  unidadePrefab: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
-  nomeInstancia: AnaoArqueiro
-  offsetPorUnidade: 1.5
-  direcaoDeslocamento: {x: -1, y: 0}
-  prefabReferenciaContagem: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
-  textoCusto: {fileID: 888460319}
-  botao: {fileID: 888460314}
 --- !u!1 &888460316
 GameObject:
   m_ObjectHideFlags: 0
@@ -6965,7 +6960,6 @@ GameObject:
   - component: {fileID: 888460322}
   - component: {fileID: 888460323}
   - component: {fileID: 888460324}
-  - component: {fileID: 888460325}
   m_Layer: 0
   m_Name: BotaoUnidadesFeiticeiroAnao
   m_TagString: Untagged
@@ -7075,26 +7069,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &888460325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888460320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e9d0c1a2b3c4d5e6f7a8b9c0d1e2f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BotaoUnidadesSpawnLinhaController
-  custoOuro: 110
-  unidadePrefab: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
-  nomeInstancia: AnaoFeiticeiro
-  offsetPorUnidade: 1.5
-  direcaoDeslocamento: {x: 1, y: 0}
-  prefabReferenciaContagem: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
-  textoCusto: {fileID: 888460329}
-  botao: {fileID: 888460324}
 --- !u!1 &888460326
 GameObject:
   m_ObjectHideFlags: 0
@@ -11043,6 +11017,7 @@ GameObject:
   - component: {fileID: 1967575612}
   - component: {fileID: 1967575611}
   - component: {fileID: 1967575615}
+  - component: {fileID: 920000001}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -11174,6 +11149,24 @@ MonoBehaviour:
   grupoUnidadesAnao: {fileID: 888440030}
   painelUnidades: {fileID: 509434000}
   overlayFundo: {fileID: 509434007}
+--- !u!114 &920000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967575610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e1f2a3b4c5163748596a7b8c9d0e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ServicoColocacaoUnidade
+  corFantasma: {r: 1, g: 1, b: 1, a: 0.45}
+  sortingOrderFantasma: 5
+  camadaBloqueiaColocacao:
+    serializedVersion: 2
+    m_Bits: 0
+  raioVerificacaoBloqueio: 0.35
 --- !u!1 &1969036608
 GameObject:
   m_ObjectHideFlags: 0
@@ -12372,6 +12365,112 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b2c3d4e5f6789012345678abcde00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TorresManager
+--- !u!1001 &9000777555112000004
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9000777555111000002}
+    m_Modifications:
+    - target: {fileID: 1100000000000000001, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_Name
+      value: TorreGoblinLanceira
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e9d8c7b6a59483726150493827162514, type: 3}
+--- !u!4 &9000777555112000005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
+  m_PrefabInstance: {fileID: 9000777555112000004}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &920000020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 920000021}
+  - component: {fileID: 920000022}
+  m_Layer: 0
+  m_Name: UnidadesAliadas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &920000021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920000020}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &920000022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920000020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c9d0e1f2a30415263748596a7b8c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnidadesManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -12400,6 +12499,7 @@ SceneRoots:
   - {fileID: 1048707214}
   - {fileID: 1241482252}
   - {fileID: 9000777555111000002}
+  - {fileID: 920000021}
   - {fileID: 222596918}
   - {fileID: 1894206977}
   - {fileID: 835927539}

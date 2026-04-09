@@ -112,6 +112,13 @@ public class PainelUnidadesController : MonoBehaviour
         AtualizarVisibilidadeGrupos(false);
     }
 
+    /// <summary>Fecha o painel (ex.: ao entrar em modo de colocação no mapa).</summary>
+    public void FecharPainelSeAberto()
+    {
+        if (painelUnidades != null && painelUnidades.activeSelf)
+            FecharPainel();
+    }
+
     private void AtualizarVisibilidadeGrupos(bool painelAberto)
     {
         TipoRaca raca = ObterRacaAtiva();
