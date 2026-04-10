@@ -4,21 +4,22 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
-/// Spawn com deslocamento em linha (arqueiro / feiticeiro). Conta unidades vivas pelo tipo do primeiro MonoBehaviour no prefab de referência.
+/// Spawn com deslocamento em linha (arqueiro / feiticeiro). Conta unidades vivas pelo tipo do primeiro MonoBehaviour no prefab de referencia.
 /// </summary>
 public class BotaoUnidadesSpawnLinhaController : MonoBehaviour
 {
-    [Header("Configuração")]
+    [Header("Configuracao")]
     [SerializeField] private int custoOuro = 100;
     [SerializeField] private GameObject unidadePrefab;
+    [SerializeField] private GameObject unidadePrefabFeminina;
     [SerializeField] private string nomeInstancia = "Unidade";
     [SerializeField] private float offsetPorUnidade = 1.5f;
     [SerializeField] private Vector2 direcaoDeslocamento = Vector2.left;
 
-    [Tooltip("Prefab do projeto (raiz) usado só para descobrir o tipo MonoBehaviour a contar na cena.")]
+    [Tooltip("Prefab do projeto (raiz) usado so para descobrir o tipo MonoBehaviour a contar na cena.")]
     [SerializeField] private GameObject prefabReferenciaContagem;
 
-    [Header("Referências")]
+    [Header("Referencias")]
     [SerializeField] private TextMeshProUGUI textoCusto;
     [SerializeField] private Button botao;
 
@@ -48,24 +49,31 @@ public class BotaoUnidadesSpawnLinhaController : MonoBehaviour
 
     private void TentarSpawnar()
     {
-        if (OuroManager.Instance == null) return;
-        if (unidadePrefab == null) return;
+        if (OuroManager.Instance == null)
+            return;
+
+        GameObject prefabSelecionado = SeletorPrefabPorSexo.Selecionar(unidadePrefab, unidadePrefabFeminina, out bool feminino);
+        if (prefabSelecionado == null)
+            return;
 
         if (!OuroManager.Instance.GastarOuro(custoOuro))
             return;
 
         int quantidadeAtual = ContarVivos();
         Vector2 posicaoSpawn = ObterCentroCastelo() + direcaoDeslocamento * (quantidadeAtual * offsetPorUnidade);
-        GameObject unidade = GameObject.Instantiate(unidadePrefab, posicaoSpawn, Quaternion.identity);
+        GameObject unidade = GameObject.Instantiate(prefabSelecionado, posicaoSpawn, Quaternion.identity);
         if (!string.IsNullOrEmpty(nomeInstancia))
-            unidade.name = nomeInstancia;
+            unidade.name = SeletorPrefabPorSexo.MontarNomeInstancia(nomeInstancia, feminino);
     }
 
     private int ContarVivos()
     {
-        if (prefabReferenciaContagem == null) return 0;
+        if (prefabReferenciaContagem == null)
+            return 0;
+
         var comp = prefabReferenciaContagem.GetComponent<MonoBehaviour>();
-        if (comp == null) return 0;
+        if (comp == null)
+            return 0;
 
         Type tipo = comp.GetType();
         var objs = UnityEngine.Object.FindObjectsByType(tipo, FindObjectsInactive.Exclude, FindObjectsSortMode.None);

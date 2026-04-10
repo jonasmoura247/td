@@ -3,16 +3,17 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
-/// Controla o botão de spawn do arqueiro humano. Placeholder - funcionalidade a ser implementada.
+/// Controla o botao de spawn do arqueiro humano.
 /// </summary>
 public class BotaoUnidadesArqueiroHumanoController : MonoBehaviour
 {
-    [Header("Configuração")]
+    [Header("Configuracao")]
     [SerializeField] private int custoOuro = 100;
     [SerializeField] private GameObject arqueiroPrefab;
+    [SerializeField] private GameObject arqueiroPrefabFeminino;
     [SerializeField] private float offsetPorArqueiro = 1.5f;
 
-    [Header("Referências")]
+    [Header("Referencias")]
     [SerializeField] private TextMeshProUGUI textoCusto;
     [SerializeField] private Button botao;
 
@@ -42,16 +43,20 @@ public class BotaoUnidadesArqueiroHumanoController : MonoBehaviour
 
     private void TentarSpawnarArqueiro()
     {
-        if (OuroManager.Instance == null) return;
-        if (arqueiroPrefab == null) return;
+        if (OuroManager.Instance == null)
+            return;
+
+        GameObject prefabSelecionado = SeletorPrefabPorSexo.Selecionar(arqueiroPrefab, arqueiroPrefabFeminino, out bool feminino);
+        if (prefabSelecionado == null)
+            return;
 
         if (!OuroManager.Instance.GastarOuro(custoOuro))
             return;
 
         int quantidadeAtual = ContarArqueirosVivos();
         Vector2 posicaoSpawn = ObterCentroCastelo() + Vector2.left * quantidadeAtual * offsetPorArqueiro;
-        GameObject arqueiro = Object.Instantiate(arqueiroPrefab, posicaoSpawn, Quaternion.identity);
-        arqueiro.name = "HumanoArqueiro";
+        GameObject arqueiro = Object.Instantiate(prefabSelecionado, posicaoSpawn, Quaternion.identity);
+        arqueiro.name = SeletorPrefabPorSexo.MontarNomeInstancia("HumanoArqueiro", feminino);
     }
 
     private Vector2 ObterCentroCastelo()
@@ -71,6 +76,7 @@ public class BotaoUnidadesArqueiroHumanoController : MonoBehaviour
             if (c != null && c.EstaVivo)
                 vivas++;
         }
+
         return vivas;
     }
 }
