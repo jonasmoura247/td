@@ -105,10 +105,16 @@ public class ControladorHUDColocacaoUnidades : MonoBehaviour
         int n = Mathf.Min(definicoesSlots.Length, iconesSlots.Length);
         for (int i = 0; i < n; i++)
         {
-            if (iconesSlots[i] == null || definicoesSlots[i] == null || definicoesSlots[i].prefabUnidade == null)
+            if (iconesSlots[i] == null || definicoesSlots[i] == null)
                 continue;
 
-            Sprite sp = UtilSpritesPrefab.ObterSpritePrincipal(definicoesSlots[i].prefabUnidade);
+            GameObject prefabIcone = definicoesSlots[i].prefabUnidade != null
+                ? definicoesSlots[i].prefabUnidade
+                : definicoesSlots[i].prefabUnidadeFeminina;
+            if (prefabIcone == null)
+                continue;
+
+            Sprite sp = UtilSpritesPrefab.ObterSpritePrincipal(prefabIcone);
             if (sp != null)
             {
                 iconesSlots[i].sprite = sp;
@@ -141,7 +147,7 @@ public class ControladorHUDColocacaoUnidades : MonoBehaviour
             return;
 
         DadosSlotConstrucaoUnidade dados = definicoesSlots[indice];
-        if (dados == null || dados.prefabUnidade == null)
+        if (dados == null || (dados.prefabUnidade == null && dados.prefabUnidadeFeminina == null))
             return;
 
         servicoColocacao.IniciarColocacao(dados, indice);
