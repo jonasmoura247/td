@@ -26,6 +26,7 @@ public class ServicoColocacaoUnidade : MonoBehaviour
 
     private GameObject _prefabAtual;
     private DadosSlotConstrucaoUnidade _dadosAtual;
+    private string _nomeInstanciaAtual;
     private int _indiceSlotSelecionado = -1;
     private int _frameInicioColocacao = -1;
 
@@ -109,7 +110,11 @@ public class ServicoColocacaoUnidade : MonoBehaviour
 
     public void IniciarColocacao(DadosSlotConstrucaoUnidade slot, int indiceSlot = -1)
     {
-        if (slot == null || slot.prefabUnidade == null)
+        if (slot == null)
+            return;
+
+        GameObject prefabSelecionado = slot.ObterPrefabAleatorio(out bool feminino);
+        if (prefabSelecionado == null)
             return;
 
         if (ServicoColocacaoTorre.Instancia != null && ServicoColocacaoTorre.Instancia.ModoColocacaoAtivo)
@@ -118,18 +123,19 @@ public class ServicoColocacaoUnidade : MonoBehaviour
         PainelUnidadesController painel = FindFirstObjectByType<PainelUnidadesController>(FindObjectsInactive.Include);
         painel?.FecharPainelSeAberto();
 
-        _prefabAtual = slot.prefabUnidade;
+        _prefabAtual = prefabSelecionado;
         _dadosAtual = slot;
+        _nomeInstanciaAtual = slot.ObterNomeInstancia(prefabSelecionado, feminino);
         _indiceSlotSelecionado = indiceSlot;
         _frameInicioColocacao = Time.frameCount;
 
-        Sprite sp = UtilSpritesPrefab.ObterSpritePrincipal(slot.prefabUnidade);
+        Sprite sp = UtilSpritesPrefab.ObterSpritePrincipal(prefabSelecionado);
         if (_spriteFantasma != null)
         {
             _spriteFantasma.sprite = sp;
             _spriteFantasma.color = corFantasma;
             if (sp != null)
-                _spriteFantasma.flipX = ObterFlipXDoPrefab(slot.prefabUnidade);
+                _spriteFantasma.flipX = ObterFlipXDoPrefab(prefabSelecionado);
         }
 
         _indicadorAlcance.DefinirRaio(slot.alcanceIndicadorPreview);
@@ -138,12 +144,12 @@ public class ServicoColocacaoUnidade : MonoBehaviour
         _raizPreview.gameObject.SetActive(true);
         AtualizarPosicaoPreview(ObterPontoMundoPlanoZZero());
     }
-
     public void CancelarColocacao()
     {
         ModoColocacaoAtivo = false;
         _prefabAtual = null;
         _dadosAtual = null;
+        _nomeInstanciaAtual = null;
         _indiceSlotSelecionado = -1;
         _frameInicioColocacao = -1;
         if (_raizPreview != null)
@@ -178,13 +184,13 @@ public class ServicoColocacaoUnidade : MonoBehaviour
                 _prefabAtual,
                 posicaoMundo,
                 Quaternion.identity,
-                _dadosAtual.nomeInstancia);
+                _nomeInstanciaAtual);
         }
         else
         {
             GameObject instancia = Instantiate(_prefabAtual, posicaoMundo, Quaternion.identity);
-            if (!string.IsNullOrEmpty(_dadosAtual.nomeInstancia))
-                instancia.name = _dadosAtual.nomeInstancia;
+            if (!string.IsNullOrEmpty(_nomeInstanciaAtual))
+                instancia.name = _nomeInstanciaAtual;
         }
 
         CancelarColocacao();
@@ -259,3 +265,4 @@ public class ServicoColocacaoUnidade : MonoBehaviour
 
     public int IndiceSlotSelecionado => _indiceSlotSelecionado;
 }
+

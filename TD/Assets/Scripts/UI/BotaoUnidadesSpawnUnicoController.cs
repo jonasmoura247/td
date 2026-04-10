@@ -3,16 +3,17 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
-/// Spawn de uma unidade no centro do castelo (ex.: mineiro). Configurável por inspector para qualquer raça.
+/// Spawn de uma unidade no centro do castelo (ex.: mineiro). Configuravel por inspector para qualquer raca.
 /// </summary>
 public class BotaoUnidadesSpawnUnicoController : MonoBehaviour
 {
-    [Header("Configuração")]
+    [Header("Configuracao")]
     [SerializeField] private int custoOuro = 70;
     [SerializeField] private GameObject unidadePrefab;
+    [SerializeField] private GameObject unidadePrefabFeminina;
     [SerializeField] private string nomeInstancia = "Unidade";
 
-    [Header("Referências")]
+    [Header("Referencias")]
     [SerializeField] private TextMeshProUGUI textoCusto;
     [SerializeField] private Button botao;
 
@@ -42,16 +43,20 @@ public class BotaoUnidadesSpawnUnicoController : MonoBehaviour
 
     private void TentarSpawnar()
     {
-        if (OuroManager.Instance == null) return;
-        if (unidadePrefab == null) return;
+        if (OuroManager.Instance == null)
+            return;
+
+        GameObject prefabSelecionado = SeletorPrefabPorSexo.Selecionar(unidadePrefab, unidadePrefabFeminina, out bool feminino);
+        if (prefabSelecionado == null)
+            return;
 
         if (!OuroManager.Instance.GastarOuro(custoOuro))
             return;
 
         Vector2 posicaoSpawn = ObterCentroCastelo();
-        GameObject unidade = GameObject.Instantiate(unidadePrefab, posicaoSpawn, Quaternion.identity);
+        GameObject unidade = GameObject.Instantiate(prefabSelecionado, posicaoSpawn, Quaternion.identity);
         if (!string.IsNullOrEmpty(nomeInstancia))
-            unidade.name = nomeInstancia;
+            unidade.name = SeletorPrefabPorSexo.MontarNomeInstancia(nomeInstancia, feminino);
     }
 
     private static Vector2 ObterCentroCastelo()
