@@ -10,9 +10,27 @@ public class ReliquiaHudPartida : MonoBehaviour
     [SerializeField] private Image[] slotsEsquerda = new Image[5];
     [SerializeField] private Image destaqueDireita;
 
+    [Header("Fundo por raça (ordem: Goblin, Humano, Elfo, Anao)")]
+    [SerializeField] private Sprite[] spritesFundoPorRaca = new Sprite[4];
+
     private void Start()
     {
+        AplicarFundoPorRaca();
         AtualizarHud();
+    }
+
+    private void AplicarFundoPorRaca()
+    {
+        if (spritesFundoPorRaca == null || spritesFundoPorRaca.Length == 0)
+            return;
+
+        int indice = (int)(PerfilJogadorAtivo.TemPerfilAtivo ? PerfilJogadorAtivo.Raca : TipoRaca.Goblin);
+        if (indice < 0 || indice >= spritesFundoPorRaca.Length || spritesFundoPorRaca[indice] == null)
+            return;
+
+        Image fundo = GetComponent<Image>();
+        if (fundo != null)
+            fundo.sprite = spritesFundoPorRaca[indice];
     }
 
     public void AtualizarHud()

@@ -3595,7 +3595,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4753225381919156970, guid: 76122aea07b116d45b0f7e4a75e36571, type: 3}
+  m_Sprite: {fileID: 649983828263535232, guid: b5489fa888597664c92af588b44d4d57, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4221,39 +4221,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &920000030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888440000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
-  servicoColocacao: {fileID: 920000001}
-  botoesSlots:
-  - {fileID: 509434034}
-  - {fileID: 509434044}
-  iconesSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  definicoesSlots:
-  - prefabUnidade: {fileID: 2579156320764190982, guid: 9ba24915695ea3c469282cf76d1a0544, type: 3}
-    custoOuro: 100
-    nomeInstancia: HumanoArqueiro
-    alcanceIndicadorPreview: 5
-  - prefabUnidade: {fileID: 8000000010000000001, guid: f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2, type: 3}
-    custoOuro: 110
-    nomeInstancia: HumanoFeiticeira
-    alcanceIndicadorPreview: 5.5
-  textosCustoSlots:
-  - {fileID: 509434039}
-  - {fileID: 509434049}
-  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
-  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &888440010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4293,39 +4260,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &920000031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888440010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
-  servicoColocacao: {fileID: 920000001}
-  botoesSlots:
-  - {fileID: 888460114}
-  - {fileID: 888460124}
-  iconesSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  definicoesSlots:
-  - prefabUnidade: {fileID: 2617070310612995912, guid: 690773445d65fe440b6246a20ea19f3b, type: 3}
-    custoOuro: 100
-    nomeInstancia: GoblinLanceiro
-    alcanceIndicadorPreview: 5
-  - prefabUnidade: {fileID: 180006139801302925, guid: 4dce034506e8af14d90806486d083fd8, type: 3}
-    custoOuro: 110
-    nomeInstancia: GoblinFeiticeiro
-    alcanceIndicadorPreview: 5.5
-  textosCustoSlots:
-  - {fileID: 888460119}
-  - {fileID: 888460129}
-  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
-  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &888440020
 GameObject:
   m_ObjectHideFlags: 0
@@ -4365,39 +4299,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &920000032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888440020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
-  servicoColocacao: {fileID: 920000001}
-  botoesSlots:
-  - {fileID: 888460214}
-  - {fileID: 888460224}
-  iconesSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  definicoesSlots:
-  - prefabUnidade: {fileID: 2617070310612995912, guid: 67ffe26d5da7fed448647a9ec7a3ad0d, type: 3}
-    custoOuro: 100
-    nomeInstancia: ElfoArqueiro
-    alcanceIndicadorPreview: 5
-  - prefabUnidade: {fileID: 6527514975530341288, guid: 189dccab99fd98d45a0be33ac8193279, type: 3}
-    custoOuro: 110
-    nomeInstancia: ElfoMago
-    alcanceIndicadorPreview: 5.5
-  textosCustoSlots:
-  - {fileID: 888460219}
-  - {fileID: 888460229}
-  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
-  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &888440030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4437,39 +4338,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &920000033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888440030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
-  servicoColocacao: {fileID: 920000001}
-  botoesSlots:
-  - {fileID: 888460314}
-  - {fileID: 888460324}
-  iconesSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  definicoesSlots:
-  - prefabUnidade: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
-    custoOuro: 100
-    nomeInstancia: AnaoArqueiro
-    alcanceIndicadorPreview: 5
-  - prefabUnidade: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
-    custoOuro: 110
-    nomeInstancia: AnaoFeiticeiro
-    alcanceIndicadorPreview: 5.5
-  textosCustoSlots:
-  - {fileID: 888460319}
-  - {fileID: 888460329}
-  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
-  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &888450000
 GameObject:
   m_ObjectHideFlags: 0
@@ -7252,6 +7120,316 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &920000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967575610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e1f2a3b4c5163748596a7b8c9d0e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ServicoColocacaoUnidade
+  corFantasma: {r: 1, g: 1, b: 1, a: 0.45}
+  sortingOrderFantasma: 5
+  camadaBloqueiaColocacao:
+    serializedVersion: 2
+    m_Bits: 0
+  raioVerificacaoBloqueio: 0.35
+  bloquearQuandoPonteiroSobreUI: 0
+--- !u!1 &920000020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 920000021}
+  - component: {fileID: 920000022}
+  - component: {fileID: 920000023}
+  m_Layer: 0
+  m_Name: UnidadesAliadas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &920000021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920000020}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &920000022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920000020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c9d0e1f2a30415263748596a7b8c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnidadesManager
+  segmentos: 64
+  larguraLinha: 0.07
+  cor: {r: 0.25, g: 0.85, b: 0.35, a: 0.65}
+  sortingOrder: 3
+--- !u!120 &920000023
+LineRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920000020}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
+--- !u!114 &920000030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888440000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
+  servicoColocacao: {fileID: 920000001}
+  botoesSlots:
+  - {fileID: 509434034}
+  - {fileID: 509434044}
+  iconesSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  definicoesSlots:
+  - prefabUnidade: {fileID: 2579156320764190982, guid: 9ba24915695ea3c469282cf76d1a0544, type: 3}
+    custoOuro: 100
+    nomeInstancia: HumanoArqueiro
+    alcanceIndicadorPreview: 5
+  - prefabUnidade: {fileID: 8000000010000000001, guid: f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2, type: 3}
+    custoOuro: 110
+    nomeInstancia: HumanoFeiticeira
+    alcanceIndicadorPreview: 5.5
+  textosCustoSlots:
+  - {fileID: 509434039}
+  - {fileID: 509434049}
+  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
+  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
+--- !u!114 &920000031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888440010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
+  servicoColocacao: {fileID: 920000001}
+  botoesSlots:
+  - {fileID: 888460114}
+  - {fileID: 888460124}
+  iconesSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  definicoesSlots:
+  - prefabUnidade: {fileID: 2617070310612995912, guid: 690773445d65fe440b6246a20ea19f3b, type: 3}
+    custoOuro: 100
+    nomeInstancia: GoblinLanceiro
+    alcanceIndicadorPreview: 5
+  - prefabUnidade: {fileID: 180006139801302925, guid: 4dce034506e8af14d90806486d083fd8, type: 3}
+    custoOuro: 110
+    nomeInstancia: GoblinFeiticeiro
+    alcanceIndicadorPreview: 5.5
+  textosCustoSlots:
+  - {fileID: 888460119}
+  - {fileID: 888460129}
+  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
+  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
+--- !u!114 &920000032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888440020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
+  servicoColocacao: {fileID: 920000001}
+  botoesSlots:
+  - {fileID: 888460214}
+  - {fileID: 888460224}
+  iconesSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  definicoesSlots:
+  - prefabUnidade: {fileID: 2617070310612995912, guid: 67ffe26d5da7fed448647a9ec7a3ad0d, type: 3}
+    custoOuro: 100
+    nomeInstancia: ElfoArqueiro
+    alcanceIndicadorPreview: 5
+  - prefabUnidade: {fileID: 6527514975530341288, guid: 189dccab99fd98d45a0be33ac8193279, type: 3}
+    custoOuro: 110
+    nomeInstancia: ElfoMago
+    alcanceIndicadorPreview: 5.5
+  textosCustoSlots:
+  - {fileID: 888460219}
+  - {fileID: 888460229}
+  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
+  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
+--- !u!114 &920000033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888440030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f2a3b4c5d62748596a7b8c9d0e1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControladorHUDColocacaoUnidades
+  servicoColocacao: {fileID: 920000001}
+  botoesSlots:
+  - {fileID: 888460314}
+  - {fileID: 888460324}
+  iconesSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  definicoesSlots:
+  - prefabUnidade: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
+    custoOuro: 100
+    nomeInstancia: AnaoArqueiro
+    alcanceIndicadorPreview: 5
+  - prefabUnidade: {fileID: 2617070310612995912, guid: 7316eb756c2ae2f4fa7b71f11528b6cf, type: 3}
+    custoOuro: 110
+    nomeInstancia: AnaoFeiticeiro
+    alcanceIndicadorPreview: 5.5
+  textosCustoSlots:
+  - {fileID: 888460319}
+  - {fileID: 888460329}
+  corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
+  corBotaoSelecionado: {r: 0.7, g: 0.85, b: 0.95, a: 1}
 --- !u!1 &934149647
 GameObject:
   m_ObjectHideFlags: 0
@@ -11149,24 +11327,6 @@ MonoBehaviour:
   grupoUnidadesAnao: {fileID: 888440030}
   painelUnidades: {fileID: 509434000}
   overlayFundo: {fileID: 509434007}
---- !u!114 &920000001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967575610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0e1f2a3b4c5163748596a7b8c9d0e1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ServicoColocacaoUnidade
-  corFantasma: {r: 1, g: 1, b: 1, a: 0.45}
-  sortingOrderFantasma: 5
-  camadaBloqueiaColocacao:
-    serializedVersion: 2
-    m_Bits: 0
-  raioVerificacaoBloqueio: 0.35
 --- !u!1 &1969036608
 GameObject:
   m_ObjectHideFlags: 0
@@ -11952,6 +12112,11 @@ MonoBehaviour:
   - {fileID: 989903981}
   - {fileID: 236669261}
   destaqueDireita: {fileID: 0}
+  spritesFundoPorRaca:
+  - {fileID: -2362905105389397794, guid: 2c0d2987ee20872419e127868bab6488, type: 3}
+  - {fileID: -1400564627737674698, guid: b5b360b0855a9d147922912af9d4dfd5, type: 3}
+  - {fileID: 2404183108725980266, guid: a3ddfafa8bb888d4caf759fa782f5723, type: 3}
+  - {fileID: 1258150841853293164, guid: b54933bbbf23fe144b930b6c751a63f7, type: 3}
 --- !u!1001 &2099409140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12350,7 +12515,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9000777555112000005}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9000777555111000003
@@ -12427,50 +12593,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1100000000000000002, guid: e9d8c7b6a59483726150493827162514, type: 3}
   m_PrefabInstance: {fileID: 9000777555112000004}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &920000020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 920000021}
-  - component: {fileID: 920000022}
-  m_Layer: 0
-  m_Name: UnidadesAliadas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &920000021
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920000020}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &920000022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920000020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c9d0e1f2a30415263748596a7b8c9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnidadesManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -16,6 +16,11 @@ public class ControladorHUDConstrucaoTorres : MonoBehaviour
 
     [SerializeField] private DadosSlotConstrucaoTorre[] definicoesSlots = new DadosSlotConstrucaoTorre[5];
 
+    [Header("Fundo por raça (ordem: Goblin, Humano, Elfo, Anao)")]
+    [Tooltip("Imagem de fundo do painel. Se null, busca o Image no próprio GameObject.")]
+    [SerializeField] private Image imagemFundo;
+    [SerializeField] private Sprite[] spritesFundoPorRaca = new Sprite[4];
+
     [Header("Feedback slot selecionado")]
     [SerializeField] private Color corBotaoNormal = Color.white;
     [SerializeField] private Color corBotaoSelecionado = new Color(0.7f, 0.95f, 0.75f, 1f);
@@ -58,7 +63,22 @@ public class ControladorHUDConstrucaoTorres : MonoBehaviour
 
     private void Start()
     {
+        AplicarFundoPorRaca();
         AplicarIconesNosSlots();
+    }
+
+    private void AplicarFundoPorRaca()
+    {
+        if (spritesFundoPorRaca == null || spritesFundoPorRaca.Length == 0)
+            return;
+
+        int indice = (int)(PerfilJogadorAtivo.TemPerfilAtivo ? PerfilJogadorAtivo.Raca : TipoRaca.Goblin);
+        if (indice < 0 || indice >= spritesFundoPorRaca.Length || spritesFundoPorRaca[indice] == null)
+            return;
+
+        Image fundo = imagemFundo != null ? imagemFundo : GetComponent<Image>();
+        if (fundo != null)
+            fundo.sprite = spritesFundoPorRaca[indice];
     }
 
     private void Update()
