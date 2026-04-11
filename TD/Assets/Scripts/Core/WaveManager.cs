@@ -15,11 +15,16 @@ public class WaveManager : MonoBehaviour
     public class WaveRacaConfig
     {
         public TipoRaca raca;
+        [Tooltip("Prefabs masculinos dos inimigos comuns desta raça.")]
         public GameObject[] prefabs;
+        [Tooltip("Prefabs femininos dos inimigos comuns (mesma ordem de prefabs[]). Se vazio, usa apenas masculino.")]
+        public GameObject[] prefabsFemininos;
         public int baseQtd = 1;
         public int incrementoPorWave = 1;
         public bool temBoss = false;
         public GameObject bossPrefab;
+        [Tooltip("Variante feminina do boss (opcional). Se vazio, usa bossPrefab.")]
+        public GameObject bossPrefabFeminino;
     }
 
     [System.Serializable]
@@ -37,11 +42,17 @@ public class WaveManager : MonoBehaviour
         [Tooltip("Prefab do boss utilizado (obrigatório se quantidadeBoss > 0).")]
         public GameObject bossPrefab;
 
+        [Tooltip("Variante feminina do boss (opcional). Se vazio, usa bossPrefab.")]
+        public GameObject bossPrefabFeminino;
+
         [Tooltip("Quantidade fixa de inimigos comuns nesta wave.")]
         public int quantidadeComuns = 0;
 
         [Tooltip("Prefabs específicos para modo Fixa. Usados em sequência/ciclo. Ignorado no modo Aleatoria.")]
         public GameObject[] prefabsComuns;
+
+        [Tooltip("Variantes femininas de prefabsComuns (mesma ordem). Ignorado no modo Aleatoria.")]
+        public GameObject[] prefabsComunsFemininos;
     }
 
     [Header("===== TIMER =====")]
@@ -339,7 +350,8 @@ public class WaveManager : MonoBehaviour
             GameObject prefabBoss = ObterPrefabBossParaSpawn();
             if (prefabBoss != null)
             {
-                Spawnar(prefabBoss, rota);
+                GameObject prefabBossFem = ObterPrefabBossFemininoParaSpawn();
+                Spawnar(prefabBoss, prefabBossFem, rota);
                 yield return new WaitForSeconds(intervaloEntreSpawns);
             }
             else
@@ -349,6 +361,7 @@ public class WaveManager : MonoBehaviour
         }
 
         GameObject[] prefabsComuns = ObterPrefabsComuns();
+        GameObject[] prefabsComunsFem = ObterPrefabsComunsFemininos();
         if (prefabsComuns == null || prefabsComuns.Length == 0)
         {
             if (qtdComuns > 0)
@@ -358,12 +371,18 @@ public class WaveManager : MonoBehaviour
         {
             for (int i = 0; i < qtdComuns; i++)
             {
-                GameObject prefab = configWaveAtual.modoWave == ModoWave.Fixa
-                    ? prefabsComuns[i % prefabsComuns.Length]
-                    : prefabsComuns[Random.Range(0, prefabsComuns.Length)];
+                int idx = configWaveAtual.modoWave == ModoWave.Fixa
+                    ? i % prefabsComuns.Length
+                    : Random.Range(0, prefabsComuns.Length);
+
+                GameObject prefab = prefabsComuns[idx];
+                GameObject prefabFem = prefabsComunsFem != null && idx < prefabsComunsFem.Length
+                    ? prefabsComunsFem[idx]
+                    : null;
+
                 if (prefab != null)
                 {
-                    Spawnar(prefab, rota);
+                    Spawnar(prefab, prefabFem, rota);
                     yield return new WaitForSeconds(intervaloEntreSpawns);
                 }
             }
@@ -388,6 +407,23 @@ public class WaveManager : MonoBehaviour
         if (configRacaAtual != null && configRacaAtual.prefabs != null && configRacaAtual.prefabs.Length > 0)
         {
             return configRacaAtual.prefabs;
+        }
+
+        return null;
+    }
+
+    private GameObject[] ObterPrefabsComunsFemininos()
+    {
+        if (configWaveAtual.modoWave == ModoWave.Fixa &&
+            configWaveAtual.prefabsComunsFemininos != null &&
+            configWaveAtual.prefabsComunsFemininos.Length > 0)
+        {
+            return configWaveAtual.prefabsComunsFemininos;
+        }
+
+        if (configRacaAtual != null && configRacaAtual.prefabsFemininos != null && configRacaAtual.prefabsFemininos.Length > 0)
+        {
+            return configRacaAtual.prefabsFemininos;
         }
 
         return null;
@@ -418,8 +454,19 @@ public class WaveManager : MonoBehaviour
         return null;
     }
 
-    private void Spawnar(GameObject prefab, Transform rota)
+    private GameObject ObterPrefabBossFemininoParaSpawn()
     {
+        if (configWaveAtual != null && configWaveAtual.bossPrefabFeminino != null)
+            return configWaveAtual.bossPrefabFeminino;
+        if (configRacaAtual != null && configRacaAtual.bossPrefabFeminino != null)
+            return configRacaAtual.bossPrefabFeminino;
+        return null;
+    }
+
+    private void Spawnar(GameObject prefabMasculino, GameObject prefabFeminino, Transform rota)
+    {
+        GameObject prefab = SeletorPrefabPorSexo.Selecionar(prefabMasculino, prefabFeminino, out _);
+
         if (prefab == null)
         {
             Debug.LogWarning("Tentativa de spawnar um prefab nulo.");

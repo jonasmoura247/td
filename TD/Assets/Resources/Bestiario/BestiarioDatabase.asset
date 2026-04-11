@@ -133,6 +133,78 @@ MonoBehaviour:
     iconeSilhueta: {fileID: -5097292090983642242, guid: f827e9ed9dadf1e489af2656616fc032, type: 3}
     marcosMortes: a00000009001000020030000
     pontosPorEstagio: 140000001400000014000000
+  - id: mob_harpia
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Harpia
+    descricaoTooltip: Harpia
+    icone: {fileID: 7632816475342822007, guid: c97d2c7d87adf9c48bb3c2ba7983810b, type: 3}
+    iconeSilhueta: {fileID: 7632816475342822007, guid: c97d2c7d87adf9c48bb3c2ba7983810b, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_formiga
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Formiga Mutante
+    descricaoTooltip: Formiga Mutante
+    icone: {fileID: -5705808376240732004, guid: 98de164c65e37884aaf42bd7ba55fc7e, type: 3}
+    iconeSilhueta: {fileID: -5705808376240732004, guid: 98de164c65e37884aaf42bd7ba55fc7e, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_tigre
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Tigre
+    descricaoTooltip: Tigre
+    icone: {fileID: 3541734497707530181, guid: 44a55f79c97e628489232adfa23771a9, type: 3}
+    iconeSilhueta: {fileID: 7773437158841553248, guid: 827a693667174cd4a85fcc68437f071e, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_amazon
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Amazonas
+    descricaoTooltip: Amazonas
+    icone: {fileID: -8826475575539095809, guid: b3e9c63852359524987fe96b202d606f, type: 3}
+    iconeSilhueta: {fileID: -8826475575539095809, guid: b3e9c63852359524987fe96b202d606f, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_golempedra
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Golem de Pedra
+    descricaoTooltip: Golem de Pedra
+    icone: {fileID: -6743142802308978994, guid: 3a3f96ce42e0e50458f7371b1821bc80, type: 3}
+    iconeSilhueta: {fileID: -6743142802308978994, guid: 3a3f96ce42e0e50458f7371b1821bc80, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_minotauro
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Minotauro
+    descricaoTooltip: Minotauro
+    icone: {fileID: -2323715351147967271, guid: ab55ee084df9e594db67fbb2c3aed130, type: 3}
+    iconeSilhueta: {fileID: -2323715351147967271, guid: ab55ee084df9e594db67fbb2c3aed130, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_ogre
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Ogro
+    descricaoTooltip: Ogro
+    icone: {fileID: 103550330516798639, guid: 63ba6f94cda59314b895a3bb08f3b6e2, type: 3}
+    iconeSilhueta: {fileID: 103550330516798639, guid: 63ba6f94cda59314b895a3bb08f3b6e2, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
+  - id: mob_rato
+    racaId: mobs
+    nivelDificuldade: 2
+    nomeExibicao: Rato
+    descricaoTooltip: Rato
+    icone: {fileID: -2567254594162143863, guid: 0afd9a3eb066241448e713586c83f92f, type: 3}
+    iconeSilhueta: {fileID: -2567254594162143863, guid: 0afd9a3eb066241448e713586c83f92f, type: 3}
+    marcosMortes: a00000009001000020030000
+    pontosPorEstagio: 140000001400000014000000
   runas:
   - id: runa_eco_guerreiro
     nomeExibicao: Eco de dor
