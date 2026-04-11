@@ -95,6 +95,12 @@ MonoBehaviour:
     dados: {fileID: 11400000, guid: f1e2d3c4b5a697887766554433221100, type: 2}
   corBotaoNormal: {r: 1, g: 1, b: 1, a: 1}
   corBotaoSelecionado: {r: 0.7, g: 0.95, b: 0.75, a: 1}
+  imagemFundo: {fileID: 0}
+  spritesFundoPorRaca:
+  - {fileID: 649983828263535232, guid: b5489fa888597664c92af588b44d4d57, type: 3}
+  - {fileID: 4795778536961549412, guid: 906045d3b57e2a14fb73724d9cd1a0bb, type: 3}
+  - {fileID: -4753225381919156970, guid: 76122aea07b116d45b0f7e4a75e36571, type: 3}
+  - {fileID: -1269488671695041146, guid: 7ccc2102eb4580548b39d75972d78621, type: 3}
 --- !u!1 &880000010
 GameObject:
   m_ObjectHideFlags: 0
