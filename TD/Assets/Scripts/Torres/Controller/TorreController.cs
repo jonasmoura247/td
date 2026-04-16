@@ -66,7 +66,8 @@ public class TorreController : MonoBehaviour, IDanificavel
                 referenciaObjetivoTrajetoFallback = castelo.transform;
         }
 
-        _alvejamento.Configurar(transform, _atributos, referenciaObjetivoTrajetoFallback);
+        PrioridadeAlvoTorre prioridade = dados != null ? dados.prioridadeAlvo : PrioridadeAlvoTorre.Primeiro;
+        _alvejamento.Configurar(transform, _atributos, referenciaObjetivoTrajetoFallback, prioridade);
 
         TorresManager mgr = TorresManager.Instancia;
         if (mgr == null)
@@ -115,6 +116,15 @@ public class TorreController : MonoBehaviour, IDanificavel
     protected virtual void AoMorrerTorre(TorreBaseCore _)
     {
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Altera a prioridade de alvo em runtime (ex.: via HUD).
+    /// Reflete imediatamente no próximo frame de atualização do alvejamento.
+    /// </summary>
+    public void DefinirPrioridadeAlvo(PrioridadeAlvoTorre prioridade)
+    {
+        _alvejamento?.DefinirPrioridade(prioridade);
     }
 
     /// <summary>Animation Event no clip de ataque: dispara o projétil no timing da animação.</summary>

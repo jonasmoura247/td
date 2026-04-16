@@ -60,7 +60,7 @@ public class LancaProjetil : MonoBehaviour
 
         float distancia = Vector2.Distance(transform.position, alvo.position);
 
-        if (distancia <= 0.1f)
+        if (distancia <= 0.5f)
         {
             if (vidaAlvo != null && vidaAlvo.EstaVivo)
             {

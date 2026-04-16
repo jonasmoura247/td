@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3693361937077196446}
   - component: {fileID: 4453326395317553046}
   - component: {fileID: 8800100200000001}
+  - component: {fileID: 327398979038177640}
   m_Layer: 3
   m_Name: AnaoGuerreiro
   m_TagString: NpcGoblin
@@ -35,7 +36,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 0.34663272, y: 0.34663272, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5019313742153380447}
@@ -182,8 +183,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1, y: 0}
-  m_Size: {x: 3.25, y: 5.25}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 8.05, y: 5.25}
   m_Direction: 0
 --- !u!114 &5013575897096238195
 MonoBehaviour:
@@ -226,35 +227,13 @@ MonoBehaviour:
   vidaMaxima: 100
   danoBase: 1
   faccao: 1
-  distanciaRecuo: 1
-  duracaoRecuo: 0.2
-  curvaRecuo:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  chanceCritico: 0.1
+  multiplicadorCritico: 1.5
   multiplicadorDanoRacial: 1
   multiplicadorVelocidade: 0.88
   multiplicadorDanoGuerreiro: 1.15
+  alcanceAtaque: 0
+  intervaloAtaque: 0
 --- !u!114 &4453326395317553046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +271,38 @@ MonoBehaviour:
   velocidadeMinima: 0.15
   limiteDirecaoX: 0.05
   tempoPorFrame: 0.12
+--- !u!114 &327398979038177640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617070310612995912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3cb29cd19e02c745b0529baf6bcb199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SistemaIAUnidade
+  alcanceDeteccao: 8.4
+  intervaloScan: 0.143
+  layerAlvos:
+    serializedVersion: 2
+    m_Bits: 192
+  alcanceAtaque: 1.5
+  intervaloAtaque: 0.3
+  perseguirAlvo: 1
+  velocidadePerseguicao: 4.86
+  raioSeparacao: 0.89
+  forcaSeparacao: 19.5
+  layerUnidades:
+    serializedVersion: 2
+    m_Bits: 8
+  layerObstaculos:
+    serializedVersion: 2
+    m_Bits: 0
+  distanciaDeteccaoBloqueio: 0.5
+  margemTela: 0
+  prioridade: 1
 --- !u!1 &8639796489164306097
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,11 +542,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8478636148458254194, guid: cd8cef672b754c84cbca3d0e437f6563, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 8478636148458254194, guid: cd8cef672b754c84cbca3d0e437f6563, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 1.71
       objectReference: {fileID: 0}
     - target: {fileID: 8838193930737610988, guid: cd8cef672b754c84cbca3d0e437f6563, type: 3}
       propertyPath: m_LocalScale.z

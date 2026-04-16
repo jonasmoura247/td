@@ -3,78 +3,56 @@ using UnityEngine;
 public class AnaoGuerreiro : AnoesController
 {
     [SerializeField] private float multiplicadorDanoGuerreiro = 1.15f;
-    [Header("Configuracao Arqueiro")]
-    [SerializeField] private float alcanceAtaque = 25f;
-    [SerializeField] private float intervaloAtaque = 2f;
-    [SerializeField] private int danoFlecha = 2;
-    [SerializeField] private GameObject prefabFlecha;
-    [SerializeField] private Transform pontoDisparo;
+    [Header("Configuracao Melee")]
+    [SerializeField] private float alcanceAtaque = 2f;
+    [SerializeField] private float intervaloAtaque = 1.5f;
 
-    private float proximoAtaque;
+    private float _proximoAtaque;
+    private SistemaIAUnidade _ia;
 
     protected override void Start()
     {
-        alcanceAtaque = 25f;
-        intervaloAtaque = 2f;
-        danoFlecha = 2;
         base.Start();
-        CarregarPrefabFlechaSeNecessario();
+        _ia = GetComponent<SistemaIAUnidade>();
     }
 
     private void Update()
     {
-        if (!estaVivo)
-            return;
+        if (_ia != null && _ia.enabled) return;
+        if (!estaVivo) return;
 
-        UnidadeController inimigoProximo = EncontrarInimigoMaisProximo(alcanceAtaque);
-        if (!EhAlvoInimigoValido(inimigoProximo))
+        UnidadeController alvo = EncontrarInimigoMaisProximo(alcanceAtaque);
+        if (!EhAlvoInimigoValido(alvo))
         {
             movimento?.ContinuarMovimento();
             return;
         }
 
-        float distancia = Vector2.Distance(transform.position, inimigoProximo.transform.position);
-        if (distancia <= alcanceAtaque)
-        {
-            movimento?.PararMovimento();
-            Atacar(inimigoProximo.transform);
-            return;
-        }
-
-        movimento?.ContinuarMovimento();
+        movimento?.PararMovimento();
+        Atacar(alvo);
     }
 
-    private void Atacar(Transform alvo)
+    private void Atacar(UnidadeController alvo)
     {
-        if (Time.time < proximoAtaque)
-            return;
-
-        if (alvo == null)
-            return;
-
-        CarregarPrefabFlechaSeNecessario();
-        if (prefabFlecha == null)
-            return;
-
-        proximoAtaque = Time.time + intervaloAtaque;
-
-        Vector3 origem = pontoDisparo != null ? pontoDisparo.position : transform.position;
-        GameObject flecha = Instantiate(prefabFlecha, origem, Quaternion.identity);
-
-        LancaProjetil projetil = flecha.GetComponent<LancaProjetil>();
-        if (projetil != null)
-            projetil.Inicializar(alvo, danoFlecha, gameObject.name);
+        if (Time.time < _proximoAtaque) return;
+        _proximoAtaque = Time.time + intervaloAtaque;
+        alvo.ReceberDano(GetDanoAtaque());
     }
 
-    private void CarregarPrefabFlechaSeNecessario()
+    public override void ExecutarAtaqueIA(UnidadeController alvo)
     {
-        GameObject flecha = Resources.Load<GameObject>("Projetis/Flecha");
-        if (flecha != null)
-            prefabFlecha = flecha;
+        if (alvo == null || !alvo.EstaVivo) return;
+        int dano = GetDanoAtaque();
+        ServicoAplicacaoDano.Aplicar(
+            alvo,
+            alvo.transform.position,
+            dano,
+            PedidoDanoFlutuante.Criar(dano, TipoDanoCombate.Fisico),
+            dispararProcsRunaBestiario: faccao == Faccao.Inimigo);
     }
 
     public override int GetDanoFinal()
     {
-        return Mathf.RoundToInt(base.GetDanoFinal() * multiplicadorDanoGuerreiro);
+        return Mathf.RoundToInt(danoBase * multiplicadorDanoGuerreiro);
     }
 }

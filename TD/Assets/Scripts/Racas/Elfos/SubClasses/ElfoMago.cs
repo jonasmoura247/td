@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ElfoMago : UnidadeController
 {
-    [Header("Configuração de Ataque")]
+    [Header("Configuraï¿½ï¿½o de Ataque")]
     public float distanciaAtaque = 4f;
     public float intervaloAtaque = 2f;
     public GameObject magiaPrefab;
@@ -17,11 +17,12 @@ public class ElfoMago : UnidadeController
 
         base.Start();
 
-        CasteloController castelo = FindFirstObjectByType<CasteloController>();
-
-        if (castelo != null && castelo.faccao != this.faccao)
+        GameObject goCastelo = GameObject.FindGameObjectWithTag("Castelo");
+        if (goCastelo != null)
         {
-            alvo = castelo.transform;
+            EstruturasController castelo = goCastelo.GetComponent<EstruturasController>();
+            if (castelo != null && castelo.faccao != faccao)
+                alvo = goCastelo.transform;
         }
     }
 

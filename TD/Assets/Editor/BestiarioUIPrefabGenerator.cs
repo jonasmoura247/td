@@ -150,7 +150,7 @@ public static class BestiarioUIPrefabGenerator
         tmpMarcos.fontSize = 10f;
         tmpMarcos.alignment = TextAlignmentOptions.Center;
         tmpMarcos.color = new Color(0.85f, 0.88f, 0.95f, 1f);
-        tmpMarcos.enableWordWrapping = false;
+        tmpMarcos.textWrappingMode = TextWrappingModes.NoWrap;
         tmpMarcos.overflowMode = TextOverflowModes.Overflow;
         tmpMarcos.raycastTarget = false;
 
@@ -314,7 +314,7 @@ public static class BestiarioUIPrefabGenerator
         tmpDesc.fontSize = 10f;
         tmpDesc.color = new Color(0.78f, 0.8f, 0.82f, 1f);
         tmpDesc.text = "Descricao visivel no catalogo (opcional no database).";
-        tmpDesc.enableWordWrapping = true;
+        tmpDesc.textWrappingMode = TextWrappingModes.Normal;
 
         GameObject goReq = new GameObject("Requisitos", typeof(RectTransform));
         goReq.transform.SetParent(col.transform, false);

@@ -11,13 +11,20 @@ public class NotificacaoToastUI : MonoBehaviour
     [SerializeField] private float duracaoVisivel = 3.5f;
     [SerializeField] private float duracaoFade = 0.35f;
 
+    [Header("Posicionamento responsivo")]
+    [Tooltip("Offset vertical em relacao ao topo da tela (valor negativo = abaixo do topo).")]
+    [SerializeField] private float offsetVerticalTopo = -60f;
+
     private Coroutine rotina;
+    private RectTransform _rt;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            _rt = GetComponent<RectTransform>();
+            GarantirAnchorTopo();
             if (canvasGroup != null)
                 canvasGroup.alpha = 0f;
             if (texto != null)
@@ -33,6 +40,25 @@ public class NotificacaoToastUI : MonoBehaviour
     {
         if (Instance == this)
             Instance = null;
+        UIResponsividadeManager.OnLayoutAtualizado -= GarantirAnchorTopo;
+    }
+
+    private void Start()
+    {
+        UIResponsividadeManager.OnLayoutAtualizado += GarantirAnchorTopo;
+    }
+
+    /// <summary>
+    /// Garante que o toast esteja sempre ancorado ao topo central da tela,
+    /// independente de como o RectTransform foi configurado no editor.
+    /// </summary>
+    private void GarantirAnchorTopo()
+    {
+        if (_rt == null) return;
+        _rt.anchorMin        = new Vector2(0.5f, 1f);
+        _rt.anchorMax        = new Vector2(0.5f, 1f);
+        _rt.pivot            = new Vector2(0.5f, 1f);
+        _rt.anchoredPosition = new Vector2(0f, offsetVerticalTopo);
     }
 
     public void Mostrar(string mensagem)

@@ -2,5 +2,5 @@
 public static class FlagsTesteReliquias
 {
     /// <summary>Se true, novos saves e normalização garantem Carvão-Enxofre-Salitre possuída e no slot 0 para qualquer raça.</summary>
-    public const bool TodasRacasComecamComCarvaoEnxofreSalitre = true;
+    public const bool TodasRacasComecamComCarvaoEnxofreSalitre = false;
 }

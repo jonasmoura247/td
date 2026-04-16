@@ -180,17 +180,26 @@ public class ServicoColocacaoUnidade : MonoBehaviour
 
         if (mgr != null)
         {
-            mgr.InstanciarUnidade(
+            UnidadeController uc = mgr.InstanciarUnidade(
                 _prefabAtual,
                 posicaoMundo,
                 Quaternion.identity,
                 _nomeInstanciaAtual);
+            if (uc != null)
+            {
+                uc.DefinirFaccaoParaSpawn(Faccao.Jogador);
+            }
         }
         else
         {
             GameObject instancia = Instantiate(_prefabAtual, posicaoMundo, Quaternion.identity);
             if (!string.IsNullOrEmpty(_nomeInstanciaAtual))
                 instancia.name = _nomeInstanciaAtual;
+            UnidadeController uc = instancia.GetComponent<UnidadeController>();
+            if (uc != null)
+            {
+                uc.DefinirFaccaoParaSpawn(Faccao.Jogador);
+            }
         }
 
         CancelarColocacao();

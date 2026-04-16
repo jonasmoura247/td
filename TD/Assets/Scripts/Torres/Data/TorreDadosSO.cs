@@ -31,6 +31,10 @@ public class TorreDadosSO : ScriptableObject
     [Tooltip("Nome do parâmetro trigger no Animator. Vazio = disparo imediato como GoblinLanceiro.")]
     public string nomeTriggerAtaque = "";
 
+    [Header("Prioridade de Alvo")]
+    [Tooltip("Critério de seleção de alvo. Pode ser alterado em runtime via TorreController.DefinirPrioridadeAlvo().")]
+    public PrioridadeAlvoTorre prioridadeAlvo = PrioridadeAlvoTorre.Primeiro;
+
     [Header("Debug")]
     public bool mostrarGizmos = true;
 }

@@ -495,6 +495,13 @@ public class WaveManager : MonoBehaviour
             mov.DefinirRota(rota);
 
         UnidadeController uc = inimigo.GetComponent<UnidadeController>();
+
+        // Força facção Inimigo para todas as unidades spawnadas pela wave,
+        // independente do que o prefab define como padrão.
+        if (uc != null)
+            uc.DefinirFaccaoParaSpawn(Faccao.Inimigo);
+
+        // Registra origem para logs de diagnóstico
         if (uc != null)
             ModificadoresPartidaTalentos.Aplicar(uc, talentTreeDatabase);
         BestiarioRunasSpawnAplicador.Aplicar(inimigo, uc, bestiarioDatabase);

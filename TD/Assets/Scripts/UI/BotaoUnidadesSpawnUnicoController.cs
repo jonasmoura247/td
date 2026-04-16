@@ -57,6 +57,10 @@ public class BotaoUnidadesSpawnUnicoController : MonoBehaviour
         GameObject unidade = GameObject.Instantiate(prefabSelecionado, posicaoSpawn, Quaternion.identity);
         if (!string.IsNullOrEmpty(nomeInstancia))
             unidade.name = SeletorPrefabPorSexo.MontarNomeInstancia(nomeInstancia, feminino);
+
+        UnidadeController uc = unidade.GetComponent<UnidadeController>();
+        if (uc != null)
+            uc.DefinirFaccaoParaSpawn(Faccao.Jogador);
     }
 
     private static Vector2 ObterCentroCastelo()
