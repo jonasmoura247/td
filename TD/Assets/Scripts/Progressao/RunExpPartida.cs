@@ -1,22 +1,24 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Singleton Unity que expõe ExpPartidaLogica ao runtime do jogo.
+/// Toda regra de negócio vive em <see cref="ExpPartidaLogica"/> — testável sem MonoBehaviour.
+/// </summary>
 public class RunExpPartida : MonoBehaviour
 {
     public static event Action OnExpTemporariaAlterada;
-    public const int ExpPorInimigoComum = 50;
-    public const int ExpPorBoss = 150;
 
     public static RunExpPartida Instance { get; private set; }
 
     [SerializeField] private bool concederExpSemVitoriaParaTestes;
 
-    private int expTemporariaRun;
-    private bool runResolvida;
+    /// <summary>Lógica pura de XP de partida. Acessível para testes de integração.</summary>
+    public ExpPartidaLogica Logica { get; private set; } = new ExpPartidaLogica();
 
-    public int ExpTemporariaRun => expTemporariaRun;
+    public int ExpTemporariaRun                => Logica.ExpTemporariaRun;
     public bool ConcederExpSemVitoriaParaTestes => concederExpSemVitoriaParaTestes;
-    public bool RunResolvida => runResolvida;
+    public bool RunResolvida                   => Logica.RunResolvida;
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class RunExpPartida : MonoBehaviour
             return;
         }
         Instance = this;
+        Logica.OnExpTemporariaAlterada += () => OnExpTemporariaAlterada?.Invoke();
     }
 
     private void OnDestroy()
@@ -34,42 +37,26 @@ public class RunExpPartida : MonoBehaviour
             Instance = null;
     }
 
-    public void RegistrarMorteInimigo(bool ehBoss)
-    {
-        if (runResolvida)
-            return;
-        expTemporariaRun += ehBoss ? ExpPorBoss : ExpPorInimigoComum;
-        OnExpTemporariaAlterada?.Invoke();
-    }
+    public void RegistrarMorteInimigo(bool ehBoss) => Logica.RegistrarMorteInimigo(ehBoss);
 
     public void ConcluirComVitoria()
     {
-        if (runResolvida)
-            return;
-        runResolvida = true;
-        AplicarExpTemporariaAoPerfilPermanente();
-        expTemporariaRun = 0;
-        OnExpTemporariaAlterada?.Invoke();
+        int exp = Logica.ConcluirComVitoria();
+        AplicarExpAoPerfilPermanente(exp);
     }
 
     public void ConcluirComDerrota()
     {
-        if (runResolvida)
-            return;
-        runResolvida = true;
+        int exp = Logica.ConcluirComDerrota(concederExpSemVitoriaParaTestes);
         if (concederExpSemVitoriaParaTestes)
-            AplicarExpTemporariaAoPerfilPermanente();
-        expTemporariaRun = 0;
-        OnExpTemporariaAlterada?.Invoke();
+            AplicarExpAoPerfilPermanente(exp);
     }
 
-    private void AplicarExpTemporariaAoPerfilPermanente()
+    private void AplicarExpAoPerfilPermanente(int delta)
     {
-        if (expTemporariaRun <= 0)
-            return;
+        if (delta <= 0) return;
         if (!PerfilJogadorAtivo.TemPerfilAtivo || SaveSlotManager.Instance == null)
             return;
-        int delta = expTemporariaRun;
         TipoRaca raca = PerfilJogadorAtivo.Raca;
         SaveSlotManager.Instance.AtualizarSlotAtivo(d =>
         {
