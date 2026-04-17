@@ -18,6 +18,12 @@ public class MovimentoUnidade : MonoBehaviour
     private Rigidbody2D rb;
     private bool movimentando = true;
 
+    /// <summary>
+    /// Quando verdadeiro, o SistemaIAUnidade controla rb.linearVelocity diretamente.
+    /// FixedUpdate ignora waypoints para não conflitar com o movimento livre.
+    /// </summary>
+    private bool _modoLivre = false;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +49,9 @@ public class MovimentoUnidade : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Modo livre: SistemaIAUnidade controla a velocidade; não interferir.
+        if (_modoLivre) return;
+
         if (!movimentando || pontos == null || pontoAtual >= pontos.Length)
         {
             rb.linearVelocity = Vector2.zero;
@@ -138,17 +147,37 @@ public class MovimentoUnidade : MonoBehaviour
     public void PararMovimento()
     {
         movimentando = false;
+        _modoLivre = false;
         rb.linearVelocity = Vector2.zero;
     }
 
     public void ContinuarMovimento()
     {
         movimentando = true;
+        _modoLivre = false;
+    }
+
+    /// <summary>
+    /// Cedido ao SistemaIAUnidade: FixedUpdate não toca em rb.linearVelocity.
+    /// Chame EntrarModoWaypoints() para devolver o controle aos waypoints.
+    /// </summary>
+    public void EntrarModoLivre()
+    {
+        _modoLivre = true;
+    }
+
+    /// <summary>
+    /// Retoma o controle de waypoints (fim do modo livre da IA).
+    /// </summary>
+    public void EntrarModoWaypoints()
+    {
+        _modoLivre = false;
+        movimentando = true;
     }
 
     public bool EstaMovimentando()
     {
-        return movimentando;
+        return movimentando && !_modoLivre;
     }
 
     /// <summary>�ndice do waypoint para o qual a unidade se dirige (somente leitura).</summary>

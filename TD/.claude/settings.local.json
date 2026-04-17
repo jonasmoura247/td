@@ -1,7 +1,20 @@
 {
   "permissions": {
     "allow": [
-      "Bash(awk -F: '{print NR\": \"$0}')"
+      "Bash(awk -F: '{print NR\": \"$0}')",
+      "WebFetch(domain:github.com)",
+      "Bash(taskkill /F /IM git.exe)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(rm -rf \"C:/Users/Jonas/.claude/plugins/cache/superpowers\")",
+      "Bash(rm -rf \"C:/Users/Jonas/.claude/plugins/cache/temp_git_\"*)",
+      "Bash(xargs grep:*)",
+      "Bash(xargs cat:*)",
+      "Bash(claude plugin marketplace add JuliusBrussee/caveman)",
+      "WebSearch",
+      "Bash(powershell -Command \"irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/hooks/install.ps1 | iex\")",
+      "Bash(find . -name \"*.asset\" -exec grep -l \"ElfoAssassino\\\\|46444ea05d2bf604dbcb0fcc3dd26bf3\\\\|f5ebe8d989755c14baac7ad11bc590e9\" {} \\\\;)",
+      "Bash(grep *)"
     ]
-  }
+  },
+  "enabledPlugins": {}
 }

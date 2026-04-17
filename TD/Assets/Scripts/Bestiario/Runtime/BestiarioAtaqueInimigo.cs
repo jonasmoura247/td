@@ -19,10 +19,12 @@ public static class BestiarioAtaqueInimigo
         if (atacante == null || danoBase <= 0)
             return danoBase;
 
+        // Base: campo por unidade (Inspector). Runa de bestiário pode sobrescrever.
+        float chance = atacante.chanceCritico;
+        float multUsado = atacante.multiplicadorCritico;
+
         database = BestiarioCatalogoUtil.CarregarOuNull(database);
-        float chance = database != null ? database.chanceCriticoBase : 0.2f;
         float multBase = database != null ? database.multiplicadorCriticoBase : 1.2f;
-        float multUsado = multBase;
 
         var st = atacante.GetComponent<RunaEstadoInimigo>();
         if (st != null)

@@ -1,7 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// Escolhe inimigo no alcance: menor distância restante na rota; empate = mais próximo da torre.
+/// Detecta e escolhe o alvo no alcance da torre usando Strategy Pattern.
+/// A prioridade é configurável por torre (Inspector) e alterável em runtime.
 /// </summary>
 public class TorreAlvejamentoCore
 {
@@ -9,14 +10,28 @@ public class TorreAlvejamentoCore
     private TorreAtributosCore _atributos;
     private Transform _fallbackObjetivo;
     private readonly Collider2D[] _bufferOverlap = new Collider2D[64];
+    private readonly CandidatoAlvo[] _bufferCandidatos = new CandidatoAlvo[64];
+
+    private IEstrategiaSelecionarAlvo _estrategia = new EstrategiaAlvoPrimeiro();
 
     public Transform AlvoAtual { get; private set; }
 
-    public void Configurar(Transform origemTorre, TorreAtributosCore atributos, Transform fallbackObjetivoFimTrajeto)
+    public void Configurar(
+        Transform origemTorre,
+        TorreAtributosCore atributos,
+        Transform fallbackObjetivoFimTrajeto,
+        PrioridadeAlvoTorre prioridade = PrioridadeAlvoTorre.Primeiro)
     {
         _origemTorre = origemTorre;
         _atributos = atributos;
         _fallbackObjetivo = fallbackObjetivoFimTrajeto;
+        _estrategia = EstrategiaAlvoFactory.Criar(prioridade);
+    }
+
+    /// <summary>Altera a prioridade de alvo em runtime (ex.: via HUD futuro).</summary>
+    public void DefinirPrioridade(PrioridadeAlvoTorre prioridade)
+    {
+        _estrategia = EstrategiaAlvoFactory.Criar(prioridade);
     }
 
     public void AtualizarAlvo()
@@ -33,11 +48,11 @@ public class TorreAlvejamentoCore
         if (mask.value == 0)
             mask = LayerMask.GetMask("Inimigo");
 
-        int count = Physics2D.OverlapCircleNonAlloc(_origemTorre.position, alcance, _bufferOverlap, mask);
+        var filtroTorre = new ContactFilter2D();
+        filtroTorre.SetLayerMask(mask);
+        int count = Physics2D.OverlapCircle(_origemTorre.position, alcance, filtroTorre, _bufferOverlap);
 
-        float melhorDistRestante = float.MaxValue;
-        float melhorDistTorre = float.MaxValue;
-        Transform escolhido = null;
+        int totalCandidatos = 0;
 
         for (int i = 0; i < count; i++)
         {
@@ -50,7 +65,7 @@ public class TorreAlvejamentoCore
 
             IAlvoDeTorre especial = unidade.GetComponentInParent<IAlvoDeTorre>();
             float distRestante;
-            Transform pontoAcerto = unidade.transform;
+            Transform pontoAcerto;
 
             if (especial != null)
             {
@@ -62,26 +77,30 @@ public class TorreAlvejamentoCore
             else
             {
                 MovimentoUnidade mov = unidade.GetComponentInParent<MovimentoUnidade>();
-                if (mov != null)
-                    distRestante = mov.CalcularDistanciaRestanteNaRota();
-                else
-                    distRestante = ObterDistanciaFallback(unidade.transform.position);
-
+                distRestante = mov != null
+                    ? mov.CalcularDistanciaRestanteNaRota()
+                    : ObterDistanciaFallback(unidade.transform.position);
                 pontoAcerto = unidade.transform;
             }
 
-            float distTorre = Vector2.SqrMagnitude((Vector2)(pontoAcerto.position - _origemTorre.position));
+            float distTorreSqr = Vector2.SqrMagnitude((Vector2)(pontoAcerto.position - _origemTorre.position));
 
-            if (distRestante < melhorDistRestante - 0.001f ||
-                (Mathf.Approximately(distRestante, melhorDistRestante) && distTorre < melhorDistTorre))
+            _bufferCandidatos[totalCandidatos++] = new CandidatoAlvo
             {
-                melhorDistRestante = distRestante;
-                melhorDistTorre = distTorre;
-                escolhido = pontoAcerto;
-            }
+                pontoAcerto = pontoAcerto,
+                distanciaRestanteTrajeto = distRestante,
+                distanciaTorreSqr = distTorreSqr,
+                vidaAtual = unidade.GetVidaAtual(),
+            };
+
+            if (totalCandidatos >= _bufferCandidatos.Length)
+                break;
         }
 
-        AlvoAtual = escolhido;
+        if (totalCandidatos == 0)
+            return;
+
+        AlvoAtual = _estrategia.SelecionarAlvo(_origemTorre, _bufferCandidatos, totalCandidatos);
     }
 
     private float ObterDistanciaFallback(Vector2 posicaoUnidade)
