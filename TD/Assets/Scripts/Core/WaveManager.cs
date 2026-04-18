@@ -488,9 +488,7 @@ public class WaveManager : MonoBehaviour
             Quaternion.identity
         );
 
-        Debug.Log($"[WaveManager] Onda {numeroWave}: spawn '{prefab.name}' -> instancia '{inimigo.name}'");
-
-        MovimentoUnidade mov = inimigo.GetComponent<MovimentoUnidade>();
+MovimentoUnidade mov = inimigo.GetComponent<MovimentoUnidade>();
         if (mov != null)
             mov.DefinirRota(rota);
 

@@ -7702,6 +7702,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083540223}
   m_CullTransparentMesh: 1
+--- !u!1 &1104822004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2900470957137759496, guid: 70f1412b26728f144b71c1121975d4f3, type: 3}
+  m_PrefabInstance: {fileID: 975882997305727792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1162637755
 GameObject:
   m_ObjectHideFlags: 0
@@ -8975,7 +8980,7 @@ MonoBehaviour:
     quantidadeBoss: 0
     bossPrefab: {fileID: 0}
     bossPrefabFeminino: {fileID: 0}
-    quantidadeComuns: 5
+    quantidadeComuns: 1
     prefabsComuns: []
     prefabsComunsFemininos: []
   - modoWave: 0
@@ -8983,7 +8988,7 @@ MonoBehaviour:
     quantidadeBoss: 0
     bossPrefab: {fileID: 0}
     bossPrefabFeminino: {fileID: 0}
-    quantidadeComuns: 7
+    quantidadeComuns: 1
     prefabsComuns: []
     prefabsComunsFemininos: []
   - modoWave: 0
@@ -8991,7 +8996,7 @@ MonoBehaviour:
     quantidadeBoss: 1
     bossPrefab: {fileID: 5453794141590569967}
     bossPrefabFeminino: {fileID: 0}
-    quantidadeComuns: 10
+    quantidadeComuns: 1
     prefabsComuns: []
     prefabsComunsFemininos: []
   - modoWave: 0
@@ -8999,7 +9004,7 @@ MonoBehaviour:
     quantidadeBoss: 0
     bossPrefab: {fileID: 0}
     bossPrefabFeminino: {fileID: 0}
-    quantidadeComuns: 15
+    quantidadeComuns: 1
     prefabsComuns: []
     prefabsComunsFemininos: []
   - modoWave: 0
@@ -9007,7 +9012,7 @@ MonoBehaviour:
     quantidadeBoss: 0
     bossPrefab: {fileID: 0}
     bossPrefabFeminino: {fileID: 0}
-    quantidadeComuns: 15
+    quantidadeComuns: 1
     prefabsComuns: []
     prefabsComunsFemininos: []
   - modoWave: 0
@@ -9015,7 +9020,7 @@ MonoBehaviour:
     quantidadeBoss: 1
     bossPrefab: {fileID: 5453794141590569967}
     bossPrefabFeminino: {fileID: 0}
-    quantidadeComuns: 20
+    quantidadeComuns: 1
     prefabsComuns: []
     prefabsComunsFemininos: []
   - modoWave: 0
@@ -9023,7 +9028,7 @@ MonoBehaviour:
     quantidadeBoss: 0
     bossPrefab: {fileID: 0}
     bossPrefabFeminino: {fileID: 0}
-    quantidadeComuns: 25
+    quantidadeComuns: 1
     prefabsComuns: []
     prefabsComunsFemininos: []
   - modoWave: 0
@@ -9031,13 +9036,13 @@ MonoBehaviour:
     quantidadeBoss: 1
     bossPrefab: {fileID: 5453794141590569967}
     bossPrefabFeminino: {fileID: 0}
-    quantidadeComuns: 30
+    quantidadeComuns: 1
     prefabsComuns: []
     prefabsComunsFemininos: []
   configuracoesRacas:
   - raca: 0
     prefabs:
-    - {fileID: 180006138765730763}
+    - {fileID: 1104822004}
     prefabsFemininos: []
     baseQtd: 0
     incrementoPorWave: 1
@@ -11049,11 +11054,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 238d25cdc1a71354f9eef2e37ec111d1, type: 3}
---- !u!1 &180006138765730763 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5058856791993073037, guid: 92eb2a08ea2db3b48a5415d0aaceb639, type: 3}
-  m_PrefabInstance: {fileID: 3560546196230154198}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &200104645040662759
 PrefabInstance:
   m_ObjectHideFlags: 0
