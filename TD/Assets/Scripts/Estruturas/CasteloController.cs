@@ -1,67 +1,71 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CasteloController : EstruturasController
 {
-    [Header("Ataque ao Castelo")]
-    [Tooltip("Intervalo mínimo (em segundos) entre ataques de uma mesma unidade ao castelo.")]
-    [SerializeField] private float intervaloAtaqueInimigo = 1f;
+    [Header("Detecção")]
+    [Tooltip("Raio de detecção de inimigos ao redor do castelo.")]
+    [SerializeField] private float raioDeteccao = 4f;
 
-    /// <summary>Rastreia o momento do último ataque de cada unidade para throttle.</summary>
+    [Tooltip("Intervalo entre cada varredura por inimigos próximos.")]
+    [SerializeField] private float intervaloScan = 0.15f;
+
     private readonly Dictionary<UnidadeController, float> _ultimoAtaque
         = new Dictionary<UnidadeController, float>();
+
+    private readonly Collider2D[] _buffer = new Collider2D[32];
 
     protected override void Start()
     {
         base.Start();
+        StartCoroutine(LoopAtaque());
     }
 
-    // ─── Colisão contínua: unidades melee permanecem encostadas e atacam ──────
-
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    private IEnumerator LoopAtaque()
     {
-        ProcessarAtaqueAoCastelo(collision.gameObject);
+        while (!destruida)
+        {
+            yield return new WaitForSeconds(intervaloScan);
+            ScanearEAtacar();
+        }
     }
 
-    protected virtual void OnCollisionStay2D(Collision2D collision)
-    {
-        ProcessarAtaqueAoCastelo(collision.gameObject);
-    }
-
-    protected virtual void OnCollisionExit2D(Collision2D collision)
-    {
-        // Limpa o registro ao sair (morte, knockback externo, etc.)
-        UnidadeController unidade = collision.gameObject.GetComponent<UnidadeController>();
-        if (unidade != null)
-            _ultimoAtaque.Remove(unidade);
-    }
-
-    private void ProcessarAtaqueAoCastelo(GameObject go)
+    private void ScanearEAtacar()
     {
         if (destruida) return;
 
-        UnidadeController unidade = go.GetComponent<UnidadeController>();
-        if (unidade == null || unidade.faccao == faccao || !unidade.EstaVivo)
-            return;
+        LayerMask maskInimigo = LayerMask.GetMask("Inimigo");
+        var filtro = new ContactFilter2D();
+        filtro.SetLayerMask(maskInimigo);
+        int count = Physics2D.OverlapCircle(transform.position, raioDeteccao, filtro, _buffer);
 
         float agora = Time.time;
-        if (_ultimoAtaque.TryGetValue(unidade, out float ultimo) &&
-            agora - ultimo < intervaloAtaqueInimigo)
-            return;
 
-        _ultimoAtaque[unidade] = agora;
+        for (int i = 0; i < count; i++)
+        {
+            if (_buffer[i] == null) continue;
 
-        int danoBase = unidade.GetDanoAtaque();
-        int dano = BestiarioAtaqueInimigo.CalcularDanoAoCastelo(unidade, danoBase, null, out bool critico);
-        var pedido = PedidoDanoFlutuante.Criar(dano, TipoDanoCombate.Fisico, critico);
-        ServicoAplicacaoDano.Aplicar(this, transform.position, dano, pedido, dispararProcsRunaBestiario: false);
+            UnidadeController unidade = _buffer[i].GetComponentInParent<UnidadeController>();
+            if (unidade == null || unidade.faccao == faccao || !unidade.EstaVivo)
+                continue;
 
-        // Para o movimento (sem recuo): unidade fica ao redor do castelo
-        unidade.ImpactarCastelo(transform.position);
+            if (_ultimoAtaque.TryGetValue(unidade, out float ultimo) &&
+                agora - ultimo < unidade.GetIntervaloAtaque())
+                continue;
 
-        if (unidade is GoblinController goblin)
-            Debug.Log($"[Castelo] {unidade.name} causou {dano} de dano (crit:{critico}, buff aura: +{goblin.GetBonusDanoAura()})");
-        else
-            Debug.Log($"[Castelo] {unidade.name} causou {dano} de dano (crit:{critico})");
+            _ultimoAtaque[unidade] = agora;
+
+            int danoBase = unidade.GetDanoAtaque();
+            int dano = BestiarioAtaqueInimigo.CalcularDanoAoCastelo(unidade, danoBase, null, out bool critico);
+            var pedido = PedidoDanoFlutuante.Criar(dano, TipoDanoCombate.Fisico, critico);
+            ServicoAplicacaoDano.Aplicar(this, transform.position, dano, pedido, dispararProcsRunaBestiario: false);
+        }
+    }
+
+    protected virtual void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1f, 0.2f, 0.2f, 0.35f);
+        Gizmos.DrawWireSphere(transform.position, raioDeteccao);
     }
 }

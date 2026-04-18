@@ -8,7 +8,7 @@ public class HumanoFeiticeiraController : HumanoController
 {
     [Header("Configuração de Ataque")]
     [SerializeField] private float rangeDeAtaque = 30f;
-    [SerializeField] private float intervaloAtaque = 5f;
+
     [SerializeField] private GameObject fireballPrefab;
     [SerializeField] private AudioClip somFireball;
 
@@ -73,7 +73,7 @@ public class HumanoFeiticeiraController : HumanoController
         CarregarRecursos();
         if (fireballPrefab == null) return;
 
-        proximoAtaque = Time.time + intervaloAtaque;
+        proximoAtaque = Time.time + GetIntervaloAtaque();
 
         GameObject fb = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         FireballProjetil proj = fb.GetComponent<FireballProjetil>();

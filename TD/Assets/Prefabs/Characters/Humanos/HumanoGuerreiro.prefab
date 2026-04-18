@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 0.5428368, y: 0.5428368, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5019313742153380447}
@@ -226,34 +226,10 @@ MonoBehaviour:
   vidaMaxima: 100
   danoBase: 1
   faccao: 1
-  distanciaRecuo: 1
-  duracaoRecuo: 0.2
-  curvaRecuo:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  intervaloAtaqueCastelo: 1
+  chanceCritico: 0.1
+  multiplicadorCritico: 1.5
   multiplicadorDanoRacial: 1
-  tempoInvulnerabilidade: 0
   multiplicadorDanoGuerreiro: 1
 --- !u!114 &2537311028318520702
 MonoBehaviour:
@@ -531,11 +507,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8478636148458254194, guid: cd8cef672b754c84cbca3d0e437f6563, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1.06
       objectReference: {fileID: 0}
     - target: {fileID: 8478636148458254194, guid: cd8cef672b754c84cbca3d0e437f6563, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 8838193930737610988, guid: cd8cef672b754c84cbca3d0e437f6563, type: 3}
       propertyPath: m_LocalScale.z

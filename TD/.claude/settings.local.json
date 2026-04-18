@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs grep *)",
+      "Bash(find . -name \"*.cs\" -type f -exec grep -l \"ReceberDano\\\\|AplicarDano\" {} \\\\;)",
+      "Bash(python3 *)",
+      "Bash(python update_prefabs.py)"
+    ]
+  }
+}
