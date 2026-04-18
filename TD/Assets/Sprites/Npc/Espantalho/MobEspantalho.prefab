@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6646329665207127842}
   - component: {fileID: 8913086245773790686}
   - component: {fileID: 1001001001001001001}
+  - component: {fileID: 6266774581832106512}
   m_Layer: 3
   m_Name: MobEspantalho
   m_TagString: NpcGoblin
@@ -200,6 +201,7 @@ MonoBehaviour:
   vidaMaxima: 100
   danoBase: 1
   faccao: 1
+  intervaloAtaque: 1
   chanceCritico: 0.1
   multiplicadorCritico: 1.5
   multiplicadorDano: 1
@@ -282,6 +284,91 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExpAoMorrerInimigo
   ehBoss: 0
+--- !u!114 &1001001001001001001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900470957137759496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3cb29cd19e02c745b0529baf6bcb199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SistemaIAUnidade
+  alcanceDeteccao: 8.4
+  intervaloScan: 0.143
+  layerAlvos:
+    serializedVersion: 2
+    m_Bits: 192
+  alcanceAtaque: 1.5
+  perseguirAlvo: 1
+  velocidadePerseguicao: 4.86
+  raioSeparacao: 0.89
+  forcaSeparacao: 19.5
+  layerUnidades:
+    serializedVersion: 2
+    m_Bits: 8
+  distanciaMinimaMelee: 0
+  layerObstaculos:
+    serializedVersion: 2
+    m_Bits: 0
+  distanciaDeteccaoBloqueio: 0.5
+  margemTela: 0
+  prioridade: 1
+--- !u!114 &6266774581832106512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900470957137759496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8188fd8c7c5d36c47a5ac9da57617989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: TD.GameCode::AnimacaoAtaqueSprite
+  spriteRenderer: {fileID: 0}
+  animacaoMovimento: {fileID: 0}
+  spritesAtaque:
+  - {fileID: -7698361020090921516, guid: 73396f59eae92464eb7129ace91a4df0, type: 3}
+  - {fileID: -7698361020090921516, guid: 73396f59eae92464eb7129ace91a4df0, type: 3}
+  - {fileID: 902235957791650643, guid: 141a546fbda5c6e459d4e0b17c4abc28, type: 3}
+  - {fileID: -745943349635645595, guid: 0f4c98db779c29845938bc5404fabb78, type: 3}
+  - {fileID: 8570950041501458191, guid: 7145437ab14d6694d9199d37ec33ba66, type: 3}
+  - {fileID: -7883552379521057847, guid: 1803fce2da881ea4ea46d3bc7f9d0df1, type: 3}
+  - {fileID: -4900163903999152475, guid: 04c9365e76b14f643aaa5c5e53fd5795, type: 3}
+  - {fileID: -6391176097292992843, guid: 028765680bc9139499d4ca93068593a3, type: 3}
+  - {fileID: 6308391859582133481, guid: 65c725be9f707a441aa70c078cb3d5e6, type: 3}
+  - {fileID: -1110197817702317273, guid: 285877a3091b0ab4183f61bda7b6c914, type: 3}
+  - {fileID: -1845859304391019452, guid: 32ad52759cad3204195c058dde6010a4, type: 3}
+  - {fileID: 859681946999998261, guid: b05aee02e741fd647ac4a66865db3be6, type: 3}
+  - {fileID: -947482876179627798, guid: 0910d753234ec654485f1efa564aa821, type: 3}
+  - {fileID: 5923367976867028331, guid: 343268d73fe89a34f8b0f0f0dadf1653, type: 3}
+  - {fileID: 9057241323472576927, guid: 43fa0b563b2a6254bb95572cfc105b25, type: 3}
+  - {fileID: 8524025553664994042, guid: fc02db80d602a55498857a2a5c1faea0, type: 3}
+  - {fileID: -2757399590623059141, guid: 667c19a0af3ef104084518d6f62df74a, type: 3}
+  - {fileID: -7825722748752816118, guid: f69a9a0614120284e9fe4c3123f6dc83, type: 3}
+  - {fileID: 4140957203830401156, guid: 13a5486247fd0d849abbeb9cfeba1767, type: 3}
+  - {fileID: -5121662648784527910, guid: fe4f5f128956d4a4cbd631bf1384588b, type: 3}
+  - {fileID: -7956910901429895919, guid: da856d2c62eb2b6498a65d9b25a0ece2, type: 3}
+  - {fileID: 6693528010804334265, guid: bdd8d11b8cb105d4d813eb196194b318, type: 3}
+  - {fileID: -5191741253745013408, guid: d00f9d934de47634a807461132afcc51, type: 3}
+  - {fileID: 5576016814663909829, guid: 40a0b1cb0d9478b4cb4a7ee3db0d739b, type: 3}
+  - {fileID: 4685955869397243468, guid: 04f13710e1b09f14db7c8110327b76c7, type: 3}
+  - {fileID: -3613338438850068164, guid: 20e3ce72615f8f145997f5ae5aa707b9, type: 3}
+  - {fileID: 252208136500603487, guid: 9e5c7649e589dfa4bb1f83d5abf1cc1b, type: 3}
+  - {fileID: 19665864896568620, guid: 1e3ce95f7b02f2e4fbf02dce620c5a5d, type: 3}
+  - {fileID: -8697685459810567989, guid: 3eed625169470424abd7ddf361dd4021, type: 3}
+  - {fileID: 8633488140278294795, guid: fdb3a7bd178b74c48acf34e37a97f767, type: 3}
+  - {fileID: 4773374918681412585, guid: 624000ebbe1d2984b94d00c847e786c6, type: 3}
+  - {fileID: 7347320857603890847, guid: 079485bb556ed524ca1946a1169981c3, type: 3}
+  - {fileID: 1280563008958047936, guid: 49a88c0391cd9cc4a8308916bff3c3b6, type: 3}
+  - {fileID: 6797788635847494039, guid: 067bcf4b6a0768249b7ff32a3f9fd788, type: 3}
+  - {fileID: -7427215941376313056, guid: f304496071594e046a1e6818d9946093, type: 3}
+  - {fileID: 1908896373298807282, guid: 157d465700d89d84eb95fd34ed4de26f, type: 3}
+  - {fileID: -5244000733091584495, guid: db28801ed258da542a588c5b6c85741c, type: 3}
+  tempoPorFrame: 0.05
 --- !u!1001 &1571721973629166573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -564,35 +651,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8414886024472801809, guid: 1c1e157cfe86a074886e10a4a2657e55, type: 3}
   m_PrefabInstance: {fileID: 3836757849339527400}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1001001001001001001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2900470957137759496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3cb29cd19e02c745b0529baf6bcb199, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::SistemaIAUnidade
-  alcanceDeteccao: 8.4
-  intervaloScan: 0.143
-  layerAlvos:
-    serializedVersion: 2
-    m_Bits: 192
-  alcanceAtaque: 1.5
-  intervaloAtaque: 0.3
-  perseguirAlvo: 1
-  velocidadePerseguicao: 4.86
-  raioSeparacao: 0.89
-  forcaSeparacao: 19.5
-  layerUnidades:
-    serializedVersion: 2
-    m_Bits: 8
-  layerObstaculos:
-    serializedVersion: 2
-    m_Bits: 0
-  distanciaDeteccaoBloqueio: 0.5
-  margemTela: 0
-  prioridade: 1

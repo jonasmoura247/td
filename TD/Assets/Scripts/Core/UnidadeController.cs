@@ -49,6 +49,15 @@ public class UnidadeController : MonoBehaviour, IDanificavel
 
     public bool EstaVivo => estaVivo;
 
+    /// <summary>Disparado toda vez que esta unidade executa um ataque (melee ou ranged).</summary>
+    public event System.Action OnAtaqueExecutado;
+
+    /// <summary>
+    /// Notifica que esta unidade executou um ataque. Use quando o dano é aplicado por
+    /// um sistema externo (ex: CasteloController) sem passar por ExecutarAtaqueIA.
+    /// </summary>
+    public void NotificarAtaque() => OnAtaqueExecutado?.Invoke();
+
     protected virtual void Awake()
     {
         NomePrefab = gameObject.name.Replace("(Clone)", "").Trim();
@@ -241,6 +250,8 @@ public class UnidadeController : MonoBehaviour, IDanificavel
     public virtual void ExecutarAtaqueIA(UnidadeController alvo)
     {
         if (alvo == null || !alvo.EstaVivo) return;
+
+        OnAtaqueExecutado?.Invoke();
 
         int dano = GetDanoAtaque();
         ServicoAplicacaoDano.Aplicar(

@@ -55,6 +55,7 @@ public class CasteloController : EstruturasController
                 continue;
 
             _ultimoAtaque[unidade] = agora;
+            unidade.NotificarAtaque();
 
             int danoBase = unidade.GetDanoAtaque();
             int dano = BestiarioAtaqueInimigo.CalcularDanoAoCastelo(unidade, danoBase, null, out bool critico);
