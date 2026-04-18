@@ -9,7 +9,6 @@ public class HumanoArqueiroController : HumanoController
 {
     [Header("Configuracao Arqueiro")]
     [SerializeField] private float alcanceAtaque = 25f;
-    [SerializeField] private float intervaloAtaque = 2f;
     [SerializeField] private int danoFlecha = 2;
     [SerializeField] private GameObject prefabFlecha;
     [SerializeField] private Transform pontoDisparo;
@@ -23,7 +22,6 @@ public class HumanoArqueiroController : HumanoController
         danoBase = 1;
         faccao = Faccao.Jogador;
         alcanceAtaque = 25f;
-        intervaloAtaque = 2f;
         danoFlecha = 2;
         base.Start();
         _ia = GetComponent<SistemaIAUnidade>();
@@ -77,7 +75,7 @@ public class HumanoArqueiroController : HumanoController
         CarregarPrefabFlechaSeNecessario();
         if (prefabFlecha == null) return;
 
-        proximoAtaque = Time.time + intervaloAtaque;
+        proximoAtaque = Time.time + GetIntervaloAtaque();
 
         Vector3 origem = pontoDisparo != null ? pontoDisparo.position : transform.position;
         GameObject flecha = Instantiate(prefabFlecha, origem, Quaternion.identity);

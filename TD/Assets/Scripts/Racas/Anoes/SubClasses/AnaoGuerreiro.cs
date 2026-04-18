@@ -5,7 +5,7 @@ public class AnaoGuerreiro : AnoesController
     [SerializeField] private float multiplicadorDanoGuerreiro = 1.15f;
     [Header("Configuracao Melee")]
     [SerializeField] private float alcanceAtaque = 2f;
-    [SerializeField] private float intervaloAtaque = 1.5f;
+
 
     private float _proximoAtaque;
     private SistemaIAUnidade _ia;
@@ -35,7 +35,7 @@ public class AnaoGuerreiro : AnoesController
     private void Atacar(UnidadeController alvo)
     {
         if (Time.time < _proximoAtaque) return;
-        _proximoAtaque = Time.time + intervaloAtaque;
+        _proximoAtaque = Time.time + GetIntervaloAtaque();
         alvo.ReceberDano(GetDanoAtaque());
     }
 

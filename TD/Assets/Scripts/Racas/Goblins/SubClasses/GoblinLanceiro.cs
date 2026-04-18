@@ -4,7 +4,6 @@ public class GoblinLanceiro : GoblinController
 {
     [Header("Configuracao de Ataque")]
     public float distanciaDeAtaque = 25f;
-    public float intervaloAtaque = 2f;
     public int danoFlecha = 2;
     public GameObject projetilPrefab;
     public Transform pontoDisparo;
@@ -17,7 +16,6 @@ public class GoblinLanceiro : GoblinController
     {
         faccao = Faccao.Inimigo;
         distanciaDeAtaque = 25f;
-        intervaloAtaque = 2f;
         danoFlecha = 2;
         base.Start();
         _ia = GetComponent<SistemaIAUnidade>();
@@ -95,7 +93,7 @@ public class GoblinLanceiro : GoblinController
         if (Time.time < proximoAtaque) return;
         if (_casteloCache == null || !_casteloCache.EstaVivo) return;
 
-        proximoAtaque = Time.time + intervaloAtaque;
+        proximoAtaque = Time.time + GetIntervaloAtaque();
         CarregarFlechaSeNecessario();
         if (projetilPrefab == null) return;
 
@@ -110,7 +108,7 @@ public class GoblinLanceiro : GoblinController
     private void AtacarLegado(Transform alvo)
     {
         if (Time.time < proximoAtaque || alvo == null) return;
-        proximoAtaque = Time.time + intervaloAtaque;
+        proximoAtaque = Time.time + GetIntervaloAtaque();
         CarregarFlechaSeNecessario();
         if (projetilPrefab == null) return;
 

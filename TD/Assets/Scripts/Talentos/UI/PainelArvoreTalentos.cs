@@ -18,8 +18,10 @@ public class PainelArvoreTalentos : MonoBehaviour
     [SerializeField] private float espacamentoEntreLinhas = 16f;
     [SerializeField] private float larguraMinimaColuna = 128f;
 
+#if UNITY_EDITOR
     [SerializeField] private TipoRaca racaPreviewEditor = TipoRaca.Goblin;
     [SerializeField] private bool previewComoTodosDesbloqueados;
+#endif
 
     [SerializeField] private bool contentAlturaAutomatica;
 

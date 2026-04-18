@@ -33,6 +33,10 @@ public class UnidadeController : MonoBehaviour, IDanificavel
         _faccaoForcadaValor = faccaoForcada;
     }
 
+    [Header("Combate")]
+    [Tooltip("Intervalo em segundos entre ataques (vale para unidades e para o castelo). Menor = mais rápido.")]
+    [SerializeField] private float intervaloAtaque = 1f;
+
     [Header("Crítico")]
     [Tooltip("Chance de causar um golpe crítico (0 = 0%, 1 = 100%). Padrão: 10%.")]
     [Range(0f, 1f)] public float chanceCritico = 0.10f;
@@ -171,6 +175,8 @@ public class UnidadeController : MonoBehaviour, IDanificavel
     public int GetVidaAtual() => vidaAtual;
 
     public virtual int GetDanoAtaque() => AplicarModificadoresTalentosDano(danoBase);
+
+    public float GetIntervaloAtaque() => Mathf.Max(0.1f, intervaloAtaque);
 
     protected int AplicarModificadoresTalentosDano(int valor)
     {

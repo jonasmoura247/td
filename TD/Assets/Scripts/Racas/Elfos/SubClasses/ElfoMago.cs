@@ -4,7 +4,7 @@ public class ElfoMago : UnidadeController
 {
     [Header("Configura��o de Ataque")]
     public float distanciaAtaque = 4f;
-    public float intervaloAtaque = 2f;
+
     public GameObject magiaPrefab;
     public Transform pontoDisparo;
 
@@ -52,7 +52,7 @@ public class ElfoMago : UnidadeController
         if (Time.time < proximoAtaque)
             return;
 
-        proximoAtaque = Time.time + intervaloAtaque;
+        proximoAtaque = Time.time + GetIntervaloAtaque();
 
         if (magiaPrefab == null || pontoDisparo == null)
             return;

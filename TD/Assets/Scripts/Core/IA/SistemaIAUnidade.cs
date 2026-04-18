@@ -52,8 +52,6 @@ public class SistemaIAUnidade : MonoBehaviour
     [Tooltip("Distância máxima para transição Perseguindo→Atacando.")]
     public float alcanceAtaque = 1.8f;
 
-    [Tooltip("Cooldown entre ataques (segundos).")]
-    public float intervaloAtaque = 1f;
 
     // ─── Perseguição e Anti-Stack ─────────────────────────────────────────
 
@@ -548,7 +546,7 @@ public class SistemaIAUnidade : MonoBehaviour
         if (Time.time < _proximoAtaque) return;
         if (AlvoAtual == null || !AlvoAtual.EstaVivo) return;
 
-        _proximoAtaque = Time.time + intervaloAtaque;
+        _proximoAtaque = Time.time + _eu.GetIntervaloAtaque();
 
         _eu.ExecutarAtaqueIA(AlvoAtual);
     }

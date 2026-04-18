@@ -18,12 +18,14 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class SafeAreaAplicador : MonoBehaviour
 {
+#if UNITY_EDITOR
     [Header("Configuracao")]
     [Tooltip("Se verdadeiro, simula uma safe area customizada no Editor para testes.")]
     [SerializeField] private bool simularSafeAreaNoEditor = false;
 
     [Tooltip("Safe area simulada (0 a 1 de cada lado). Ordem: Left, Bottom, Right, Top.")]
     [SerializeField] private Vector4 safeAreaSimulada = new Vector4(0.05f, 0.08f, 0.95f, 0.92f);
+#endif
 
     [Tooltip("Se verdadeiro, reaaplica sempre que a resolucao mudar (ex.: rotacao de tela).")]
     [SerializeField] private bool atualizarDinamicamente = true;
