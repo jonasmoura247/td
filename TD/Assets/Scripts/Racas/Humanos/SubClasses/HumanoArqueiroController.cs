@@ -86,6 +86,8 @@ public class HumanoArqueiroController : HumanoController
     private void CarregarPrefabFlechaSeNecessario()
     {
         if (prefabFlecha != null) return;
-        Debug.LogError($"[HumanoArqueiroController] prefabFlecha não está configurado no Inspector do prefab '{name}'. Atribua o prefab da flecha no componente.", this);
+        prefabFlecha = Resources.Load<GameObject>("Projetis/Flecha");
+        if (prefabFlecha == null)
+            Debug.LogError($"[HumanoArqueiroController] prefabFlecha não encontrado em Resources/Projetis/Flecha. Atribua o prefab da flecha no componente '{name}'.", this);
     }
 }
