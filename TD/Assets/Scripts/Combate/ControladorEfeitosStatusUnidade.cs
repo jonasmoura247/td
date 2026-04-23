@@ -40,10 +40,17 @@ public class ControladorEfeitosStatusUnidade : MonoBehaviour
         if (definicao == null || _unidade == null || !_unidade.EstaVivo)
             return;
 
+        var resistencia = _unidade.GetComponent<ResistenciaDano>();
+        if (resistencia != null)
+        {
+            if (definicao.tipoEfeito == TipoEfeitoStatusDot.Veneno && resistencia.EhImuneVeneno) return;
+            if (definicao.tipoEfeito == TipoEfeitoStatusDot.Queimadura && resistencia.EhImuneFogo) return;
+        }
+
         GarantirCacheRenderers();
 
-        if (!_resolvendoExplosaoCarvao)
-            TentarExplosaoCarvaoAntesDeAplicarDot(definicao);
+        if (!_resolvendoExplosaoCarvao && TentarExplosaoCarvaoAntesDeAplicarDot(definicao))
+            return;
 
         var tipo = definicao.tipoEfeito;
         if (_rotinasPorTipo.TryGetValue(tipo, out Coroutine antiga) && antiga != null)
@@ -55,26 +62,26 @@ public class ControladorEfeitosStatusUnidade : MonoBehaviour
         _rotinasPorTipo[tipo] = StartCoroutine(ExecutarDotCoroutine(definicao));
     }
 
-    private void TentarExplosaoCarvaoAntesDeAplicarDot(DefinicaoDanoPorTempoSO definicao)
+    private bool TentarExplosaoCarvaoAntesDeAplicarDot(DefinicaoDanoPorTempoSO definicao)
     {
         if (!ReliquiaCarvaoEquipada())
-            return;
+            return false;
 
         var tipoNovo = definicao.tipoEfeito;
         if (tipoNovo != TipoEfeitoStatusDot.Queimadura && tipoNovo != TipoEfeitoStatusDot.Veneno)
-            return;
+            return false;
 
         TipoEfeitoStatusDot tipoOutro = ObterOutroDot(tipoNovo);
         if (!_rotinasPorTipo.ContainsKey(tipoOutro))
-            return;
+            return false;
 
         if (Time.time < _proximaExplosaoCarvaoPermitidaEm)
-            return;
+            return false;
 
         ConfiguracaoExplosaoCarvaoEnxofreSalitreSO cfg = EfeitoCarvaoEnxofreSalitre.ConfiguracaoAtiva;
         float chance = cfg != null ? cfg.chanceProc : 1f;
         if (Random.value > chance)
-            return;
+            return false;
 
         int dano = cfg != null ? cfg.danoExplosao : 30;
         TipoDanoCombate tipoDano = cfg != null ? cfg.tipoDano : TipoDanoCombate.ExplosaoAlquimica;
@@ -105,6 +112,8 @@ public class ControladorEfeitosStatusUnidade : MonoBehaviour
         {
             _resolvendoExplosaoCarvao = false;
         }
+
+        return true;
     }
 
     private static TipoEfeitoStatusDot ObterOutroDot(TipoEfeitoStatusDot tipo) =>

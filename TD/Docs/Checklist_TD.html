@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Tower Defense — Checklist de Funcionalidades</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 24px; }
+  h1 { text-align: center; font-size: 26px; color: #f0c040; margin-bottom: 4px; letter-spacing: 1px; }
+  .subtitle { text-align: center; font-size: 13px; color: #aaa; margin-bottom: 24px; }
+  .summary-box { background: #16213e; border: 1px solid #0f3460; border-radius: 8px; padding: 16px 24px; margin-bottom: 28px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .summary-item { background: #0f3460; border-radius: 6px; padding: 8px 14px; text-align: center; min-width: 120px; }
+  .summary-item .cat { font-size: 11px; color: #aaa; }
+  .summary-item .count { font-size: 20px; font-weight: bold; color: #f0c040; }
+  .total-box { background: #c0392b; border-radius: 6px; padding: 8px 14px; text-align: center; min-width: 120px; }
+  .total-box .cat { font-size: 11px; color: #f5b7b1; }
+  .total-box .count { font-size: 20px; font-weight: bold; color: #fff; }
+
+  section { margin-bottom: 28px; }
+  .section-title { font-size: 16px; font-weight: bold; color: #f0c040; border-bottom: 2px solid #f0c040; padding-bottom: 6px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .badge { background: #f0c040; color: #1a1a2e; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: bold; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { background: #0f3460; color: #f0c040; text-align: left; padding: 7px 10px; }
+  tr:nth-child(even) { background: #16213e; }
+  tr:nth-child(odd) { background: #1a1a2e; }
+  td { padding: 6px 10px; border-bottom: 1px solid #0f3460; vertical-align: top; }
+  td:first-child { width: 24px; text-align: center; }
+  td:nth-child(2) { font-family: monospace; color: #80d8ff; white-space: nowrap; }
+  td:nth-child(3) { color: #b0bec5; font-size: 11px; }
+  td:nth-child(4) { color: #aaa; font-size: 10px; max-width: 240px; }
+
+  .checkbox { width: 14px; height: 14px; border: 2px solid #f0c040; border-radius: 3px; display: inline-block; }
+
+  @media print {
+    body { background: #fff; color: #000; padding: 10px; }
+    h1 { color: #333; }
+    .summary-box { border: 1px solid #ccc; }
+    .summary-item { background: #f0f0f0; }
+    .summary-item .count { color: #c0392b; }
+    .total-box { background: #c0392b; }
+    .section-title { color: #333; border-color: #333; }
+    .badge { background: #333; color: #fff; }
+    th { background: #333; color: #fff; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    tr:nth-child(odd) { background: #fff; }
+    td:nth-child(2) { color: #1565c0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🏰 Tower Defense — Checklist de Funcionalidades</h1>
+<p class="subtitle">Inventário completo de sistemas implementados &nbsp;|&nbsp; ~229 scripts</p>
+
+<!-- SUMMARY -->
+<div class="summary-box">
+  <div class="summary-item"><div class="cat">🗼 Torres</div><div class="count">18</div></div>
+  <div class="summary-item"><div class="cat">🔮 Runas/Bestiário</div><div class="count">21</div></div>
+  <div class="summary-item"><div class="cat">👾 Mobs/Inimigos</div><div class="count">20</div></div>
+  <div class="summary-item"><div class="cat">🏹 Projéteis</div><div class="count">3</div></div>
+  <div class="summary-item"><div class="cat">💰 Economia</div><div class="count">10</div></div>
+  <div class="summary-item"><div class="cat">🌊 Waves</div><div class="count">5</div></div>
+  <div class="summary-item"><div class="cat">🖥️ UI</div><div class="count">48</div></div>
+  <div class="summary-item"><div class="cat">🎮 IA/Input</div><div class="count">8</div></div>
+  <div class="summary-item"><div class="cat">⚙️ Game Mgmt</div><div class="count">16</div></div>
+  <div class="summary-item"><div class="cat">⭐ XP/Progressão</div><div class="count">6</div></div>
+  <div class="summary-item"><div class="cat">🧝 Raças/Unidades</div><div class="count">18</div></div>
+  <div class="summary-item"><div class="cat">🏆 Talentos</div><div class="count">15</div></div>
+  <div class="summary-item"><div class="cat">💎 Relíquias</div><div class="count">14</div></div>
+  <div class="summary-item"><div class="cat">⚔️ Combate</div><div class="count">12</div></div>
+  <div class="summary-item"><div class="cat">🎒 Loot</div><div class="count">3</div></div>
+  <div class="summary-item"><div class="cat">🎨 Animação</div><div class="count">2</div></div>
+  <div class="summary-item"><div class="cat">🧰 Editor Tools</div><div class="count">15</div></div>
+  <div class="summary-item"><div class="cat">🗺️ Mapas/Mundos</div><div class="count">5</div></div>
+  <div class="summary-item"><div class="cat">🚩 Fases/Mapa</div><div class="count">5</div></div>
+  <div class="total-box"><div class="cat">TOTAL</div><div class="count">~229</div></div>
+</div>
+
+<!-- 1. TORRES -->
+<section>
+  <div class="section-title">🗼 Torres (Towers) <span class="badge">18</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreBaseCore</td><td>Gerencia HP e estado vivo; dispara evento AoMorrer</td><td>Scripts/Torres/Core/TorreBaseCore.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreAtaqueCore</td><td>Cooldown de ataque e disparo de projéteis</td><td>Scripts/Torres/Core/TorreAtaqueCore.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreAtributosCore</td><td>Combina SO base + modificadores → stats efetivos (dano, alcance, velocidade)</td><td>Scripts/Torres/Core/TorreAtributosCore.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreAlvejamentoCore</td><td>Detecção e seleção de alvos via Strategy Pattern</td><td>Scripts/Torres/Core/TorreAlvejamentoCore.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreSistemaModificadoresCore</td><td>Lista extensível de buffs/debuffs (aditivo + multiplicativo)</td><td>Scripts/Torres/Core/TorreSistemaModificadoresCore.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreAnimacaoDisparoBridge</td><td>Bridge entre o sistema de ataque e o Animator</td><td>Scripts/Torres/Core/TorreAnimacaoDisparoBridge.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>EstrategiasAlvoTorre</td><td>Estratégias: First (mais avançado), Nearest, Farthest, Lowest HP</td><td>Scripts/Torres/Core/EstrategiasAlvoTorre.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>IEstrategiaSelecionarAlvo</td><td>Interface para estratégias de seleção de alvo</td><td>Scripts/Torres/Core/IEstrategiaSelecionarAlvo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>IAlvoDeTorre</td><td>Interface para alvos especiais (inimigos sem MovimentoUnidade); expõe transform, estado e distância restante ao objetivo</td><td>Scripts/Torres/Core/IAlvoDeTorre.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PrioridadeAlvoTorre</td><td>Enum de prioridade de alvejamento</td><td>Scripts/Torres/Core/PrioridadeAlvoTorre.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreController</td><td>MonoBehaviour principal — une todos os subsistemas Core; implementa IDanificavel</td><td>Scripts/Torres/Controller/TorreController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreGoblinLanceiraController</td><td>Subclasse torre lança-goblin (valida raça no Awake)</td><td>Scripts/Torres/Controller/TorreGoblinLanceiraController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorreDadosSO</td><td>ScriptableObject com dados base da torre (custo, HP, dano, alcance, cooldown, projétil, DoT)</td><td>Scripts/Torres/Data/TorreDadosSO.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TorresManager</td><td>Singleton com registro de torres ativas; fábrica/pool de projéteis</td><td>Scripts/Torres/Manager/TorresManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ServicoColocacaoTorre</td><td>Modo de colocação: preview fantasma + indicador de alcance + clique para posicionar</td><td>Scripts/UI/Torres/ServicoColocacaoTorre.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ControladorHUDConstrucaoTorres</td><td>HUD inferior com slots de torres; delega colocação ao ServicoColocacaoTorre</td><td>Scripts/UI/Torres/ControladorHUDConstrucaoTorres.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>IndicadorAlcanceTorre2D</td><td>Círculo LineRenderer mostrando alcance de ataque da torre</td><td>Scripts/UI/Torres/IndicadorAlcanceTorre2D.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>DadosSlotConstrucaoTorre</td><td>Dados para cada slot de construção no HUD</td><td>Scripts/UI/Torres/DadosSlotConstrucaoTorre.cs</td></tr>
+  </table>
+</section>
+
+<!-- 2. RUNAS/BESTIÁRIO -->
+<section>
+  <div class="section-title">🔮 Runas / Bestiário <span class="badge">21</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioDatabase</td><td>SO banco de dados de criaturas e definições de runas</td><td>Scripts/Bestiario/Data/BestiarioDatabase.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>DadosBestiario</td><td>Dados do jogador: kills por criatura, runas desbloqueadas/equipadas</td><td>Scripts/Bestiario/Data/DadosBestiario.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioEnums</td><td>Enums: NivelDificuldade, TipoEfeitoRuna (DanoEco, CriticoMultiplicador)</td><td>Scripts/Bestiario/Data/BestiarioEnums.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioRegras</td><td>Lógica pura: registrar kills, conceder pontos em milestone, equipar/desequipar runas</td><td>Scripts/Bestiario/Core/BestiarioRegras.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioCatalogoUtil</td><td>Utilitário para carregar/encontrar o banco de dados de Resources</td><td>Scripts/Bestiario/Core/BestiarioCatalogoUtil.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioRacaIdUtil</td><td>Mapeia TipoRaca para IDs de raça no catálogo</td><td>Scripts/Bestiario/Core/BestiarioRacaIdUtil.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioModoTeste</td><td>Flag de modo de teste (ignora requisitos de desbloqueio)</td><td>Scripts/Bestiario/Core/BestiarioModoTeste.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>OuroPerfilUtil</td><td>Utilitário para gastar ouro do perfil (custo de remoção de runa)</td><td>Scripts/Bestiario/Core/OuroPerfilUtil.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioRunasSpawnAplicador</td><td>Lê runa equipada ao spawnar inimigo e aplica RunaEstadoInimigo</td><td>Scripts/Bestiario/Runtime/BestiarioRunasSpawnAplicador.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>RunaEstadoInimigo</td><td>Componente adicionado no spawn: mantém estado da runa (dano eco, crítico)</td><td>Scripts/Bestiario/Runtime/RunaEstadoInimigo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioDanoEcoRuna</td><td>Serviço estático: aplica "Dano Eco" (dano extra % HP no hit)</td><td>Scripts/Bestiario/Runtime/BestiarioDanoEcoRuna.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioAtaqueInimigo</td><td>Serviço estático: dano ao castelo com rolagem de crítico via runa</td><td>Scripts/Bestiario/Runtime/BestiarioAtaqueInimigo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>IdentificadorBestiarioInimigo</td><td>Componente que liga prefab ao ID no bestiário</td><td>Scripts/Bestiario/Runtime/IdentificadorBestiarioInimigo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>RegistoMorteBestiario</td><td>Listener de morte que registra kill no progresso do bestiário</td><td>Scripts/Bestiario/Runtime/RegistoMorteBestiario.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PainelBestiario</td><td>Painel principal do bestiário: abas criaturas/runas, contador de pontos</td><td>Scripts/Bestiario/UI/PainelBestiario.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>LobbyBestiarioController</td><td>Conecta o painel do bestiário nas cenas de lobby</td><td>Scripts/Bestiario/UI/LobbyBestiarioController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioUILayout</td><td>Config visual do layout do grid do bestiário</td><td>Scripts/Bestiario/UI/BestiarioUILayout.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioCatalogoRunaItem</td><td>Item UI exibindo uma runa desbloqueada no catálogo</td><td>Scripts/Bestiario/UI/BestiarioCatalogoRunaItem.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioRunaLinhaItem</td><td>Linha UI de runa equipada a um slot de criatura</td><td>Scripts/Bestiario/UI/BestiarioRunaLinhaItem.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioSlotCriaturaItem</td><td>Slot UI para entrada de criatura no grid do bestiário</td><td>Scripts/Bestiario/UI/BestiarioSlotCriaturaItem.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioTextoRunaUtil</td><td>Formata texto de descrição de runas para tooltips</td><td>Scripts/Bestiario/UI/BestiarioTextoRunaUtil.cs</td></tr>
+  </table>
+</section>
+
+<!-- 3. MOBS -->
+<section>
+  <div class="section-title">👾 Mobs / Inimigos <span class="badge">20</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobController</td><td>Base para todos os inimigos do mundo; força Faccao.Inimigo</td><td>Scripts/Mobs/MobController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobAranha</td><td>Aranha — 45 HP, 8 dmg, rápida (velocidade 13)</td><td>Scripts/Mobs/MobAranha.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobAmazona</td><td>Amazona — ranged (70 HP, 16 dmg, velocidade 7), dispara projéteis</td><td>Scripts/Mobs/MobAmazona.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobEspantalho</td><td>Espantalho inimigo</td><td>Scripts/Mobs/MobEspantalho.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobEsqueleto</td><td>Esqueleto inimigo</td><td>Scripts/Mobs/MobEsqueleto.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobFormiga</td><td>Formiga inimiga</td><td>Scripts/Mobs/MobFormiga.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobGolemPedra</td><td>Golem de Pedra — mob tanque pesado</td><td>Scripts/Mobs/MobGolemPedra.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobHarpia</td><td>Harpia — unidade voadora (90 HP, 12 dmg); adiciona ComportamentoVoador em runtime</td><td>Scripts/Mobs/MobHarpia.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobLobo</td><td>Lobo inimigo</td><td>Scripts/Mobs/MobLobo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobMinotauro</td><td>Minotauro — mob melee pesado</td><td>Scripts/Mobs/MobMinotauro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobOgre</td><td>Ogro inimigo</td><td>Scripts/Mobs/MobOgre.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobOrc</td><td>Orc inimigo</td><td>Scripts/Mobs/MobOrc.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobRato</td><td>Rato — mob pequeno e rápido</td><td>Scripts/Mobs/MobRato.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobTigre</td><td>Tigre inimigo</td><td>Scripts/Mobs/MobTigre.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MobZumbie</td><td>Zumbi inimigo</td><td>Scripts/Mobs/MobZumbie.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ComportamentoVoador</td><td>Comportamento de voo: ignora waypoints, vai direto ao castelo</td><td>Scripts/Mobs/Sistemas/ComportamentoVoador.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ResistenciaDano</td><td>Resistência a dano por tipo (Físico/Fogo/Veneno, escala 0–1)</td><td>Scripts/Mobs/Sistemas/ResistenciaDano.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ResistenciaDanoLogica</td><td>Versão lógica pura da resistência a dano</td><td>Scripts/Mobs/Sistemas/ResistenciaDanoLogica.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>RegeneracaoVida</td><td>Regeneração passiva de HP por segundo</td><td>Scripts/Mobs/Sistemas/RegeneracaoVida.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>RegeneracaoVidaLogica</td><td>Versão lógica pura da regeneração de vida</td><td>Scripts/Mobs/Sistemas/RegeneracaoVidaLogica.cs</td></tr>
+  </table>
+</section>
+
+<!-- 4. PROJÉTEIS -->
+<section>
+  <div class="section-title">🏹 Projéteis <span class="badge">3</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>LancaProjetil</td><td>Lança/flecha: homing, velocidade configurável, DoT opcional no hit</td><td>Scripts/Racas/Goblins/LancaProjetil.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MagiaProjetil</td><td>Bolt mágico: homing, aplica dano no contato</td><td>Scripts/Racas/Elfos/MagiaProjetil.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>FireballProjetil</td><td>Bola de fogo: homing, dano fixo, destrói no hit</td><td>Scripts/Efeitos/FireballProjetil.cs</td></tr>
+  </table>
+</section>
+
+<!-- 5. ECONOMIA -->
+<section>
+  <div class="section-title">💰 Economia / Recursos <span class="badge">10</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>OuroManager</td><td>Singleton MonoBehaviour expondo lógica de ouro; evento OnOuroAlterado</td><td>Scripts/Core/OuroManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>OuroLogica</td><td>Classe pura de ouro (sem MonoBehaviour); testável</td><td>Scripts/Core/OuroLogica.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TextoOuro</td><td>Texto HUD que atualiza no evento OuroManager.OnOuroAlterado</td><td>Scripts/HUD/TextoOuro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>RecursoController</td><td>Base abstrata para recursos coletáveis: rastreia quantidade, destrói quando esgotado</td><td>Scripts/Core/RecursoController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MinerioDeOuro</td><td>Nó de minério: 100–250 unidades aleatórias, label TMP, destrói quando vazio</td><td>Scripts/Recursos/RecursosOuro/MinerioDeOuro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MineiroAliadoController</td><td>IA abstrata do mineiro aliado: vai ao minério → minera → volta ao castelo → deposita</td><td>Scripts/Recursos/RecursosOuro/MineiroAliadoController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SpawnOuro</td><td>Spawna nós de minério periodicamente em posições aleatórias</td><td>Scripts/Spawn/SpawnOuro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SpawnHumanoMineiro</td><td>Spawna mineiro Humano no início e em intervalo temporizado</td><td>Scripts/Spawn/SpawnHumanoMineiro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>LootManager</td><td>Singleton gerenciando slots de inventário de itens; persiste entre cenas</td><td>Scripts/Core/LootManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ItemDatabase</td><td>SO mapeando nomes de itens para sprites</td><td>Scripts/Core/ItemDatabase.cs</td></tr>
+  </table>
+</section>
+
+<!-- 6. WAVES -->
+<section>
+  <div class="section-title">🌊 Sistema de Waves <span class="badge">5</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>WaveManager</td><td>Orquestrador de waves: 8 waves, pools por raça (m/f), boss, direção de spawn</td><td>Scripts/Core/WaveManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ModoWave</td><td>Enum: Aleatoria ou Fixa</td><td>Scripts/Core/ModoWave.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>LadoSpawn</td><td>Enum: Esquerda, Direita, Cima, Baixo</td><td>Scripts/Core/LadoSpawn.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>GeneroChefe</td><td>Enum de variante de gênero do boss</td><td>Scripts/Core/GeneroChefe.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>IndicadorDirecaoWaveUI</td><td>Seta UI mostrando de qual direção virá a próxima wave (relíquia Bússola Verme)</td><td>Scripts/UI/Waves/IndicadorDirecaoWaveUI.cs</td></tr>
+  </table>
+</section>
+
+<!-- 7. UI (resumido) -->
+<section>
+  <div class="section-title">🖥️ UI — Sistemas <span class="badge">48</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>GerenciadorHUDRaca</td><td>Ativa os painéis HUD corretos para a raça ativa</td><td>Scripts/HUD/GerenciadorHUDRaca.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HUDCasteloGoblin</td><td>Exibe HP do castelo como texto no HUD</td><td>Scripts/HUD/HUDCasteloGoblin.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HUDDeslizanteBootstrap</td><td>Cria painéis laterais deslizantes com botão de toggle</td><td>Scripts/UI/HUDDeslizanteBootstrap.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PainelUnidadesController</td><td>Botões de unidades por raça; oculta grupos de outras raças</td><td>Scripts/UI/PainelUnidadesController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PauseMenuUI</td><td>Tela de pause (retomar/reiniciar/lobby)</td><td>Scripts/UI/PauseMenuUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>NotificacaoToastUI</td><td>Toast singleton com fade-in/out e duração configurável</td><td>Scripts/UI/NotificacaoToastUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TooltipGameplayUI</td><td>Tooltip reutilizável que segue o cursor</td><td>Scripts/UI/TooltipGameplayUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TooltipGatilho</td><td>Componente trigger que exibe TooltipGameplayUI no hover</td><td>Scripts/UI/TooltipGatilho.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ControladorHUDColocacaoUnidades</td><td>HUD de slots de unidades (como torres mas para aliados)</td><td>Scripts/UI/Unidades/ControladorHUDColocacaoUnidades.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ServicoColocacaoUnidade</td><td>Serviço de colocação de unidades com preview fantasma</td><td>Scripts/UI/Unidades/ServicoColocacaoUnidade.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ServicoPatrulhaUI</td><td>UI para definir rotas de patrulha (clique A → clique B)</td><td>Scripts/UI/Unidades/ServicoPatrulhaUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UnidadeUI</td><td>Barra de HP e info por unidade no espaço do mundo</td><td>Scripts/UI/StatusInimigos/UnidadeUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BotaoUnidadesArqueiroHumanoController</td><td>Botão de spawn do Arqueiro Humano</td><td>Scripts/UI/BotaoUnidadesArqueiroHumanoController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BotaoUnidadesFeiticeiroHumanoController</td><td>Botão de spawn da Feiticeira Humana</td><td>Scripts/UI/BotaoUnidadesFeiticeiroHumanoController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BotaoUnidadesMineiroHumanoController</td><td>Botão de spawn do Mineiro Humano</td><td>Scripts/UI/BotaoUnidadesMineiroHumanoController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BotaoUnidadesSpawnLinhaController</td><td>Botão de spawn em linha</td><td>Scripts/UI/BotaoUnidadesSpawnLinhaController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BotaoUnidadesSpawnUnicoController</td><td>Botão de spawn individual</td><td>Scripts/UI/BotaoUnidadesSpawnUnicoController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UIInventario</td><td>Grade de inventário responsiva</td><td>Scripts/UI/Iventario/UIInventario.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SlotItemUI</td><td>Visual de slot individual do inventário</td><td>Scripts/UI/Iventario/SlotItemUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PopupQuantidadeDelete</td><td>Popup de confirmação de exclusão de item</td><td>Scripts/UI/Iventario/PopupQuantidadeDelete.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ZonaDelete</td><td>Zona de drop para deletar itens</td><td>Scripts/UI/Iventario/ZonaDelete.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SalaoReliquiaGoblinUI</td><td>Salão de relíquias Goblin (drag-and-drop)</td><td>Scripts/UI/Reliquias/SalaoReliquiaGoblinUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SalaoReliquiaHumanoUI</td><td>Salão de relíquias Humano</td><td>Scripts/UI/Reliquias/SalaoReliquiaHumanoUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SalaoReliquiaElfoUI</td><td>Salão de relíquias Elfo</td><td>Scripts/UI/Reliquias/SalaoReliquiaElfoUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SalaoReliquiaAnaoUI</td><td>Salão de relíquias Anão</td><td>Scripts/UI/Reliquias/SalaoReliquiaAnaoUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaDragSalao</td><td>Comportamento de drag de relíquias no salão</td><td>Scripts/UI/Reliquias/ReliquiaDragSalao.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaSlotDisponivelSalao</td><td>Slot disponível/não equipado de relíquia</td><td>Scripts/UI/Reliquias/ReliquiaSlotDisponivelSalao.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaSlotDropSalao</td><td>Slot de drop para equipar relíquia</td><td>Scripts/UI/Reliquias/ReliquiaSlotDropSalao.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaZonaDevolucaoSalao</td><td>Zona para desequipar relíquia</td><td>Scripts/UI/Reliquias/ReliquiaZonaDevolucaoSalao.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>DestaqueReliquiaHover</td><td>Efeito de destaque ao passar o mouse sobre relíquia</td><td>Scripts/UI/Reliquia/DestaqueReliquiaHover.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaHudPartida</td><td>HUD in-game mostrando até 5 ícones de relíquias equipadas</td><td>Scripts/Reliquias/ReliquiaHudPartida.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HudProgressaoRacaView</td><td>Barra de XP da raça com nível e texto</td><td>Scripts/UI/Progressao/HudProgressaoRacaView.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ProgressaoRacaNotificacaoLevelUpLobby</td><td>Notificação de level-up no lobby</td><td>Scripts/UI/Progressao/ProgressaoRacaNotificacaoLevelUpLobby.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UISlotsPrincipal</td><td>Tela de seleção de save slots (4 slots, criar/carregar/deletar)</td><td>Scripts/UI/SaveSlots/UISlotsPrincipal.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UISlotSaveItem</td><td>Item UI de slot de save individual</td><td>Scripts/UI/SaveSlots/UISlotSaveItem.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UICriacaoPerfil</td><td>Painel de criação de perfil (nome + raça)</td><td>Scripts/UI/SaveSlots/UICriacaoPerfil.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UIResponsividadeManager</td><td>Singleton detectando mudanças de resolução/aspect ratio</td><td>Scripts/UI/Responsividade/UIResponsividadeManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>AnchorHUDCorretor</td><td>Corrige posições de âncora do HUD para diferentes telas</td><td>Scripts/UI/Responsividade/AnchorHUDCorretor.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>AspectRatioUIAdapter</td><td>Adapta elementos UI com base no aspect ratio</td><td>Scripts/UI/Responsividade/AspectRatioUIAdapter.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>CameraResponsiva</td><td>Ajusta tamanho ortográfico da câmera por resolução</td><td>Scripts/UI/Responsividade/CameraResponsiva.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ElementoUIResponsivo</td><td>Elemento UI individual que reposiciona/redimensiona no layout</td><td>Scripts/UI/Responsividade/ElementoUIResponsivo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PainelHUDInferiorResponsivo</td><td>Layout responsivo do painel HUD inferior</td><td>Scripts/UI/Responsividade/PainelHUDInferiorResponsivo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SafeAreaAplicador</td><td>Aplica safe area do dispositivo (notch/home bar)</td><td>Scripts/UI/Responsividade/SafeAreaAplicador.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>VisualizadorAlcanceUnidade</td><td>Círculo LineRenderer de alcance para unidades ranged selecionadas</td><td>Scripts/Core/VisualizadorAlcanceUnidade.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SeletorPrefabPorSexo</td><td>Seleciona variante masculino/feminino do prefab de unidade</td><td>Scripts/UI/Unidades/SeletorPrefabPorSexo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>DadosSlotConstrucaoUnidade</td><td>Dados para slots HUD de unidades</td><td>Scripts/UI/Unidades/DadosSlotConstrucaoUnidade.cs</td></tr>
+  </table>
+</section>
+
+<!-- 8. IA/INPUT -->
+<section>
+  <div class="section-title">🎮 IA / Input / Movimento <span class="badge">8</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>SistemaIAUnidade</td><td>State machine completa (Idle/Pursuing/Attacking/Combat/Dead); anti-stack, anti-stuck</td><td>Scripts/Core/IA/SistemaIAUnidade.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>EstadoIA</td><td>Enum de estados da IA</td><td>Scripts/Core/IA/EstadoIA.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TipoPrioridadeAlvo</td><td>Enum de tipos de prioridade de alvo da IA</td><td>Scripts/Core/IA/TipoPrioridadeAlvo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MovimentoUnidade</td><td>Movimento por waypoints Rigidbody2D com override de modo livre</td><td>Scripts/Core/MovimentoUnidade.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PatrulhaUnidade</td><td>Patrulha A↔B definida pelo jogador, suspensa em combate</td><td>Scripts/Core/PatrulhaUnidade.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ServicoPatrulhaUI</td><td>Handler de clique para definir pontos de patrulha</td><td>Scripts/UI/Unidades/ServicoPatrulhaUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>VisualizadorAlcanceUnidade</td><td>Círculo de alcance para unidades selecionadas</td><td>Scripts/Core/VisualizadorAlcanceUnidade.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>LootClickManager</td><td>Detecção de clique para coletar loot do chão</td><td>Scripts/Loot/LootClickManager.cs</td></tr>
+  </table>
+</section>
+
+<!-- 9. GAME MANAGEMENT -->
+<section>
+  <div class="section-title">⚙️ Gerenciamento do Jogo <span class="badge">16</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>GameManager</td><td>Singleton: Game Over (pausa tempo, mostra painel, aplica perda de XP), Restart</td><td>Scripts/Core/GameManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PauseManager</td><td>Singleton: pause global (Time.timeScale), toggle com Escape, evento OnPauseAlterado</td><td>Scripts/Core/PauseManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>CarregadorCena</td><td>Carrega cena por nome (helper para botões OnClick)</td><td>Scripts/Core/CarregadorCena.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>CarregadorVoltarParaSlots</td><td>Retorna à tela de seleção de slots, limpa perfil ativo</td><td>Scripts/Core/CarregadorVoltarParaSlots.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>EstruturasController</td><td>Base para todas as estruturas (edifícios); implementa IDanificavel</td><td>Scripts/Core/EstruturasController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>CasteloController</td><td>Castelo: escaneia inimigos próximos e recebe ataques deles</td><td>Scripts/Estruturas/CasteloController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>CasteloGoblin</td><td>Subclasse do castelo da raça Goblin</td><td>Scripts/Estruturas/EstruturasGoblin/CasteloGoblin.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SaveSlotManager</td><td>Gerencia 4 slots de save em JSON; carrega lobby da raça ao selecionar perfil</td><td>Scripts/SaveSlots/SaveSlotManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PerfilJogadorAtivo</td><td>Classe estática com o perfil do jogador carregado em memória</td><td>Scripts/SaveSlots/PerfilJogadorAtivo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>DadosSlotSave</td><td>Dados serializáveis completos de save (raça, XP, bestiário, talentos, relíquias, heróis)</td><td>Scripts/SaveSlots/DadosSlotSave.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HeroisManager</td><td>Singleton DontDestroyOnLoad gerenciando até 3 heróis contratados por save</td><td>Scripts/SaveSlots/HeroisManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiasManager</td><td>Singleton DontDestroyOnLoad gerenciando relíquias possuídas + 5 slots de equipamento</td><td>Scripts/SaveSlots/ReliquiasManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>DadosInventario</td><td>Dados serializáveis do inventário (lista de slots de itens)</td><td>Scripts/Core/DadosInventario.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UnidadesManager</td><td>Singleton que registra unidades aliadas ativas e instancia unidades no mapa (espelha TorresManager)</td><td>Scripts/Unidades/Manager/UnidadesManager.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TipoRaca</td><td>Enum de raças jogáveis: Goblin, Humano, Elfo, Anao</td><td>Scripts/Core/TipoRaca.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>Faccao</td><td>Enum de facções de unidade: Jogador, Inimigo</td><td>Scripts/Core/Faccao.cs</td></tr>
+  </table>
+</section>
+
+<!-- 10. XP/PROGRESSÃO -->
+<section>
+  <div class="section-title">⭐ Progressão / XP <span class="badge">6</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>RunExpPartida</td><td>Singleton: acumula XP da run, chama ConcluirComVitoria/Derrota</td><td>Scripts/Progressao/RunExpPartida.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ExpPartidaLogica</td><td>Lógica pura de XP (testável sem MonoBehaviour)</td><td>Scripts/Progressao/ExpPartidaLogica.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ExpAoMorrerInimigo</td><td>IMorteListener que concede XP na morte do inimigo (flag de boss para bônus)</td><td>Scripts/Progressao/ExpAoMorrerInimigo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>NivelRacaCalculadora</td><td>Calculadora estática da curva de nível (150l² + 250l)</td><td>Scripts/Progressao/NivelRacaCalculadora.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ProgressaoRacaAtivaLeitura</td><td>Lê nível/XP atual da raça a partir do perfil ativo</td><td>Scripts/Progressao/ProgressaoRacaAtivaLeitura.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ProgressaoRacaSnapshot</td><td>Captura snapshot da progressão da raça (para comparação pós-run)</td><td>Scripts/Progressao/ProgressaoRacaSnapshot.cs</td></tr>
+  </table>
+</section>
+
+<!-- 11. RAÇAS/UNIDADES -->
+<section>
+  <div class="section-title">🧝 Raças / Unidades Aliadas <span class="badge">18</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>UnidadeController</td><td>Base core para todas as unidades (HP, facção, morte, ataque, modificadores de talentos)</td><td>Scripts/Core/UnidadeController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HumanoController</td><td>Base da raça Humana; multiplicador de dano racial</td><td>Scripts/Racas/Humanos/HumanoController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HumanoArqueiroController</td><td>Arqueiro Humano: ranged, dispara LancaProjetil, IA-driven</td><td>Scripts/Racas/Humanos/SubClasses/HumanoArqueiroController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HumanoFeiticeiraController</td><td>Feiticeira Humana: dispara FireballProjetil, IA-driven</td><td>Scripts/Racas/Humanos/SubClasses/HumanoFeiticeiraController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HumanoGuerreiro</td><td>Guerreiro Humano: melee</td><td>Scripts/Racas/Humanos/SubClasses/HumanoGuerreiro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>HumanoMineiroController</td><td>Mineiro Humano: extende MineiroAliadoController</td><td>Scripts/Racas/Humanos/SubClasses/HumanoMineiroController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>AnoesController</td><td>Base da raça Anã: movimento ligeiramente mais lento</td><td>Scripts/Racas/Anoes/AnoesController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>AnaoGuerreiro</td><td>Guerreiro Anão: melee, maior multiplicador de dano (1.15x)</td><td>Scripts/Racas/Anoes/SubClasses/AnaoGuerreiro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>AnaoMineiroController</td><td>Mineiro Anão: mais lento mas minera mais</td><td>Scripts/Racas/Anoes/SubClasses/AnaoMineiroController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ElfoController</td><td>Base da raça Elfa: movimento mais rápido (1.1x), multiplicador de magia</td><td>Scripts/Racas/Elfos/ElfoController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ElfoAssassino</td><td>Assassino Elfo: ranged, suporta patrulha</td><td>Scripts/Racas/Elfos/SubClasses/ElfoAssassino.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ElfoMago</td><td>Mago Elfo: dispara MagiaProjetil, mira diretamente no castelo inimigo</td><td>Scripts/Racas/Elfos/SubClasses/ElfoMago.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ElfoMineiroController</td><td>Mineiro Elfo: movimento mais rápido</td><td>Scripts/Racas/Elfos/SubClasses/ElfoMineiroController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>GoblinController</td><td>Base da raça Goblin; sistema de dano bônus</td><td>Scripts/Racas/Goblins/GoblinController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>GoblinGuerreiro</td><td>Guerreiro Goblin: melee</td><td>Scripts/Racas/Goblins/SubClasses/GoblinGuerreiro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>GoblinLanceiro</td><td>Lanceiro Goblin: ranged, dispara LancaProjetil, IA-driven</td><td>Scripts/Racas/Goblins/SubClasses/GoblinLanceiro.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>GoblinMineiroController</td><td>Mineiro Goblin</td><td>Scripts/Racas/Goblins/SubClasses/GoblinMineiroController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BossGoblinNivel3</td><td>Boss Goblin Nível 3: aura que fortalece goblins próximos (+10 dmg, raio 4)</td><td>Scripts/Racas/Goblins/Bosses/BossGoblinNivel3.cs</td></tr>
+  </table>
+</section>
+
+<!-- 12. TALENTOS -->
+<section>
+  <div class="section-title">🏆 Árvore de Talentos <span class="badge">15</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentTreeDatabase</td><td>SO com árvores de talentos por raça; pontos a cada N níveis</td><td>Scripts/Talentos/Data/TalentTreeDatabase.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentNodeEntry</td><td>Dados de um nó da árvore de talentos (tipo de stat, bônus, custo de desbloqueio)</td><td>Scripts/Talentos/Data/TalentNodeEntry.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>DadosTalentos</td><td>Dados de save listando IDs de nós desbloqueados</td><td>Scripts/Talentos/Data/DadosTalentos.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentosEnums</td><td>Enums de tipos de stat de talentos</td><td>Scripts/Talentos/Data/TalentosEnums.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UnidadeSubtipo</td><td>Enum de subtipos de unidade (Arqueiro, Guerreiro, Mineiro, etc.)</td><td>Scripts/Talentos/Data/UnidadeSubtipo.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentosRegras</td><td>Lógica pura: validar desbloqueio, gastar pontos, pré-requisitos de nós</td><td>Scripts/Talentos/Core/TalentosRegras.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ModificadoresPartidaTalentos</td><td>Lê nós desbloqueados e aplica modificadores de stat às unidades no spawn</td><td>Scripts/Talentos/Runtime/ModificadoresPartidaTalentos.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UnidadeIdentidade</td><td>Componente que armazena identidade de raça+subtipo da unidade</td><td>Scripts/Talentos/Runtime/UnidadeIdentidade.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UnidadeIdentidadeResolver</td><td>Infere raça/subtipo a partir do UnidadeIdentidade ou tipo do controller</td><td>Scripts/Talentos/Runtime/UnidadeIdentidadeResolver.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>UnidadeModificadores</td><td>Componente com modificadores de stat ativos aplicados pelos talentos</td><td>Scripts/Talentos/Runtime/UnidadeModificadores.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PainelArvoreTalentos</td><td>Painel UI da árvore de talentos com grade rolável de nós</td><td>Scripts/Talentos/UI/PainelArvoreTalentos.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>LobbyArvoreTalentosController</td><td>Conecta o painel de talentos no lobby</td><td>Scripts/Talentos/UI/LobbyArvoreTalentosController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentoNoSlotUI</td><td>Visual de nó único de talento (bloqueado/desbloqueado)</td><td>Scripts/Talentos/UI/TalentoNoSlotUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentoTooltipUI</td><td>Tooltip que segue o cursor para nós de talento</td><td>Scripts/Talentos/UI/TalentoTooltipUI.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentDescricaoResumo</td><td>Exibe nome + descrição resumida do talento</td><td>Scripts/Talentos/UI/TalentDescricaoResumo.cs</td></tr>
+  </table>
+</section>
+
+<!-- 13. RELÍQUIAS -->
+<section>
+  <div class="section-title">💎 Relíquias <span class="badge">14</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaDef</td><td>SO de definição de uma relíquia (id, nome, descrição, ícone, prefab de efeito)</td><td>Scripts/Reliquias/ReliquiaDef.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaDatabase</td><td>SO com array de todas as ReliquiaDef + lookup por ID</td><td>Scripts/Reliquias/ReliquiaDatabase.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiasPartidaOrchestrator</td><td>Instancia e inicializa todos os efeitos de relíquias equipadas no início da partida</td><td>Scripts/Reliquias/ReliquiasPartidaOrchestrator.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>IReliquiaEfeito</td><td>Interface de efeito de relíquia (Iniciar(context) / Encerrar())</td><td>Scripts/Reliquias/IReliquiaEfeito.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaContext</td><td>Contexto passado aos efeitos de relíquia (câmera principal, canvas overlay)</td><td>Scripts/Reliquias/ReliquiaContext.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ReliquiaIds</td><td>Constantes de strings de ID de relíquias</td><td>Scripts/Reliquias/ReliquiaIds.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>EstadoPartidaReliquias</td><td>Flag estático: previne mudanças de equipamento durante a partida</td><td>Scripts/Reliquias/EstadoPartidaReliquias.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MarcadorEstadoPartidaReliquias</td><td>MonoBehaviour que seta/limpa EstadoPartidaReliquias no carregamento da cena</td><td>Scripts/Reliquias/MarcadorEstadoPartidaReliquias.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>FlagsTesteReliquias</td><td>Flags de teste para ignorar requisitos de desbloqueio de relíquias</td><td>Scripts/Reliquias/FlagsTesteReliquias.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>EfeitoBussolaVerme</td><td>Efeito da relíquia "Bússola Verme": mostra seta de direção de wave no HUD</td><td>Scripts/Reliquias/Efeitos/EfeitoBussolaVerme.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>EfeitoCarvaoEnxofreSalitre</td><td>Efeito "Carvão-Enxofre-Salitre": explosão quando DoTs Veneno+Fogo se sobrepõem</td><td>Scripts/Reliquias/Efeitos/EfeitoCarvaoEnxofreSalitre.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>EfeitoOlhoQueNadaVe</td><td>Efeito "Olho Que Nada Vê": névoa com círculo de revelação ao redor do castelo</td><td>Scripts/Reliquias/Efeitos/EfeitoOlhoQueNadaVe.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BussolaVermeLogica</td><td>Helper de lógica pura para a relíquia Bússola Verme</td><td>Scripts/Reliquias/BussolaVermeLogica.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ConfiguracaoExplosaoCarvaoEnxofreSalitreSO</td><td>SO de configuração da relíquia de explosão (dano, raio, etc.)</td><td>Scripts/Reliquias/ConfiguracaoExplosaoCarvaoEnxofreSalitreSO.cs</td></tr>
+  </table>
+</section>
+
+<!-- 14. COMBATE -->
+<section>
+  <div class="section-title">⚔️ Serviços de Combate <span class="badge">12</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>ServicoAplicacaoDano</td><td>Serviço estático: aplica dano a IDanificavel, exibe texto flutuante, procs de runa</td><td>Scripts/Combate/ServicoAplicacaoDano.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ServicoDanoFlutuante</td><td>Serviço estático: spawna TextoDanoFlutuante na posição do mundo</td><td>Scripts/Combate/ServicoDanoFlutuante.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TextoDanoFlutuante</td><td>Número de dano flutuante (sobe + desvanece); auto-cria Canvas+TMP</td><td>Scripts/Combate/TextoDanoFlutuante.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ControladorEfeitosStatusUnidade</td><td>Gerencia corrotinas DoT, coloração de sprite por efeito, verificação de explosão Carvão</td><td>Scripts/Combate/ControladorEfeitosStatusUnidade.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>DefinicaoDanoPorTempoSO</td><td>SO: define um DoT (tipo, dano por tick, intervalo, nº de ticks, cor de tint)</td><td>Scripts/Combate/DefinicaoDanoPorTempoSO.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PedidoDanoFlutuante</td><td>Struct/class com requisição de exibição de dano (valor, cor, tipo)</td><td>Scripts/Combate/PedidoDanoFlutuante.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BibliotecaEstilosTipoDanoSO</td><td>SO mapeando TipoDanoCombate para estilos de exibição (cor, texto)</td><td>Scripts/Combate/BibliotecaEstilosTipoDanoSO.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ConfiguracaoTextoDanoFlutuanteMapa</td><td>Config da cena provendo referência ao prefab de texto flutuante</td><td>Scripts/Combate/ConfiguracaoTextoDanoFlutuanteMapa.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TipoDanoCombate</td><td>Enum: Físico, Fogo, Veneno, EcoRuna, Crítico, etc.</td><td>Scripts/Combate/TipoDanoCombate.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TipoEfeitoStatusDot</td><td>Enum: Queimando, Envenenado, etc. (usado no gerenciamento de DoT)</td><td>Scripts/Combate/TipoEfeitoStatusDot.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>IDanificavel</td><td>Interface: ReceberDano(int), EstaVivo</td><td>Scripts/Core/IDanificavel.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>IMorteListener</td><td>Interface: OnMorte(UnidadeController) — chamada na morte</td><td>Scripts/Core/IMorteListener.cs</td></tr>
+  </table>
+</section>
+
+<!-- 15. LOOT -->
+<section>
+  <div class="section-title">🎒 Sistema de Loot <span class="badge">3</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>DropLootAoMorrer</td><td>IMorteListener que spawna drops de itens + relíquias na morte com chances</td><td>Scripts/Loot/DropLootAoMorrer.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>LootColetavel</td><td>Item coletável no chão: adiciona ouro ao coletar, timer de vida</td><td>Scripts/Loot/LootColetavel.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>LootClickManager</td><td>Gerenciador global de clique para coletar loot do chão</td><td>Scripts/Loot/LootClickManager.cs</td></tr>
+  </table>
+</section>
+
+<!-- 16. ANIMAÇÃO -->
+<section>
+  <div class="section-title">🎨 Animação <span class="badge">2</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>AnimacaoAtaqueSprite</td><td>Sincroniza frames de ataque do sprite com o intervalo de ataque</td><td>Scripts/Core/AnimacaoAtaqueSprite.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>AnimacaoSpritePorVelocidade2D</td><td>Animação de sprite 4 direções baseada na velocidade do Rigidbody2D</td><td>Scripts/Core/AnimacaoSpritePorVelocidade2D.cs</td></tr>
+  </table>
+</section>
+
+<!-- 17. EDITOR TOOLS -->
+<section>
+  <div class="section-title">🧰 Ferramentas de Editor <span class="badge">15</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioCatalogoEditorPreview</td><td>Janela Editor de preview do catálogo do bestiário</td><td>Editor/BestiarioCatalogoEditorPreview.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioCriarDatabaseMenu</td><td>Item de menu para criar o asset BestiarioDatabase</td><td>Editor/BestiarioCriarDatabaseMenu.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioDatabaseEditorPresets</td><td>Presets para popular o banco de dados do bestiário no editor</td><td>Editor/BestiarioDatabaseEditorPresets.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioLobbyUISetup</td><td>Ferramenta auto-setup para hierarquia de UI do bestiário no lobby</td><td>Editor/BestiarioLobbyUISetup.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioModoTesteMenu</td><td>Menu para toggle do modo de teste do bestiário</td><td>Editor/BestiarioModoTesteMenu.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioPrefabSetup</td><td>Auto-configura componentes do bestiário em prefabs de inimigos</td><td>Editor/BestiarioPrefabSetup.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BestiarioUIPrefabGenerator</td><td>Gera prefabs de UI para itens do bestiário</td><td>Editor/BestiarioUIPrefabGenerator.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BussolaVermeSetup</td><td>Ferramenta de setup para o prefab da relíquia Bússola Verme</td><td>Editor/BussolaVermeSetup.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ConfiguradorInventarioLobby</td><td>Configura painel de inventário nas cenas de lobby</td><td>Editor/ConfiguradorInventarioLobby.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PainelArvoreTalentosEditor</td><td>Editor customizado para o painel de árvore de talentos</td><td>Editor/PainelArvoreTalentosEditor.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>PatrulhaSetup</td><td>Helper para configurar pontos de patrulha no editor</td><td>Editor/PatrulhaSetup.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentosCriarDatabaseMenu</td><td>Menu para criar o asset TalentTreeDatabase</td><td>Editor/TalentosCriarDatabaseMenu.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>TalentosCriarTooltipMenu</td><td>Menu para criar prefabs de tooltip de talentos</td><td>Editor/TalentosCriarTooltipMenu.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BandeiraFaseSetup</td><td>Cria 10 objetos BandeiraFaseController no world space prontos para posicionar (Mapa Natural)</td><td>Editor/BandeiraFaseSetup.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>MapaNavegacaoSetup</td><td>Cria bandeiras de fase + setas de navegação para cada mapa mundo; menu Tower Defense > Setup Mapas</td><td>Editor/MapaNavegacaoSetup.cs</td></tr>
+  </table>
+</section>
+
+<!-- 18. FASES / PROGRESSÃO DE MAPA -->
+<section>
+  <div class="section-title">🚩 Fases / Progressão de Mapa <span class="badge">5</span></div>
+  <table>
+    <tr><th>✓</th><th>Classe</th><th>Descrição</th><th>Arquivo</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>BandeiraFaseController</td><td>Bandeira de fase no world space: troca sprite por raça, valida pré-requisito, carrega cena da batalha; suporte a [ExecuteAlways] para preview no editor</td><td>Scripts/Fases/BandeiraFaseController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>BotaoFaseController</td><td>Botão UI de fase no mapa: valida desbloqueio via ProgressaoFases e carrega cena ao clicar</td><td>Scripts/Fases/BotaoFaseController.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>FaseIdentificacao</td><td>Classe estática que comunica o faseId atual entre cenas (definido antes de carregar, lido por RunExpPartida ao registrar vitória)</td><td>Scripts/Fases/FaseIdentificacao.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>ProgressaoFases</td><td>Dados serializáveis de progressão: lista de fases vencidas, verificações de desbloqueio e registro de vitória</td><td>Scripts/Fases/ProgressaoFases.cs</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>SetaNavegacaoMapa</td><td>Seta de navegação no mapa mundo (SpriteRenderer + Collider2D): efeito de tint ao clicar e carrega cena de destino</td><td>Scripts/Fases/SetaNavegacaoMapa.cs</td></tr>
+  </table>
+</section>
+
+<!-- 19. MAPAS / MUNDOS -->
+<section>
+  <div class="section-title">🗺️ Mapas / Mundos <span class="badge">5</span></div>
+  <table>
+    <tr><th>✓</th><th>Mapa</th><th>Bandeiras</th><th>Pré-requisito da Bandeira 1</th><th>Detalhes</th></tr>
+    <tr><td><span class="checkbox"></span></td><td>Mapa_Natural</td><td>10 (natural_1 … natural_10)</td><td>— (início da cadeia)</td><td>Scenes/Mapas/Mapamundo_1/Mapa_Natural.unity</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>Mapa_Gelo</td><td>8 (gelo_1 … gelo_10)</td><td>natural_10</td><td>Scenes/Mapas/Mapamundo_2/Mapa_Gelo.unity</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>Mapa_Magma</td><td>10 (magma_1 … magma_10)</td><td>gelo_10</td><td>Scenes/Mapas/Mapamundo_3/Mapa_Magma.unity</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>Mapa_Deserto</td><td>10 (deserto_1 … deserto_10)</td><td>magma_10</td><td>Scenes/Mapas/Mapamundo_4/Mapa_Deserto.unity</td></tr>
+    <tr><td><span class="checkbox"></span></td><td>Mapa_DarkFlorest</td><td>10 (darkflorest_1 … darkflorest_10)</td><td>deserto_10</td><td>Scenes/Mapas/Mapamundo_5/Mapa_DarkFlorest.unity</td></tr>
+  </table>
+  <p style="font-size:11px; color:#aaa; margin-top:8px; padding-left:4px;">
+    ℹ️ Todas as bandeiras usam <strong>BoxCollider2D m_Size {x: 2.36, y: 6.64}</strong> &nbsp;|&nbsp;
+    Progressão em cadeia: Natural → Gelo → Magma → Deserto → DarkFlorest &nbsp;|&nbsp;
+    Cada mapa só é desbloqueado após o jogador vencer a última bandeira do mapa anterior.
+  </p>
+</section>
+
+<div style="text-align:center; margin-top: 30px; padding: 16px; background: #16213e; border-radius: 8px; font-size: 12px; color: #aaa;">
+  🏰 Tower Defense &nbsp;|&nbsp; 4 Raças Jogáveis (Humanos, Goblins, Elfos, Anões) &nbsp;|&nbsp; 14 Tipos de Inimigos &nbsp;|&nbsp; ~229 Scripts &nbsp;|&nbsp; 5 Mundos &nbsp;|&nbsp; Gerado por GitHub Copilot
+</div>
+
+</body>
+</html>

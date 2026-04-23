@@ -1,0 +1,80 @@
+LEMBRESE DE USAR SKILL DE TESTE
+Quero criar o PRIMEIRO HERÓI do jogo: PIRATA.
+
+---
+
+CONTEXTO:
+Meu projeto já tem:
+- UnidadeController
+- SistemaIAUnidade
+- MovimentoUnidade
+- AnimacaoSpritePorVelocidade2D
+
+---
+
+SPRITES:
+Caminho:
+C:\Users\Jonas\Desktop\TD\td\TD\Assets\Sprites\Herois\Pirate
+
+Por enquanto:
+- Apenas animação de MOVIMENTO
+
+---
+
+OBJETIVO:
+Criar herói reutilizando sistema existente
+
+---
+
+REQUISITOS:
+
+1. Criar:
+HeroiPirataController.cs
+
+HERDAR de:
+UnidadeController
+
+---
+
+2. Configuração:
+- Facção: Jogador
+- IA ativa (SistemaIAUnidade)
+- Movimento via MovimentoUnidade
+
+---
+
+3. NÃO criar sistema novo de movimentação
+REUTILIZAR o existente
+
+---
+
+4. Animação:
+Usar:
+AnimacaoSpritePorVelocidade2D
+
+---
+
+5. Criar prefab:
+HeroiPirata
+
+---
+
+6. Criar HeroiDef:
+- Nome: Pirata
+- Raridade: Azul (por padrão)
+
+---
+
+7. Integração:
+HeroisManager deve conseguir spawnar ele
+
+---
+
+8. Logs:
+[HEROI PIRATA SPAWNADO]
+
+---
+
+9. NÃO quebrar sistema atual de unidades
+
+---

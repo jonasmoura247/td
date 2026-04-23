@@ -109,10 +109,22 @@ public class UnidadeController : MonoBehaviour, IDanificavel
         vidaAtual = vidaMaxima;
     }
 
+    public void CurarVida(int quantidade)
+    {
+        if (!estaVivo || quantidade <= 0) return;
+        vidaAtual = Mathf.Min(vidaAtual + quantidade, vidaMaxima);
+    }
+
     public virtual void ReceberDano(int quantidade)
     {
         if (!estaVivo || quantidade <= 0)
             return;
+
+        var resistencia = GetComponent<ResistenciaDano>();
+        if (resistencia != null)
+            quantidade = resistencia.CalcularDanoFinal(quantidade, TipoDanoCombate.Fisico);
+
+        if (quantidade <= 0) return;
 
         vidaAtual -= quantidade;
 

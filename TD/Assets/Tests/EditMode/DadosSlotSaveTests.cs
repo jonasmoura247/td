@@ -177,4 +177,93 @@ public class DadosSlotSaveTests
         dados.GarantirUuid();
         Assert.AreEqual("meu-uuid-fixo", dados.uuid);
     }
+
+    // ── DESCRIÇÃO DE RELÍQUIAS ─────────────────────────────────────────────
+
+    [Test]
+    public void Should_DescricaoNaoDesbloqueada_QuandoSaveCriado()
+    {
+        var dados = CriarSave();
+        Assert.IsFalse(dados.DescricaoDesbloqueada(ReliquiaIds.OlhoQueNadaVe));
+    }
+
+    [Test]
+    public void Should_DescricaoDesbloqueada_ApósDesbloquearDescricao()
+    {
+        var dados = CriarSave();
+        dados.DesbloquearDescricao(ReliquiaIds.OlhoQueNadaVe);
+        Assert.IsTrue(dados.DescricaoDesbloqueada(ReliquiaIds.OlhoQueNadaVe));
+    }
+
+    [Test]
+    public void Should_NaoDuplicar_QuandoDesbloquearDescricaoChamadaDuasVezes()
+    {
+        var dados = CriarSave();
+        dados.DesbloquearDescricao(ReliquiaIds.OlhoQueNadaVe);
+        dados.DesbloquearDescricao(ReliquiaIds.OlhoQueNadaVe);
+        Assert.AreEqual(1, dados.reliquiasDescricaoDesbloqueada.Count);
+    }
+
+    [Test]
+    public void Should_ManterOutrasDescricoesIntactas_QuandoUmaDessbloqueada()
+    {
+        var dados = CriarSave();
+        dados.DesbloquearDescricao(ReliquiaIds.OlhoQueNadaVe);
+        Assert.IsFalse(dados.DescricaoDesbloqueada(ReliquiaIds.BussolaVerme));
+        Assert.IsFalse(dados.DescricaoDesbloqueada(ReliquiaIds.CarvaoEnxofreSalitre));
+    }
+
+    [Test]
+    public void Should_NaoCrashear_QuandoListaEhNulaNaVerificacao()
+    {
+        var dados = CriarSave();
+        dados.reliquiasDescricaoDesbloqueada = null;
+        Assert.DoesNotThrow(() => dados.DescricaoDesbloqueada(ReliquiaIds.OlhoQueNadaVe));
+    }
+
+    [Test]
+    public void Should_InicializarLista_QuandoDesbloquearComListaNula()
+    {
+        var dados = CriarSave();
+        dados.reliquiasDescricaoDesbloqueada = null;
+        dados.DesbloquearDescricao(ReliquiaIds.OlhoQueNadaVe);
+        Assert.IsNotNull(dados.reliquiasDescricaoDesbloqueada);
+        Assert.IsTrue(dados.DescricaoDesbloqueada(ReliquiaIds.OlhoQueNadaVe));
+    }
+
+    [Test]
+    public void Should_InicializarListaDescricao_NaNormalizacao()
+    {
+        var dados = CriarSave();
+        dados.reliquiasDescricaoDesbloqueada = null;
+        dados.NormalizarReliquias();
+        Assert.IsNotNull(dados.reliquiasDescricaoDesbloqueada);
+    }
+
+    // ── PROGRESSÃO DE FASES ────────────────────────────────────────────────
+
+    [Test]
+    public void Should_IniciarComProgressaoFasesNaoNula()
+    {
+        var dados = CriarSave();
+        Assert.IsNotNull(dados.progressaoFases);
+    }
+
+    [Test]
+    public void Should_RecreateProgressaoFases_QuandoNula_NaNormalizacao()
+    {
+        var dados = CriarSave();
+        dados.progressaoFases = null;
+        dados.NormalizarProgressaoFases();
+        Assert.IsNotNull(dados.progressaoFases);
+    }
+
+    [Test]
+    public void Should_ManterProgressaoFasesExistente_NaNormalizacao()
+    {
+        var dados = CriarSave();
+        dados.progressaoFases.RegistrarVitoria("natural_1");
+        dados.NormalizarProgressaoFases();
+        Assert.IsTrue(dados.progressaoFases.FaseVencida("natural_1"));
+    }
 }

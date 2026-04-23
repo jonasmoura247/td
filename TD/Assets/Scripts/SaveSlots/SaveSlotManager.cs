@@ -319,6 +319,8 @@ public class SaveSlotManager : MonoBehaviour
                     slots[i].NormalizarReliquias();
                     slots[i].NormalizarTalentos();
                     slots[i].NormalizarBestiario();
+                    slots[i].NormalizarProgressaoFases();
+                    slots[i].NormalizarEstadoEventos();
                 }
             }
         }
@@ -336,6 +338,8 @@ public class SaveSlotManager : MonoBehaviour
             slots[i].NormalizarReliquias();
             slots[i].NormalizarTalentos();
             slots[i].NormalizarBestiario();
+            slots[i].NormalizarProgressaoFases();
+            slots[i].NormalizarEstadoEventos();
         }
 
         SalvarSlots();

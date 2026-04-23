@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0229a0b224d55324a9198d169cfece74, type: 3}
+  m_Name: HeroiDatabase
+  m_EditorClassIdentifier: TD.GameCode::HeroiDatabase
+  entradas:
+  - {fileID: 11400000, guid: 696ccaa118f946d429973d623924a58a, type: 2}

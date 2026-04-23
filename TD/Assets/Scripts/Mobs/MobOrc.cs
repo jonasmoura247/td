@@ -1,4 +1,10 @@
 public class MobOrc : MobController
 {
-    // Comportamentos únicos do Orc podem ser adicionados aqui
+    protected override void Start()
+    {
+        vidaMaxima = 200;
+        danoBase   = 18;
+        movimento.velocidade = 5f;
+        base.Start();
+    }
 }

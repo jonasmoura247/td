@@ -1,0 +1,35 @@
+LEMBRESE DE USAR SKILL DE TESTE
+
+Expandir sistema de HERÓIS com CONTRATOS.
+
+---
+
+REQUISITOS:
+
+1. Contratos com duração:
+- Ex: 3 a 5 fases
+
+---
+
+2. Renovação:
+- Custo crescente
+
+---
+
+3. NÃO permitir reroll via restart:
+- Ofertas persistidas
+
+---
+
+4. Aviso:
+Penúltima fase:
+- Flag bool
+- Evento UI
+
+---
+
+5. Logs:
+[CONTRATO]
+[RENOVAÇÃO]
+
+---

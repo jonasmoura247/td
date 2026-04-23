@@ -1,0 +1,50 @@
+LEMBRESE DE USAR SKILL DE TESTE
+Implementar sistema de geração de RELÍQUIAS INTELIGENTE.
+
+CONTEXTO:
+Já tenho:
+- ReliquiaDatabase
+- ReliquiasManager
+
+---
+
+OBJETIVO:
+Gerar opções de relíquias em tendas
+
+---
+
+REGRAS:
+
+1. Nunca oferecer relíquias já possuídas
+
+---
+
+2. Sistema de raridade:
+
+- Branco (Comum)
+- Azul (Incomum)
+- Roxo (Raro)
+- Dourado (Lendário)
+
+---
+
+3. Criar pesos configuráveis
+
+---
+
+4. Balanceamento:
+Evitar repetir tipo dominante
+
+---
+
+5. Gerar sempre 3 opções
+
+---
+
+6. Persistir no EstadoEventosRun
+
+---
+
+7. Integrar com RNGDeterministico
+
+---

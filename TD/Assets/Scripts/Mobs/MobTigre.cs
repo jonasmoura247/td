@@ -1,4 +1,10 @@
 public class MobTigre : MobController
 {
-    // Comportamentos únicos do Tigre podem ser adicionados aqui
+    protected override void Start()
+    {
+        vidaMaxima = 80;
+        danoBase   = 14;
+        movimento.velocidade = 11f;
+        base.Start();
+    }
 }

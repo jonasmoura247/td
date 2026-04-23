@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &2579156320764190982
 GameObject:
@@ -457,11 +457,6 @@ MonoBehaviour:
   rigidbody2DRef: {fileID: 0}
   spriteParado: {fileID: 0}
   spritesAndar: []
-  spritesAndarOeste: []
-  spritesAndarNorte: []
-  spritesAndarSul: []
-  usarDirecoesNorteSul: 1
-  multiplicadorDominanciaVertical: 1
   velocidadeMinima: 0.15
   limiteDirecaoX: 0.05
   tempoPorFrame: 0.12

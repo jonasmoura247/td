@@ -1,4 +1,16 @@
+using UnityEngine;
+
 public class MobOgre : MobController
 {
-    // Comportamentos únicos do Ogro podem ser adicionados aqui
+    protected override void Start()
+    {
+        vidaMaxima = 350;
+        danoBase   = 22;
+        movimento.velocidade = 4f;
+
+        var res = gameObject.AddComponent<ResistenciaDano>();
+        res.resistenciaFisica = 0.20f;
+
+        base.Start();
+    }
 }

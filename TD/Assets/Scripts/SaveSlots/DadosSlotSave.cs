@@ -49,6 +49,12 @@ public class DadosSlotSave
     /// <summary>IDs dos heróis contratados (máx 3). Cada slot tem seu próprio conjunto.</summary>
     public List<string> heroisContratados = new List<string>();
 
+    /// <summary>
+    /// IDs de relíquias cujo texto de descrição foi desbloqueado (ao vencer uma partida com ela equipada).
+    /// Relíquias ausentes desta lista exibem "???" na UI.
+    /// </summary>
+    public List<string> reliquiasDescricaoDesbloqueada = new List<string>();
+
     public int expPermanenteGoblin;
     public int expPermanenteElfo;
     public int expPermanenteAnao;
@@ -60,6 +66,14 @@ public class DadosSlotSave
     public int ouro;
 
     public DadosBestiario bestiario = new DadosBestiario();
+
+    public ProgressaoFases progressaoFases = new ProgressaoFases();
+
+    /// <summary>Estado dos eventos RNG da run atual (tendas, relíquias, heróis). Impede re-rolls via restart.</summary>
+    public EstadoEventosRun estadoEventos = new EstadoEventosRun();
+
+    /// <summary>Contratos de heróis ativos (máx 3). Cada contrato tem duração em fases.</summary>
+    public List<ContratoHeroi> contratosHerois = new List<ContratoHeroi>();
 
     public DadosSlotSave()
     {
@@ -73,6 +87,9 @@ public class DadosSlotSave
         tempoJogoSegundos = 0f;
         talentos = new DadosTalentos();
         bestiario = new DadosBestiario();
+        progressaoFases = new ProgressaoFases();
+        estadoEventos = new EstadoEventosRun();
+        contratosHerois = new List<ContratoHeroi>();
     }
 
     public DadosSlotSave(int slot, TipoRaca racaEscolhida, GeneroChefe genero)
@@ -93,6 +110,25 @@ public class DadosSlotSave
         GarantirReliquiaTesteCarvaoSeAtivo();
         talentos = new DadosTalentos();
         bestiario = new DadosBestiario();
+        progressaoFases = new ProgressaoFases();
+        estadoEventos = new EstadoEventosRun();
+        contratosHerois = new List<ContratoHeroi>();
+    }
+
+    public void NormalizarProgressaoFases()
+    {
+        if (progressaoFases == null)
+            progressaoFases = new ProgressaoFases();
+        progressaoFases.Normalizar();
+    }
+
+    public void NormalizarEstadoEventos()
+    {
+        if (estadoEventos == null)
+            estadoEventos = new EstadoEventosRun();
+        estadoEventos.Normalizar();
+        if (contratosHerois == null)
+            contratosHerois = new List<ContratoHeroi>();
     }
 
     public void NormalizarBestiario()
@@ -158,10 +194,14 @@ public class DadosSlotSave
             reliquiasEquipadas.Clear();
         }
 
+        if (reliquiasDescricaoDesbloqueada == null)
+            reliquiasDescricaoDesbloqueada = new List<string>();
+
         if (ocupado && raca == TipoRaca.Goblin && !reliquiasPossuidas.Contains(ReliquiaIds.OlhoQueNadaVe))
             reliquiasPossuidas.Add(ReliquiaIds.OlhoQueNadaVe);
 
         GarantirReliquiaTesteCarvaoSeAtivo();
+        GarantirReliquiaTesteBussolaSeAtivo();
     }
 
     /// <summary>Modo teste: ver <see cref="FlagsTesteReliquias.TodasRacasComecamComCarvaoEnxofreSalitre"/>.</summary>
@@ -175,6 +215,19 @@ public class DadosSlotSave
 
         if (reliquiasPorSlot != null && reliquiasPorSlot.Length > 0 && string.IsNullOrEmpty(reliquiasPorSlot[0]))
             reliquiasPorSlot[0] = ReliquiaIds.CarvaoEnxofreSalitre;
+    }
+
+    /// <summary>Modo teste: ver <see cref="FlagsTesteReliquias.TodasRacasComecamComBussolaVerme"/>.</summary>
+    private void GarantirReliquiaTesteBussolaSeAtivo()
+    {
+        if (!FlagsTesteReliquias.TodasRacasComecamComBussolaVerme || !ocupado)
+            return;
+
+        if (!reliquiasPossuidas.Contains(ReliquiaIds.BussolaVerme))
+            reliquiasPossuidas.Add(ReliquiaIds.BussolaVerme);
+
+        if (reliquiasPorSlot != null && reliquiasPorSlot.Length > 1 && string.IsNullOrEmpty(reliquiasPorSlot[1]))
+            reliquiasPorSlot[1] = ReliquiaIds.BussolaVerme;
     }
 
     public int ObterExpPermanenteRaca(TipoRaca racaAlvo)
@@ -225,6 +278,17 @@ public class DadosSlotSave
             TipoRaca.Humano => "Humano",
             _ => "Perfil"
         };
+    }
+
+    public bool DescricaoDesbloqueada(string idReliquia) =>
+        reliquiasDescricaoDesbloqueada != null && reliquiasDescricaoDesbloqueada.Contains(idReliquia);
+
+    public void DesbloquearDescricao(string idReliquia)
+    {
+        if (reliquiasDescricaoDesbloqueada == null)
+            reliquiasDescricaoDesbloqueada = new List<string>();
+        if (!reliquiasDescricaoDesbloqueada.Contains(idReliquia))
+            reliquiasDescricaoDesbloqueada.Add(idReliquia);
     }
 
     /// <summary>Retorna descrição curta para exibir no slot (ex: "Goblin - 2h").</summary>

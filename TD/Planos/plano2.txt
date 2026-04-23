@@ -1,0 +1,69 @@
+LEMBRESE DE USAR SKILL DE TESTE
+Quero implementar um sistema de TENDAS DINÂMICAS no mapa mundo.
+
+CONTEXTO:
+Tenho:
+- Sistema de fases com BandeiraFaseController
+- ProgressaoFases
+
+OBJETIVO:
+Substituir sistema fixo por sistema dinâmico
+
+---
+
+REQUISITOS:
+
+1. Criar:
+SistemaTendasManager.cs
+
+Responsável por:
+- Decidir se haverá tenda
+- Definir tipo da tenda
+
+---
+
+2. Regras:
+
+- Chance base: 30%
+- Se 3 fases sem tenda → próxima é garantida
+
+---
+
+3. Tipos de tenda (enum):
+
+TipoTenda:
+- Mercador
+- Herois
+- Mista
+- EventoEspecial
+
+---
+
+4. Probabilidade:
+
+Mercador: 40%
+Herois: 30%
+Mista: 20%
+EventoEspecial: 10%
+
+---
+
+5. Integração com RNGDeterministico
+
+---
+
+6. Persistência:
+Resultado deve ser salvo em EstadoEventosRun
+
+---
+
+7. NÃO pode mudar ao reiniciar o jogo
+
+---
+
+8. Logs:
+[TENDA]
+[TIPO TENDA]
+[PITY ATIVADO]
+
+---

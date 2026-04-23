@@ -1,4 +1,10 @@
 public class MobFormiga : MobController
 {
-    // Comportamentos únicos da Formiga podem ser adicionados aqui
+    protected override void Start()
+    {
+        vidaMaxima = 25;
+        danoBase   = 4;
+        movimento.velocidade = 8f;
+        base.Start();
+    }
 }

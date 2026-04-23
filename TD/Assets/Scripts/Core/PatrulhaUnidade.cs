@@ -29,8 +29,11 @@ public class PatrulhaUnidade : MonoBehaviour
 
     private MovimentoUnidade _movimento;
     private UnidadeController _unidade;
+    private SistemaIAUnidade _sistemaIA;
 
     private bool _patrulhando = false;
+    private bool _patrulhaSuspensa = false;
+    private bool _pausada = false;
     private Transform _destinoAtual;
 
     // GameObjects temporários criados em runtime para os pontos
@@ -38,24 +41,24 @@ public class PatrulhaUnidade : MonoBehaviour
     private GameObject _goB;
 
     public bool EstaPatrulhando => _patrulhando;
+    /// <summary>Verdadeiro quando o jogador pausou manualmente a patrulha.</summary>
+    public bool IsPausada => _pausada;
 
     private void Awake()
     {
         _movimento = GetComponent<MovimentoUnidade>();
         _unidade = GetComponent<UnidadeController>();
+        _sistemaIA = GetComponent<SistemaIAUnidade>();
     }
 
     private void Update()
     {
-        if (!_patrulhando) return;
+        if (!_patrulhando || _patrulhaSuspensa || _pausada) return;
         if (_unidade != null && !_unidade.EstaVivo)
         {
             _patrulhando = false;
             return;
         }
-
-        // Aguarda enquanto o movimento está suspenso (combate)
-        if (!_movimento.EstaMovimentando()) return;
 
         if (_destinoAtual == null) return;
 
@@ -78,11 +81,76 @@ public class PatrulhaUnidade : MonoBehaviour
         }
 
         _patrulhando = true;
-        _destinoAtual = pontoA;
+        float distA = Vector2.Distance(transform.position, pontoA.position);
+        _destinoAtual = distA <= distanciaChegada ? pontoB : pontoA;
+
+        if (_sistemaIA != null)
+        {
+            // SistemaIA gerencia a suspensão: começa suspensa, SistemaIA chama RetomarPatrulha
+            _patrulhaSuspensa = true;
+        }
+        else
+        {
+            // Sem SistemaIA: assume controle direto do rb.
+            // EntrarModoLivre impede FixedUpdate do MovimentoUnidade de zerar a velocidade.
+            _patrulhaSuspensa = false;
+            _movimento.EntrarModoLivre();
+            // Seta velocidade imediatamente para não depender do timing do Update.
+            MoverAteDestino();
+        }
+
+        Debug.Log($"[PatrulhaUnidade] {name} — IniciarPatrulha. A={pontoA.position} B={pontoB.position} | suspensa={_patrulhaSuspensa} (temIA={_sistemaIA != null})");
 
         // Sobrescreve velocidade se configurada
         if (velocidadePatrulha > 0f)
             _movimento.velocidade = velocidadePatrulha;
+    }
+
+    /// <summary>Suspende o movimento de patrulha sem cancelá-la (chamado pelo SistemaIA ao entrar em combate).</summary>
+    public void SuspenderPatrulha()
+    {
+        _patrulhaSuspensa = true;
+        // Zera velocidade explicitamente: quando em ModoLivre, MovimentoUnidade.FixedUpdate
+        // retorna sem tocar no rb, então nada mais zeraria a velocidade ao suspender.
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+        Debug.Log($"[PatrulhaUnidade] {name} — SuspenderPatrulha");
+    }
+
+    /// <summary>Retoma o movimento de patrulha após combate (chamado pelo SistemaIA ao entrar em estado Patrulhando).</summary>
+    public void RetomarPatrulha()
+    {
+        _patrulhaSuspensa = false;
+        Debug.Log($"[PatrulhaUnidade] {name} — RetomarPatrulha");
+    }
+
+    /// <summary>
+    /// Pausa manualmente a patrulha por ação do jogador.
+    /// A unidade para imediatamente onde está. Não interfere com suspensão por combate.
+    /// </summary>
+    public void PausarPatrulha()
+    {
+        if (!_patrulhando || _pausada) return;
+        _pausada = true;
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+        Debug.Log($"[PatrulhaUnidade] {name} — PausarPatrulha (manual)");
+    }
+
+    /// <summary>
+    /// Despausa a patrulha, retomando movimento em direção ao destino atual.
+    /// </summary>
+    public void DespausarPatrulha()
+    {
+        if (!_patrulhando || !_pausada) return;
+        _pausada = false;
+        Debug.Log($"[PatrulhaUnidade] {name} — DespausarPatrulha (manual)");
+    }
+
+    /// <summary>Alterna entre pausado/despausado. Conveniente para botão de UI.</summary>
+    public void AlternarPausaPatrulha()
+    {
+        if (_pausada) DespausarPatrulha(); else PausarPatrulha();
     }
 
     /// <summary>Define o Ponto A via posição do mundo (cria um GameObject interno).</summary>
@@ -116,6 +184,9 @@ public class PatrulhaUnidade : MonoBehaviour
     {
         _patrulhando = false;
         _destinoAtual = null;
+        // Devolve controle ao MovimentoUnidade se éramos nós que tínhamos ModoLivre
+        if (_sistemaIA == null)
+            _movimento.PararMovimento();
     }
 
     // ─── Internos ────────────────────────────────────────────────────────────
@@ -130,7 +201,7 @@ public class PatrulhaUnidade : MonoBehaviour
     {
         // Move o Rigidbody2D diretamente (sem depender da rota de waypoints)
         var rb = GetComponent<Rigidbody2D>();
-        if (rb == null) return;
+        if (rb == null) { Debug.LogWarning($"[PatrulhaUnidade] {name} — sem Rigidbody2D!"); return; }
 
         Vector2 direcao = ((Vector2)_destinoAtual.position - rb.position).normalized;
         float vel = velocidadePatrulha > 0f ? velocidadePatrulha : _movimento.velocidade;

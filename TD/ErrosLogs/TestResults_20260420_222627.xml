@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="129" result="Failed(Child)" total="129" passed="127" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-04-21 01:21:38Z" end-time="2026-04-21 01:21:43Z" duration="4,7644863">
+  <test-suite type="TestSuite" id="1147" name="TD" fullname="TD" runstate="Runnable" testcasecount="129" result="Failed" site="Child" start-time="2026-04-21 01:21:38Z" end-time="2026-04-21 01:21:43Z" duration="4.764486" total="129" passed="127" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1143" name="TD.Tests.PlayMode.dll" fullname="C:/Users/Jonas/Desktop/TD/td/TD/Library/ScriptAssemblies/TD.Tests.PlayMode.dll" runstate="Runnable" testcasecount="129" result="Failed" site="Child" start-time="2026-04-21 01:21:38Z" end-time="2026-04-21 01:21:43Z" duration="4.752314" total="129" passed="127" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="40948" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1001" name="AnimacaoAtaqueSpriteTests" fullname="AnimacaoAtaqueSpriteTests" classname="AnimacaoAtaqueSpriteTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-04-21 01:21:38Z" end-time="2026-04-21 01:21:39Z" duration="1.135307" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1003" name="Should_AdvanceFrames_AsTimePasses" fullname="AnimacaoAtaqueSpriteTests.Should_AdvanceFrames_AsTimePasses" methodname="Should_AdvanceFrames_AsTimePasses" classname="AnimacaoAtaqueSpriteTests" runstate="Runnable" seed="1900790925" result="Passed" start-time="2026-04-21 01:21:38Z" end-time="2026-04-21 01:21:38Z" duration="0.292787" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1006" name="Should_NotCrash_When_SpritesArrayIsEmpty" fullname="AnimacaoAtaqueSpriteTests.Should_NotCrash_When_SpritesArrayIsEmpty" methodname="Should_NotCrash_When_SpritesArrayIsEmpty" classname="AnimacaoAtaqueSpriteTests" runstate="Runnable" seed="9422316" result="Passed" start-time="2026-04-21 01:21:38Z" end-time="2026-04-21 01:21:38Z" duration="0.015066" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1007" name="Should_NotCrash_When_SpritesArrayIsNull" fullname="AnimacaoAtaqueSpriteTests.Should_NotCrash_When_SpritesArrayIsNull" methodname="Should_NotCrash_When_SpritesArrayIsNull" classname="AnimacaoAtaqueSpriteTests" runstate="Runnable" seed="1065375292" result="Passed" start-time="2026-04-21 01:21:38Z" end-time="2026-04-21 01:21:38Z" duration="0.012152" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1005" name="Should_RestartFromFrame0_WhenNewAttackFiresMidAnimation" fullname="AnimacaoAtaqueSpriteTests.Should_RestartFromFrame0_WhenNewAttackFiresMidAnimation" methodname="Should_RestartFromFrame0_WhenNewAttackFiresMidAnimation" classname="AnimacaoAtaqueSpriteTests" runstate="Runnable" seed="2120004211" result="Passed" start-time="2026-04-21 01:21:38Z" end-time="2026-04-21 01:21:39Z" duration="0.487233" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="Should_ShowFirstAttackFrame_WhenAttackFires" fullname="AnimacaoAtaqueSpriteTests.Should_ShowFirstAttackFrame_WhenAttackFires" methodname="Should_ShowFirstAttackFrame_WhenAttackFires" classname="AnimacaoAtaqueSpriteTests" runstate="Runnable" seed="1475630932" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.013529" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="Should_StopOverridingSprite_AfterAllFramesPlayed" fullname="AnimacaoAtaqueSpriteTests.Should_StopOverridingSprite_AfterAllFramesPlayed" methodname="Should_StopOverridingSprite_AfterAllFramesPlayed" classname="AnimacaoAtaqueSpriteTests" runstate="Runnable" seed="1516031371" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.297606" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1008" name="BussolaVermeIntegrationTests" fullname="BussolaVermeIntegrationTests" classname="BussolaVermeIntegrationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.131262" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1014" name="Efeito_EscondeIndicador_QuandoOnWaveIniciadaDisparado" fullname="BussolaVermeIntegrationTests.Efeito_EscondeIndicador_QuandoOnWaveIniciadaDisparado" methodname="Efeito_EscondeIndicador_QuandoOnWaveIniciadaDisparado" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="1087085797" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.018718" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="Efeito_MostraIndicador_QuandoOnProximaWaveDefinidaDisparado" fullname="BussolaVermeIntegrationTests.Efeito_MostraIndicador_QuandoOnProximaWaveDefinidaDisparado" methodname="Efeito_MostraIndicador_QuandoOnProximaWaveDefinidaDisparado" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="890225742" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.010262" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1015" name="Efeito_NaoLancaExcecao_QuandoEventoDisparadoAposEncerrar" fullname="BussolaVermeIntegrationTests.Efeito_NaoLancaExcecao_QuandoEventoDisparadoAposEncerrar" methodname="Efeito_NaoLancaExcecao_QuandoEventoDisparadoAposEncerrar" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="1949939268" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.075581" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1016" name="Efeito_SemPrefab_NaoLancaExcecao" fullname="BussolaVermeIntegrationTests.Efeito_SemPrefab_NaoLancaExcecao" methodname="Efeito_SemPrefab_NaoLancaExcecao" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="584312338" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.016429" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[BussolaVerme] prefabIndicador nao atribuido. O indicador nao sera exibido.
+]]></output>
+        </test-case>
+        <test-case id="1009" name="Indicador_Escondido_QuandoCriado" fullname="BussolaVermeIntegrationTests.Indicador_Escondido_QuandoCriado" methodname="Indicador_Escondido_QuandoCriado" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="2094609663" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.001563" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="Indicador_FicaInvisivel_QuandoEsconder" fullname="BussolaVermeIntegrationTests.Indicador_FicaInvisivel_QuandoEsconder" methodname="Indicador_FicaInvisivel_QuandoEsconder" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="480367273" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.000219" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="Indicador_FicaVisivel_QuandoMostrar" fullname="BussolaVermeIntegrationTests.Indicador_FicaVisivel_QuandoMostrar" methodname="Indicador_FicaVisivel_QuandoMostrar" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="408187644" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.000179" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1012" name="Indicador_MostrarTodosOsLados_SemExcecao" fullname="BussolaVermeIntegrationTests.Indicador_MostrarTodosOsLados_SemExcecao" methodname="Indicador_MostrarTodosOsLados_SemExcecao" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="359023767" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.000469" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1017" name="CarvaoEnxofreSalitreIntegrationTests" fullname="CarvaoEnxofreSalitreIntegrationTests" classname="CarvaoEnxofreSalitreIntegrationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.183003" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1019" name="Should_NotTriggerExplosion_WhenRelicNotEquipped" fullname="CarvaoEnxofreSalitreIntegrationTests.Should_NotTriggerExplosion_WhenRelicNotEquipped" methodname="Should_NotTriggerExplosion_WhenRelicNotEquipped" classname="CarvaoEnxofreSalitreIntegrationTests" runstate="Runnable" seed="1943935615" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.020316" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1020" name="Should_NotTriggerExplosion_WithOnlyOneDoT" fullname="CarvaoEnxofreSalitreIntegrationTests.Should_NotTriggerExplosion_WithOnlyOneDoT" methodname="Should_NotTriggerExplosion_WithOnlyOneDoT" classname="CarvaoEnxofreSalitreIntegrationTests" runstate="Runnable" seed="1122633322" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.012299" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="Should_RemoveBothDots_AfterExplosion" fullname="CarvaoEnxofreSalitreIntegrationTests.Should_RemoveBothDots_AfterExplosion" methodname="Should_RemoveBothDots_AfterExplosion" classname="CarvaoEnxofreSalitreIntegrationTests" runstate="Runnable" seed="1404916587" result="Failed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.125376" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  Após explosão, DoTs foram removidos — reaplicar apenas Queimadura não explode.
+  Expected: 470
+  But was:  440
+]]></message>
+            <stack-trace><![CDATA[at CarvaoEnxofreSalitreIntegrationTests+<Should_RemoveBothDots_AfterExplosion>d__7.MoveNext () [0x0012c] in C:\Users\Jonas\Desktop\TD\td\TD\Assets\Tests\PlayMode\CarvaoEnxofreSalitreIntegrationTests.cs:147
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1018" name="Should_TriggerExplosion_WhenBothDotsActiveAndRelicEquipped" fullname="CarvaoEnxofreSalitreIntegrationTests.Should_TriggerExplosion_WhenBothDotsActiveAndRelicEquipped" methodname="Should_TriggerExplosion_WhenBothDotsActiveAndRelicEquipped" classname="CarvaoEnxofreSalitreIntegrationTests" runstate="Runnable" seed="204958452" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.018875" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1022" name="CasteloControllerTests" fullname="CasteloControllerTests" classname="CasteloControllerTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:40Z" duration="0.132241" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1026" name="Should_AccumulateDamage_OnMultipleHits" fullname="CasteloControllerTests.Should_AccumulateDamage_OnMultipleHits" methodname="Should_AccumulateDamage_OnMultipleHits" classname="CasteloControllerTests" runstate="Runnable" seed="2043391930" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.008378" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1029" name="Should_BeDestroyed_WhenHealthReachesZero" fullname="CasteloControllerTests.Should_BeDestroyed_WhenHealthReachesZero" methodname="Should_BeDestroyed_WhenHealthReachesZero" classname="CasteloControllerTests" runstate="Runnable" seed="538068925" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.010080" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1030" name="Should_BeDestroyed_WhenOverkillApplied" fullname="CasteloControllerTests.Should_BeDestroyed_WhenOverkillApplied" methodname="Should_BeDestroyed_WhenOverkillApplied" classname="CasteloControllerTests" runstate="Runnable" seed="1020877123" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.010937" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1034" name="Should_HaveJogadorFaction_WhenSetAsPlayerCastle" fullname="CasteloControllerTests.Should_HaveJogadorFaction_WhenSetAsPlayerCastle" methodname="Should_HaveJogadorFaction_WhenSetAsPlayerCastle" classname="CasteloControllerTests" runstate="Runnable" seed="29074919" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.010094" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1028" name="Should_IgnoreDamage_WhenQuantidadeIsNegative" fullname="CasteloControllerTests.Should_IgnoreDamage_WhenQuantidadeIsNegative" methodname="Should_IgnoreDamage_WhenQuantidadeIsNegative" classname="CasteloControllerTests" runstate="Runnable" seed="1898331618" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.010253" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1027" name="Should_IgnoreDamage_WhenQuantidadeIsZero" fullname="CasteloControllerTests.Should_IgnoreDamage_WhenQuantidadeIsZero" methodname="Should_IgnoreDamage_WhenQuantidadeIsZero" classname="CasteloControllerTests" runstate="Runnable" seed="544693786" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.009850" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1031" name="Should_IgnoreSubsequentDamage_WhenAlreadyDestroyed" fullname="CasteloControllerTests.Should_IgnoreSubsequentDamage_WhenAlreadyDestroyed" methodname="Should_IgnoreSubsequentDamage_WhenAlreadyDestroyed" classname="CasteloControllerTests" runstate="Runnable" seed="841921049" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.009176" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1033" name="Should_LoseHealth_When_TwoDamagesAppliedWithInterval" fullname="CasteloControllerTests.Should_LoseHealth_When_TwoDamagesAppliedWithInterval" methodname="Should_LoseHealth_When_TwoDamagesAppliedWithInterval" classname="CasteloControllerTests" runstate="Runnable" seed="32627302" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:39Z" duration="0.009894" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1025" name="Should_LoseHealth_WhenAplicarDanoSomenteVida" fullname="CasteloControllerTests.Should_LoseHealth_WhenAplicarDanoSomenteVida" methodname="Should_LoseHealth_WhenAplicarDanoSomenteVida" classname="CasteloControllerTests" runstate="Runnable" seed="1303983645" result="Passed" start-time="2026-04-21 01:21:39Z" end-time="2026-04-21 01:21:40Z" duration="0.015399" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1032" name="Should_RemainAlive_WhenDamageDoesNotExhaustHealth" fullname="CasteloControllerTests.Should_RemainAlive_WhenDamageDoesNotExhaustHealth" methodname="Should_RemainAlive_WhenDamageDoesNotExhaustHealth" classname="CasteloControllerTests" runstate="Runnable" seed="833815976" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.010549" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1024" name="Should_StartAlive" fullname="CasteloControllerTests.Should_StartAlive" methodname="Should_StartAlive" classname="CasteloControllerTests" runstate="Runnable" seed="1903900961" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.010243" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1023" name="Should_StartWithFullHealth" fullname="CasteloControllerTests.Should_StartWithFullHealth" methodname="Should_StartWithFullHealth" classname="CasteloControllerTests" runstate="Runnable" seed="815632349" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.010292" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1035" name="CasteloFaccaoProtecaoTests" fullname="CasteloFaccaoProtecaoTests" classname="CasteloFaccaoProtecaoTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.040012" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1036" name="Castelo_NaoRecebeDAno_DeUnidadeDaMesmaFaccao" fullname="CasteloFaccaoProtecaoTests.Castelo_NaoRecebeDAno_DeUnidadeDaMesmaFaccao" methodname="Castelo_NaoRecebeDAno_DeUnidadeDaMesmaFaccao" classname="CasteloFaccaoProtecaoTests" runstate="Runnable" seed="1065355321" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.001070" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1037" name="Castelo_RecebeDAno_DeUnidadeFaccaoInimiga" fullname="CasteloFaccaoProtecaoTests.Castelo_RecebeDAno_DeUnidadeFaccaoInimiga" methodname="Castelo_RecebeDAno_DeUnidadeFaccaoInimiga" classname="CasteloFaccaoProtecaoTests" runstate="Runnable" seed="1822682666" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000297" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1040" name="DuplaProtecao_RacaEFaccao_ImpedeCenarioDeAtaque" fullname="CasteloFaccaoProtecaoTests.DuplaProtecao_RacaEFaccao_ImpedeCenarioDeAtaque" methodname="DuplaProtecao_RacaEFaccao_ImpedeCenarioDeAtaque" classname="CasteloFaccaoProtecaoTests" runstate="Runnable" seed="997052820" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000258" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1039" name="FaccaoForcada_SobreescreveFaccaoOriginalDoPrefab" fullname="CasteloFaccaoProtecaoTests.FaccaoForcada_SobreescreveFaccaoOriginalDoPrefab" methodname="FaccaoForcada_SobreescreveFaccaoOriginalDoPrefab" classname="CasteloFaccaoProtecaoTests" runstate="Runnable" seed="596012520" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.013037" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1038" name="SpawnComFaccaoForcada_SempreRetornaInimigo" fullname="CasteloFaccaoProtecaoTests.SpawnComFaccaoForcada_SempreRetornaInimigo" methodname="SpawnComFaccaoForcada_SempreRetornaInimigo" classname="CasteloFaccaoProtecaoTests" runstate="Runnable" seed="95990732" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.018118" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1041" name="CombateIntegrationTests" fullname="CombateIntegrationTests" classname="CombateIntegrationTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.250360" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1054" name="Should_AutoRegister_WhenUnitStartsAsAlly" fullname="CombateIntegrationTests.Should_AutoRegister_WhenUnitStartsAsAlly" methodname="Should_AutoRegister_WhenUnitStartsAsAlly" classname="CombateIntegrationTests" runstate="Runnable" seed="1369641403" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.016051" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1055" name="Should_DeregisterAutomatically_When_AllyUnitDies" fullname="CombateIntegrationTests.Should_DeregisterAutomatically_When_AllyUnitDies" methodname="Should_DeregisterAutomatically_When_AllyUnitDies" classname="CombateIntegrationTests" runstate="Runnable" seed="1780160502" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.167448" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1052" name="Should_DeregisterUnit_When_ExplicitlyRemoved" fullname="CombateIntegrationTests.Should_DeregisterUnit_When_ExplicitlyRemoved" methodname="Should_DeregisterUnit_When_ExplicitlyRemoved" classname="CombateIntegrationTests" runstate="Runnable" seed="1039593216" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000542" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1047" name="Should_Die_When_DamageExceedsRemainingHealth" fullname="CombateIntegrationTests.Should_Die_When_DamageExceedsRemainingHealth" methodname="Should_Die_When_DamageExceedsRemainingHealth" classname="CombateIntegrationTests" runstate="Runnable" seed="1679037703" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000219" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1049" name="Should_IgnoreSubsequentDamage_When_UnitIsDead" fullname="CombateIntegrationTests.Should_IgnoreSubsequentDamage_When_UnitIsDead" methodname="Should_IgnoreSubsequentDamage_When_UnitIsDead" classname="CombateIntegrationTests" runstate="Runnable" seed="430174434" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000318" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1056" name="Should_NotRegisterEnemies_InUnidadesManager" fullname="CombateIntegrationTests.Should_NotRegisterEnemies_InUnidadesManager" methodname="Should_NotRegisterEnemies_InUnidadesManager" classname="CombateIntegrationTests" runstate="Runnable" seed="1136285062" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.022048" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1050" name="Should_NotRegisterSameUnit_Twice" fullname="CombateIntegrationTests.Should_NotRegisterSameUnit_Twice" methodname="Should_NotRegisterSameUnit_Twice" classname="CombateIntegrationTests" runstate="Runnable" seed="273324465" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000551" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1053" name="Should_OnlyRemoveTargetUnit_When_DeregisteredFromMultiple" fullname="CombateIntegrationTests.Should_OnlyRemoveTargetUnit_When_DeregisteredFromMultiple" methodname="Should_OnlyRemoveTargetUnit_When_DeregisteredFromMultiple" classname="CombateIntegrationTests" runstate="Runnable" seed="1788619874" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000470" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1044" name="Should_OverrideFaction_When_DefinirFaccaoParaSpawnCalledBeforeStart" fullname="CombateIntegrationTests.Should_OverrideFaction_When_DefinirFaccaoParaSpawnCalledBeforeStart" methodname="Should_OverrideFaction_When_DefinirFaccaoParaSpawnCalledBeforeStart" classname="CombateIntegrationTests" runstate="Runnable" seed="1950399121" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.030047" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1046" name="Should_ReduceHealth_When_AllyReceivesDamage" fullname="CombateIntegrationTests.Should_ReduceHealth_When_AllyReceivesDamage" methodname="Should_ReduceHealth_When_AllyReceivesDamage" classname="CombateIntegrationTests" runstate="Runnable" seed="1904393816" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000291" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1045" name="Should_ReduceHealth_When_EnemyReceivesDamage" fullname="CombateIntegrationTests.Should_ReduceHealth_When_EnemyReceivesDamage" methodname="Should_ReduceHealth_When_EnemyReceivesDamage" classname="CombateIntegrationTests" runstate="Runnable" seed="1056611419" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000232" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1051" name="Should_RegisterMultipleDistinctUnits" fullname="CombateIntegrationTests.Should_RegisterMultipleDistinctUnits" methodname="Should_RegisterMultipleDistinctUnits" classname="CombateIntegrationTests" runstate="Runnable" seed="226935987" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000372" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1042" name="Should_SpawnAlive_With_CorrectFaction" fullname="CombateIntegrationTests.Should_SpawnAlive_With_CorrectFaction" methodname="Should_SpawnAlive_With_CorrectFaction" classname="CombateIntegrationTests" runstate="Runnable" seed="89117393" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000243" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1043" name="Should_SpawnWithFullHealth" fullname="CombateIntegrationTests.Should_SpawnWithFullHealth" methodname="Should_SpawnWithFullHealth" classname="CombateIntegrationTests" runstate="Runnable" seed="1826224192" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000181" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1048" name="Should_SurviveOverkillLessThanFatal_WhenHealthRemains" fullname="CombateIntegrationTests.Should_SurviveOverkillLessThanFatal_WhenHealthRemains" methodname="Should_SurviveOverkillLessThanFatal_WhenHealthRemains" classname="CombateIntegrationTests" runstate="Runnable" seed="951621847" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000190" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1057" name="Should_TrackHealthIndependently_ForMultipleUnits" fullname="CombateIntegrationTests.Should_TrackHealthIndependently_ForMultipleUnits" methodname="Should_TrackHealthIndependently_ForMultipleUnits" classname="CombateIntegrationTests" runstate="Runnable" seed="1507857457" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.000276" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1058" name="MobSistemasIntegrationTests" fullname="MobSistemasIntegrationTests" classname="MobSistemasIntegrationTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:42Z" duration="1.704844" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1059" name="CurarVida_AumentaVida_SemUltrapassarMaximo" fullname="MobSistemasIntegrationTests.CurarVida_AumentaVida_SemUltrapassarMaximo" methodname="CurarVida_AumentaVida_SemUltrapassarMaximo" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="833859855" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.031651" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1060" name="CurarVida_NaoFazNada_QuandoMorto" fullname="MobSistemasIntegrationTests.CurarVida_NaoFazNada_QuandoMorto" methodname="CurarVida_NaoFazNada_QuandoMorto" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="1320289021" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.036102" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1071" name="MobEspantalho_TemResistenciaVeneno80Porcento" fullname="MobSistemasIntegrationTests.MobEspantalho_TemResistenciaVeneno80Porcento" methodname="MobEspantalho_TemResistenciaVeneno80Porcento" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="2074806453" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.012758" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1070" name="MobEsqueleto_EhImuneVeneno" fullname="MobSistemasIntegrationTests.MobEsqueleto_EhImuneVeneno" methodname="MobEsqueleto_EhImuneVeneno" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="860262281" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.010474" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1067" name="MobGolem_TemResistenciaFisica40Porcento" fullname="MobSistemasIntegrationTests.MobGolem_TemResistenciaFisica40Porcento" methodname="MobGolem_TemResistenciaFisica40Porcento" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="1450263521" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.011566" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1065" name="MobLobo_Atributos_Corretos" fullname="MobSistemasIntegrationTests.MobLobo_Atributos_Corretos" methodname="MobLobo_Atributos_Corretos" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="108664949" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.011576" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1068" name="MobOgre_TemResistenciaFisica20Porcento" fullname="MobSistemasIntegrationTests.MobOgre_TemResistenciaFisica20Porcento" methodname="MobOgre_TemResistenciaFisica20Porcento" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="1109408115" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.012566" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1064" name="MobRato_Atributos_Corretos" fullname="MobSistemasIntegrationTests.MobRato_Atributos_Corretos" methodname="MobRato_Atributos_Corretos" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="565102914" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.018811" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1066" name="MobTigre_Atributos_Corretos" fullname="MobSistemasIntegrationTests.MobTigre_Atributos_Corretos" methodname="MobTigre_Atributos_Corretos" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="904434401" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.015607" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1069" name="MobZumbie_EhImuneVeneno_ETemRegeneracao" fullname="MobSistemasIntegrationTests.MobZumbie_EhImuneVeneno_ETemRegeneracao" methodname="MobZumbie_EhImuneVeneno_ETemRegeneracao" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="362064671" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:40Z" duration="0.010442" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1072" name="RegeneracaoVida_RestaurasVida_AoLongoDotempo" fullname="MobSistemasIntegrationTests.RegeneracaoVida_RestaurasVida_AoLongoDotempo" methodname="RegeneracaoVida_RestaurasVida_AoLongoDotempo" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="2144352843" result="Passed" start-time="2026-04-21 01:21:40Z" end-time="2026-04-21 01:21:42Z" duration="1.514460" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1062" name="ResistenciaDano_ImunidadeVeneno_RetornaZero" fullname="MobSistemasIntegrationTests.ResistenciaDano_ImunidadeVeneno_RetornaZero" methodname="ResistenciaDano_ImunidadeVeneno_RetornaZero" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="1651076398" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000546" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1061" name="ResistenciaDano_ReducaoDanoFisico_Correta" fullname="MobSistemasIntegrationTests.ResistenciaDano_ReducaoDanoFisico_Correta" methodname="ResistenciaDano_ReducaoDanoFisico_Correta" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="1722652747" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000247" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1063" name="ResistenciaDano_ResistenciaParcialVeneno_Espantalho" fullname="MobSistemasIntegrationTests.ResistenciaDano_ResistenciaParcialVeneno_Espantalho" methodname="ResistenciaDano_ResistenciaParcialVeneno_Espantalho" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="384869261" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000230" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1073" name="TodosMobs_TemFaccaoInimigo" fullname="MobSistemasIntegrationTests.TodosMobs_TemFaccaoInimigo" methodname="TodosMobs_TemFaccaoInimigo" classname="MobSistemasIntegrationTests" runstate="Runnable" seed="281167909" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.010336" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1074" name="MovimentoUnidadeTests" fullname="MovimentoUnidadeTests" classname="MovimentoUnidadeTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.361649" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1078" name="Should_AdvanceToNextWaypoint_WhenCloseEnough" fullname="MovimentoUnidadeTests.Should_AdvanceToNextWaypoint_WhenCloseEnough" methodname="Should_AdvanceToNextWaypoint_WhenCloseEnough" classname="MovimentoUnidadeTests" runstate="Runnable" seed="163192144" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.039757" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1080" name="Should_HaveExhaustedRoute_WhenAllWaypointsVisited" fullname="MovimentoUnidadeTests.Should_HaveExhaustedRoute_WhenAllWaypointsVisited" methodname="Should_HaveExhaustedRoute_WhenAllWaypointsVisited" classname="MovimentoUnidadeTests" runstate="Runnable" seed="462131569" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.030513" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1075" name="Should_HaveZeroVelocity_WhenNoRouteSet" fullname="MovimentoUnidadeTests.Should_HaveZeroVelocity_WhenNoRouteSet" methodname="Should_HaveZeroVelocity_WhenNoRouteSet" classname="MovimentoUnidadeTests" runstate="Runnable" seed="196578469" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.046793" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1076" name="Should_HaveZeroVelocity_WhenRouteHasNoWaypoints" fullname="MovimentoUnidadeTests.Should_HaveZeroVelocity_WhenRouteHasNoWaypoints" methodname="Should_HaveZeroVelocity_WhenRouteHasNoWaypoints" classname="MovimentoUnidadeTests" runstate="Runnable" seed="1467111264" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.019397" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1077" name="Should_MoveTowardWaypoint_WhenRouteSet" fullname="MovimentoUnidadeTests.Should_MoveTowardWaypoint_WhenRouteSet" methodname="Should_MoveTowardWaypoint_WhenRouteSet" classname="MovimentoUnidadeTests" runstate="Runnable" seed="1403505635" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.020571" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1083" name="Should_NotOverrideVelocity_WhenInModoLivre" fullname="MovimentoUnidadeTests.Should_NotOverrideVelocity_WhenInModoLivre" methodname="Should_NotOverrideVelocity_WhenInModoLivre" classname="MovimentoUnidadeTests" runstate="Runnable" seed="1489947918" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.018439" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1082" name="Should_ResumeMoving_WhenContinuarMovimentoCalled" fullname="MovimentoUnidadeTests.Should_ResumeMoving_WhenContinuarMovimentoCalled" methodname="Should_ResumeMoving_WhenContinuarMovimentoCalled" classname="MovimentoUnidadeTests" runstate="Runnable" seed="1341244959" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.060307" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1084" name="Should_ResumeWaypointControl_WhenEntrarModoWaypointsCalled" fullname="MovimentoUnidadeTests.Should_ResumeWaypointControl_WhenEntrarModoWaypointsCalled" methodname="Should_ResumeWaypointControl_WhenEntrarModoWaypointsCalled" classname="MovimentoUnidadeTests" runstate="Runnable" seed="515216667" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.040416" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1081" name="Should_StopImmediately_WhenPararMovimentoCalled" fullname="MovimentoUnidadeTests.Should_StopImmediately_WhenPararMovimentoCalled" methodname="Should_StopImmediately_WhenPararMovimentoCalled" classname="MovimentoUnidadeTests" runstate="Runnable" seed="669258596" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.040123" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1079" name="Should_StopMoving_WhenAllWaypointsExhausted" fullname="MovimentoUnidadeTests.Should_StopMoving_WhenAllWaypointsExhausted" methodname="Should_StopMoving_WhenAllWaypointsExhausted" classname="MovimentoUnidadeTests" runstate="Runnable" seed="225126876" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.039520" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1085" name="OlhoQueNadaVeIntegrationTests" fullname="OlhoQueNadaVeIntegrationTests" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.013943" total="9" passed="8" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1089" name="Should_CriarFogUI_QuandoShaderEncontrado" fullname="OlhoQueNadaVeIntegrationTests.Should_CriarFogUI_QuandoShaderEncontrado" methodname="Should_CriarFogUI_QuandoShaderEncontrado" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="1635593563" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.005122" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1090" name="Should_LimparUI_QuandoEncerrado" fullname="OlhoQueNadaVeIntegrationTests.Should_LimparUI_QuandoEncerrado" methodname="Should_LimparUI_QuandoEncerrado" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="634654471" result="Failed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.001128" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[  Canvas deve estar limpo apos Encerrar (sem vazamento de UI).
+  Expected: 0
+  But was:  1
+]]></message>
+            <stack-trace><![CDATA[at OlhoQueNadaVeIntegrationTests.Should_LimparUI_QuandoEncerrado () [0x0003a] in C:\Users\Jonas\Desktop\TD\td\TD\Assets\Tests\PlayMode\OlhoQueNadaVeIntegrationTests.cs:95
+]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1088" name="Should_NaoAlterarCamera_QuandoEncerradoSemIniciar" fullname="OlhoQueNadaVeIntegrationTests.Should_NaoAlterarCamera_QuandoEncerradoSemIniciar" methodname="Should_NaoAlterarCamera_QuandoEncerradoSemIniciar" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="1387591863" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000303" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1092" name="Should_NaoCrashear_QuandoCameraEhNula" fullname="OlhoQueNadaVeIntegrationTests.Should_NaoCrashear_QuandoCameraEhNula" methodname="Should_NaoCrashear_QuandoCameraEhNula" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="657428126" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000619" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1091" name="Should_NaoCrashear_QuandoCanvasEhNulo" fullname="OlhoQueNadaVeIntegrationTests.Should_NaoCrashear_QuandoCanvasEhNulo" methodname="Should_NaoCrashear_QuandoCanvasEhNulo" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="1943233931" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000345" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1093" name="Should_NaoCrashear_QuandoContextoEhTotalmenteNulo" fullname="OlhoQueNadaVeIntegrationTests.Should_NaoCrashear_QuandoContextoEhTotalmenteNulo" methodname="Should_NaoCrashear_QuandoContextoEhTotalmenteNulo" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="1176532467" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000315" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1094" name="Should_NaoCrashear_QuandoEncerrarChamadoVezesMultiplas" fullname="OlhoQueNadaVeIntegrationTests.Should_NaoCrashear_QuandoEncerrarChamadoVezesMultiplas" methodname="Should_NaoCrashear_QuandoEncerrarChamadoVezesMultiplas" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="62710581" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000517" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1086" name="Should_ReducirOrthoSize_QuandoIniciadoComCameraOrthografica" fullname="OlhoQueNadaVeIntegrationTests.Should_ReducirOrthoSize_QuandoIniciadoComCameraOrthografica" methodname="Should_ReducirOrthoSize_QuandoIniciadoComCameraOrthografica" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="135550181" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000515" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1087" name="Should_RestaurarOrthoSize_QuandoEncerrado" fullname="OlhoQueNadaVeIntegrationTests.Should_RestaurarOrthoSize_QuandoEncerrado" methodname="Should_RestaurarOrthoSize_QuandoEncerrado" classname="OlhoQueNadaVeIntegrationTests" runstate="Runnable" seed="1612891295" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000484" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1095" name="PatrulhaUnidadeIntegrationTests" fullname="PatrulhaUnidadeIntegrationTests" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:43Z" duration="0.755655" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1098" name="Should_MoveTowardPontoB_WhenPatrolling" fullname="PatrulhaUnidadeIntegrationTests.Should_MoveTowardPontoB_WhenPatrolling" methodname="Should_MoveTowardPontoB_WhenPatrolling" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="384622943" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.020203" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] Patrulheiro — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+]]></output>
+        </test-case>
+        <test-case id="1097" name="Should_NotStartPatrol_WhenOnlyOnePontoDefined" fullname="PatrulhaUnidadeIntegrationTests.Should_NotStartPatrol_WhenOnlyOnePontoDefined" methodname="Should_NotStartPatrol_WhenOnlyOnePontoDefined" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="794643761" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.000435" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1105" name="Should_ResumeMoving_WhenDespausarPatrulhaCalled" fullname="PatrulhaUnidadeIntegrationTests.Should_ResumeMoving_WhenDespausarPatrulhaCalled" methodname="Should_ResumeMoving_WhenDespausarPatrulhaCalled" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="1259622124" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.078038" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] Patrulheiro — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+[PatrulhaUnidade] Patrulheiro — PausarPatrulha (manual)
+[PatrulhaUnidade] Patrulheiro — DespausarPatrulha (manual)
+]]></output>
+        </test-case>
+        <test-case id="1100" name="Should_ResumeMoving_WhenRetomarPatrulhaCalled" fullname="PatrulhaUnidadeIntegrationTests.Should_ResumeMoving_WhenRetomarPatrulhaCalled" methodname="Should_ResumeMoving_WhenRetomarPatrulhaCalled" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="1494928755" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.121860" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] Patrulheiro — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+[PatrulhaUnidade] Patrulheiro — SuspenderPatrulha
+[PatrulhaUnidade] Patrulheiro — RetomarPatrulha
+]]></output>
+        </test-case>
+        <test-case id="1107" name="Should_ResumePatrolling_AfterCombatEnds" fullname="PatrulhaUnidadeIntegrationTests.Should_ResumePatrolling_AfterCombatEnds" methodname="Should_ResumePatrolling_AfterCombatEnds" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="86369092" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.024462" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] PaAliadoComIA — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+[SistemaIA] PaAliadoComIA — entrou em Patrulhando. Chamando RetomarPatrulha.
+[PatrulhaUnidade] PaAliadoComIA — RetomarPatrulha
+]]></output>
+        </test-case>
+        <test-case id="1096" name="Should_StartPatrolling_WhenBothPointsDefined" fullname="PatrulhaUnidadeIntegrationTests.Should_StartPatrolling_WhenBothPointsDefined" methodname="Should_StartPatrolling_WhenBothPointsDefined" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="1618256012" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.013380" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] Patrulheiro — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+]]></output>
+        </test-case>
+        <test-case id="1104" name="Should_StopMoving_WhenPausarPatrulhaCalled" fullname="PatrulhaUnidadeIntegrationTests.Should_StopMoving_WhenPausarPatrulhaCalled" methodname="Should_StopMoving_WhenPausarPatrulhaCalled" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="440461012" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.039509" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] Patrulheiro — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+[PatrulhaUnidade] Patrulheiro — PausarPatrulha (manual)
+]]></output>
+        </test-case>
+        <test-case id="1099" name="Should_StopMoving_WhenSuspenderPatrulhaCalled" fullname="PatrulhaUnidadeIntegrationTests.Should_StopMoving_WhenSuspenderPatrulhaCalled" methodname="Should_StopMoving_WhenSuspenderPatrulhaCalled" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="1267349617" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.039948" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] Patrulheiro — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+[PatrulhaUnidade] Patrulheiro — SuspenderPatrulha
+]]></output>
+        </test-case>
+        <test-case id="1101" name="Should_StopPatrolling_WhenCancelarPatrulhaCalled" fullname="PatrulhaUnidadeIntegrationTests.Should_StopPatrolling_WhenCancelarPatrulhaCalled" methodname="Should_StopPatrolling_WhenCancelarPatrulhaCalled" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="1261843269" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:42Z" duration="0.013679" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] Patrulheiro — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+]]></output>
+        </test-case>
+        <test-case id="1106" name="Should_StopPatrolling_WhenEnemyEntersDetectionRange" fullname="PatrulhaUnidadeIntegrationTests.Should_StopPatrolling_WhenEnemyEntersDetectionRange" methodname="Should_StopPatrolling_WhenEnemyEntersDetectionRange" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="1281683484" result="Passed" start-time="2026-04-21 01:21:42Z" end-time="2026-04-21 01:21:43Z" duration="0.331205" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] AliadoPatrulheiro — IniciarPatrulha. A=(-5.00, 0.00, 0.00) B=(5.00, 0.00, 0.00) | suspensa=False (temIA=False)
+[SistemaIA] AliadoPatrulheiro — entrou em Patrulhando. Chamando RetomarPatrulha.
+[PatrulhaUnidade] AliadoPatrulheiro — RetomarPatrulha
+[PatrulhaUnidade] AliadoPatrulheiro — SuspenderPatrulha
+]]></output>
+        </test-case>
+        <test-case id="1102" name="Should_StopPatrolling_WhenUnitDies" fullname="PatrulhaUnidadeIntegrationTests.Should_StopPatrolling_WhenUnitDies" methodname="Should_StopPatrolling_WhenUnitDies" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="317411071" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.015425" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] Patrulheiro — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+]]></output>
+        </test-case>
+        <test-case id="1103" name="Should_TransitionToPatrolling_WhenSistemaIADetectsPatrolActive" fullname="PatrulhaUnidadeIntegrationTests.Should_TransitionToPatrolling_WhenSistemaIADetectsPatrolActive" methodname="Should_TransitionToPatrolling_WhenSistemaIADetectsPatrolActive" classname="PatrulhaUnidadeIntegrationTests" runstate="Runnable" seed="846310734" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.049328" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[PatrulhaUnidade] PaAliadoComIA — IniciarPatrulha. A=(0.00, 0.00, 0.00) B=(10.00, 0.00, 0.00) | suspensa=False (temIA=False)
+[SistemaIA] PaAliadoComIA — entrou em Patrulhando. Chamando RetomarPatrulha.
+[PatrulhaUnidade] PaAliadoComIA — RetomarPatrulha
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1108" name="TalentoUnidadeIntegrationTests" fullname="TalentoUnidadeIntegrationTests" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.014360" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1109" name="Should_BoostDamage_When_FlatDamageTalentUnlocked" fullname="TalentoUnidadeIntegrationTests.Should_BoostDamage_When_FlatDamageTalentUnlocked" methodname="Should_BoostDamage_When_FlatDamageTalentUnlocked" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" seed="1779353172" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.005963" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1110" name="Should_BoostDamage_When_PercentualDamageTalentUnlocked" fullname="TalentoUnidadeIntegrationTests.Should_BoostDamage_When_PercentualDamageTalentUnlocked" methodname="Should_BoostDamage_When_PercentualDamageTalentUnlocked" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" seed="1299152316" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000375" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1116" name="Should_FailToUnlock_When_InsufficientPoints" fullname="TalentoUnidadeIntegrationTests.Should_FailToUnlock_When_InsufficientPoints" methodname="Should_FailToUnlock_When_InsufficientPoints" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" seed="39102795" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000249" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1111" name="Should_IncreaseMaxLife_When_MaxLifeTalentUnlocked" fullname="TalentoUnidadeIntegrationTests.Should_IncreaseMaxLife_When_MaxLifeTalentUnlocked" methodname="Should_IncreaseMaxLife_When_MaxLifeTalentUnlocked" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" seed="958207208" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000291" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1114" name="Should_NotApplyDamageBonus_When_TalentTargetsEnemyRace" fullname="TalentoUnidadeIntegrationTests.Should_NotApplyDamageBonus_When_TalentTargetsEnemyRace" methodname="Should_NotApplyDamageBonus_When_TalentTargetsEnemyRace" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" seed="1206941507" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000319" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1112" name="Should_NotApplyModifiers_When_NoActiveProfile" fullname="TalentoUnidadeIntegrationTests.Should_NotApplyModifiers_When_NoActiveProfile" methodname="Should_NotApplyModifiers_When_NoActiveProfile" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" seed="1549669028" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000266" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1113" name="Should_NotModifyDamage_When_NoTalentsUnlocked" fullname="TalentoUnidadeIntegrationTests.Should_NotModifyDamage_When_NoTalentsUnlocked" methodname="Should_NotModifyDamage_When_NoTalentsUnlocked" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" seed="1091280607" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000266" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1115" name="Should_StackMultipleTalentEffects_Correctly" fullname="TalentoUnidadeIntegrationTests.Should_StackMultipleTalentEffects_Correctly" methodname="Should_StackMultipleTalentEffects_Correctly" classname="TalentoUnidadeIntegrationTests" runstate="Runnable" seed="1840658113" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000292" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1117" name="UnidadeControllerTests" fullname="UnidadeControllerTests" classname="UnidadeControllerTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.011761" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1125" name="Should_Die_When_HealthDropsBelowZero" fullname="UnidadeControllerTests.Should_Die_When_HealthDropsBelowZero" methodname="Should_Die_When_HealthDropsBelowZero" classname="UnidadeControllerTests" runstate="Runnable" seed="1139266615" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000597" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1124" name="Should_Die_When_HealthReachesExactlyZero" fullname="UnidadeControllerTests.Should_Die_When_HealthReachesExactlyZero" methodname="Should_Die_When_HealthReachesExactlyZero" classname="UnidadeControllerTests" runstate="Runnable" seed="1202713111" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000250" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1127" name="Should_EhAlvoInimigoValido_ReturnFalse_WhenTargetIsSameFaction" fullname="UnidadeControllerTests.Should_EhAlvoInimigoValido_ReturnFalse_WhenTargetIsSameFaction" methodname="Should_EhAlvoInimigoValido_ReturnFalse_WhenTargetIsSameFaction" classname="UnidadeControllerTests" runstate="Runnable" seed="1334764886" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000351" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1120" name="Should_LoseHealth_When_ReceivingDamage" fullname="UnidadeControllerTests.Should_LoseHealth_When_ReceivingDamage" methodname="Should_LoseHealth_When_ReceivingDamage" classname="UnidadeControllerTests" runstate="Runnable" seed="1564395808" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000272" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1122" name="Should_NotLoseHealth_When_DamageIsNegative" fullname="UnidadeControllerTests.Should_NotLoseHealth_When_DamageIsNegative" methodname="Should_NotLoseHealth_When_DamageIsNegative" classname="UnidadeControllerTests" runstate="Runnable" seed="2008002812" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000243" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1121" name="Should_NotLoseHealth_When_DamageIsZero" fullname="UnidadeControllerTests.Should_NotLoseHealth_When_DamageIsZero" methodname="Should_NotLoseHealth_When_DamageIsZero" classname="UnidadeControllerTests" runstate="Runnable" seed="773467163" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000255" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1126" name="Should_NotReceiveDamage_When_AlreadyDead" fullname="UnidadeControllerTests.Should_NotReceiveDamage_When_AlreadyDead" methodname="Should_NotReceiveDamage_When_AlreadyDead" classname="UnidadeControllerTests" runstate="Runnable" seed="1016169573" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000379" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1129" name="Should_NotSyncHealth_When_UnitIsDead" fullname="UnidadeControllerTests.Should_NotSyncHealth_When_UnitIsDead" methodname="Should_NotSyncHealth_When_UnitIsDead" classname="UnidadeControllerTests" runstate="Runnable" seed="1384034401" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000236" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1128" name="Should_RestoreFullHealth_When_SincronizarVidaAposSpawnCalled" fullname="UnidadeControllerTests.Should_RestoreFullHealth_When_SincronizarVidaAposSpawnCalled" methodname="Should_RestoreFullHealth_When_SincronizarVidaAposSpawnCalled" classname="UnidadeControllerTests" runstate="Runnable" seed="476019119" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000251" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1118" name="Should_StartAlive_WhenCreated" fullname="UnidadeControllerTests.Should_StartAlive_WhenCreated" methodname="Should_StartAlive_WhenCreated" classname="UnidadeControllerTests" runstate="Runnable" seed="1630900079" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000290" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1119" name="Should_StartWithFullHealth" fullname="UnidadeControllerTests.Should_StartWithFullHealth" methodname="Should_StartWithFullHealth" classname="UnidadeControllerTests" runstate="Runnable" seed="1906437052" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000189" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1123" name="Should_SurviveDamage_When_HealthRemainsAboveZero" fullname="UnidadeControllerTests.Should_SurviveDamage_When_HealthRemainsAboveZero" methodname="Should_SurviveDamage_When_HealthRemainsAboveZero" classname="UnidadeControllerTests" runstate="Runnable" seed="867613417" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000209" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1130" name="UnidadeModificadoresTests" fullname="UnidadeModificadoresTests" classname="UnidadeModificadoresTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.010572" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1133" name="Should_AddFlatDamage_Correctly" fullname="UnidadeModificadoresTests.Should_AddFlatDamage_Correctly" methodname="Should_AddFlatDamage_Correctly" classname="UnidadeModificadoresTests" runstate="Runnable" seed="1548995252" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000673" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1136" name="Should_ApplyCombinedFlatAndPercentual_InCorrectOrder" fullname="UnidadeModificadoresTests.Should_ApplyCombinedFlatAndPercentual_InCorrectOrder" methodname="Should_ApplyCombinedFlatAndPercentual_InCorrectOrder" classname="UnidadeModificadoresTests" runstate="Runnable" seed="1413955047" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000229" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1140" name="Should_ApplyFlatMaxLifeBonus_Correctly" fullname="UnidadeModificadoresTests.Should_ApplyFlatMaxLifeBonus_Correctly" methodname="Should_ApplyFlatMaxLifeBonus_Correctly" classname="UnidadeModificadoresTests" runstate="Runnable" seed="610587998" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000245" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1135" name="Should_ApplyPercentualDamageBonus_Correctly" fullname="UnidadeModificadoresTests.Should_ApplyPercentualDamageBonus_Correctly" methodname="Should_ApplyPercentualDamageBonus_Correctly" classname="UnidadeModificadoresTests" runstate="Runnable" seed="110376946" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000189" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1141" name="Should_ApplyPercentualMaxLifeBonus_Correctly" fullname="UnidadeModificadoresTests.Should_ApplyPercentualMaxLifeBonus_Correctly" methodname="Should_ApplyPercentualMaxLifeBonus_Correctly" classname="UnidadeModificadoresTests" runstate="Runnable" seed="175725730" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000223" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1137" name="Should_ClampDamageToZero_When_ModsReduceBelowZero" fullname="UnidadeModificadoresTests.Should_ClampDamageToZero_When_ModsReduceBelowZero" methodname="Should_ClampDamageToZero_When_ModsReduceBelowZero" classname="UnidadeModificadoresTests" runstate="Runnable" seed="884054509" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000206" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1142" name="Should_NeverReduceMaxLifeBelow1" fullname="UnidadeModificadoresTests.Should_NeverReduceMaxLifeBelow1" methodname="Should_NeverReduceMaxLifeBelow1" classname="UnidadeModificadoresTests" runstate="Runnable" seed="130458748" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000262" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1132" name="Should_NotModifyDamage_AfterNull_EffectAccumulated" fullname="UnidadeModificadoresTests.Should_NotModifyDamage_AfterNull_EffectAccumulated" methodname="Should_NotModifyDamage_AfterNull_EffectAccumulated" classname="UnidadeModificadoresTests" runstate="Runnable" seed="572157603" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000253" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1131" name="Should_NotModifyDamage_When_NoEffectsAccumulated" fullname="UnidadeModificadoresTests.Should_NotModifyDamage_When_NoEffectsAccumulated" methodname="Should_NotModifyDamage_When_NoEffectsAccumulated" classname="UnidadeModificadoresTests" runstate="Runnable" seed="219249086" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000218" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1139" name="Should_NotModifyMaxLife_When_NoLifeEffectAccumulated" fullname="UnidadeModificadoresTests.Should_NotModifyMaxLife_When_NoLifeEffectAccumulated" methodname="Should_NotModifyMaxLife_When_NoLifeEffectAccumulated" classname="UnidadeModificadoresTests" runstate="Runnable" seed="1717202273" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000442" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1138" name="Should_ResetAllMods_When_LimparCalled" fullname="UnidadeModificadoresTests.Should_ResetAllMods_When_LimparCalled" methodname="Should_ResetAllMods_When_LimparCalled" classname="UnidadeModificadoresTests" runstate="Runnable" seed="1861940901" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000250" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1134" name="Should_StackMultipleFlatDamageBonuses" fullname="UnidadeModificadoresTests.Should_StackMultipleFlatDamageBonuses" methodname="Should_StackMultipleFlatDamageBonuses" classname="UnidadeModificadoresTests" runstate="Runnable" seed="346789043" result="Passed" start-time="2026-04-21 01:21:43Z" end-time="2026-04-21 01:21:43Z" duration="0.000236" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Jonas/AppData/LocalLow/DefaultCompany/TD\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

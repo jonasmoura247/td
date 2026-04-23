@@ -85,6 +85,15 @@ public class SistemaIAUnidade : MonoBehaviour
     [Tooltip("Distância à frente para detectar bloqueio (CircleCast).")]
     public float distanciaDeteccaoBloqueio = 1.2f;
 
+    // ─── Kiting (Ranged) ──────────────────────────────────────────────────
+
+    [Header("Kiting (Ranged)")]
+    [Tooltip("Se verdadeiro, esta unidade é ranged e executa kiting ao detectar inimigos muito próximos.")]
+    public bool ehRanged = false;
+
+    [Tooltip("Distância mínima de segurança para ranged. Abaixo disso, a unidade recua (kiting).")]
+    public float distanciaSegurancaKite = 1.5f;
+
     // ─── Limites de tela ──────────────────────────────────────────────────
 
     [Header("Limites de Tela")]
@@ -105,6 +114,7 @@ public class SistemaIAUnidade : MonoBehaviour
 
     private UnidadeController _eu;
     private MovimentoUnidade  _movimento;
+    private PatrulhaUnidade   _patrulha;
     private Rigidbody2D       _rb;
 
     private float _proximoAtaque;
@@ -141,6 +151,7 @@ public class SistemaIAUnidade : MonoBehaviour
     {
         _eu       = GetComponent<UnidadeController>();
         _movimento = GetComponent<MovimentoUnidade>();
+        _patrulha  = GetComponent<PatrulhaUnidade>();
         _rb       = GetComponent<Rigidbody2D>();
     }
 
@@ -218,6 +229,10 @@ public class SistemaIAUnidade : MonoBehaviour
                     }
                     _rb.linearVelocity = sep;
                 }
+                break;
+
+            case EstadoIA.Kiting:
+                if (AlvoAtual != null) MoverKite();
                 break;
 
             case EstadoIA.Combate:
@@ -345,7 +360,7 @@ public class SistemaIAUnidade : MonoBehaviour
         if (melhor != null && melhor != AlvoAtual)
         {
             AlvoAtual = melhor;
-            if (Estado == EstadoIA.Ocioso)
+            if (Estado == EstadoIA.Ocioso || Estado == EstadoIA.Patrulhando)
                 MudarEstado(DefinirProximoEstadoParaAlvo());
         }
         else if (melhor == null && AlvoAtual != null)
@@ -412,12 +427,21 @@ public class SistemaIAUnidade : MonoBehaviour
             case EstadoIA.Ocioso:
                 if (AlvoAtual != null)
                     MudarEstado(DefinirProximoEstadoParaAlvo());
+                else if (_patrulha != null && _patrulha.EstaPatrulhando)
+                    MudarEstado(EstadoIA.Patrulhando);
+                break;
+
+            case EstadoIA.Patrulhando:
+                if (AlvoAtual != null)
+                    MudarEstado(DefinirProximoEstadoParaAlvo());
+                else if (_patrulha == null || !_patrulha.EstaPatrulhando)
+                    MudarEstado(EstadoIA.Ocioso);
                 break;
 
             case EstadoIA.Perseguindo:
                 if (AlvoAtual == null)
                 {
-                    MudarEstado(EstadoIA.Ocioso);
+                    LimparAlvo();
                     break;
                 }
                 if (DistanciaAoAlvo() <= alcanceAtaque)
@@ -427,14 +451,19 @@ public class SistemaIAUnidade : MonoBehaviour
             case EstadoIA.Atacando:
                 if (AlvoAtual == null)
                 {
-                    MudarEstado(EstadoIA.Ocioso);
+                    LimparAlvo();
                     break;
                 }
                 {
                     float distAtacando = DistanciaAoAlvo();
+                    // Kiting: ranged recua se inimigo ficou perto demais
+                    if (ehRanged && distanciaSegurancaKite > 0f && distAtacando < distanciaSegurancaKite)
+                    {
+                        MudarEstado(EstadoIA.Kiting);
+                        break;
+                    }
                     // Fallback por distância: entra em Combate mesmo sem OnCollisionEnter2D
-                    // (útil quando as layers Jogador/Inimigo não estão configuradas para colidir fisicamente)
-                    if (alcanceAtaque > 0f && distAtacando < alcanceAtaque * 0.4f)
+                    if (!ehRanged && alcanceAtaque > 0f && distAtacando < alcanceAtaque * 0.4f)
                     {
                         MudarEstado(EstadoIA.Combate);
                         break;
@@ -449,10 +478,34 @@ public class SistemaIAUnidade : MonoBehaviour
                 TentarAtacar();
                 break;
 
+            case EstadoIA.Kiting:
+                if (AlvoAtual == null)
+                {
+                    LimparAlvo();
+                    break;
+                }
+                {
+                    float distKite = DistanciaAoAlvo();
+                    // Inimigo afastou: volta a perseguir/atacar
+                    if (distKite > alcanceAtaque + MargemSaidaAtaque)
+                    {
+                        MudarEstado(perseguirAlvo ? EstadoIA.Perseguindo : EstadoIA.Ocioso);
+                        break;
+                    }
+                    // Distância segura restaurada: volta a atacar parado
+                    if (distKite >= distanciaSegurancaKite)
+                    {
+                        MudarEstado(EstadoIA.Atacando);
+                        break;
+                    }
+                }
+                TentarAtacar();
+                break;
+
             case EstadoIA.Combate:
                 if (AlvoAtual == null)
                 {
-                    MudarEstado(EstadoIA.Ocioso);
+                    LimparAlvo();
                     break;
                 }
                 TentarAtacar();
@@ -469,6 +522,11 @@ public class SistemaIAUnidade : MonoBehaviour
         // ── Saída ─────────────────────────────────────────────────────────
         switch (Estado)
         {
+            case EstadoIA.Patrulhando:
+                // Suspende movimento de patrulha ao sair (combate ou cancelamento)
+                _patrulha?.SuspenderPatrulha();
+                break;
+
             case EstadoIA.Perseguindo:
                 // Devolve controle ao sistema de waypoints e para o rb
                 _movimento?.EntrarModoWaypoints();
@@ -478,6 +536,10 @@ public class SistemaIAUnidade : MonoBehaviour
             case EstadoIA.Atacando:
                 // Retoma movimento ao sair do estado de ataque (waypoints ou modo livre entram em seguida)
                 _movimento?.ContinuarMovimento();
+                break;
+
+            case EstadoIA.Kiting:
+                if (_rb != null) _rb.linearVelocity = Vector2.zero;
                 break;
 
             case EstadoIA.Combate:
@@ -495,6 +557,20 @@ public class SistemaIAUnidade : MonoBehaviour
         // ── Entrada ───────────────────────────────────────────────────────
         switch (Estado)
         {
+            case EstadoIA.Patrulhando:
+                // EntrarModoLivre: MovimentoUnidade.FixedUpdate retorna sem tocar no rb.
+                // Sem isso, o FixedUpdate zera rb.linearVelocity toda tick (movimentando=false)
+                // e cancela a velocidade que PatrulhaUnidade.Update() acabou de aplicar.
+                _movimento?.EntrarModoLivre();
+                if (_rb != null)
+                {
+                    _rb.bodyType = RigidbodyType2D.Dynamic;
+                    _rb.linearVelocity = Vector2.zero;
+                }
+                Debug.Log($"[SistemaIA] {name} — entrou em Patrulhando. Chamando RetomarPatrulha.");
+                _patrulha?.RetomarPatrulha();
+                break;
+
             case EstadoIA.Perseguindo:
                 // Cede controle de velocidade ao SistemaIA; MovimentoUnidade para de tocar no rb
                 _movimento?.EntrarModoLivre();
@@ -519,6 +595,11 @@ public class SistemaIAUnidade : MonoBehaviour
                 }
                 break;
 
+            case EstadoIA.Kiting:
+                _movimento?.EntrarModoLivre();
+                ResetarDeteccaoStuck();
+                break;
+
             case EstadoIA.Ocioso:
             case EstadoIA.Morto:
                 _movimento?.EntrarModoWaypoints();
@@ -534,7 +615,10 @@ public class SistemaIAUnidade : MonoBehaviour
     private EstadoIA DefinirProximoEstadoParaAlvo()
     {
         if (AlvoAtual == null) return EstadoIA.Ocioso;
-        return DistanciaAoAlvo() <= alcanceAtaque
+        float dist = DistanciaAoAlvo();
+        if (ehRanged && distanciaSegurancaKite > 0f && dist < distanciaSegurancaKite)
+            return EstadoIA.Kiting;
+        return dist <= alcanceAtaque
             ? EstadoIA.Atacando
             : (perseguirAlvo ? EstadoIA.Perseguindo : EstadoIA.Ocioso);
     }
@@ -604,6 +688,40 @@ public class SistemaIAUnidade : MonoBehaviour
         float backwardSep = Vector2.Dot(separacao, -direcaoBase);
         if (backwardSep > 0) separacao += direcaoBase * backwardSep;
         _rb.linearVelocity = (direcao * vel) + separacao;
+    }
+
+    /// <summary>
+    /// Move a unidade ranged para longe do inimigo (kiting estratégico).
+    /// Aplica separação de aliados e respeita os limites de câmera.
+    /// </summary>
+    private void MoverKite()
+    {
+        if (_rb == null || AlvoAtual == null) return;
+
+        Vector2 diffInimigo = _rb.position - (Vector2)AlvoAtual.transform.position;
+        Vector2 direcaoRecuo = diffInimigo.sqrMagnitude > 0.001f
+            ? diffInimigo.normalized
+            : Random.insideUnitCircle.normalized;
+
+        float vel = velocidadePerseguicao > 0f
+            ? velocidadePerseguicao
+            : (_movimento != null ? _movimento.velocidade : 6f);
+
+        Vector2 separacao = CalcularForcaSeparacaoAliados() * 0.4f;
+        _rb.linearVelocity = (direcaoRecuo * vel) + separacao;
+
+        // Clamp imediato dentro da tela para não sair dos limites ao recuar
+        if (margemTela > 0f && _limitesCacheValidos)
+        {
+            Vector2 pos = _rb.position;
+            float cx = Mathf.Clamp(pos.x, _limiteMin.x + margemTela, _limiteMax.x - margemTela);
+            float cy = Mathf.Clamp(pos.y, _limiteMin.y + margemTela, _limiteMax.y - margemTela);
+            if (cx != pos.x || cy != pos.y)
+            {
+                _rb.position = new Vector2(cx, cy);
+                _rb.linearVelocity = Vector2.zero;
+            }
+        }
     }
 
     /// <summary>
@@ -836,7 +954,10 @@ public class SistemaIAUnidade : MonoBehaviour
     private void LimparAlvo()
     {
         AlvoAtual = null;
-        MudarEstado(EstadoIA.Ocioso);
+        EstadoIA proximo = (_patrulha != null && _patrulha.EstaPatrulhando)
+            ? EstadoIA.Patrulhando
+            : EstadoIA.Ocioso;
+        MudarEstado(proximo);
     }
 
     // ─── Debug Gizmos ──────────────────────────────────────────────────────
@@ -849,9 +970,17 @@ public class SistemaIAUnidade : MonoBehaviour
         Gizmos.color = new Color(0.9f, 0.2f, 0.2f, 0.5f);
         Gizmos.DrawWireSphere(transform.position, alcanceAtaque);
 
+        if (ehRanged && distanciaSegurancaKite > 0f)
+        {
+            Gizmos.color = new Color(1f, 0.6f, 0f, 0.4f);
+            Gizmos.DrawWireSphere(transform.position, distanciaSegurancaKite);
+        }
+
         if (AlvoAtual != null)
         {
-            Gizmos.color = Estado == EstadoIA.Combate ? Color.magenta : Color.red;
+            Gizmos.color = Estado == EstadoIA.Kiting ? Color.yellow
+                         : Estado == EstadoIA.Combate ? Color.magenta
+                         : Color.red;
             Gizmos.DrawLine(transform.position, AlvoAtual.transform.position);
         }
 

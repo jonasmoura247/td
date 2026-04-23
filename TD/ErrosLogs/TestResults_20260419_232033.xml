@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="129" result="Failed(Child)" total="129" passed="128" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0,1374184">
+  <test-suite type="TestSuite" id="1251" name="TD" fullname="TD" runstate="Runnable" testcasecount="129" result="Failed" site="Child" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.137418" total="129" passed="128" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1243" name="TD.Tests.EditMode.dll" fullname="C:/Users/Jonas/Desktop/TD/td/TD/Library/ScriptAssemblies/TD.Tests.EditMode.dll" runstate="Runnable" testcasecount="129" result="Failed" site="Child" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.128846" total="129" passed="128" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="21760" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1104" name="AnimacaoAtaqueEventoTests" fullname="AnimacaoAtaqueEventoTests" classname="AnimacaoAtaqueEventoTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.031840" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1108" name="Should_AllowMultipleListeners_OnOnAtaqueExecutado" fullname="AnimacaoAtaqueEventoTests.Should_AllowMultipleListeners_OnOnAtaqueExecutado" methodname="Should_AllowMultipleListeners_OnOnAtaqueExecutado" classname="AnimacaoAtaqueEventoTests" runstate="Runnable" seed="1738678837" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.015687" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently.
+]]></output>
+        </test-case>
+        <test-case id="1105" name="Should_FireOnAtaqueExecutado_When_TargetIsAlive" fullname="AnimacaoAtaqueEventoTests.Should_FireOnAtaqueExecutado_When_TargetIsAlive" methodname="Should_FireOnAtaqueExecutado_When_TargetIsAlive" classname="AnimacaoAtaqueEventoTests" runstate="Runnable" seed="869497792" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.001268" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently.
+]]></output>
+        </test-case>
+        <test-case id="1107" name="Should_NotFireOnAtaqueExecutado_When_TargetIsDead" fullname="AnimacaoAtaqueEventoTests.Should_NotFireOnAtaqueExecutado_When_TargetIsDead" methodname="Should_NotFireOnAtaqueExecutado_When_TargetIsDead" classname="AnimacaoAtaqueEventoTests" runstate="Runnable" seed="123027131" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.001313" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently.
+]]></output>
+        </test-case>
+        <test-case id="1106" name="Should_NotFireOnAtaqueExecutado_When_TargetIsNull" fullname="AnimacaoAtaqueEventoTests.Should_NotFireOnAtaqueExecutado_When_TargetIsNull" methodname="Should_NotFireOnAtaqueExecutado_When_TargetIsNull" classname="AnimacaoAtaqueEventoTests" runstate="Runnable" seed="867667752" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000197" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1109" name="BestiarioRegrasTests" fullname="BestiarioRegrasTests" classname="BestiarioRegrasTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.017275" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1111" name="Should_AccumulateKillCount_AcrossMultipleDeaths" fullname="BestiarioRegrasTests.Should_AccumulateKillCount_AcrossMultipleDeaths" methodname="Should_AccumulateKillCount_AcrossMultipleDeaths" classname="BestiarioRegrasTests" runstate="Runnable" seed="470335865" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.003211" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1114" name="Should_AwardPoints_When_KillMilestoneIsReached" fullname="BestiarioRegrasTests.Should_AwardPoints_When_KillMilestoneIsReached" methodname="Should_AwardPoints_When_KillMilestoneIsReached" classname="BestiarioRegrasTests" runstate="Runnable" seed="699335049" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000217" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1117" name="Should_AwardPointsForEachMilestoneOnce_WhenMultipleMilestones" fullname="BestiarioRegrasTests.Should_AwardPointsForEachMilestoneOnce_WhenMultipleMilestones" methodname="Should_AwardPointsForEachMilestoneOnce_WhenMultipleMilestones" classname="BestiarioRegrasTests" runstate="Runnable" seed="646420564" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000209" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1128" name="Should_CalculateRunaRemovalCost_BasedOnPlayerLevel" fullname="BestiarioRegrasTests.Should_CalculateRunaRemovalCost_BasedOnPlayerLevel" methodname="Should_CalculateRunaRemovalCost_BasedOnPlayerLevel" classname="BestiarioRegrasTests" runstate="Runnable" seed="129691810" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000404" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1125" name="Should_EquipRuna_Successfully_When_AllRequirementsMet" fullname="BestiarioRegrasTests.Should_EquipRuna_Successfully_When_AllRequirementsMet" methodname="Should_EquipRuna_Successfully_When_AllRequirementsMet" classname="BestiarioRegrasTests" runstate="Runnable" seed="356115173" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.001324" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1112" name="Should_IgnoreRegistrarMorte_When_CreatureNotInDatabase" fullname="BestiarioRegrasTests.Should_IgnoreRegistrarMorte_When_CreatureNotInDatabase" methodname="Should_IgnoreRegistrarMorte_When_CreatureNotInDatabase" classname="BestiarioRegrasTests" runstate="Runnable" seed="563793174" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000152" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1130" name="Should_IncreaseRemovalCost_AsPlayerLevelIncreases" fullname="BestiarioRegrasTests.Should_IncreaseRemovalCost_AsPlayerLevelIncreases" methodname="Should_IncreaseRemovalCost_AsPlayerLevelIncreases" classname="BestiarioRegrasTests" runstate="Runnable" seed="1406472775" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.002227" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1110" name="Should_IncrementKillCount_When_EnemyDies" fullname="BestiarioRegrasTests.Should_IncrementKillCount_When_EnemyDies" methodname="Should_IncrementKillCount_When_EnemyDies" classname="BestiarioRegrasTests" runstate="Runnable" seed="1852166605" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000172" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1113" name="Should_NeverHaveNegativeKillCount" fullname="BestiarioRegrasTests.Should_NeverHaveNegativeKillCount" methodname="Should_NeverHaveNegativeKillCount" classname="BestiarioRegrasTests" runstate="Runnable" seed="1766120180" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000278" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1122" name="Should_NeverHaveNegativePointsBestiario_AfterUnlock" fullname="BestiarioRegrasTests.Should_NeverHaveNegativePointsBestiario_AfterUnlock" methodname="Should_NeverHaveNegativePointsBestiario_AfterUnlock" classname="BestiarioRegrasTests" runstate="Runnable" seed="1256557973" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000150" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1129" name="Should_NeverHaveNegativeRemovalCost" fullname="BestiarioRegrasTests.Should_NeverHaveNegativeRemovalCost" methodname="Should_NeverHaveNegativeRemovalCost" classname="BestiarioRegrasTests" runstate="Runnable" seed="1774513633" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000092" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1115" name="Should_NotAwardPoints_Before_MilestoneReached" fullname="BestiarioRegrasTests.Should_NotAwardPoints_Before_MilestoneReached" methodname="Should_NotAwardPoints_Before_MilestoneReached" classname="BestiarioRegrasTests" runstate="Runnable" seed="1743965038" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000157" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1116" name="Should_NotAwardPointsTwice_ForSameMilestone" fullname="BestiarioRegrasTests.Should_NotAwardPointsTwice_ForSameMilestone" methodname="Should_NotAwardPointsTwice_ForSameMilestone" classname="BestiarioRegrasTests" runstate="Runnable" seed="1105498449" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000183" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1123" name="Should_NotEquipRuna_When_NotUnlocked" fullname="BestiarioRegrasTests.Should_NotEquipRuna_When_NotUnlocked" methodname="Should_NotEquipRuna_When_NotUnlocked" classname="BestiarioRegrasTests" runstate="Runnable" seed="868400900" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000201" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1124" name="Should_NotEquipRuna_When_StageRequirementNotMet" fullname="BestiarioRegrasTests.Should_NotEquipRuna_When_StageRequirementNotMet" methodname="Should_NotEquipRuna_When_StageRequirementNotMet" classname="BestiarioRegrasTests" runstate="Runnable" seed="1909185264" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000162" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1126" name="Should_NotEquipSameRuna_OnTwoDifferentCreatures" fullname="BestiarioRegrasTests.Should_NotEquipSameRuna_OnTwoDifferentCreatures" methodname="Should_NotEquipSameRuna_OnTwoDifferentCreatures" classname="BestiarioRegrasTests" runstate="Runnable" seed="1234536900" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000206" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1127" name="Should_NotEquipTwoDifferentRunas_OnSameCreature" fullname="BestiarioRegrasTests.Should_NotEquipTwoDifferentRunas_OnSameCreature" methodname="Should_NotEquipTwoDifferentRunas_OnSameCreature" classname="BestiarioRegrasTests" runstate="Runnable" seed="684139777" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000205" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1119" name="Should_NotUnlockRuna_When_PointsInsufficient" fullname="BestiarioRegrasTests.Should_NotUnlockRuna_When_PointsInsufficient" methodname="Should_NotUnlockRuna_When_PointsInsufficient" classname="BestiarioRegrasTests" runstate="Runnable" seed="1090271471" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000150" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1121" name="Should_NotUnlockSameRunaTwice" fullname="BestiarioRegrasTests.Should_NotUnlockSameRunaTwice" methodname="Should_NotUnlockSameRunaTwice" classname="BestiarioRegrasTests" runstate="Runnable" seed="1625766052" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000166" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1118" name="Should_ObterEstagiosCompletos_ReturnCorrectCountForAllBoundaries" fullname="BestiarioRegrasTests.Should_ObterEstagiosCompletos_ReturnCorrectCountForAllBoundaries" methodname="Should_ObterEstagiosCompletos_ReturnCorrectCountForAllBoundaries" classname="BestiarioRegrasTests" runstate="Runnable" seed="363500276" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000183" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1120" name="Should_UnlockRuna_And_DeductPoints_When_PointsSufficient" fullname="BestiarioRegrasTests.Should_UnlockRuna_And_DeductPoints_When_PointsSufficient" methodname="Should_UnlockRuna_And_DeductPoints_When_PointsSufficient" classname="BestiarioRegrasTests" runstate="Runnable" seed="1936700297" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000159" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1131" name="BussolaVermeLogicaTests" fullname="BussolaVermeLogicaTests" classname="BussolaVermeLogicaTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.013963" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1140" name="NomePorLado_Baixo_RetornaStringNaoVazia" fullname="BussolaVermeLogicaTests.NomePorLado_Baixo_RetornaStringNaoVazia" methodname="NomePorLado_Baixo_RetornaStringNaoVazia" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="745543237" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000382" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1139" name="NomePorLado_Cima_RetornaStringNaoVazia" fullname="BussolaVermeLogicaTests.NomePorLado_Cima_RetornaStringNaoVazia" methodname="NomePorLado_Cima_RetornaStringNaoVazia" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="688605622" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000091" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1138" name="NomePorLado_Direita_RetornaStringNaoVazia" fullname="BussolaVermeLogicaTests.NomePorLado_Direita_RetornaStringNaoVazia" methodname="NomePorLado_Direita_RetornaStringNaoVazia" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="1591794262" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000077" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1137" name="NomePorLado_Esquerda_RetornaStringNaoVazia" fullname="BussolaVermeLogicaTests.NomePorLado_Esquerda_RetornaStringNaoVazia" methodname="NomePorLado_Esquerda_RetornaStringNaoVazia" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="283386284" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000075" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1141" name="NomePorLado_TodosOsLados_RetornamTextoEmMaiusculo" fullname="BussolaVermeLogicaTests.NomePorLado_TodosOsLados_RetornamTextoEmMaiusculo" methodname="NomePorLado_TodosOsLados_RetornamTextoEmMaiusculo" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="585422113" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000368" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1142" name="NomePorLado_TodosOsLados_SaoDistintos" fullname="BussolaVermeLogicaTests.NomePorLado_TodosOsLados_SaoDistintos" methodname="NomePorLado_TodosOsLados_SaoDistintos" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="622536231" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000224" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1132" name="ReliquiaId_BussolaVerme_DeveSerConstanteCorreta" fullname="BussolaVermeLogicaTests.ReliquiaId_BussolaVerme_DeveSerConstanteCorreta" methodname="ReliquiaId_BussolaVerme_DeveSerConstanteCorreta" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="577350807" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000069" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1136" name="RotacaoZPorLado_Baixo_Retorna270" fullname="BussolaVermeLogicaTests.RotacaoZPorLado_Baixo_Retorna270" methodname="RotacaoZPorLado_Baixo_Retorna270" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="103351656" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000533" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1135" name="RotacaoZPorLado_Cima_Retorna90" fullname="BussolaVermeLogicaTests.RotacaoZPorLado_Cima_Retorna90" methodname="RotacaoZPorLado_Cima_Retorna90" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="2018726016" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000076" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1134" name="RotacaoZPorLado_Direita_Retorna0" fullname="BussolaVermeLogicaTests.RotacaoZPorLado_Direita_Retorna0" methodname="RotacaoZPorLado_Direita_Retorna0" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="1785095685" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000072" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1133" name="RotacaoZPorLado_Esquerda_Retorna180" fullname="BussolaVermeLogicaTests.RotacaoZPorLado_Esquerda_Retorna180" methodname="RotacaoZPorLado_Esquerda_Retorna180" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="676575732" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000073" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1143" name="RotacaoZPorLado_TodosOsLados_SaoDistintos" fullname="BussolaVermeLogicaTests.RotacaoZPorLado_TodosOsLados_SaoDistintos" methodname="RotacaoZPorLado_TodosOsLados_SaoDistintos" classname="BussolaVermeLogicaTests" runstate="Runnable" seed="977734214" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000714" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1144" name="DadosSlotSaveTests" fullname="DadosSlotSaveTests" classname="DadosSlotSaveTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.009809" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1147" name="Should_AddExpPermanente_Correctly" fullname="DadosSlotSaveTests.Should_AddExpPermanente_Correctly" methodname="Should_AddExpPermanente_Correctly" classname="DadosSlotSaveTests" runstate="Runnable" seed="1958096618" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000181" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1155" name="Should_ClampNegativePontosBestiario_ToZero_OnNormalizacao" fullname="DadosSlotSaveTests.Should_ClampNegativePontosBestiario_ToZero_OnNormalizacao" methodname="Should_ClampNegativePontosBestiario_ToZero_OnNormalizacao" classname="DadosSlotSaveTests" runstate="Runnable" seed="189297641" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000120" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1150" name="Should_DoNothing_When_DeltaIsZero" fullname="DadosSlotSaveTests.Should_DoNothing_When_DeltaIsZero" methodname="Should_DoNothing_When_DeltaIsZero" classname="DadosSlotSaveTests" runstate="Runnable" seed="847501184" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000120" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1159" name="Should_FormatarTempoJogo_AsHours_When_OneHourOrMore" fullname="DadosSlotSaveTests.Should_FormatarTempoJogo_AsHours_When_OneHourOrMore" methodname="Should_FormatarTempoJogo_AsHours_When_OneHourOrMore" classname="DadosSlotSaveTests" runstate="Runnable" seed="865435068" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000198" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1158" name="Should_FormatarTempoJogo_AsMinutes_When_LessThanOneHour" fullname="DadosSlotSaveTests.Should_FormatarTempoJogo_AsMinutes_When_LessThanOneHour" methodname="Should_FormatarTempoJogo_AsMinutes_When_LessThanOneHour" classname="DadosSlotSaveTests" runstate="Runnable" seed="1504209113" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000094" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1157" name="Should_FormatarTempoJogo_AsSeconds_When_LessThanOneMinute" fullname="DadosSlotSaveTests.Should_FormatarTempoJogo_AsSeconds_When_LessThanOneMinute" methodname="Should_FormatarTempoJogo_AsSeconds_When_LessThanOneMinute" classname="DadosSlotSaveTests" runstate="Runnable" seed="1716489383" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000083" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1160" name="Should_FormatarTempoJogo_AsZeroSeconds_When_TimeIsZero" fullname="DadosSlotSaveTests.Should_FormatarTempoJogo_AsZeroSeconds_When_TimeIsZero" methodname="Should_FormatarTempoJogo_AsZeroSeconds_When_TimeIsZero" classname="DadosSlotSaveTests" runstate="Runnable" seed="459489117" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000080" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1161" name="Should_GenerateUuid_WhenGarantirUuidCalledOnEmptyUuid" fullname="DadosSlotSaveTests.Should_GenerateUuid_WhenGarantirUuidCalledOnEmptyUuid" methodname="Should_GenerateUuid_WhenGarantirUuidCalledOnEmptyUuid" classname="DadosSlotSaveTests" runstate="Runnable" seed="1612344334" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000221" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1149" name="Should_NeverHaveNegativeExp_When_NegativeDeltaApplied" fullname="DadosSlotSaveTests.Should_NeverHaveNegativeExp_When_NegativeDeltaApplied" methodname="Should_NeverHaveNegativeExp_When_NegativeDeltaApplied" classname="DadosSlotSaveTests" runstate="Runnable" seed="256201909" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000103" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1152" name="Should_NeverHaveNegativeOuro_After_Normalization" fullname="DadosSlotSaveTests.Should_NeverHaveNegativeOuro_After_Normalization" methodname="Should_NeverHaveNegativeOuro_After_Normalization" classname="DadosSlotSaveTests" runstate="Runnable" seed="1658211076" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000112" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1162" name="Should_PreserveExistingUuid_WhenGarantirUuidCalled" fullname="DadosSlotSaveTests.Should_PreserveExistingUuid_WhenGarantirUuidCalled" methodname="Should_PreserveExistingUuid_WhenGarantirUuidCalled" classname="DadosSlotSaveTests" runstate="Runnable" seed="605247329" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000087" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1153" name="Should_PreservePositiveOuro_After_Normalization" fullname="DadosSlotSaveTests.Should_PreservePositiveOuro_After_Normalization" methodname="Should_PreservePositiveOuro_After_Normalization" classname="DadosSlotSaveTests" runstate="Runnable" seed="267394202" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000098" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1148" name="Should_ReachLevel2_When_ExpReachesThreshold" fullname="DadosSlotSaveTests.Should_ReachLevel2_When_ExpReachesThreshold" methodname="Should_ReachLevel2_When_ExpReachesThreshold" classname="DadosSlotSaveTests" runstate="Runnable" seed="619314928" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000088" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1154" name="Should_RecreateNullBestiario_OnNormalizacao" fullname="DadosSlotSaveTests.Should_RecreateNullBestiario_OnNormalizacao" methodname="Should_RecreateNullBestiario_OnNormalizacao" classname="DadosSlotSaveTests" runstate="Runnable" seed="1327474524" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.001435" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1156" name="Should_RecreateNullTalentos_OnNormalizacao" fullname="DadosSlotSaveTests.Should_RecreateNullTalentos_OnNormalizacao" methodname="Should_RecreateNullTalentos_OnNormalizacao" classname="DadosSlotSaveTests" runstate="Runnable" seed="1045708713" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000194" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1146" name="Should_StartAtLevel1_WhenExpIsZero" fullname="DadosSlotSaveTests.Should_StartAtLevel1_WhenExpIsZero" methodname="Should_StartAtLevel1_WhenExpIsZero" classname="DadosSlotSaveTests" runstate="Runnable" seed="230700302" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000092" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1145" name="Should_StartWithZeroExp_ForAllRaces" fullname="DadosSlotSaveTests.Should_StartWithZeroExp_ForAllRaces" methodname="Should_StartWithZeroExp_ForAllRaces" classname="DadosSlotSaveTests" runstate="Runnable" seed="1052566445" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000121" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1151" name="Should_TrackExpPerRaceIndependently" fullname="DadosSlotSaveTests.Should_TrackExpPerRaceIndependently" methodname="Should_TrackExpPerRaceIndependently" classname="DadosSlotSaveTests" runstate="Runnable" seed="1794441059" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000123" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1163" name="ExpPartidaLogicaTests" fullname="ExpPartidaLogicaTests" classname="ExpPartidaLogicaTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.007783" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1169" name="Should_AccumulateExp_AcrossMultipleKills" fullname="ExpPartidaLogicaTests.Should_AccumulateExp_AcrossMultipleKills" methodname="Should_AccumulateExp_AcrossMultipleKills" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="288054142" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000197" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1167" name="Should_AddBossExp_When_BossEnemyDies" fullname="ExpPartidaLogicaTests.Should_AddBossExp_When_BossEnemyDies" methodname="Should_AddBossExp_When_BossEnemyDies" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="709661984" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000106" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1166" name="Should_AddComumExp_When_NormalEnemyDies" fullname="ExpPartidaLogicaTests.Should_AddComumExp_When_NormalEnemyDies" methodname="Should_AddComumExp_When_NormalEnemyDies" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="1529370884" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000103" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1168" name="Should_BossExpBeGreaterThanComumExp" fullname="ExpPartidaLogicaTests.Should_BossExpBeGreaterThanComumExp" methodname="Should_BossExpBeGreaterThanComumExp" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="550550272" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000173" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1182" name="Should_FireOnExpAlterada_When_ConcluirComDerrotaCalled" fullname="ExpPartidaLogicaTests.Should_FireOnExpAlterada_When_ConcluirComDerrotaCalled" methodname="Should_FireOnExpAlterada_When_ConcluirComDerrotaCalled" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="619291348" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000229" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1181" name="Should_FireOnExpAlterada_When_ConcluirComVitoriaCalled" fullname="ExpPartidaLogicaTests.Should_FireOnExpAlterada_When_ConcluirComVitoriaCalled" methodname="Should_FireOnExpAlterada_When_ConcluirComVitoriaCalled" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="617784922" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000153" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1170" name="Should_FireOnExpAlterada_When_KillRegistered" fullname="ExpPartidaLogicaTests.Should_FireOnExpAlterada_When_KillRegistered" methodname="Should_FireOnExpAlterada_When_KillRegistered" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="169535757" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000114" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1179" name="Should_MarkRunAsResolved_After_Defeat" fullname="ExpPartidaLogicaTests.Should_MarkRunAsResolved_After_Defeat" methodname="Should_MarkRunAsResolved_After_Defeat" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="1914851398" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000079" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1173" name="Should_MarkRunAsResolved_After_Victory" fullname="ExpPartidaLogicaTests.Should_MarkRunAsResolved_After_Victory" methodname="Should_MarkRunAsResolved_After_Victory" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="590540257" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000087" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1165" name="Should_NotBeResolved_WhenCreated" fullname="ExpPartidaLogicaTests.Should_NotBeResolved_WhenCreated" methodname="Should_NotBeResolved_WhenCreated" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="99840922" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000067" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1174" name="Should_NotRegisterKills_After_Victory" fullname="ExpPartidaLogicaTests.Should_NotRegisterKills_After_Victory" methodname="Should_NotRegisterKills_After_Victory" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="1575534333" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000085" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1178" name="Should_ResetExpToZero_After_Defeat" fullname="ExpPartidaLogicaTests.Should_ResetExpToZero_After_Defeat" methodname="Should_ResetExpToZero_After_Defeat" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="1782272343" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000089" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1172" name="Should_ResetExpToZero_After_Victory" fullname="ExpPartidaLogicaTests.Should_ResetExpToZero_After_Victory" methodname="Should_ResetExpToZero_After_Victory" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="789336339" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000115" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1177" name="Should_ReturnAccumulatedExp_On_Defeat_When_FlagIsTrue" fullname="ExpPartidaLogicaTests.Should_ReturnAccumulatedExp_On_Defeat_When_FlagIsTrue" methodname="Should_ReturnAccumulatedExp_On_Defeat_When_FlagIsTrue" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="2012599997" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000088" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1171" name="Should_ReturnAccumulatedExp_On_Victory" fullname="ExpPartidaLogicaTests.Should_ReturnAccumulatedExp_On_Victory" methodname="Should_ReturnAccumulatedExp_On_Victory" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="107182631" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000096" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1180" name="Should_ReturnZero_On_DuplicateDefeatCall" fullname="ExpPartidaLogicaTests.Should_ReturnZero_On_DuplicateDefeatCall" methodname="Should_ReturnZero_On_DuplicateDefeatCall" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="1455644253" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000100" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1175" name="Should_ReturnZero_On_DuplicateVictoryCall" fullname="ExpPartidaLogicaTests.Should_ReturnZero_On_DuplicateVictoryCall" methodname="Should_ReturnZero_On_DuplicateVictoryCall" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="493584269" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000083" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1176" name="Should_ReturnZeroExp_On_Defeat_When_FlagIsFalse" fullname="ExpPartidaLogicaTests.Should_ReturnZeroExp_On_Defeat_When_FlagIsFalse" methodname="Should_ReturnZeroExp_On_Defeat_When_FlagIsFalse" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="937984855" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000078" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1164" name="Should_StartWithZeroExp_WhenCreated" fullname="ExpPartidaLogicaTests.Should_StartWithZeroExp_WhenCreated" methodname="Should_StartWithZeroExp_WhenCreated" classname="ExpPartidaLogicaTests" runstate="Runnable" seed="1753600918" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000078" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1183" name="FaccaoProtecaoTests" fullname="FaccaoProtecaoTests" classname="FaccaoProtecaoTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.008810" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1189" name="AlvoInvalido_QuandoAlvoEhASiMesmo" fullname="FaccaoProtecaoTests.AlvoInvalido_QuandoAlvoEhASiMesmo" methodname="AlvoInvalido_QuandoAlvoEhASiMesmo" classname="FaccaoProtecaoTests" runstate="Runnable" seed="1001949884" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.001457" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1190" name="AlvoInvalido_QuandoAlvoEstaMorto" fullname="FaccaoProtecaoTests.AlvoInvalido_QuandoAlvoEstaMorto" methodname="AlvoInvalido_QuandoAlvoEstaMorto" classname="FaccaoProtecaoTests" runstate="Runnable" seed="1021974942" result="Failed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.002007" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[Unhandled log message: '[Error] Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently.'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+            <stack-trace><![CDATA[UnityEngine.Object:Destroy (UnityEngine.Object,single)
+UnidadeController:Morrer () (at Assets/Scripts/Core/UnidadeController.cs:171)
+UnidadeController:ReceberDanoSemProcs (int) (at Assets/Scripts/Core/UnidadeController.cs:135)
+FaccaoProtecaoTests:AlvoInvalido_QuandoAlvoEstaMorto () (at Assets/Tests/EditMode/FaccaoProtecaoTests.cs:103)
+System.Reflection.MethodBase:Invoke (object,object[])
+NUnit.Framework.Internal.Reflect:InvokeMethod (System.Reflection.MethodInfo,object,object[])
+NUnit.Framework.Internal.MethodWrapper:Invoke (object,object[])
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod (NUnit.Framework.Internal.ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:Execute (NUnit.Framework.Internal.ITestExecutionContext)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+]]></stack-trace>
+          </failure>
+          <output><![CDATA[Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently.
+]]></output>
+        </test-case>
+        <test-case id="1188" name="AlvoInvalido_QuandoAlvoNulo" fullname="FaccaoProtecaoTests.AlvoInvalido_QuandoAlvoNulo" methodname="AlvoInvalido_QuandoAlvoNulo" classname="FaccaoProtecaoTests" runstate="Runnable" seed="1744155973" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000228" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1185" name="AlvoInvalido_QuandoAmbosInimigo" fullname="FaccaoProtecaoTests.AlvoInvalido_QuandoAmbosInimigo" methodname="AlvoInvalido_QuandoAmbosInimigo" classname="FaccaoProtecaoTests" runstate="Runnable" seed="1391542772" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000227" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1184" name="AlvoInvalido_QuandoAmbosJogador" fullname="FaccaoProtecaoTests.AlvoInvalido_QuandoAmbosJogador" methodname="AlvoInvalido_QuandoAmbosJogador" classname="FaccaoProtecaoTests" runstate="Runnable" seed="109076502" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000220" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1187" name="AlvoValido_QuandoInimigoAtacaJogador" fullname="FaccaoProtecaoTests.AlvoValido_QuandoInimigoAtacaJogador" methodname="AlvoValido_QuandoInimigoAtacaJogador" classname="FaccaoProtecaoTests" runstate="Runnable" seed="417854390" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000215" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1186" name="AlvoValido_QuandoJogadorAtacaInimigo" fullname="FaccaoProtecaoTests.AlvoValido_QuandoJogadorAtacaInimigo" methodname="AlvoValido_QuandoJogadorAtacaInimigo" classname="FaccaoProtecaoTests" runstate="Runnable" seed="991782416" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000212" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1193" name="FaccaoForcadaParaInimigo_NaoAtacaOutroInimigo" fullname="FaccaoProtecaoTests.FaccaoForcadaParaInimigo_NaoAtacaOutroInimigo" methodname="FaccaoForcadaParaInimigo_NaoAtacaOutroInimigo" classname="FaccaoProtecaoTests" runstate="Runnable" seed="916033951" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000211" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1192" name="GoblinInimigo_AtacaJogador" fullname="FaccaoProtecaoTests.GoblinInimigo_AtacaJogador" methodname="GoblinInimigo_AtacaJogador" classname="FaccaoProtecaoTests" runstate="Runnable" seed="1111860533" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000234" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1191" name="GoblinJogador_NaoAtacaGoblinJogador" fullname="FaccaoProtecaoTests.GoblinJogador_NaoAtacaGoblinJogador" methodname="GoblinJogador_NaoAtacaGoblinJogador" classname="FaccaoProtecaoTests" runstate="Runnable" seed="982601141" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000322" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1194" name="IntervaloAtaqueUnidadeTests" fullname="IntervaloAtaqueUnidadeTests" classname="IntervaloAtaqueUnidadeTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.008380" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1200" name="Should_HaveIndependentIntervals_ForDifferentUnits" fullname="IntervaloAtaqueUnidadeTests.Should_HaveIndependentIntervals_ForDifferentUnits" methodname="Should_HaveIndependentIntervals_ForDifferentUnits" classname="IntervaloAtaqueUnidadeTests" runstate="Runnable" seed="444283988" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.001382" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1195" name="Should_HavePositiveInterval_ByDefault" fullname="IntervaloAtaqueUnidadeTests.Should_HavePositiveInterval_ByDefault" methodname="Should_HavePositiveInterval_ByDefault" classname="IntervaloAtaqueUnidadeTests" runstate="Runnable" seed="971064039" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000580" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1198" name="Should_ReturnConfiguredInterval_WhenSetTo2Seconds" fullname="IntervaloAtaqueUnidadeTests.Should_ReturnConfiguredInterval_WhenSetTo2Seconds" methodname="Should_ReturnConfiguredInterval_WhenSetTo2Seconds" classname="IntervaloAtaqueUnidadeTests" runstate="Runnable" seed="1975526803" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000236" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1199" name="Should_ReturnConfiguredInterval_WhenSetToHalfSecond" fullname="IntervaloAtaqueUnidadeTests.Should_ReturnConfiguredInterval_WhenSetToHalfSecond" methodname="Should_ReturnConfiguredInterval_WhenSetToHalfSecond" classname="IntervaloAtaqueUnidadeTests" runstate="Runnable" seed="1597447290" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000169" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1197" name="Should_ReturnMinimum_WhenIntervalIsNegative" fullname="IntervaloAtaqueUnidadeTests.Should_ReturnMinimum_WhenIntervalIsNegative" methodname="Should_ReturnMinimum_WhenIntervalIsNegative" classname="IntervaloAtaqueUnidadeTests" runstate="Runnable" seed="1211316370" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000226" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1196" name="Should_ReturnMinimum_WhenIntervalIsZero" fullname="IntervaloAtaqueUnidadeTests.Should_ReturnMinimum_WhenIntervalIsZero" methodname="Should_ReturnMinimum_WhenIntervalIsZero" classname="IntervaloAtaqueUnidadeTests" runstate="Runnable" seed="1255980316" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000160" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1201" name="MobControllerTests" fullname="MobControllerTests" classname="MobControllerTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.011614" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1203" name="Should_AllMobsBeInimigo" fullname="MobControllerTests.Should_AllMobsBeInimigo" methodname="Should_AllMobsBeInimigo" classname="MobControllerTests" runstate="Runnable" seed="1625866594" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.002709" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1202" name="Should_BeInimigo_WhenCreated" fullname="MobControllerTests.Should_BeInimigo_WhenCreated" methodname="Should_BeInimigo_WhenCreated" classname="MobControllerTests" runstate="Runnable" seed="1871591680" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000249" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1205" name="Should_Die_WhenDamageExceedsHealth" fullname="MobControllerTests.Should_Die_WhenDamageExceedsHealth" methodname="Should_Die_WhenDamageExceedsHealth" classname="MobControllerTests" runstate="Runnable" seed="225017964" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.001105" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Destroy may not be called from edit mode! Use DestroyImmediate instead.
+Destroying an object in edit mode destroys it permanently.
+]]></output>
+        </test-case>
+        <test-case id="1207" name="Should_DoubleAttack_WhenMultiplicadorIsTwo" fullname="MobControllerTests.Should_DoubleAttack_WhenMultiplicadorIsTwo" methodname="Should_DoubleAttack_WhenMultiplicadorIsTwo" classname="MobControllerTests" runstate="Runnable" seed="2119709373" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000440" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1208" name="Should_HaveIndependentDamage_ForDifferentMobs" fullname="MobControllerTests.Should_HaveIndependentDamage_ForDifferentMobs" methodname="Should_HaveIndependentDamage_ForDifferentMobs" classname="MobControllerTests" runstate="Runnable" seed="1384521822" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000336" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1206" name="Should_ReturnDanoBase_WhenMultiplicadorIsOne" fullname="MobControllerTests.Should_ReturnDanoBase_WhenMultiplicadorIsOne" methodname="Should_ReturnDanoBase_WhenMultiplicadorIsOne" classname="MobControllerTests" runstate="Runnable" seed="50922664" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000228" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1204" name="Should_StartAlive_WithFullHealth" fullname="MobControllerTests.Should_StartAlive_WithFullHealth" methodname="Should_StartAlive_WithFullHealth" classname="MobControllerTests" runstate="Runnable" seed="962962014" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000204" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1209" name="NivelRacaCalculadoraTests" fullname="NivelRacaCalculadoraTests" classname="NivelRacaCalculadoraTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.007330" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1222" name="Should_DecreaseExpRemaining_AsExpIncreases" fullname="NivelRacaCalculadoraTests.Should_DecreaseExpRemaining_AsExpIncreases" methodname="Should_DecreaseExpRemaining_AsExpIncreases" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="1193766184" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000146" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1216" name="Should_HaveStrictlyIncreasingThresholds_ForSuccessiveLevels" fullname="NivelRacaCalculadoraTests.Should_HaveStrictlyIncreasingThresholds_ForSuccessiveLevels" methodname="Should_HaveStrictlyIncreasingThresholds_ForSuccessiveLevels" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="465432681" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000145" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1219" name="Should_KeepProgressBetween0And1_ForAnyExp" fullname="NivelRacaCalculadoraTests.Should_KeepProgressBetween0And1_ForAnyExp" methodname="Should_KeepProgressBetween0And1_ForAnyExp" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="303082815" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000379" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1215" name="Should_NeverReturnLevelBelow1" fullname="NivelRacaCalculadoraTests.Should_NeverReturnLevelBelow1" methodname="Should_NeverReturnLevelBelow1" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="1245624191" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000071" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1213" name="Should_ReachLevel2_When_ExpIsExactlyAtThreshold" fullname="NivelRacaCalculadoraTests.Should_ReachLevel2_When_ExpIsExactlyAtThreshold" methodname="Should_ReachLevel2_When_ExpIsExactlyAtThreshold" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="1775019798" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000100" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1214" name="Should_ReachLevel3_When_ExpIsExactlyAtThreshold" fullname="NivelRacaCalculadoraTests.Should_ReachLevel3_When_ExpIsExactlyAtThreshold" methodname="Should_ReachLevel3_When_ExpIsExactlyAtThreshold" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="708267053" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000094" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1218" name="Should_ReturnCorrectAccumulatedExp_WhenPartiallyIntoLevel" fullname="NivelRacaCalculadoraTests.Should_ReturnCorrectAccumulatedExp_WhenPartiallyIntoLevel" methodname="Should_ReturnCorrectAccumulatedExp_WhenPartiallyIntoLevel" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="793156706" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000076" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1221" name="Should_ReturnExpRemaining_GreaterThanZero_AtLevelStart" fullname="NivelRacaCalculadoraTests.Should_ReturnExpRemaining_GreaterThanZero_AtLevelStart" methodname="Should_ReturnExpRemaining_GreaterThanZero_AtLevelStart" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="520197029" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000126" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1211" name="Should_ReturnLevel1_When_ExpIsNegative" fullname="NivelRacaCalculadoraTests.Should_ReturnLevel1_When_ExpIsNegative" methodname="Should_ReturnLevel1_When_ExpIsNegative" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="976708257" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000069" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1210" name="Should_ReturnLevel1_When_ExpIsZero" fullname="NivelRacaCalculadoraTests.Should_ReturnLevel1_When_ExpIsZero" methodname="Should_ReturnLevel1_When_ExpIsZero" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="1807791045" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000069" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1220" name="Should_ReturnProgressZero_When_AtExactLevelEntryThreshold" fullname="NivelRacaCalculadoraTests.Should_ReturnProgressZero_When_AtExactLevelEntryThreshold" methodname="Should_ReturnProgressZero_When_AtExactLevelEntryThreshold" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="292107108" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000087" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1217" name="Should_ReturnZeroAccumulatedExp_When_AtExactLevelThreshold" fullname="NivelRacaCalculadoraTests.Should_ReturnZeroAccumulatedExp_When_AtExactLevelThreshold" methodname="Should_ReturnZeroAccumulatedExp_When_AtExactLevelThreshold" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="381078241" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000084" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1212" name="Should_StayAtLevel1_When_ExpJustBelowLevel2Threshold" fullname="NivelRacaCalculadoraTests.Should_StayAtLevel1_When_ExpJustBelowLevel2Threshold" methodname="Should_StayAtLevel1_When_ExpJustBelowLevel2Threshold" classname="NivelRacaCalculadoraTests" runstate="Runnable" seed="1680355444" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000068" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1223" name="OuroLogicaTests" fullname="OuroLogicaTests" classname="OuroLogicaTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.008506" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1226" name="Should_ClampInitialValueToZero_When_NegativeProvided" fullname="OuroLogicaTests.Should_ClampInitialValueToZero_When_NegativeProvided" methodname="Should_ClampInitialValueToZero_When_NegativeProvided" classname="OuroLogicaTests" runstate="Runnable" seed="441323337" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000162" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1241" name="Should_ClampSetOuroToZero_When_NegativeValue" fullname="OuroLogicaTests.Should_ClampSetOuroToZero_When_NegativeValue" methodname="Should_ClampSetOuroToZero_When_NegativeValue" classname="OuroLogicaTests" runstate="Runnable" seed="886822752" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000136" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1233" name="Should_DecreasOuro_When_ValidAmountSpent" fullname="OuroLogicaTests.Should_DecreasOuro_When_ValidAmountSpent" methodname="Should_DecreasOuro_When_ValidAmountSpent" classname="OuroLogicaTests" runstate="Runnable" seed="692975510" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000141" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1231" name="Should_FireOnOuroAlterado_When_OuroAdded" fullname="OuroLogicaTests.Should_FireOnOuroAlterado_When_OuroAdded" methodname="Should_FireOnOuroAlterado_When_OuroAdded" classname="OuroLogicaTests" runstate="Runnable" seed="1342086703" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000239" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1238" name="Should_FireOnOuroAlterado_When_OuroSpent" fullname="OuroLogicaTests.Should_FireOnOuroAlterado_When_OuroSpent" methodname="Should_FireOnOuroAlterado_When_OuroSpent" classname="OuroLogicaTests" runstate="Runnable" seed="931376004" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000121" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1242" name="Should_FireOnOuroAlterado_When_SetOuroCalled" fullname="OuroLogicaTests.Should_FireOnOuroAlterado_When_SetOuroCalled" methodname="Should_FireOnOuroAlterado_When_SetOuroCalled" classname="OuroLogicaTests" runstate="Runnable" seed="1335685733" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000115" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1227" name="Should_IncreaseOuro_When_ValidAmountAdded" fullname="OuroLogicaTests.Should_IncreaseOuro_When_ValidAmountAdded" methodname="Should_IncreaseOuro_When_ValidAmountAdded" classname="OuroLogicaTests" runstate="Runnable" seed="1189157528" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000084" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1236" name="Should_NeverHaveNegativeOuro_After_FailedSpend" fullname="OuroLogicaTests.Should_NeverHaveNegativeOuro_After_FailedSpend" methodname="Should_NeverHaveNegativeOuro_After_FailedSpend" classname="OuroLogicaTests" runstate="Runnable" seed="760372135" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000081" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1230" name="Should_NotAddOuro_When_AmountIsNegative" fullname="OuroLogicaTests.Should_NotAddOuro_When_AmountIsNegative" methodname="Should_NotAddOuro_When_AmountIsNegative" classname="OuroLogicaTests" runstate="Runnable" seed="861789335" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000094" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1229" name="Should_NotAddOuro_When_AmountIsZero" fullname="OuroLogicaTests.Should_NotAddOuro_When_AmountIsZero" methodname="Should_NotAddOuro_When_AmountIsZero" classname="OuroLogicaTests" runstate="Runnable" seed="1929856617" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000092" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1232" name="Should_NotFireOnOuroAlterado_When_InvalidAmountAdded" fullname="OuroLogicaTests.Should_NotFireOnOuroAlterado_When_InvalidAmountAdded" methodname="Should_NotFireOnOuroAlterado_When_InvalidAmountAdded" classname="OuroLogicaTests" runstate="Runnable" seed="1466150912" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000101" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1239" name="Should_NotFireOnOuroAlterado_When_SpendFails" fullname="OuroLogicaTests.Should_NotFireOnOuroAlterado_When_SpendFails" methodname="Should_NotFireOnOuroAlterado_When_SpendFails" classname="OuroLogicaTests" runstate="Runnable" seed="2083545901" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000096" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1228" name="Should_ReturnAmountAdded_When_AdicionarOuroCalled" fullname="OuroLogicaTests.Should_ReturnAmountAdded_When_AdicionarOuroCalled" methodname="Should_ReturnAmountAdded_When_AdicionarOuroCalled" classname="OuroLogicaTests" runstate="Runnable" seed="846320166" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000075" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1235" name="Should_ReturnFalse_When_InsufficientFunds" fullname="OuroLogicaTests.Should_ReturnFalse_When_InsufficientFunds" methodname="Should_ReturnFalse_When_InsufficientFunds" classname="OuroLogicaTests" runstate="Runnable" seed="1082562969" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000105" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1237" name="Should_ReturnFalse_When_SpendAmountIsZeroOrNegative" fullname="OuroLogicaTests.Should_ReturnFalse_When_SpendAmountIsZeroOrNegative" methodname="Should_ReturnFalse_When_SpendAmountIsZeroOrNegative" classname="OuroLogicaTests" runstate="Runnable" seed="1098644712" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000093" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1240" name="Should_SetOuroToExactValue" fullname="OuroLogicaTests.Should_SetOuroToExactValue" methodname="Should_SetOuroToExactValue" classname="OuroLogicaTests" runstate="Runnable" seed="72634525" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000080" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1234" name="Should_SpendExactBalance_When_AmountEqualsBalance" fullname="OuroLogicaTests.Should_SpendExactBalance_When_AmountEqualsBalance" methodname="Should_SpendExactBalance_When_AmountEqualsBalance" classname="OuroLogicaTests" runstate="Runnable" seed="2089613807" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000084" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1225" name="Should_StartWithProvidedAmount_When_InitialValueGiven" fullname="OuroLogicaTests.Should_StartWithProvidedAmount_When_InitialValueGiven" methodname="Should_StartWithProvidedAmount_When_InitialValueGiven" classname="OuroLogicaTests" runstate="Runnable" seed="1043931057" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000078" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1224" name="Should_StartWithZeroOuro_When_NoneProvided" fullname="OuroLogicaTests.Should_StartWithZeroOuro_When_NoneProvided" methodname="Should_StartWithZeroOuro_When_NoneProvided" classname="OuroLogicaTests" runstate="Runnable" seed="1159367766" result="Passed" start-time="2026-04-20 02:20:23Z" end-time="2026-04-20 02:20:23Z" duration="0.000078" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Jonas/AppData/LocalLow/DefaultCompany/TD\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
