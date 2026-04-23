@@ -18,6 +18,8 @@ public class BandeiraFaseController : MonoBehaviour
     [SerializeField] private string faseId;
     [SerializeField] private string nomeCena = "Mapa_1";
     [SerializeField] private string fasePreRequisito;
+    [SerializeField] private int mundoId = 1;
+    [SerializeField] private int indiceFase = 1;
 
     [Header("Bandeiras por Raça")]
     [SerializeField] private Sprite bandeiraGoblin;
@@ -39,6 +41,11 @@ public class BandeiraFaseController : MonoBehaviour
 
     // Injetável em testes para interceptar o carregamento de cena
     public System.Action<string> CarregarCena;
+
+    public string FaseId => faseId;
+    public string NomeCena => nomeCena;
+    public int MundoId => mundoId;
+    public int IndiceFase => indiceFase;
 
     private SpriteRenderer sr;
     private Collider2D col;

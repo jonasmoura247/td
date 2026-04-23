@@ -17,3 +17,4 @@ MonoBehaviour:
   descricao: 
   icone: {fileID: -1861371017149633186, guid: be4823580999d124c9b1cc0a4e675911, type: 3}
   prefabEfeitoPartida: {fileID: 7829567450040073138, guid: cdbda5e8eabb5ec4e8139e5d54b0dabf, type: 3}
+  raridade: 1

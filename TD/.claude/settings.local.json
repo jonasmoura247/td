@@ -13,7 +13,9 @@
       "Bash(xargs wc *)",
       "Bash(grep -E \"\\\\.cs$\")",
       "Bash(grep -B1 \"m_Name: Bandeira_1$\" \"C:/Users/Jonas/Desktop/TD/td/TD/Assets/Scenes/Mapas/Mapamundo_1/Mapa_Natural.unity\")",
-      "Bash(grep -A5 \"m_Name: Bandeira_1$\" \"C:/Users/Jonas/Desktop/TD/td/TD/Assets/Scenes/Mapas/Mapamundo_2/Mapa_Gelo.unity\")"
+      "Bash(grep -A5 \"m_Name: Bandeira_1$\" \"C:/Users/Jonas/Desktop/TD/td/TD/Assets/Scenes/Mapas/Mapamundo_2/Mapa_Gelo.unity\")",
+      "Read(//c/Users/Jonas/Desktop/TD/td/**)",
+      "Bash(dotnet build *)"
     ]
   }
 }

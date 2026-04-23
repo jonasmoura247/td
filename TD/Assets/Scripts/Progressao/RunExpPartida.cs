@@ -50,6 +50,7 @@ public class RunExpPartida : MonoBehaviour
         int exp = Logica.ConcluirComVitoria();
         AplicarExpAoPerfilPermanente(exp);
         RegistrarVitoriaFaseAtual();
+        HeroisManager.Instance?.AvançarFase();
         DispararHooksVitoria();
     }
 

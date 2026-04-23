@@ -18,3 +18,4 @@ MonoBehaviour:
     durante o tempo de espera entre ondas."
   icone: {fileID: 6498734881137776803, guid: 639d3cba5c8a77d42a8ce5dd89a36309, type: 3}
   prefabEfeitoPartida: {fileID: 8454683610165025286, guid: 160f79cbc36cea9459209c8a5a4d8aff, type: 3}
+  raridade: 2

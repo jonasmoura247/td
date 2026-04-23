@@ -13,6 +13,7 @@ public class BotaoFaseController : MonoBehaviour
     [SerializeField] private string faseId;
     [SerializeField] private string nomeCena = "Mapa_1";
     [SerializeField] private string fasePreRequisito;
+    [SerializeField] private int mundoId = 1;
     [SerializeField] private int numeroDaFase = 1;
 
     [Header("Visual")]
@@ -22,6 +23,11 @@ public class BotaoFaseController : MonoBehaviour
 
     private Button botao;
     private Image imagem;
+
+    public int MundoId => mundoId;
+    public int NumeroDaFase => numeroDaFase;
+    public string NomeCena => nomeCena;
+    public string FaseId => faseId;
 
     private void Start()
     {

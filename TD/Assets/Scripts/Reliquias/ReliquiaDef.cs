@@ -9,4 +9,5 @@ public class ReliquiaDef : ScriptableObject
     public string descricao;
     public Sprite icone;
     public UnityEngine.Object prefabEfeitoPartida;
+    public RaridadeReliquia raridade = RaridadeReliquia.Comum;
 }

@@ -69,6 +69,12 @@ public class DadosSlotSave
 
     public ProgressaoFases progressaoFases = new ProgressaoFases();
 
+    /// <summary>Estado dos eventos RNG da run atual (tendas, relíquias, heróis). Impede re-rolls via restart.</summary>
+    public EstadoEventosRun estadoEventos = new EstadoEventosRun();
+
+    /// <summary>Contratos de heróis ativos (máx 3). Cada contrato tem duração em fases.</summary>
+    public List<ContratoHeroi> contratosHerois = new List<ContratoHeroi>();
+
     public DadosSlotSave()
     {
         indiceSlot = 0;
@@ -82,6 +88,8 @@ public class DadosSlotSave
         talentos = new DadosTalentos();
         bestiario = new DadosBestiario();
         progressaoFases = new ProgressaoFases();
+        estadoEventos = new EstadoEventosRun();
+        contratosHerois = new List<ContratoHeroi>();
     }
 
     public DadosSlotSave(int slot, TipoRaca racaEscolhida, GeneroChefe genero)
@@ -103,6 +111,8 @@ public class DadosSlotSave
         talentos = new DadosTalentos();
         bestiario = new DadosBestiario();
         progressaoFases = new ProgressaoFases();
+        estadoEventos = new EstadoEventosRun();
+        contratosHerois = new List<ContratoHeroi>();
     }
 
     public void NormalizarProgressaoFases()
@@ -110,6 +120,15 @@ public class DadosSlotSave
         if (progressaoFases == null)
             progressaoFases = new ProgressaoFases();
         progressaoFases.Normalizar();
+    }
+
+    public void NormalizarEstadoEventos()
+    {
+        if (estadoEventos == null)
+            estadoEventos = new EstadoEventosRun();
+        estadoEventos.Normalizar();
+        if (contratosHerois == null)
+            contratosHerois = new List<ContratoHeroi>();
     }
 
     public void NormalizarBestiario()

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup Tendas de Teste</title>
+  <style>
+    :root {
+      --bg: #10141c;
+      --card: #171d28;
+      --line: #293345;
+      --text: #e7edf7;
+      --muted: #9fb0c7;
+      --green: #3ddc97;
+      --blue: #5cbcff;
+      --yellow: #ffd166;
+      --red: #ff7b7b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: linear-gradient(180deg, #0d1118, #111827);
+      color: var(--text);
+      font: 16px/1.55 "Segoe UI", sans-serif;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .hero, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    h1, h2, h3 { margin-top: 0; }
+    h1 { font-size: 30px; }
+    h2 { font-size: 22px; color: var(--blue); }
+    h3 { font-size: 18px; color: var(--yellow); }
+    p, li { color: var(--text); }
+    .muted { color: var(--muted); }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .ok { color: var(--green); }
+    .warn { color: var(--yellow); }
+    .danger { color: var(--red); }
+    code {
+      background: #0d1320;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 2px 6px;
+      color: var(--blue);
+      font-family: Consolas, monospace;
+    }
+    ul, ol { padding-left: 22px; }
+    .box {
+      background: #101724;
+      border-left: 4px solid var(--blue);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Setup de Tendas de Teste no Unity</h1>
+      <p class="muted">Guia prático para deixar o fluxo funcional com quadrados temporários, clique no mapa, painel de tenda e escolhas persistidas.</p>
+      <div>
+        <span class="tag">Tendas</span>
+        <span class="tag">Heróis</span>
+        <span class="tag">Relíquias</span>
+        <span class="tag">Teste sem sprite final</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>O que já foi preparado no código</h2>
+      <ul>
+        <li>As tendas agora podem ser geradas e persistidas por seed no <code>EstadoEventosRun</code>.</li>
+        <li>As ofertas de relíquias e heróis ficam fixas depois de geradas.</li>
+        <li>Foi criado um bootstrap para spawnar um marcador de tenda ao lado da próxima fase disponível.</li>
+        <li>O painel de tenda aceita botões de teste e já processa contratar herói, renovar e pegar relíquia.</li>
+        <li>Os contratos dos heróis agora avançam ao vencer a fase.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Arquivos principais para usar</h2>
+      <div class="grid">
+        <div>
+          <h3>Mapa</h3>
+          <ul>
+            <li><code>Assets/Scripts/Tendas/TendaMapaBootstrap.cs</code></li>
+            <li><code>Assets/Scripts/Tendas/TendaMarcadorMapa.cs</code></li>
+            <li><code>Assets/Scripts/Fases/BandeiraFaseController.cs</code></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Painel</h3>
+          <ul>
+            <li><code>Assets/Scripts/UI/Tenda/PainelTendaController.cs</code></li>
+            <li><code>Assets/Scripts/UI/Tenda/TendaOpcaoBotaoController.cs</code></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Lógica</h3>
+          <ul>
+            <li><code>Assets/Scripts/Tendas/SistemaTendasManager.cs</code></li>
+            <li><code>Assets/Scripts/Reliquias/GeradorReliquiasTenda.cs</code></li>
+            <li><code>Assets/Scripts/Herois/GeradorHeroisTenda.cs</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Passo 1: configurar as bandeiras de fase</h2>
+      <ol>
+        <li>Abra uma cena de mapa mundo, por exemplo <code>Assets/Scenes/Mapas/Mapamundo_1/Mapa_Natural.unity</code>.</li>
+        <li>Selecione cada objeto com <code>BandeiraFaseController</code>.</li>
+        <li>No Inspector, preencha os novos campos:
+          <ul>
+            <li><code>Mundo Id</code>: número do mapa mundo. Exemplo: Natural = 1, Gelo = 2, Magma = 3.</li>
+            <li><code>Indice Fase</code>: ordem da fase dentro daquele mapa.</li>
+          </ul>
+        </li>
+        <li>Faça isso pelo menos na fase disponível atual, porque o bootstrap usa a próxima fase disponível para decidir se mostra a tenda.</li>
+      </ol>
+      <div class="box">
+        Se uma bandeira estiver sem <code>Mundo Id</code> e <code>Indice Fase</code> coerentes, a tenda pode aparecer associada à fase errada.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Passo 2: garantir managers persistentes</h2>
+      <ol>
+        <li>Abra cada lobby principal que o jogador usa para entrar no mapa:
+          <ul>
+            <li><code>LobbyGoblin</code></li>
+            <li><code>LobbyElfo</code></li>
+            <li><code>LobbyAnoes</code></li>
+            <li><code>LobbyHumano</code></li>
+          </ul>
+        </li>
+        <li>Garanta um objeto <code>HeroisManager</code> com o campo <code>Heroi Database</code> apontando para <code>Assets/Data/Herois/HeroiDatabase.asset</code>.</li>
+        <li>Garanta um objeto <code>SistemaTendasManager</code> na cena.</li>
+        <li>Salve a cena.</li>
+      </ol>
+      <p class="muted">Esses dois usam <code>DontDestroyOnLoad</code>, então basta entrar normalmente pelo lobby.</p>
+    </section>
+
+    <section class="card">
+      <h2>Passo 3: criar o marcador de tenda como quadrado de teste</h2>
+      <ol>
+        <li>Na Hierarchy, use <code>GameObject → 2D Object → Sprites → Square</code>.</li>
+        <li>Renomeie para <code>TendaMarcadorTeste</code>.</li>
+        <li>Adicione o componente <code>TendaMarcadorMapa</code>.</li>
+        <li>Confirme que ele tem um <code>Collider2D</code>. Se não tiver, adicione um <code>BoxCollider2D</code>.</li>
+        <li>No <code>SpriteRenderer</code>, mude a cor para algo bem visível, por exemplo laranja.</li>
+        <li>Ajuste a escala para algo como <code>(0.5, 0.5, 1)</code>.</li>
+        <li>Arraste esse objeto para uma pasta de prefabs, por exemplo <code>Assets/Prefabs/Tendas/</code>.</li>
+      </ol>
+      <div class="box">
+        Esse quadrado será o marcador clicável da tenda. Não precisa de sprite final agora.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Passo 4: criar um botão de opção simples para o painel</h2>
+      <ol>
+        <li>No Canvas, crie um <code>UI → Button - TextMeshPro</code>.</li>
+        <li>Renomeie para <code>TendaOpcaoBotao</code>.</li>
+        <li>No objeto raiz do botão, adicione o script <code>TendaOpcaoBotaoController</code>.</li>
+        <li>No Inspector do script:
+          <ul>
+            <li><code>Botao</code> = o componente Button do próprio objeto.</li>
+            <li><code>Texto Tmp</code> = o texto filho do botão.</li>
+          </ul>
+        </li>
+        <li>Arraste esse botão para virar prefab, por exemplo em <code>Assets/Prefabs/UI/Tenda/</code>.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Passo 5: montar o painel da tenda</h2>
+      <ol>
+        <li>No Canvas do mapa mundo, crie um painel raiz chamado <code>PainelTenda</code>.</li>
+        <li>Deixe esse painel desativado no Inspector.</li>
+        <li>Dentro dele, crie:
+          <ul>
+            <li>Um texto <code>Titulo</code></li>
+            <li>Um texto <code>Descricao</code></li>
+            <li>Um container <code>SecaoReliquias</code></li>
+            <li>Um child dentro dele chamado <code>ContentReliquias</code></li>
+            <li>Um container <code>SecaoHerois</code></li>
+            <li>Um child dentro dele chamado <code>ContentHerois</code></li>
+            <li>Um botão <code>Fechar</code></li>
+          </ul>
+        </li>
+        <li>Nos dois containers de content, adicione <code>Vertical Layout Group</code>.</li>
+        <li>Crie um objeto vazio chamado <code>PainelTendaController</code> e adicione o script <code>PainelTendaController</code>.</li>
+        <li>Preencha no Inspector:
+          <ul>
+            <li><code>Painel</code> = objeto <code>PainelTenda</code></li>
+            <li><code>Texto Titulo</code> = texto do título</li>
+            <li><code>Texto Descricao</code> = texto da descrição</li>
+            <li><code>Secao Reliquias</code> = objeto da seção</li>
+            <li><code>Container Reliquias</code> = <code>ContentReliquias</code></li>
+            <li><code>Prefab Botao Opcao</code> = prefab <code>TendaOpcaoBotao</code></li>
+            <li><code>Secao Herois</code> = objeto da seção de heróis</li>
+            <li><code>Container Herois</code> = <code>ContentHerois</code></li>
+            <li><code>Reliquia Database</code> = seu asset de banco de relíquias</li>
+            <li><code>Heroi Database</code> = <code>Assets/Data/Herois/HeroiDatabase.asset</code></li>
+          </ul>
+        </li>
+        <li>No botão <code>Fechar</code>, ligue o <code>OnClick()</code> para <code>PainelTendaController → FecharTenda()</code>.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Passo 6: adicionar o bootstrap no mapa mundo</h2>
+      <ol>
+        <li>Na cena do mapa mundo, crie um objeto vazio chamado <code>TendaMapaBootstrap</code>.</li>
+        <li>Adicione o componente <code>TendaMapaBootstrap</code>.</li>
+        <li>Preencha no Inspector:
+          <ul>
+            <li><code>Painel Tenda</code> = objeto com o script <code>PainelTendaController</code></li>
+            <li><code>Reliquia Database</code> = seu banco de relíquias</li>
+            <li><code>Heroi Database</code> = <code>HeroiDatabase.asset</code></li>
+            <li><code>Prefab Marcador Tenda</code> = prefab <code>TendaMarcadorTeste</code></li>
+            <li><code>Offset Marcador</code> = algo como <code>(1.5, 0.75, 0)</code></li>
+          </ul>
+        </li>
+      </ol>
+      <div class="box">
+        Quando a cena do mapa abrir, esse bootstrap vai procurar a próxima fase disponível e, se a seed disser que existe tenda, ele instancia o quadrado ao lado da bandeira.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Passo 7: validar o herói Pirata</h2>
+      <ol>
+        <li>Abra <code>Assets/Data/Herois/HeroiDef_Pirata.asset</code>.</li>
+        <li>Confira se o campo <code>Prefab</code> está apontando para <code>Assets/Prefabs/Herois/HeroiPirata.prefab</code>.</li>
+        <li>Se estiver vazio no Inspector, arraste manualmente o prefab para o campo.</li>
+      </ol>
+      <p class="muted">Eu já deixei a referência preparada no asset, mas vale validar no Unity porque prefab/fileID às vezes muda com reimport.</p>
+    </section>
+
+    <section class="card">
+      <h2>Como testar</h2>
+      <ol>
+        <li>Entre no jogo pelo fluxo normal de slot e lobby.</li>
+        <li>Abra um mapa mundo.</li>
+        <li>Veja se um quadrado de tenda apareceu perto da próxima fase disponível.</li>
+        <li>Clique no quadrado.</li>
+        <li>Escolha uma relíquia, um herói ou ambos, dependendo do tipo de tenda.</li>
+        <li>Feche o painel.</li>
+        <li>Reabra o mapa ou reinicie o jogo e confirme que as opções continuam iguais para aquela fase.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Checklist final</h2>
+      <ul>
+        <li><span class="ok">[OK]</span> Cada <code>BandeiraFaseController</code> relevante tem <code>Mundo Id</code> e <code>Indice Fase</code>.</li>
+        <li><span class="ok">[OK]</span> Existe <code>SistemaTendasManager</code> no fluxo de entrada.</li>
+        <li><span class="ok">[OK]</span> Existe <code>HeroisManager</code> com <code>HeroiDatabase</code>.</li>
+        <li><span class="ok">[OK]</span> O mapa mundo tem <code>TendaMapaBootstrap</code>.</li>
+        <li><span class="ok">[OK]</span> O prefab do marcador da tenda é um quadrado clicável.</li>
+        <li><span class="ok">[OK]</span> O painel tem botão de fechar e prefab de opção configurado.</li>
+        <li><span class="warn">[Atenção]</span> Rode o Test Runner do Unity para validar EditMode após o refresh dos scripts.</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

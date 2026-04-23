@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup Sistemas — Planos 1-7 · Tower Defense</title>
+  <style>
+    :root {
+      --bg:        #0f1117;
+      --surface:   #1a1d27;
+      --border:    #2a2d3e;
+      --accent:    #6c63ff;
+      --green:     #22c55e;
+      --yellow:    #eab308;
+      --red:       #ef4444;
+      --blue:      #38bdf8;
+      --orange:    #f97316;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --code-bg:   #0d1117;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 2.5rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .4rem;
+    }
+    header p { color: var(--muted); font-size: .95rem; }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      padding: .15rem .55rem;
+      border-radius: 99px;
+      vertical-align: middle;
+      margin-left: .4rem;
+    }
+    .badge-auto   { background: #14532d; color: var(--green); }
+    .badge-manual { background: #422006; color: var(--orange); }
+    .badge-test   { background: #1e1b4b; color: #a5b4fc; }
+
+    /* ── Seção ── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-number {
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .9rem; flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .section-body { padding: 1.2rem 1.4rem; }
+
+    /* ── Steps ── */
+    ol { padding-left: 1.2rem; }
+    ol li { margin-bottom: .55rem; }
+
+    /* ── Code ── */
+    code {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: .85em;
+      background: var(--code-bg);
+      color: var(--blue);
+      padding: .15em .4em;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+    }
+
+    .cmd {
+      display: block;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .75rem 1rem;
+      margin: .6rem 0;
+      font-family: monospace;
+      font-size: .88rem;
+      color: var(--green);
+    }
+    .cmd::before { content: "▶  "; color: var(--muted); }
+
+    /* ── Info box ── */
+    .info {
+      background: #0c1a2e;
+      border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: .75rem 1rem;
+      margin: .75rem 0;
+      font-size: .9rem;
+      color: #93c5fd;
+    }
+
+    .warn {
+      background: #1c1507;
+      border-left: 3px solid var(--yellow);
+      border-radius: 0 8px 8px 0;
+      padding: .75rem 1rem;
+      margin: .75rem 0;
+      font-size: .9rem;
+      color: #fde68a;
+    }
+
+    /* ── Tabela de componentes ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      margin: .75rem 0;
+    }
+    th {
+      background: #12151f;
+      color: var(--muted);
+      font-weight: 600;
+      text-align: left;
+      padding: .55rem .8rem;
+      border: 1px solid var(--border);
+    }
+    td {
+      padding: .5rem .8rem;
+      border: 1px solid var(--border);
+    }
+    tr:hover td { background: #1f2233; }
+
+    /* ── Checklist final ── */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .92rem;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check { color: var(--muted); font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .check.auto { color: var(--green); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    h3 { font-size: .95rem; color: var(--muted); margin: 1rem 0 .4rem; text-transform: uppercase; letter-spacing: .05em; }
+
+    .tag {
+      display: inline-block;
+      background: #1e1b4b;
+      color: #c4b5fd;
+      font-size: .75rem;
+      padding: .1rem .4rem;
+      border-radius: 4px;
+      margin: .1rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Setup · Sistemas Planos 1–7</h1>
+    <p>Tower Defense · Branch <code>Develop/Jonas/AtkEspantalho</code></p>
+  </header>
+
+  <!-- ── Passo 0: Script automático ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">0</div>
+      <div class="section-title">Rodar o script automático <span class="badge badge-auto">Automático</span></div>
+    </div>
+    <div class="section-body">
+      <p>No Unity, acesse o menu:</p>
+      <div class="cmd">TD → Setup Sistemas (Planos 1-7)</div>
+      <p>O script vai executar automaticamente:</p>
+      <ul style="margin: .6rem 0 0 1.2rem;">
+        <li>Criar pastas <code>Assets/Data/Herois</code>, <code>Assets/Prefabs/Herois</code>, <code>Assets/Prefabs/UI/Herois</code></li>
+        <li>Criar <code>HeroiDef_Pirata.asset</code> com raridade Azul e id <code>heroi_pirata</code></li>
+        <li>Criar <code>HeroiDatabase.asset</code> já com o Pirata cadastrado</li>
+        <li>Atualizar raridades das 3 relíquias existentes (Olho=Incomum, Bússola=Raro, Carvão=Comum)</li>
+        <li>Fazer ping no HeroiDatabase no Project panel</li>
+      </ul>
+      <div class="info">Verifique o Console para confirmar que tudo foi criado sem erros antes de continuar.</div>
+    </div>
+  </div>
+
+  <!-- ── Passo 1: Compilação ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div class="section-title">Aguardar compilação <span class="badge badge-auto">Automático</span></div>
+    </div>
+    <div class="section-body">
+      <p>Ao abrir o Unity após o pull/save, ele compila todos os novos scripts. Aguarde a barra de progresso no canto inferior direito desaparecer e verifique que não há erros em vermelho no Console.</p>
+      <div class="warn">Se houver erros de compilação, resolva antes de continuar. Erros impedem qualquer operação de editor.</div>
+    </div>
+  </div>
+
+  <!-- ── Passo 2: Prefab do Pirata ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div class="section-title">Criar o Prefab do Herói Pirata <span class="badge badge-manual">Manual</span></div>
+    </div>
+    <div class="section-body">
+      <p>Na <strong>Hierarchy</strong>, clique direito → <strong>Create Empty</strong> → nomeie <code>HeroiPirata</code>.</p>
+      <p>Adicione os componentes na ordem:</p>
+
+      <table>
+        <tr>
+          <th>Componente</th>
+          <th>Configuração</th>
+        </tr>
+        <tr><td><code>HeroiPirataController</code></td><td>Vida Máxima: <code>150</code> · Dano Base: <code>20</code> · Facção: <code>Jogador</code></td></tr>
+        <tr><td><code>MovimentoUnidade</code></td><td>Velocidade padrão</td></tr>
+        <tr><td><code>SistemaIAUnidade</code></td><td>Padrão</td></tr>
+        <tr><td><code>AnimacaoSpritePorVelocidade2D</code></td><td>Arrastar sprites de <code>Assets/Sprites/Herois/Pirate/</code></td></tr>
+        <tr><td><code>Rigidbody 2D</code></td><td>Body Type: <code>Dynamic</code> · Gravity Scale: <code>0</code> · Freeze Rotation Z: ✓</td></tr>
+        <tr><td><code>Capsule Collider 2D</code></td><td>Ajustar tamanho ao sprite</td></tr>
+      </table>
+
+      <h3>Configurar Animação</h3>
+      <p>No componente <code>AnimacaoSpritePorVelocidade2D</code>:</p>
+      <ul style="margin: .4rem 0 0 1.2rem;">
+        <li>Arraste os sprites de corrida horizontal em <strong>Sprites Andar</strong></li>
+        <li>Defina o sprite parado em <strong>Sprite Parado</strong></li>
+        <li>Ajuste <strong>Tempo Por Frame</strong> (~0.1s)</li>
+      </ul>
+
+      <h3>Salvar como prefab</h3>
+      <p>Arraste o GameObject da Hierarchy para <code>Assets/Prefabs/Herois/</code>.</p>
+      <p>Depois abra <code>Assets/Data/Herois/HeroiDef_Pirata</code> no Inspector e arraste o prefab no campo <strong>Prefab</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ── Passo 3: HeroisManager ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div class="section-title">Configurar HeroisManager nas cenas de Lobby <span class="badge badge-manual">Manual</span></div>
+    </div>
+    <div class="section-body">
+      <p>Repita para cada cena de Lobby (<code>LobbyGoblin</code>, <code>LobbyElfo</code>, <code>LobbyAnoes</code>, <code>LobbyHumano</code>):</p>
+      <ol>
+        <li>Abra a cena no Unity</li>
+        <li>Encontre (ou crie) o GameObject <code>HeroisManager</code> na Hierarchy</li>
+        <li>No Inspector, arraste <code>Assets/Data/Herois/HeroiDatabase</code> no campo <strong>Heroi Database</strong></li>
+        <li>Salve a cena (<kbd>Ctrl+S</kbd>)</li>
+      </ol>
+      <div class="info">O HeroisManager já usa <code>DontDestroyOnLoad</code>, então basta configurar em uma cena se ele for persistente.</div>
+    </div>
+  </div>
+
+  <!-- ── Passo 4: SistemaTendasManager ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div class="section-title">Adicionar SistemaTendasManager <span class="badge badge-manual">Manual</span></div>
+    </div>
+    <div class="section-body">
+      <p>Em cada cena de Lobby (ou no GameManager persistente):</p>
+      <ol>
+        <li>Hierarchy → <strong>Create Empty</strong> → nomeie <code>SistemaTendasManager</code></li>
+        <li>Add Component → <code>Sistema Tendas Manager</code></li>
+        <li>Salve a cena</li>
+      </ol>
+      <div class="warn">Assim como o HeroisManager, usa DontDestroyOnLoad — coloque só em uma cena se for persistente.</div>
+    </div>
+  </div>
+
+  <!-- ── Passo 5: UI de Heróis ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div class="section-title">Montar a UI de Heróis no Lobby <span class="badge badge-manual">Manual</span></div>
+    </div>
+    <div class="section-body">
+
+      <h3>5.1 — Criar o prefab de item de herói</h3>
+      <ol>
+        <li>Hierarchy → Create Empty → nomeie <code>HeroiItem</code></li>
+        <li>Add Component → <code>Heroi Item Controller</code></li>
+        <li>Adicione filhos (UI → Text):
+          <ul style="margin: .3rem 0 0 1.2rem;">
+            <li><code>TextoNome</code> — arraste no campo <strong>Texto Nome</strong></li>
+            <li><code>TextoFases</code> — arraste no campo <strong>Texto Fases</strong></li>
+          </ul>
+        </li>
+        <li>Adicione filho (UI → Image) → nomeie <code>IconeAlerta</code> — desative-o no Inspector — arraste no campo <strong>Icone Alerta</strong></li>
+        <li>Arraste o GameObject para <code>Assets/Prefabs/UI/Herois/</code> para criar o prefab <code>HeroiItem</code></li>
+      </ol>
+
+      <h3>5.2 — Montar o painel no Canvas do Lobby</h3>
+      <ol>
+        <li>No Canvas existente, crie um <strong>Button</strong> → texto: <code>Heróis</code></li>
+        <li>Crie um <strong>Panel</strong> filho do Canvas → nomeie <code>PainelHerois</code> → <strong>desative</strong> no Inspector</li>
+        <li>Dentro do PainelHerois: <strong>UI → Scroll View</strong></li>
+        <li>No ScrollView → <code>Content</code>: Add Component → <strong>Vertical Layout Group</strong></li>
+        <li>Crie um GameObject vazio no Canvas → Add Component → <code>Painel Herois Controller</code></li>
+        <li>Configure no Inspector:
+          <table style="margin-top: .4rem;">
+            <tr><th>Campo</th><th>O que arrastar</th></tr>
+            <tr><td>Painel</td><td>O GameObject <code>PainelHerois</code></td></tr>
+            <tr><td>Container Itens</td><td>O <code>Content</code> do Scroll View</td></tr>
+            <tr><td>Prefab Item Heroi</td><td>O prefab <code>HeroiItem</code></td></tr>
+          </table>
+        </li>
+        <li>No <strong>Button Heróis</strong> → OnClick() → arraste o objeto com <code>PainelHeroisController</code> → selecione <code>AbrirPainel()</code></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ── Passo 6: Testes ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div class="section-title">Rodar os testes <span class="badge badge-test">Testes</span></div>
+    </div>
+    <div class="section-body">
+      <p>Abra <strong>Window → General → Test Runner → EditMode</strong> → <strong>Run All</strong>.</p>
+
+      <table>
+        <tr><th>Suite de testes</th><th>Qtd</th><th>O que garante</th></tr>
+        <tr><td><code>RNGDeterministicoTests</code></td><td>8</td><td>Mesma seed → mesma sequência. Range correto.</td></tr>
+        <tr><td><code>EstadoEventosRunTests</code></td><td>12</td><td>Reutilização anti-exploit. Criação e chave correta.</td></tr>
+        <tr><td><code>SistemaTendasLogicaTests</code></td><td>9</td><td>Pity, chance base, tipo de tenda, determinismo.</td></tr>
+        <tr><td><code>GeradorReliquiasTendaTests</code></td><td>10</td><td>Sem possuídas, sem duplicatas, 3 opções, pesos.</td></tr>
+        <tr><td><code>ContratoHeroiTests</code></td><td>9</td><td>Penúltima fase, expiração, custo crescente.</td></tr>
+        <tr><td><code>HeroiDatabaseTests</code></td><td>8</td><td>Lookup por ID, null safety, Pirata=Azul.</td></tr>
+        <tr><td><code>DadosSlotSaveAntiExploitTests</code></td><td>9</td><td>estadoEventos e contratos inicializados/normalizados.</td></tr>
+      </table>
+
+      <div class="info">Total: <strong>65 testes</strong>. Todos devem aparecer em verde.</div>
+    </div>
+  </div>
+
+  <!-- ── Checklist final ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number" style="background:var(--green)">✓</div>
+      <div class="section-title">Checklist final</div>
+    </div>
+    <div class="section-body">
+      <ul class="checklist">
+        <li><span class="check auto">◉</span><div><strong>Script automático rodado</strong> — <code>TD → Setup Sistemas (Planos 1-7)</code> <span class="badge badge-auto">Auto</span></div></li>
+        <li><span class="check auto">◉</span><div><strong>HeroiDef_Pirata criado</strong> — em <code>Assets/Data/Herois/</code> <span class="badge badge-auto">Auto</span></div></li>
+        <li><span class="check auto">◉</span><div><strong>HeroiDatabase criado</strong> — Pirata cadastrado <span class="badge badge-auto">Auto</span></div></li>
+        <li><span class="check auto">◉</span><div><strong>Raridades das relíquias</strong> — Olho=Incomum, Bússola=Raro, Carvão=Comum <span class="badge badge-auto">Auto</span></div></li>
+        <li><span class="check">○</span><div><strong>Prefab HeroiPirata criado</strong> — com todos os componentes e sprites <span class="badge badge-manual">Manual</span></div></li>
+        <li><span class="check">○</span><div><strong>HeroiDef_Pirata.Prefab preenchido</strong> — arraste o prefab no asset <span class="badge badge-manual">Manual</span></div></li>
+        <li><span class="check">○</span><div><strong>HeroisManager configurado</strong> — HeroiDatabase referenciado nas cenas <span class="badge badge-manual">Manual</span></div></li>
+        <li><span class="check">○</span><div><strong>SistemaTendasManager nas cenas</strong> <span class="badge badge-manual">Manual</span></div></li>
+        <li><span class="check">○</span><div><strong>UI de Heróis montada</strong> — botão + painel + prefab de item <span class="badge badge-manual">Manual</span></div></li>
+        <li><span class="check">○</span><div><strong>65 testes passando</strong> — Test Runner EditMode <span class="badge badge-test">Testes</span></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── Referência rápida ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number" style="background:var(--muted); font-size:.75rem">REF</div>
+      <div class="section-title">Referência rápida de arquivos criados</div>
+    </div>
+    <div class="section-body" style="font-size:.88rem;">
+      <h3>Scripts</h3>
+      <span class="tag">Scripts/AntiExploit/RNGDeterministico.cs</span>
+      <span class="tag">Scripts/AntiExploit/EstadoEventosRun.cs</span>
+      <span class="tag">Scripts/Tendas/TipoTenda.cs</span>
+      <span class="tag">Scripts/Tendas/SistemaTendasLogica.cs</span>
+      <span class="tag">Scripts/Tendas/SistemaTendasManager.cs</span>
+      <span class="tag">Scripts/Reliquias/RaridadeReliquia.cs</span>
+      <span class="tag">Scripts/Reliquias/GeradorReliquiasTenda.cs</span>
+      <span class="tag">Scripts/Herois/HeroiRaridade.cs</span>
+      <span class="tag">Scripts/Herois/HeroiIds.cs</span>
+      <span class="tag">Scripts/Herois/HeroiDef.cs</span>
+      <span class="tag">Scripts/Herois/HeroiDatabase.cs</span>
+      <span class="tag">Scripts/Herois/ContratoHeroi.cs</span>
+      <span class="tag">Scripts/Herois/HeroiPirataController.cs</span>
+      <span class="tag">Scripts/UI/Herois/PainelHeroisController.cs</span>
+      <span class="tag">Scripts/UI/Herois/HeroiItemController.cs</span>
+      <span class="tag">Editor/SetupSistemasPlanos.cs</span>
+
+      <h3 style="margin-top:1rem;">Modificados</h3>
+      <span class="tag">SaveSlots/DadosSlotSave.cs</span>
+      <span class="tag">SaveSlots/SaveSlotManager.cs</span>
+      <span class="tag">SaveSlots/HeroisManager.cs</span>
+      <span class="tag">Reliquias/ReliquiaDef.cs</span>
+
+      <h3 style="margin-top:1rem;">Testes (EditMode)</h3>
+      <span class="tag">RNGDeterministicoTests.cs</span>
+      <span class="tag">EstadoEventosRunTests.cs</span>
+      <span class="tag">SistemaTendasLogicaTests.cs</span>
+      <span class="tag">GeradorReliquiasTendaTests.cs</span>
+      <span class="tag">ContratoHeroiTests.cs</span>
+      <span class="tag">HeroiDatabaseTests.cs</span>
+      <span class="tag">DadosSlotSaveAntiExploitTests.cs</span>
+    </div>
+  </div>
+
+  <footer>
+    Gerado em 2026-04-22 · Branch <code>Develop/Jonas/AtkEspantalho</code> · Tower Defense
+  </footer>
+
+</div>
+</body>
+</html>
