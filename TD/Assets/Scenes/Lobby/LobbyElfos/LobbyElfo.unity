@@ -362,7 +362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &44440002
 RectTransform:
   m_ObjectHideFlags: 0
@@ -532,8 +532,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   painel: {fileID: 44440001}
+  areaConteudoPainel: {fileID: 0}
   containerItens: {fileID: 44450002}
   prefabItemHeroi: {fileID: 1000, guid: c4b5d6e7f8091a2b3c4d5e6f78901234, type: 3}
+  fecharAoClicarFora: 1
+  fecharComEsc: 1
 --- !u!1 &68130262
 GameObject:
   m_ObjectHideFlags: 0
