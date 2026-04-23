@@ -48,3 +48,6 @@ MonoBehaviour:
   alphaCamadaNevoa: 0.22
   multiplicadorOrtho: 0.88
   corNevoa: {r: 0.55, g: 0.58, b: 0.62, a: 1}
+  raioReveal: 0.12
+  suavidadeReveal: 0.03
+  shaderFog: {fileID: 4800000, guid: 8f981edcf44946a40890d8629572d6d3, type: 3}

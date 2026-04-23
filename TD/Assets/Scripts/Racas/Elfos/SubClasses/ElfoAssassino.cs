@@ -11,6 +11,7 @@ public class ElfoAssassino : ElfoController
 
     private float proximoAtaque;
     private SistemaIAUnidade _ia;
+    private PatrulhaUnidade _patrulha;
 
     protected override void Start()
     {
@@ -18,12 +19,14 @@ public class ElfoAssassino : ElfoController
         danoFlecha = 2;
         base.Start();
         _ia = GetComponent<SistemaIAUnidade>();
+        _patrulha = GetComponent<PatrulhaUnidade>();
         CarregarPrefabFlechaSeNecessario();
     }
 
     private void Update()
     {
         if (_ia != null && _ia.enabled) return;
+        if (_patrulha != null && _patrulha.EstaPatrulhando) return;
         if (!estaVivo) return;
 
         UnidadeController inimigo = EncontrarInimigoMaisProximo(alcanceAtaque);

@@ -1,4 +1,10 @@
 public class MobRato : MobController
 {
-    // Comportamentos únicos do Rato podem ser adicionados aqui
+    protected override void Start()
+    {
+        vidaMaxima = 35;
+        danoBase   = 6;
+        movimento.velocidade = 14f;
+        base.Start();
+    }
 }

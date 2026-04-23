@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16fda15b0d7dfa4ba9be210bd2322f7, type: 3}
+  m_Name: ReliquiaDef_BussolaVerme
+  m_EditorClassIdentifier: TD.GameCode::ReliquiaDef
+  idReliquia: reliquia_bussola_verme
+  nomeExibicao: "Que esp\xE9cie de verme s\xE3o voc\xEAs?"
+  descricao: "Revela de qual dire\xE7\xE3o vir\xE1 a pr\xF3xima wave de inimigos,
+    durante o tempo de espera entre ondas."
+  icone: {fileID: 6498734881137776803, guid: 639d3cba5c8a77d42a8ce5dd89a36309, type: 3}
+  prefabEfeitoPartida: {fileID: 8454683610165025286, guid: 160f79cbc36cea9459209c8a5a4d8aff, type: 3}

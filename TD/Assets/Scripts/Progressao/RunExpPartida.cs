@@ -9,6 +9,12 @@ public class RunExpPartida : MonoBehaviour
 {
     public static event Action OnExpTemporariaAlterada;
 
+    /// <summary>
+    /// Disparado uma vez por relíquia equipada ao vencer a partida.
+    /// Parâmetro: idReliquia. Use para achievements e tracking externo.
+    /// </summary>
+    public static event Action<string> OnVitoriaComReliquia;
+
     public static RunExpPartida Instance { get; private set; }
 
     [SerializeField] private bool concederExpSemVitoriaParaTestes;
@@ -43,6 +49,22 @@ public class RunExpPartida : MonoBehaviour
     {
         int exp = Logica.ConcluirComVitoria();
         AplicarExpAoPerfilPermanente(exp);
+        RegistrarVitoriaFaseAtual();
+        DispararHooksVitoria();
+    }
+
+    private void RegistrarVitoriaFaseAtual()
+    {
+        string faseId = FaseIdentificacao.FaseAtualId;
+        if (string.IsNullOrEmpty(faseId)) return;
+        if (!PerfilJogadorAtivo.TemPerfilAtivo || SaveSlotManager.Instance == null) return;
+
+        SaveSlotManager.Instance.AtualizarSlotAtivo(d =>
+        {
+            if (d == null) return;
+            if (d.progressaoFases == null) d.progressaoFases = new ProgressaoFases();
+            d.progressaoFases.RegistrarVitoria(faseId);
+        });
     }
 
     public void ConcluirComDerrota()
@@ -50,6 +72,27 @@ public class RunExpPartida : MonoBehaviour
         int exp = Logica.ConcluirComDerrota(concederExpSemVitoriaParaTestes);
         if (concederExpSemVitoriaParaTestes)
             AplicarExpAoPerfilPermanente(exp);
+    }
+
+    private void DispararHooksVitoria()
+    {
+        if (ReliquiasManager.Instance == null) return;
+
+        var equipadas = ReliquiasManager.Instance.GetReliquiasEquipadas();
+        if (equipadas.Count == 0) return;
+
+        if (PerfilJogadorAtivo.TemPerfilAtivo && SaveSlotManager.Instance != null)
+        {
+            SaveSlotManager.Instance.AtualizarSlotAtivo(dados =>
+            {
+                if (dados == null) return;
+                foreach (var id in equipadas)
+                    dados.DesbloquearDescricao(id);
+            });
+        }
+
+        foreach (var id in equipadas)
+            OnVitoriaComReliquia?.Invoke(id);
     }
 
     private void AplicarExpAoPerfilPermanente(int delta)

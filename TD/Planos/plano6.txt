@@ -1,0 +1,31 @@
+LEMBRESE DE USAR SKILL DE TESTE
+
+Criar UI de HERÓIS no lobby.
+
+---
+
+REQUISITOS:
+
+1. Botão "Heróis"
+
+---
+
+2. Mostrar:
+- Lista de heróis ativos
+- Fases restantes
+- Aviso de penúltima jornada
+
+---
+
+3. Integração:
+HeroisManager
+
+---
+
+4. Feedback visual:
+- Cor mudando
+- Ícone alerta
+
+---
+
+Plano antes de codar.

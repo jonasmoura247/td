@@ -1740,6 +1740,9 @@ MonoBehaviour:
   painelInventario: {fileID: 1492708245}
   gradeItens: {fileID: 1086556807}
   prefabSlot: {fileID: 2227059203751949567, guid: bfb17f7615b6ea04d8a834c671069b12, type: 3}
+  tamanhoSlotReferencia: 80
+  spacingReferencia: 8
+  resolucaoReferencia: {x: 1920, y: 1080}
 --- !u!4 &727755920
 Transform:
   m_ObjectHideFlags: 0
@@ -3401,7 +3404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265b2fa08f1498842ac8e19e8ad3abad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarregadorCena
-  nomeCena: Mapa_1
+  nomeCena: Mapa_Natural
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

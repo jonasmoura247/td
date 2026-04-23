@@ -1,4 +1,10 @@
 public class MobMinotauro : MobController
 {
-    // Comportamentos únicos do Minotauro podem ser adicionados aqui
+    protected override void Start()
+    {
+        vidaMaxima = 280;
+        danoBase   = 25;
+        movimento.velocidade = 5f;
+        base.Start();
+    }
 }

@@ -9,6 +9,9 @@ public class WaveManager : MonoBehaviour
 {
     public const int TotalOndas = 8;
 
+    public static System.Action<LadoSpawn> OnProximaWaveDefinida;
+    public static System.Action OnWaveIniciada;
+
     private static readonly int[] InimigosComunsPorOndaDesign = { 5, 7, 10, 15, 15, 20, 25, 30 };
 
     [System.Serializable]
@@ -96,6 +99,7 @@ public class WaveManager : MonoBehaviour
 
     private WaveConfig configWaveAtual;
     private WaveRacaConfig configRacaAtual;
+    private LadoSpawn _proximoLadoSpawn;
 
     private bool partidaFinalizada;
 
@@ -151,6 +155,12 @@ public class WaveManager : MonoBehaviour
     {
         configRacaAtual = SortearConfigRacaInimiga();
         configWaveAtual = ObterConfigWave(numeroWave + 1);
+
+        _proximoLadoSpawn = configWaveAtual.modoWave == ModoWave.Aleatoria
+            ? (LadoSpawn)Random.Range(0, 4)
+            : configWaveAtual.ladoSpawn;
+
+        OnProximaWaveDefinida?.Invoke(_proximoLadoSpawn);
 
         AtualizarHudOndas();
     }
@@ -318,6 +328,8 @@ public class WaveManager : MonoBehaviour
 
         botaoPlay.interactable = false;
 
+        OnWaveIniciada?.Invoke();
+
         AtualizarHudOndas();
 
         rotinaSpawn = StartCoroutine(GerarWaveComDelay());
@@ -331,9 +343,7 @@ public class WaveManager : MonoBehaviour
             yield break;
         }
 
-        LadoSpawn ladoEscolhido = configWaveAtual.modoWave == ModoWave.Aleatoria
-            ? (LadoSpawn)Random.Range(0, 4)
-            : configWaveAtual.ladoSpawn;
+        LadoSpawn ladoEscolhido = _proximoLadoSpawn;
 
         Transform rota = ObterRotaPorLado(ladoEscolhido);
         if (rota == null)

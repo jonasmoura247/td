@@ -1,0 +1,82 @@
+LEMBRESE DE USAR SKILL DE TESTE
+
+Quero que você implemente um sistema ANTI-EXPLOIT para RNG no meu jogo Tower Defense.
+
+CONTEXTO:
+Já tenho um sistema de save com:
+- SaveSlotManager
+- DadosSlotSave
+- PerfilJogadorAtivo
+
+OBJETIVO:
+Impedir que o jogador reinicie o jogo para obter resultados diferentes em:
+- Tendas
+- Heróis
+- Relíquias
+
+REQUISITOS:
+
+1. Criar classe pura:
+RNGDeterministico.cs
+
+Responsabilidades:
+- Gerar números pseudo-aleatórios baseados em seed fixa
+- Função:
+  int Next(int min, int max)
+  float NextFloat()
+
+- A seed deve ser baseada em:
+  saveId + mundoId + faseId + contadorEventos
+
+---
+
+2. Criar estrutura serializável:
+EstadoEventosRun
+
+Deve conter:
+- seedAtual
+- contadorEventos
+- lista de eventos gerados (tenda, herois, reliquias)
+- decisões já tomadas
+
+---
+
+3. Integrar com DadosSlotSave:
+Adicionar:
+- EstadoEventosRun estadoEventos
+
+---
+
+4. Fluxo obrigatório:
+
+ANTES de iniciar uma fase:
+- Verificar se já existe evento gerado
+- Se existir → reutilizar
+- Se não → gerar e salvar
+
+---
+
+5. Regra CRÍTICA:
+Uma vez que uma tenda é gerada:
+- Suas opções ficam FIXAS
+- Mesmo se o jogador fechar o jogo
+
+---
+
+6. Logging:
+Adicionar logs claros:
+[ANTI-EXPLOIT]
+[SEED]
+[EVENTO GERADO]
+[EVENTO REUTILIZADO]
+
+---
+
+7. NÃO usar UnityEngine.Random diretamente
+Tudo deve passar pelo RNGDeterministico
+
+---
+
+8. Separar lógica pura de MonoBehaviour
+
+---

@@ -44,11 +44,21 @@ public class AnimacaoAtaqueSpriteTests
         var unidade = go.AddComponent<UnidadeController>();
         unidade.faccao = Faccao.Inimigo;
         unidade.vidaMaxima = 100;
+
+        // intervaloAtaque é private: definimos via reflexão para que
+        // RecalcularTempoPorFrame() produza o tempoPorFrame desejado
+        // (_tempoPorFrame = intervaloAtaque / sprites.Length)
+        if (spritesAtaque != null && spritesAtaque.Length > 0)
+        {
+            typeof(UnidadeController)
+                .GetField("intervaloAtaque", BindingFlags.NonPublic | BindingFlags.Instance)
+                ?.SetValue(unidade, tempoPorFrame * spritesAtaque.Length);
+        }
+
         unidade.SincronizarVidaAposSpawn();
 
         var animAtk = go.AddComponent<AnimacaoAtaqueSprite>();
         SetField(animAtk, "spritesAtaque", spritesAtaque);
-        SetField(animAtk, "tempoPorFrame", tempoPorFrame);
         return animAtk;
     }
 

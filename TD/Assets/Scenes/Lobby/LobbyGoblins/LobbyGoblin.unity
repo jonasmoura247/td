@@ -11581,7 +11581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265b2fa08f1498842ac8e19e8ad3abad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarregadorCena
-  nomeCena: Mapa_1
+  nomeCena: Mapa_Natural
 --- !u!1 &2142874846
 GameObject:
   m_ObjectHideFlags: 0

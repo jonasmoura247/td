@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Failed(Child)" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0,1083534">
+  <test-suite type="TestSuite" id="1097" name="TD" fullname="TD" runstate="Runnable" testcasecount="84" result="Failed" site="Child" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.108353" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1093" name="TD.Tests.PlayMode.dll" fullname="C:/Users/Jonas/Desktop/TD/td/TD/Library/ScriptAssemblies/TD.Tests.PlayMode.dll" runstate="Runnable" testcasecount="84" result="Failed" site="Child" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.097706" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="21760" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1008" name="BussolaVermeIntegrationTests" fullname="BussolaVermeIntegrationTests" classname="BussolaVermeIntegrationTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.093608" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="1014" name="Efeito_EscondeIndicador_QuandoOnWaveIniciadaDisparado" fullname="BussolaVermeIntegrationTests.Efeito_EscondeIndicador_QuandoOnWaveIniciadaDisparado" methodname="Efeito_EscondeIndicador_QuandoOnWaveIniciadaDisparado" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="1563444860" result="Failed" label="Error" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.025989" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+            <stack-trace><![CDATA[  at BussolaVermeIntegrationTests+<Efeito_EscondeIndicador_QuandoOnWaveIniciadaDisparado>d__8.MoveNext () [0x00059] in C:\Users\Jonas\Desktop\TD\td\TD\Assets\Tests\PlayMode\BussolaVermeIntegrationTests.cs:111 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44 ]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1013" name="Efeito_MostraIndicador_QuandoOnProximaWaveDefinidaDisparado" fullname="BussolaVermeIntegrationTests.Efeito_MostraIndicador_QuandoOnProximaWaveDefinidaDisparado" methodname="Efeito_MostraIndicador_QuandoOnProximaWaveDefinidaDisparado" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="665453243" result="Failed" label="Error" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.007127" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <failure>
+            <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+            <stack-trace><![CDATA[  at BussolaVermeIntegrationTests+<Efeito_MostraIndicador_QuandoOnProximaWaveDefinidaDisparado>d__7.MoveNext () [0x00059] in C:\Users\Jonas\Desktop\TD\td\TD\Assets\Tests\PlayMode\BussolaVermeIntegrationTests.cs:99 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44 ]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="1015" name="Efeito_NaoLancaExcecao_QuandoEventoDisparadoAposEncerrar" fullname="BussolaVermeIntegrationTests.Efeito_NaoLancaExcecao_QuandoEventoDisparadoAposEncerrar" methodname="Efeito_NaoLancaExcecao_QuandoEventoDisparadoAposEncerrar" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="2105728961" result="Passed" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.011775" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1016" name="Efeito_SemPrefab_NaoLancaExcecao" fullname="BussolaVermeIntegrationTests.Efeito_SemPrefab_NaoLancaExcecao" methodname="Efeito_SemPrefab_NaoLancaExcecao" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="176706973" result="Passed" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.031006" asserts="0">
+          <properties>
+            <property name="_JOINTYPE" value="UnityCombinatorial" />
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[[BussolaVerme] prefabIndicador nao atribuido. O indicador nao sera exibido.
+]]></output>
+        </test-case>
+        <test-case id="1009" name="Indicador_Escondido_QuandoCriado" fullname="BussolaVermeIntegrationTests.Indicador_Escondido_QuandoCriado" methodname="Indicador_Escondido_QuandoCriado" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="85997225" result="Passed" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.001885" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="Indicador_FicaInvisivel_QuandoEsconder" fullname="BussolaVermeIntegrationTests.Indicador_FicaInvisivel_QuandoEsconder" methodname="Indicador_FicaInvisivel_QuandoEsconder" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="358243658" result="Passed" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.000168" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="Indicador_FicaVisivel_QuandoMostrar" fullname="BussolaVermeIntegrationTests.Indicador_FicaVisivel_QuandoMostrar" methodname="Indicador_FicaVisivel_QuandoMostrar" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="768462531" result="Passed" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.000272" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1012" name="Indicador_MostrarTodosOsLados_SemExcecao" fullname="BussolaVermeIntegrationTests.Indicador_MostrarTodosOsLados_SemExcecao" methodname="Indicador_MostrarTodosOsLados_SemExcecao" classname="BussolaVermeIntegrationTests" runstate="Runnable" seed="1610721001" result="Passed" start-time="2026-04-20 02:10:54Z" end-time="2026-04-20 02:10:54Z" duration="0.000425" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/Jonas/AppData/LocalLow/DefaultCompany/TD\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
