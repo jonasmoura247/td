@@ -27,3 +27,7 @@ TD/UserSettings
 TD/ProjectSettings/EditorBuildSettings.asset
 
 TD/Assets/_Recovery
+
+# Configurações locais do Claude Code (permissões e caminhos da máquina de cada pessoa)
+**/.claude/settings.local.json
+TD/.claude/commands/
