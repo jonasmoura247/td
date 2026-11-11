@@ -10,6 +10,12 @@ public class RunExpPartida : MonoBehaviour
     public static event Action OnExpTemporariaAlterada;
 
     /// <summary>
+    /// Disparado ao fim de cada partida (vitoria ou derrota).
+    /// Parametros: (vitoria, duracao_segundos, xp_ganho).
+    /// </summary>
+    public static event Action<bool, float, int> OnPartidaFinalizada;
+
+    /// <summary>
     /// Disparado uma vez por relíquia equipada ao vencer a partida.
     /// Parâmetro: idReliquia. Use para achievements e tracking externo.
     /// </summary>
@@ -52,6 +58,7 @@ public class RunExpPartida : MonoBehaviour
         RegistrarVitoriaFaseAtual();
         HeroisManager.Instance?.AvançarFase();
         DispararHooksVitoria();
+        OnPartidaFinalizada?.Invoke(true, 0f, exp);
     }
 
     private void RegistrarVitoriaFaseAtual()
@@ -73,6 +80,7 @@ public class RunExpPartida : MonoBehaviour
         int exp = Logica.ConcluirComDerrota(concederExpSemVitoriaParaTestes);
         if (concederExpSemVitoriaParaTestes)
             AplicarExpAoPerfilPermanente(exp);
+        OnPartidaFinalizada?.Invoke(false, 0f, exp);
     }
 
     private void DispararHooksVitoria()

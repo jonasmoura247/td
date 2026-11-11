@@ -8,6 +8,11 @@ public class TorresManager : MonoBehaviour
 {
     public static TorresManager Instancia { get; private set; }
 
+    /// <summary>Disparado ao construir/registrar uma torre.</summary>
+    public static System.Action OnTorreConstruida;
+    /// <summary>Disparado ao destruir/desregistrar uma torre.</summary>
+    public static System.Action OnTorreDestruida;
+
     private readonly List<TorreController> _torres = new List<TorreController>();
 
     public IReadOnlyList<TorreController> TorresRegistadas => _torres;
@@ -32,13 +37,16 @@ public class TorresManager : MonoBehaviour
     public void Registar(TorreController torre)
     {
         if (torre != null && !_torres.Contains(torre))
+        {
             _torres.Add(torre);
+            OnTorreConstruida?.Invoke();
+        }
     }
 
     public void Desregistar(TorreController torre)
     {
-        if (torre != null)
-            _torres.Remove(torre);
+        if (torre != null && _torres.Remove(torre))
+            OnTorreDestruida?.Invoke();
     }
 
     /// <summary>Ponto de extensão para construção via UI: instancia o prefab e regista quando o <see cref="TorreController"/> fizer Start.</summary>

@@ -31,6 +31,7 @@ public static class PerfilJogadorAtivo
         if (dados != null)
         {
             dados.NormalizarBestiario();
+            dados.NormalizarEstatisticas();
             OuroPerfilUtil.AplicarOuroDoPerfilAoManager(dados);
         }
     }

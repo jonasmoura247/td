@@ -9,6 +9,10 @@ public class OuroLogica
     private int _ouroAtual;
 
     public event Action<int> OnOuroAlterado;
+    /// <summary>Disparado ao adicionar ouro (parametro: delta adicionado, total atual).</summary>
+    public event Action<int, int> OnOuroAdicionado;
+    /// <summary>Disparado ao gastar ouro (parametro: delta gasto).</summary>
+    public event Action<int> OnOuroGasto;
 
     public OuroLogica(int ouroInicial = 0)
     {
@@ -22,6 +26,7 @@ public class OuroLogica
     {
         if (quantidade <= 0) return 0;
         _ouroAtual += quantidade;
+        OnOuroAdicionado?.Invoke(quantidade, _ouroAtual);
         OnOuroAlterado?.Invoke(_ouroAtual);
         return quantidade;
     }
@@ -32,6 +37,7 @@ public class OuroLogica
         if (quantidade <= 0 || _ouroAtual < quantidade)
             return false;
         _ouroAtual -= quantidade;
+        OnOuroGasto?.Invoke(quantidade);
         OnOuroAlterado?.Invoke(_ouroAtual);
         return true;
     }

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano 9 — Sistema de Estatisticas do Jogador</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0d0f14; color: #d0d5e0; line-height: 1.6; }
+  header { background: linear-gradient(135deg, #1a2540, #0f1a30); padding: 36px 40px; border-bottom: 3px solid #2e6db4; }
+  header h1 { font-size: 2rem; color: #7eb8f7; letter-spacing: 1px; }
+  header p  { color: #8a9ab5; margin-top: 6px; font-size: 0.95rem; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  h2 { font-size: 1.2rem; color: #7eb8f7; text-transform: uppercase; letter-spacing: 1px;
+       border-left: 4px solid #2e6db4; padding-left: 12px; margin: 36px 0 16px; }
+  h3 { font-size: 1rem; color: #a0c4f0; margin: 20px 0 8px; }
+  p  { color: #b0b8cc; margin-bottom: 10px; }
+
+  /* CARD GRID */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card  { background: #12192a; border: 1px solid #1e3050; border-radius: 8px; padding: 16px; }
+  .card .label { font-size: 0.72rem; color: #5a7aa0; text-transform: uppercase; letter-spacing: 1px; }
+  .card .value { font-size: 1.1rem; color: #e8edf7; font-weight: 600; margin-top: 4px; }
+  .card .desc  { font-size: 0.8rem; color: #6a7e99; margin-top: 4px; }
+
+  /* STATS TABLE */
+  .stats-section { background: #12192a; border: 1px solid #1e3050; border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+  .stats-section .section-header {
+    background: #1a2845; padding: 10px 18px;
+    font-size: 0.78rem; color: #5a90d0; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #141d2f; color: #5a7aa0; font-size: 0.75rem; text-transform: uppercase;
+       letter-spacing: 0.5px; padding: 8px 16px; text-align: left; }
+  td { padding: 8px 16px; border-top: 1px solid #1a2540; font-size: 0.88rem; color: #c0c8dc; }
+  tr:hover td { background: #161f30; }
+  .tag { display: inline-block; background: #1e3050; border-radius: 4px; padding: 2px 8px;
+         font-size: 0.75rem; color: #5a90d0; margin-right: 4px; }
+  .tag.new   { background: #1a3820; color: #5ac870; }
+  .tag.mod   { background: #2a2010; color: #d0a040; }
+  .tag.test  { background: #2a1030; color: #a060d0; }
+  .tag.ui    { background: #1a1a40; color: #6080f0; }
+
+  /* FLOW */
+  .flow { background: #0f1520; border: 1px solid #1e3050; border-radius: 8px; padding: 20px 24px; }
+  .flow-step { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+  .flow-num  { min-width: 28px; height: 28px; background: #1e3a60; border-radius: 50%;
+               display: flex; align-items: center; justify-content: center;
+               font-size: 0.8rem; font-weight: 700; color: #7eb8f7; }
+  .flow-text { color: #b0b8cc; font-size: 0.9rem; padding-top: 4px; }
+  .flow-text strong { color: #d8e4f8; }
+
+  /* ARCH BOXES */
+  .arch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .arch-box  { background: #12192a; border: 1px solid #1e3050; border-radius: 8px; padding: 16px 18px; }
+  .arch-box h4 { color: #7eb8f7; font-size: 0.9rem; margin-bottom: 8px; }
+  .arch-box ul { list-style: none; padding: 0; }
+  .arch-box ul li { color: #8a9ab5; font-size: 0.83rem; padding: 3px 0; border-top: 1px solid #1a2540; }
+  .arch-box ul li:first-child { border-top: none; }
+  .arch-box ul li code { color: #a0d0a0; font-family: 'Cascadia Code', monospace; font-size: 0.8rem; }
+
+  /* BUTTON LABEL */
+  .btn-label { display: inline-block; background: #1e3a60; color: #7eb8f7; border: 1px solid #2e6db4;
+               border-radius: 6px; padding: 6px 16px; font-size: 0.88rem; margin: 4px 2px; }
+
+  /* NOTES */
+  .note { background: #1a2010; border-left: 3px solid #5ac870; border-radius: 0 6px 6px 0;
+          padding: 12px 16px; margin: 12px 0; font-size: 0.87rem; color: #a0c890; }
+  .warn { background: #2a1a08; border-left: 3px solid #d08030; border-radius: 0 6px 6px 0;
+          padding: 12px 16px; margin: 12px 0; font-size: 0.87rem; color: #d0a060; }
+
+  code.block { display: block; background: #0a0f1a; border: 1px solid #1a2540; border-radius: 6px;
+               padding: 14px 18px; font-family: 'Cascadia Code', 'Consolas', monospace;
+               font-size: 0.82rem; color: #a8d0a8; margin: 10px 0; white-space: pre; overflow-x: auto; }
+
+  footer { text-align: center; padding: 28px; color: #3a4a60; font-size: 0.8rem; border-top: 1px solid #1a2540; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Plano 9 — Sistema de Estatisticas do Jogador</h1>
+  <p>Torre Defense · Goblins, Humanos, Elfos e Anoes · Implementacao completa do zero</p>
+</header>
+
+<div class="container">
+
+  <!-- ====================================================== -->
+  <h2>1. Visao Geral</h2>
+  <p>
+    Criar um sistema completo de rastreamento de estatisticas integrado ao fluxo de save existente
+    (JSON via SaveSlotManager) e exposto por um painel de UI acessivel atraves do
+    <strong>BotaoEstatisticas</strong> ja presente em cada lobby de raca.
+    Um menu no Editor (<strong>TD → Estatisticas</strong>) recriar a UI nos 4 lobbies com um clique.
+  </p>
+  <div class="note">
+    O botao <strong>BotaoEstatisticas</strong> ja existe nas cenas de lobby. O editor tool
+    so precisa encontra-lo, criar o painel e ligar os eventos.
+  </div>
+
+  <!-- ====================================================== -->
+  <h2>2. Arquitetura</h2>
+  <p>O projeto separa logica pura de wrappers Unity. O sistema de estatisticas segue o mesmo padrao:</p>
+  <div class="arch-grid">
+    <div class="arch-box">
+      <h4>DadosEstatisticas <span class="tag new">new</span></h4>
+      <ul>
+        <li>Modelo <code>[Serializable]</code></li>
+        <li><code>EstatisticasGlobais globais</code></li>
+        <li><code>List&lt;EstatisticasPorRaca&gt;</code></li>
+        <li>Propriedades derivadas (WinRate, KPM...)</li>
+        <li>Metodo <code>Normalizar()</code></li>
+      </ul>
+    </div>
+    <div class="arch-box">
+      <h4>EstatisticasLogica <span class="tag new">new</span></h4>
+      <ul>
+        <li>Classe pura sem MonoBehaviour</li>
+        <li>Testavel isoladamente</li>
+        <li>Recebe DadosEstatisticas no construtor</li>
+        <li>Todos os metodos RegistrarXxx()</li>
+      </ul>
+    </div>
+    <div class="arch-box">
+      <h4>EstatisticasManager <span class="tag new">new</span></h4>
+      <ul>
+        <li>Singleton MonoBehaviour</li>
+        <li>DontDestroyOnLoad</li>
+        <li>Assina eventos de kills, ouro, waves</li>
+        <li>Salva ao finalizar partida</li>
+      </ul>
+    </div>
+    <div class="arch-box">
+      <h4>LobbyEstatisticasController <span class="tag new">new</span></h4>
+      <ul>
+        <li>Segue padrao LobbyBestiarioController</li>
+        <li>Conecta BotaoEstatisticas ao painel</li>
+        <li>Garante EstatisticasManager no Awake</li>
+      </ul>
+    </div>
+    <div class="arch-box">
+      <h4>PainelEstatisticas <span class="tag new">new</span></h4>
+      <ul>
+        <li>4 abas: Geral / Combate / Economia / Racas</li>
+        <li>ScrollRect por aba</li>
+        <li>Campos TMP sem emoji, sem acentos</li>
+        <li>Metodo publico AoAbrirPainel()</li>
+      </ul>
+    </div>
+    <div class="arch-box">
+      <h4>SetupEstatisticasLobbyMenu <span class="tag new">new</span></h4>
+      <ul>
+        <li>Menu: TD → Estatisticas → ...</li>
+        <li>Cena atual OU todas as 4 cenas</li>
+        <li>Limpa objetos antigos por nome E por componente</li>
+        <li>Sem emoji · Sem acentos nos textos TMP</li>
+        <li>Guard: bloqueia em Play Mode</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <h2>3. Todas as Estatisticas Rastreadas</h2>
+
+  <div class="stats-section">
+    <div class="section-header">TEMPO</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>tempoTotalPartidas</td><td>float</td><td>Soma da duracao de todas as partidas (segundos)</td></tr>
+      <tr><td>tempoMaiorPartida</td><td>float</td><td>Duracao da partida mais longa (segundos)</td></tr>
+      <tr><td>tempoMenorPartida</td><td>float</td><td>Duracao da partida mais curta (-1 = nunca jogou)</td></tr>
+      <tr><td><em>TempoMedioPartida</em></td><td>float (derivado)</td><td>tempoTotalPartidas / totalPartidas</td></tr>
+    </table>
+  </div>
+
+  <div class="stats-section">
+    <div class="section-header">PARTIDAS</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>totalPartidas</td><td>int</td><td>Quantidade total de partidas concluidas</td></tr>
+      <tr><td>totalVitorias</td><td>int</td><td>Partidas vencidas</td></tr>
+      <tr><td>totalDerrotas</td><td>int</td><td>Partidas perdidas</td></tr>
+      <tr><td><em>WinRate</em></td><td>float (derivado)</td><td>totalVitorias / totalPartidas * 100</td></tr>
+      <tr><td>ultimaPartida</td><td>UltimaPartidaInfo</td><td>Resultado, duracao e data/hora da ultima partida</td></tr>
+      <tr><td>sequenciaVitorias</td><td>int</td><td>Sequencia atual de vitorias consecutivas</td></tr>
+      <tr><td>melhorSequenciaVitorias</td><td>int</td><td>Melhor sequencia de vitorias de todos os tempos</td></tr>
+    </table>
+  </div>
+
+  <div class="stats-section">
+    <div class="section-header">COMBATE — INIMIGOS</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>totalMonstrosMortos</td><td>int</td><td>Total de inimigos eliminados</td></tr>
+      <tr><td>primeiroMonstroMorto</td><td>string</td><td>NomePrefab do primeiro inimigo abatido</td></tr>
+      <tr><td>ultimoMonstroMorto</td><td>string</td><td>NomePrefab do ultimo inimigo abatido</td></tr>
+      <tr><td>killsPorTipoUnidade</td><td>List&lt;RegistroKillUnidade&gt;</td><td>Kills separados por NomePrefab</td></tr>
+      <tr><td><em>UnidadeMaisMorta</em></td><td>string (derivado)</td><td>Tipo com maior contador em killsPorTipoUnidade</td></tr>
+      <tr><td><em>KillsPorMinuto</em></td><td>float (derivado)</td><td>totalMonstrosMortos / (tempoTotal / 60)</td></tr>
+    </table>
+  </div>
+
+  <div class="stats-section">
+    <div class="section-header">COMBATE — KILLS POR RACA INIMIGA</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>goblinsMortos</td><td>int</td><td>Inimigos da raca Goblin eliminados</td></tr>
+      <tr><td>humanosMortos</td><td>int</td><td>Inimigos da raca Humano eliminados</td></tr>
+      <tr><td>elfosMortos</td><td>int</td><td>Inimigos da raca Elfo eliminados</td></tr>
+      <tr><td>anoesMortos</td><td>int</td><td>Inimigos da raca Anao eliminados</td></tr>
+    </table>
+  </div>
+
+  <div class="stats-section">
+    <div class="section-header">COMBATE — TORRES E CASTELO</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>torresConstuidas</td><td>int</td><td>Total de torres construidas pelo jogador</td></tr>
+      <tr><td>torresDestruidas</td><td>int</td><td>Total de torres destruidas por inimigos</td></tr>
+      <tr><td>danoTotalRecebidoCastelo</td><td>long</td><td>Dano total sofrido pelo castelo do jogador</td></tr>
+    </table>
+  </div>
+
+  <div class="stats-section">
+    <div class="section-header">WAVES</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>wavesCompletadas</td><td>int</td><td>Total de waves completadas (somando todas partidas)</td></tr>
+      <tr><td>maiorWaveAtingida</td><td>int</td><td>Numero da wave mais alta ja sobrevivida em uma partida</td></tr>
+    </table>
+  </div>
+
+  <div class="stats-section">
+    <div class="section-header">ECONOMIA — OURO</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>totalOuroAcumuladoLifetime</td><td>long</td><td>Todo ouro coletado em todas as partidas</td></tr>
+      <tr><td>totalOuroGasto</td><td>long</td><td>Todo ouro gasto em todas as partidas</td></tr>
+      <tr><td>maiorOuroSimultaneo</td><td>int</td><td>Maior saldo de ouro atingido em uma unica partida</td></tr>
+      <tr><td><em>OuroPorMinuto</em></td><td>float (derivado)</td><td>totalOuroAcumulado / (tempoTotal / 60)</td></tr>
+    </table>
+  </div>
+
+  <div class="stats-section">
+    <div class="section-header">PROGRESSAO — XP</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>totalXPGanho</td><td>long</td><td>XP total acumulado em todas as partidas</td></tr>
+      <tr><td>maiorXPPartida</td><td>int</td><td>Maior XP ganho em uma unica partida</td></tr>
+    </table>
+  </div>
+
+  <div class="stats-section">
+    <div class="section-header">POR RACA (para cada raca: Goblin, Humano, Elfo, Anao)</div>
+    <table>
+      <tr><th>Campo</th><th>Tipo</th><th>Descricao</th></tr>
+      <tr><td>partidasJogadas</td><td>int</td><td>Partidas jogadas com esta raca</td></tr>
+      <tr><td>vitorias</td><td>int</td><td>Vitorias com esta raca</td></tr>
+      <tr><td>derrotas</td><td>int</td><td>Derrotas com esta raca</td></tr>
+      <tr><td><em>WinRatePorRaca</em></td><td>float (derivado)</td><td>vitorias / partidasJogadas * 100</td></tr>
+      <tr><td>killsComRaca</td><td>int</td><td>Kills feitos enquanto jogando com esta raca</td></tr>
+      <tr><td>ouroAcumuladoComRaca</td><td>long</td><td>Ouro coletado jogando com esta raca</td></tr>
+    </table>
+  </div>
+
+  <!-- ====================================================== -->
+  <h2>4. Layout do Painel de UI (4 Abas)</h2>
+  <p>Painel em tela cheia (RectTransform stretch), com ScrollRect em cada aba. Zero emoji. Zero acentos nos textos TMP.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="label">Aba 1</div>
+      <div class="value">Geral</div>
+      <div class="desc">Tempo total · maior · menor · medio<br>Partidas · vitorias · derrotas · winrate<br>Ultima partida · streak<br>Waves completadas · maior wave<br>XP total · maior XP partida</div>
+    </div>
+    <div class="card">
+      <div class="label">Aba 2</div>
+      <div class="value">Combate</div>
+      <div class="desc">Total kills · primeiro monstro · ultimo monstro<br>Unidade mais morta · kills/min<br>Kills por raca: Goblin / Humano / Elfo / Anao<br>Torres construidas · destruidas<br>Dano no castelo</div>
+    </div>
+    <div class="card">
+      <div class="label">Aba 3</div>
+      <div class="value">Economia</div>
+      <div class="desc">Ouro total acumulado<br>Ouro total gasto<br>Maior ouro simultaneo<br>Ouro por minuto</div>
+    </div>
+    <div class="card">
+      <div class="label">Aba 4</div>
+      <div class="value">Racas</div>
+      <div class="desc">Para cada raca:<br>Partidas · vitorias · derrotas · winrate<br>Kills com a raca · ouro acumulado</div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <h2>5. Eventos a Adicionar nos Scripts Existentes</h2>
+  <p>Mudancas minimas — apenas eventos estaticos adicionados. Nenhuma logica existente e alterada.</p>
+
+  <table style="width:100%; border-collapse:collapse; background:#12192a; border-radius:8px; overflow:hidden;">
+    <tr style="background:#141d2f;">
+      <th style="padding:10px 16px; color:#5a7aa0; text-align:left; font-size:0.8rem;">Arquivo</th>
+      <th style="padding:10px 16px; color:#5a7aa0; text-align:left; font-size:0.8rem;">Evento Adicionado</th>
+      <th style="padding:10px 16px; color:#5a7aa0; text-align:left; font-size:0.8rem;">Onde Dispara</th>
+    </tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>UnidadeController.cs</code> <span class="tag mod">mod</span></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>static event Action&lt;UnidadeController&gt; OnUnidadeMorreu</code></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;">No metodo <code>Morrer()</code>, antes de NotificarMorte</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>RunExpPartida.cs</code> <span class="tag mod">mod</span></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>static event Action&lt;bool, float, int&gt; OnPartidaFinalizada</code></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;">Em ConcluirComVitoria e ConcluirComDerrota</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>OuroLogica.cs</code> <span class="tag mod">mod</span></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>event Action&lt;int&gt; OnOuroAdicionado</code><br><code>event Action&lt;int&gt; OnOuroGasto</code></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;">Em AdicionarOuro e GastarOuro (antes de OnOuroAlterado)</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>OuroManager.cs</code> <span class="tag mod">mod</span></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>static event Action&lt;int&gt; OnOuroAdicionado</code><br><code>static event Action&lt;int&gt; OnOuroGasto</code></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;">Proxy para eventos da OuroLogica</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>WaveManager.cs</code> <span class="tag mod">mod</span></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>static event Action&lt;int&gt; OnWaveCompletada</code></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;">Ao finalizar spawn e todos inimigos da wave morrerem</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>TorresManager.cs</code> <span class="tag mod">mod</span></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>static event Action OnTorreConstruida</code><br><code>static event Action OnTorreDestruida</code></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;">Em Registar e Desregistar respectivamente</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>DadosSlotSave.cs</code> <span class="tag mod">mod</span></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;"><code>DadosEstatisticas estatisticas</code><br><code>void NormalizarEstatisticas()</code></td>
+        <td style="padding:8px 16px; border-top:1px solid #1a2540;">Campo serializado + Normalizar chamado no carregamento</td></tr>
+  </table>
+
+  <!-- ====================================================== -->
+  <h2>6. Fluxo de Dados em Tempo de Execucao</h2>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-text"><strong>Lobby carrega</strong> → EstatisticasManager.Awake → GarantirExistencia(). Inicializa EstatisticasLogica com dados do PerfilJogadorAtivo.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-text"><strong>Cena Mapa_ carrega</strong> → EstatisticasManager detecta pelo nome da cena, registra <code>_inicioPartida = DateTime.Now</code>, assina eventos de ouro, waves, torres.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-text"><strong>Inimigo morre</strong> → <code>UnidadeController.Morrer()</code> dispara <code>OnUnidadeMorreu</code> → EstatisticasManager filtra <code>faccao == Inimigo</code> → <code>logica.RegistrarKill(nomePrefab, racaInimiga, racaAtual)</code>.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-text"><strong>Ouro coletado</strong> → <code>OuroManager.OnOuroAdicionado(delta)</code> → <code>logica.RegistrarOuroAdicionado(delta, racaAtual)</code>.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">5</div>
+      <div class="flow-text"><strong>Ouro gasto</strong> → <code>OuroManager.OnOuroGasto(delta)</code> → <code>logica.RegistrarOuroGasto(delta)</code>. Tambem atualiza <code>AtualizarMaiorOuro(saldoAtual)</code>.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">6</div>
+      <div class="flow-text"><strong>Wave completa</strong> → <code>WaveManager.OnWaveCompletada(numeroWave)</code> → <code>logica.RegistrarWaveCompletada(num)</code>.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">7</div>
+      <div class="flow-text"><strong>Torre construida/destruida</strong> → <code>TorresManager.OnTorreConstruida/Destruida</code> → <code>logica.RegistrarTorreConstruida/Destruida()</code>.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">8</div>
+      <div class="flow-text"><strong>Partida finalizada</strong> → <code>RunExpPartida.OnPartidaFinalizada(vitoria, duracao, xp)</code> → EstatisticasManager calcula duracao real, chama <code>logica.FinalizarPartida()</code> e <strong>salva via SaveSlotManager</strong>.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">9</div>
+      <div class="flow-text"><strong>Lobby abre painel</strong> → BotaoEstatisticas.onClick → LobbyEstatisticasController.AbrirPainel() → PainelEstatisticas.AoAbrirPainel() → le dados atuais e popula todos os campos TMP.</div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <h2>7. Editor Tool — Menu TD → Estatisticas</h2>
+  <p>Dois itens de menu:</p>
+  <div style="margin: 12px 0;">
+    <span class="btn-label">TD / Estatisticas / Configurar UI no lobby (cena atual)</span>
+    <span class="btn-label">TD / Estatisticas / Configurar UI em TODOS os lobbies (4 cenas)</span>
+  </div>
+
+  <h3>Logica do SetupEstatisticasLobbyMenu.ConfigurarInterno()</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-text"><strong>Guard Play Mode</strong>: se EditorApplication.isPlaying → dialog de erro e return.</div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-text"><strong>Encontra BotaoEstatisticas</strong> na cena (inclui inativos, busca recursiva).</div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-text"><strong>Cleanup robusto</strong>: RemoverSeExistir por nome ("PainelEstatisticasRaiz", "ControleEstatisticas") E GetComponentsInChildren&lt;PainelEstatisticas&gt; + &lt;LobbyEstatisticasController&gt; para pegar objetos de versoes anteriores.</div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-text"><strong>Cria hierarquia UI</strong>: PainelEstatisticasRaiz (tela cheia) → BarraTitulo + Conteudo → AbasBar + ContainerPaineis → 4x PainelScroll com Content.</div></div>
+    <div class="flow-step"><div class="flow-num">5</div><div class="flow-text"><strong>Popula linhas</strong> via CriarLinha() e CriarSecaoTitulo(). Todos textos: ASCII puro, sem emoji, sem acentos.</div></div>
+    <div class="flow-step"><div class="flow-num">6</div><div class="flow-text"><strong>Wiring serializado</strong>: SetTMP() para cada campo de PainelEstatisticas. Arrays de abas e paineis.</div></div>
+    <div class="flow-step"><div class="flow-num">7</div><div class="flow-text"><strong>Cria ControleEstatisticas</strong> com LobbyEstatisticasController. Liga BotaoEstatisticas.onClick → AbrirPainel(). Liga BotaoFechar.onClick → FecharPainel().</div></div>
+    <div class="flow-step"><div class="flow-num">8</div><div class="flow-text"><strong>SetDirty + salvar cena</strong> (se modo TODOS). Raiz do painel inicia inativo.</div></div>
+  </div>
+
+  <div class="warn">
+    IMPORTANTE: CriarGO() ja chama AddComponent&lt;RectTransform&gt;(). Nao chamar AddComponent&lt;RectTransform&gt;()
+    novamente apos CriarGO() — isso gera erro "already added". Usar apenas GetComponent&lt;RectTransform&gt;().
+  </div>
+
+  <!-- ====================================================== -->
+  <h2>8. Persistencia</h2>
+  <ul style="color:#b0b8cc; padding-left:24px; margin-bottom:16px; line-height:2;">
+    <li><strong>DadosEstatisticas</strong> e campo de <strong>DadosSlotSave</strong> → persistido no mesmo JSON do save slot</li>
+    <li>Atualizado in-place via referencia — sem copia, consistencia garantida</li>
+    <li>Salvo apenas ao finalizar partida (nao a cada kill/frame)</li>
+    <li>Saves antigos sem o campo → <code>Normalizar()</code> cria o objeto automaticamente</li>
+    <li>Valores negativos em saves corrompidos → <code>Normalizar()</code> clampeia para 0</li>
+  </ul>
+
+  <!-- ====================================================== -->
+  <h2>9. Deteccao de Raca Inimiga</h2>
+  <code class="block">TipoRaca? DetectarRacaUnidade(UnidadeController unit):
+  1. typeof(unit) → GoblinController → TipoRaca.Goblin
+                    HumanoController → TipoRaca.Humano
+                    ElfoController   → TipoRaca.Elfo
+                    AnoesController  → TipoRaca.Anao
+  2. Fallback: unit.NomePrefab.ToLower().Contains("goblin") → Goblin, etc.
+  3. Se indeterminado → null (kill conta no total, nao por raca)</code>
+
+  <!-- ====================================================== -->
+  <h2>10. Arquivos a Criar e Modificar</h2>
+  <table style="width:100%; border-collapse:collapse; background:#12192a; border-radius:8px; overflow:hidden;">
+    <tr style="background:#141d2f;">
+      <th style="padding:10px 16px; color:#5a7aa0; text-align:left; font-size:0.8rem;">Arquivo</th>
+      <th style="padding:10px 16px; color:#5a7aa0; text-align:left; font-size:0.8rem;">Status</th>
+      <th style="padding:10px 16px; color:#5a7aa0; text-align:left; font-size:0.8rem;">Descricao</th>
+    </tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Scripts/Estatisticas/DadosEstatisticas.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag new">CREATE</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Modelo de dados serializavel</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Scripts/Estatisticas/EstatisticasLogica.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag new">CREATE</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Logica pura testavel</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Scripts/Estatisticas/EstatisticasManager.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag new">CREATE</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Singleton MonoBehaviour</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Scripts/Estatisticas/LobbyEstatisticasController.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag new">CREATE</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Controlador do botao no lobby</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Scripts/UI/Estatisticas/UIItemEstatisticasRaca.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag new">CREATE</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Agrupa campos TMP de uma raca</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Scripts/UI/Estatisticas/PainelEstatisticas.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag new">CREATE</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Controller do painel (4 abas)</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Tests/EditMode/EstatisticasLogicaTests.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag test">CREATE</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">15+ testes unitarios sem MonoBehaviour</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Editor/SetupEstatisticasLobbyMenu.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag new">CREATE</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Menu TD → Estatisticas (editor tool)</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">SaveSlots/DadosSlotSave.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag mod">MODIFY</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">+ campo DadosEstatisticas + NormalizarEstatisticas()</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Core/UnidadeController.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag mod">MODIFY</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">+ static event OnUnidadeMorreu</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Progressao/RunExpPartida.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag mod">MODIFY</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">+ static event OnPartidaFinalizada(vitoria, duracao, xp)</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Core/OuroLogica.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag mod">MODIFY</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">+ events OnOuroAdicionado(delta) / OnOuroGasto(delta)</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Core/OuroManager.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag mod">MODIFY</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">+ static events proxy para OuroLogica</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Core/WaveManager.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag mod">MODIFY</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">+ static event OnWaveCompletada(int numeroWave)</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Torres/Manager/TorresManager.cs</td><td style="padding:8px 16px; border-top:1px solid #1a2540;"><span class="tag mod">MODIFY</span></td><td style="padding:8px 16px; border-top:1px solid #1a2540;">+ static events OnTorreConstruida / OnTorreDestruida</td></tr>
+  </table>
+
+  <!-- ====================================================== -->
+  <h2>11. Edge Cases Tratados</h2>
+  <ul style="color:#b0b8cc; padding-left:24px; line-height:2.2;">
+    <li>Nenhuma partida jogada → campos mostram "—" na UI (nunca divide por zero)</li>
+    <li>tempoMenorPartida = -1 ao criar perfil novo → UI exibe "—"</li>
+    <li>Raca inimiga nao detectavel → kill conta no total, nao quebra</li>
+    <li>App fechado no meio da partida → match NAO e contado (so salva ao finalizar)</li>
+    <li>Saves antigos sem campo estatisticas → criado automaticamente no Normalizar()</li>
+    <li>Valores negativos em saves corrompidos → Normalizar() clampeia para 0</li>
+    <li>Editor tool em Play Mode → dialog de erro + return (sem crash)</li>
+    <li>AddComponent redundante de RectTransform → NUNCA chamar apos CriarGO()</li>
+  </ul>
+
+  <!-- ====================================================== -->
+  <h2>12. Testes Unitarios (EditMode, sem MonoBehaviour)</h2>
+  <table style="width:100%; border-collapse:collapse; background:#12192a; border-radius:8px; overflow:hidden;">
+    <tr style="background:#141d2f;">
+      <th style="padding:10px 16px; color:#5a7aa0; text-align:left; font-size:0.8rem;">Teste</th>
+      <th style="padding:10px 16px; color:#5a7aa0; text-align:left; font-size:0.8rem;">Verifica</th>
+    </tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">RegistrarKill_incrementaTotalMonstros</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">totalMonstrosMortos++</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">RegistrarKill_setaPrimeiroMonstro</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">primeiroMonstroMorto so e setado uma vez</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">RegistrarKill_killsPorRaca</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">goblinsMortos / humanosMortos / etc corretos</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">RegistrarKill_killsComRacaAtual</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">EstatisticasPorRaca.killsComRaca incrementa</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">FinalizarPartida_vitoria</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">totalPartidas, totalVitorias, sequenciaVitorias</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">FinalizarPartida_derrota</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">totalDerrotas++, sequenciaVitorias = 0</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">FinalizarPartida_tempoMaiorMenor</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">maior e menor partida atualizados corretamente</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">FinalizarPartida_XP</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">totalXPGanho e maiorXPPartida</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">WinRate_divisaoPorZero</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Retorna 0 sem lancar excecao</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">WinRate_calculo</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">3 vitorias em 4 partidas = 75%</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">OuroAdicionado_acumula</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">totalOuroAcumuladoLifetime soma corretamente</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">OuroGasto_acumula</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">totalOuroGasto soma corretamente</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">MaiorOuro_naoReduz</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">maiorOuroSimultaneo nunca diminui</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">Normalizar_semValorNegativo</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Todos os campos ficam >= 0</td></tr>
+    <tr><td style="padding:8px 16px; border-top:1px solid #1a2540;">UnidadeMaisMorta_retornaTipoCorreto</td><td style="padding:8px 16px; border-top:1px solid #1a2540;">Tipo com maior contador e retornado</td></tr>
+  </table>
+
+</div>
+
+<footer>
+  Plano 9 — Sistema de Estatisticas · Torre Defense · Todos os textos TMP em ASCII puro (sem emoji, sem acentos)
+</footer>
+
+</body>
+</html>

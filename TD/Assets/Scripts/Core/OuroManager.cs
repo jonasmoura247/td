@@ -22,12 +22,19 @@ public class OuroManager : MonoBehaviour
         remove => Logica.OnOuroAlterado -= value;
     }
 
+    /// <summary>Proxy estatico: disparado ao adicionar ouro (delta, total).</summary>
+    public static event Action<int, int> OnOuroAdicionadoStatic;
+    /// <summary>Proxy estatico: disparado ao gastar ouro (delta).</summary>
+    public static event Action<int> OnOuroGastoStatic;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             Logica = new OuroLogica(ouroInicial);
+            Logica.OnOuroAdicionado += (delta, total) => OnOuroAdicionadoStatic?.Invoke(delta, total);
+            Logica.OnOuroGasto      += delta           => OnOuroGastoStatic?.Invoke(delta);
         }
         else
         {

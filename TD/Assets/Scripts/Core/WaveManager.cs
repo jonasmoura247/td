@@ -11,6 +11,8 @@ public class WaveManager : MonoBehaviour
 
     public static System.Action<LadoSpawn> OnProximaWaveDefinida;
     public static System.Action OnWaveIniciada;
+    /// <summary>Disparado ao fim de cada wave (parametro: numero da wave concluida).</summary>
+    public static System.Action<int> OnWaveCompletada;
 
     private static readonly int[] InimigosComunsPorOndaDesign = { 5, 7, 10, 15, 15, 20, 25, 30 };
 
@@ -534,6 +536,8 @@ MovimentoUnidade mov = inimigo.GetComponent<MovimentoUnidade>();
     private void FinalizarWave()
     {
         waveAtiva = false;
+
+        OnWaveCompletada?.Invoke(numeroWave);
 
         if (numeroWave >= TotalOndas)
         {

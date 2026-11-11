@@ -49,6 +49,9 @@ public class UnidadeController : MonoBehaviour, IDanificavel
 
     public bool EstaVivo => estaVivo;
 
+    /// <summary>Disparado quando uma unidade morre. Escutado pelo EstatisticasManager.</summary>
+    public static event System.Action<UnidadeController> OnUnidadeMorreu;
+
     /// <summary>Disparado toda vez que esta unidade executa um ataque (melee ou ranged).</summary>
     public event System.Action OnAtaqueExecutado;
 
@@ -165,6 +168,8 @@ public class UnidadeController : MonoBehaviour, IDanificavel
             return;
 
         estaVivo = false;
+
+        OnUnidadeMorreu?.Invoke(this);
 
         NotificarMorte();
 

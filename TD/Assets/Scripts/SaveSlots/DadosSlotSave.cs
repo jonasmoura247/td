@@ -69,6 +69,8 @@ public class DadosSlotSave
 
     public ProgressaoFases progressaoFases = new ProgressaoFases();
 
+    public DadosEstatisticas estatisticas = new DadosEstatisticas();
+
     /// <summary>Estado dos eventos RNG da run atual (tendas, relíquias, heróis). Impede re-rolls via restart.</summary>
     public EstadoEventosRun estadoEventos = new EstadoEventosRun();
 
@@ -129,6 +131,13 @@ public class DadosSlotSave
         estadoEventos.Normalizar();
         if (contratosHerois == null)
             contratosHerois = new List<ContratoHeroi>();
+    }
+
+    public void NormalizarEstatisticas()
+    {
+        if (estatisticas == null)
+            estatisticas = new DadosEstatisticas();
+        estatisticas.Normalizar();
     }
 
     public void NormalizarBestiario()

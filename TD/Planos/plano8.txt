@@ -1,0 +1,187 @@
+============================================================
+PLANO 8 — SISTEMA DE ESTATÍSTICAS DO JOGADOR
+Torre Defense · Goblins, Humanos, Elfos e Anões
+============================================================
+
+─────────────────────────────────────────
+1. VISÃO GERAL
+─────────────────────────────────────────
+Criar um sistema completo de rastreamento de estatísticas do jogador
+integrado ao fluxo existente de save (JSON / SaveSlotManager) e exposto
+por um painel de UI acessível via BotaoEstatisticas em cada lobby de raça.
+
+─────────────────────────────────────────
+2. ARQUITETURA (padrão do projeto)
+─────────────────────────────────────────
+O projeto já separa lógica pura (sem MonoBehaviour) de wrappers Unity.
+O sistema de estatísticas seguirá o mesmo padrão:
+
+  DadosEstatisticas          → modelo de dados [Serializable]
+  EstatisticasLogica         → lógica pura (testável, sem Unity runtime)
+  EstatisticasManager        → singleton MonoBehaviour (DontDestroyOnLoad)
+  LobbyEstatisticasController → controlador do botão do lobby
+  PainelEstatisticas         → controller do painel de UI
+  UIItemEstatisticasRaca     → componente auxiliar de UI por raça
+
+─────────────────────────────────────────
+3. MODELO DE DADOS
+─────────────────────────────────────────
+DadosEstatisticas (campo novo em DadosSlotSave.estatisticas):
+  └─ EstatisticasGlobais globais
+       • Tempo: tempoTotalPartidas, tempoMaiorPartida, tempoMenorPartida (-1 = nunca)
+       • Combate: totalMonstrosMortos, primeiroMonstroMorto, ultimoMonstroMorto
+                  killsPorTipoUnidade (List<RegistroKillUnidade>)
+                  goblinsMortos / humanosMortos / elfosMortos / anoesMortos
+       • Economia: totalOuroAcumuladoLifetime (long), totalOuroGasto (long),
+                   maiorOuroSimultaneo
+       • Progressão: totalXPGanho (long), maiorXPPartida
+       • Partidas: totalPartidas, totalVitorias, totalDerrotas, ultimaPartida
+  └─ List<EstatisticasPorRaca> estatisticasPorRaca
+       • raca, partidasJogadas, vitorias, derrotas, killsComRaca, ouroAcumuladoComRaca
+
+Estatísticas derivadas (computed properties, não serializadas):
+  • WinRate                = totalVitorias / totalPartidas * 100
+  • TempoMedioPartida      = tempoTotalPartidas / totalPartidas
+  • UnidadeMaisMorta       = tipoUnidade com maior killsPorTipoUnidade
+  • KillsPorMinuto         = totalMonstrosMortos / (tempoTotalPartidas / 60)
+  • OuroPorMinuto          = totalOuroAcumuladoLifetime / (tempoTotalPartidas / 60)
+
+─────────────────────────────────────────
+4. PERSISTÊNCIA
+─────────────────────────────────────────
+• DadosEstatisticas é campo de DadosSlotSave → persistido no mesmo JSON
+  (slots_save.json em Application.persistentDataPath)
+• SaveSlotManager.AtualizarSlotAtivo salva para disco
+• Dados atualizados in-place via referência (sem cópia) → consistência garantida
+• Normalização em DadosEstatisticas.Normalizar() chamada no carregamento do perfil
+  (em DadosSlotSave, seguindo o padrão de NormalizarBestiario, etc.)
+• Salvamento: apenas ao finalizar partida (não a cada frame nem a cada kill)
+
+─────────────────────────────────────────
+5. EVENTOS ADICIONADOS AO SISTEMA EXISTENTE
+─────────────────────────────────────────
+OuroLogica
+  + event Action<int> OnOuroAdicionado   → delta adicionado
+  + event Action<int> OnOuroGasto        → delta gasto
+
+OuroManager
+  + event OnOuroAdicionado (proxy para OuroLogica)
+  + event OnOuroGasto      (proxy para OuroLogica)
+
+UnidadeController
+  + static event Action<UnidadeController> OnUnidadeMorreu
+    (dispara em Morrer(), antes de NotificarMorte)
+
+RunExpPartida
+  + static event Action<bool, int> OnPartidaFinalizada  (vitoria, xpGanho)
+    (dispara em ConcluirComVitoria e ConcluirComDerrota)
+
+DadosSlotSave
+  + DadosEstatisticas estatisticas
+  + void NormalizarEstatisticas()
+
+─────────────────────────────────────────
+6. FLUXO DE DADOS EM TEMPO DE EXECUÇÃO
+─────────────────────────────────────────
+Lobby → mapa carrega
+  EstatisticasManager.OnCenaCarregada:
+    • Re-inicializa logica com dados do perfil ativo
+    • Se cena começa com "Mapa_": registra início, subscreve OuroManager
+    • Se lobby: _emPartida = false
+
+Durante partida:
+  UnidadeController.Morrer → OnUnidadeMorreu
+    → EstatisticasManager.OnKill (filtra faccao == Inimigo)
+      → logica.RegistrarKill(nomePrefab, racaInimiga, racaAtual)
+
+  OuroManager.AdicionarOuro → OnOuroAdicionado(delta)
+    → logica.RegistrarOuroAdicionado(delta, racaAtual)
+
+  OuroManager.GastarOuro → OnOuroGasto(delta)
+    → logica.RegistrarOuroGasto(delta)
+
+  OuroManager.OnOuroAlterado(total)
+    → logica.AtualizarMaiorOuro(total)
+
+Fim de partida:
+  RunExpPartida.ConcluirComVitoria/Derrota → OnPartidaFinalizada(vitoria, xp)
+    → EstatisticasManager.OnPartidaFinalizada:
+        duracao = DateTime.Now - _inicioPartida
+        logica.FinalizarPartida(vitoria, duracao, racaAtual, xpGanho)
+        Salvar() via SaveSlotManager.AtualizarSlotAtivo
+
+─────────────────────────────────────────
+7. DETECÇÃO DE RAÇA INIMIGA
+─────────────────────────────────────────
+DetectarRacaUnidade(UnidadeController unit):
+  1. Checa nome do tipo (ex: GoblinController → Goblin)
+  2. Fallback: checa NomePrefab (ex: "GoblinBoss" → Goblin)
+  3. Se indeterminado: retorna null (kill conta no total, não por raça)
+
+─────────────────────────────────────────
+8. UI — PAINEL DE ESTATÍSTICAS
+─────────────────────────────────────────
+LobbyEstatisticasController (segue padrão LobbyBestiarioController):
+  • botaoAbrir → AbrirPainel()
+  • botaoFechar → FecharPainel()
+  • Garante EstatisticasManager.GarantirExistencia() no Awake
+
+PainelEstatisticas — 4 abas:
+  [Geral]    Tempo total / maior / menor / médio
+             Total partidas / vitórias / derrotas / winrate / última partida
+  [Combate]  Total kills / primeiro monstro / último monstro
+             Unidade mais morta / kills por minuto
+             Kills por raça inimiga (Goblin / Humano / Elfo / Anão)
+  [Economia] Total ouro acumulado / ouro gasto / maior ouro simultâneo / ouro/min
+  [Raças]    Para cada raça: partidas / vitórias / derrotas / winrate / kills / ouro
+
+UIItemEstatisticasRaca: componente [Serializable] que agrupa os campos TMP de uma raça.
+
+─────────────────────────────────────────
+9. TESTES (EditMode, sem MonoBehaviour)
+─────────────────────────────────────────
+EstatisticasLogicaTests cobrirá:
+  • RegistrarKill → totalMonstrosMortos, primeiroMonstro, ultimoMonstro, killsPorTipo
+  • RegistrarKill → kills por raça inimiga
+  • RegistrarKill → killsComRaca incrementado na raça correta
+  • FinalizarPartida → totalPartidas, vitorias, derrotas, tempoMaiorPartida, tempoMenorPartida
+  • FinalizarPartida → XP acumulado e maiorXPPartida
+  • WinRate → divisão por zero retorna 0
+  • WinRate → cálculo correto com dados reais
+  • TempoMedioPartida → zero partidas retorna 0
+  • RegistrarOuroAdicionado → totalOuroAcumuladoLifetime / ouroAcumuladoComRaca
+  • RegistrarOuroGasto → totalOuroGasto
+  • AtualizarMaiorOuro → nunca reduz valor já registrado
+  • Normalizar → nenhum campo negativo após normalização
+  • UnidadeMaisMorta → retorna tipo correto
+  • WinRatePorRaca → zero partidas retorna 0
+
+─────────────────────────────────────────
+10. EDGE CASES TRATADOS
+─────────────────────────────────────────
+• Nenhuma partida: campos mostram "—" na UI (nunca divide por zero)
+• tempoMenorPartida = -1 ao criar perfil → UI exibe "—"
+• Raça inimiga não detectável → kill conta no total, não quebra
+• App fechado mid-partida → match não é contado (só salva ao finalizar)
+• Saves antigos sem estatisticas → campo criado automaticamente na normalização
+• Valores negativos em saves corrompidos → Normalizar() clampea para 0
+
+─────────────────────────────────────────
+11. ARQUIVOS CRIADOS / MODIFICADOS
+─────────────────────────────────────────
+CRIADOS:
+  Assets/Scripts/Estatisticas/DadosEstatisticas.cs
+  Assets/Scripts/Estatisticas/EstatisticasLogica.cs
+  Assets/Scripts/Estatisticas/EstatisticasManager.cs
+  Assets/Scripts/Estatisticas/LobbyEstatisticasController.cs
+  Assets/Scripts/UI/Estatisticas/UIItemEstatisticasRaca.cs
+  Assets/Scripts/UI/Estatisticas/PainelEstatisticas.cs
+  Assets/Tests/EditMode/EstatisticasLogicaTests.cs
+
+MODIFICADOS (mudanças mínimas):
+  Assets/Scripts/SaveSlots/DadosSlotSave.cs       (+ campo estatisticas)
+  Assets/Scripts/Core/UnidadeController.cs         (+ OnUnidadeMorreu)
+  Assets/Scripts/Progressao/RunExpPartida.cs       (+ OnPartidaFinalizada)
+  Assets/Scripts/Core/OuroLogica.cs                (+ OnOuroAdicionado/Gasto)
+  Assets/Scripts/Core/OuroManager.cs               (+ proxy dos novos eventos)
+============================================================
